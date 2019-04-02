@@ -30,11 +30,12 @@ public class Project {
 	@ManyToOne
 	private Volunteer volunteer;
 	
+	
 	public Project(String projectName, String projectDescription, String estimatedDuration, Organization organization) {
 		this.projectName = projectName;
 		this.projectDescription = projectDescription;
 		this.estimatedDuration = estimatedDuration;
-		this.createDate = createDate;
+		this.createDate = LocalDateTime.now();
 		this.status = true;
 		this.organization = organization;
 		this.skills = new ArrayList<Skill>();

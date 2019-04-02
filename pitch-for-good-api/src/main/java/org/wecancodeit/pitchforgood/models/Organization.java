@@ -10,6 +10,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Organization {
 	
@@ -25,7 +27,11 @@ public class Organization {
 	@ManyToMany
 	private Collection<Cause> causes;
 	@OneToMany //(mappedBy="organization")
+	@JsonIgnore
 	private Collection<Project> projects;
+	
+	public Organization() {}
+		
 	
 	public Organization(String orgName, String orgMission, String contactPerson, String orgEmail, String websiteUrl) {
 		this.orgName = orgName;

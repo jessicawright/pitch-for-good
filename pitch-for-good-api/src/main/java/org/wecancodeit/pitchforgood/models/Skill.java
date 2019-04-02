@@ -17,10 +17,10 @@ public class Skill {
 	@GeneratedValue
 	private Long skillId;
 	private String skillName;
-	@ManyToMany //(mappedBy="volunteer")
+	@ManyToMany (mappedBy="skills")
 	@JsonIgnore
 	private Collection<Volunteer> volunteers;
-	@ManyToMany //(mappedBy="skill")
+	@ManyToMany (mappedBy="skills")
 	@JsonIgnore
 	private Collection<Project> projects;
 	
