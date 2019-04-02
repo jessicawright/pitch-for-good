@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Volunteer {
 	
@@ -21,10 +23,11 @@ public class Volunteer {
 	private String email;
 	private String jobTitle;
 	@ManyToMany
+	
 	private Collection<Skill> skills;
 	@ManyToMany
 	private Collection<Cause> causes;
-	@OneToMany(mappedBy="volunteer")
+	@OneToMany
 	private Collection<Project> projects;
 	
 	public Volunteer() {}

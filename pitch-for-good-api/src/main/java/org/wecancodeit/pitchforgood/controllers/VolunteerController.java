@@ -26,7 +26,7 @@ import org.wecancodeit.pitchforgood.repositories.VolunteerRepository;
 
 @CrossOrigin
 @RestController
-@RequestMapping
+@RequestMapping("/volunteers")
 public class VolunteerController {
 	
 	@Resource
