@@ -29,10 +29,7 @@ public class Project {
 	@JsonIgnore
 	private Collection<Skill> skills;
 	
-	public Project() {}
-
-	public Project(String projectName, String projectDescription, String estimatedDuration, LocalDateTime createDate,
-			String location, Organization organization) {
+	public Project(String projectName, String projectDescription, String estimatedDuration, LocalDateTime createDate, String location, Organization organization) {
 		this.projectName = projectName;
 		this.projectDescription = projectDescription;
 		this.estimatedDuration = estimatedDuration;
@@ -41,6 +38,8 @@ public class Project {
 		this.organization = organization;
 		this.skills = new ArrayList<Skill>();
 	}
+	
+	public Project() {}
 
 	public Long getProjectId() {
 		return projectId;
