@@ -30,7 +30,9 @@ public class Project {
 	@ManyToOne
 	private Volunteer volunteer;
 	
+
 	public Project() {}
+
 	
 	public Project(String projectName, String projectDescription, String estimatedDuration, Organization organization) {
 		this.projectName = projectName;
