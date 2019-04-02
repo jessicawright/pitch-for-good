@@ -7,4 +7,6 @@ import org.wecancodeit.pitchforgood.models.Organization;
 @Repository
 public interface OrganizationRepository extends CrudRepository<Organization, Long>{
 
+	Organization findByOrganizationName(String string);
+
 }
