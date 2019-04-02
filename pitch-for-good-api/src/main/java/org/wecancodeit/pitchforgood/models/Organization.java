@@ -24,7 +24,7 @@ public class Organization {
 	private String websiteUrl;
 	@ManyToMany
 	private Collection<Cause> causes;
-	@OneToMany
+	@OneToMany //(mappedBy="organization")
 	private Collection<Project> projects;
 	
 	public Organization(String orgName, String orgMission, String contactPerson, String orgEmail, String websiteUrl) {
@@ -40,21 +40,27 @@ public class Organization {
 	public Long getOrganizationId() {
 		return organizationId;
 	}
+	
 	public String getOrgName() {
 		return orgName;
 	}
+	
 	public String getOrgMission() {
 		return orgMission;
 	}
+	
 	public String getContactPerson() {
 		return contactPerson;
 	}
+	
 	public String getOrgEmail() {
 		return orgEmail;
 	}
+	
 	public String getWebsiteUrl() {
 		return websiteUrl;
 	}
+	
 	public Collection<Cause> getCauses() {
 		return causes;
 	}
@@ -62,5 +68,13 @@ public class Organization {
 	public Collection<Project> getProjects() {
 		return projects;
 	}
-
+	
+	public void addCauseToOrganization(Cause cause) {
+		causes.add(cause);
+	}
+	
+	public void addProjectToOrganization(Project project) {
+		projects.add(project);
+	}
+	
 }

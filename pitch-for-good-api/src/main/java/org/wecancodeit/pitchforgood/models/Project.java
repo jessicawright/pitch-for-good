@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Project {
@@ -22,16 +23,19 @@ public class Project {
 	private String estimatedDuration;
 	private LocalDateTime createDate;
 	private boolean status;
+	@ManyToOne
 	private Organization organization;
 	@ManyToMany
 	private Collection<Skill> skills;
+	@ManyToOne
+	private Volunteer volunteer;
 	
 	public Project(String projectName, String projectDescription, String estimatedDuration, Organization organization) {
 		this.projectName = projectName;
 		this.projectDescription = projectDescription;
 		this.estimatedDuration = estimatedDuration;
 		this.createDate = createDate;
-		this.status = status;
+		this.status = true;
 		this.organization = organization;
 		this.skills = new ArrayList<Skill>();
 	}
@@ -70,6 +74,8 @@ public class Project {
 		return skills;
 	}
 	
-	
+	public void addSkillToProject(Skill skill) {
+		skills.add(skill);
+	}
 	
 }

@@ -41,50 +41,52 @@ public class Volunteer {
 		this.projects = new ArrayList<Project>();
 	}
 
-
 	public Long getVolunteerId() {
 		return volunteerId;
 	}
-
-
+	
 	public String getFirstName() {
 		return firstName;
 	}
-
 
 	public String getLastName() {
 		return lastName;
 	}
 
-
 	public String getPhoneNum() {
 		return phoneNum;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public String getJobTitle() {
 		return jobTitle;
 	}
-
 
 	public Collection<Skill> getSkills() {
 		return skills;
 	}
 
-
 	public Collection<Cause> getCauses() {
 		return causes;
 	}
-
 
 	public Collection<Project> getProjects() {
 		return projects;
 	}
 
+	public void addSkillToVolunteer(Skill skill) {
+		skills.add(skill);
+	}
+	
+	public void addCauseToVolunteer(Cause cause) {
+		causes.add(cause);
+	}
+	
+	public void addProjectToVolunteer(Project project) {
+		projects.add(project);
+	}
 	
 }
