@@ -1,9 +1,9 @@
-export default function Landing() {
+export default function landing() {
 
-return`
+return `
 
 <section>
-    <img src="../images/landing-image.jpg" alt="grafitti art of helping hands"/>
+    <img src="../images/landing.jpg" alt="grafitti art of helping hands"/>
     <h1>Pitch For Good</h1>
     <p>Pitch For Good provides a platform for highly-skilled professionals to pitch specialized, project-based volunteer ideas to nonprofits they care about.</p>
 </section>
