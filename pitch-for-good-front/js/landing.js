@@ -1,4 +1,5 @@
-export default function LandingPage()
+export default function Landing() {
+
 return`
 
 <section>
@@ -13,3 +14,4 @@ return`
     <h4>Photo by Dakota Corbin on Unsplash</h4>
 </footer>
 `;
+}
