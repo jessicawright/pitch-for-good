@@ -45,27 +45,27 @@ public class ProjectController {
 		return (Collection<Project>) projectRepo.findAll();
 	}
 	
-	@PostMapping("/add")
-	public Collection<Project> addProject(@RequestBody String body) throws JSONException {
+	@PostMapping("/add/{id}")
+	public Collection<Project> addProject(@RequestBody String body, @PathVariable Long id) throws JSONException {
 		JSONObject newProject = new JSONObject(body);
 		String projectName = newProject.getString("projectName");
 		String projectDescription = newProject.getString("projectDescription");
 		String estimatedDuration = newProject.getString("estimatedDuration");
 		boolean status = newProject.getBoolean("status");
-		Organization organization = organizationRepo.findByOrganizationName(newProject.getString("orgName"));
-		Skill skills = skillRepo.findBySkillName(newProject.getString("skills"));
-		Volunteer volunteer = volunteerRepo.findByVolunteerName(newProject.getString("volunteer"));
+		Organization organization = organizationRepo.findByOrgName(newProject.getString("orgName"));
+//		Skill skills = skillRepo.findBySkillName(newProject.getString("skills"));
+		Volunteer volunteer = volunteerRepo.findById(id).get();
 		projectRepo.save(new Project(projectName, projectDescription, estimatedDuration, organization));
 		return (Collection<Project>) projectRepo.findAll();
 	}
 	
-	@DeleteMapping("delete/{id}")
-	public String deleteProject(@PathVariable Long id) {
-		Project project = projectRepo.findById(id).get();
-		organizationRepo.delete(project.getOrganization());
-		skillRepo.deleteAll(project.getSkills());
-		volunteerRepo.delete(project.getVolunteer());
-		return "";
-	}
+//	@DeleteMapping("delete/{id}")
+//	public String deleteProject(@PathVariable Long id) {
+//		Project project = projectRepo.findById(id).get();
+//		organizationRepo.delete(project.getOrganization());
+//		skillRepo.deleteAll(project.getSkills());
+//		volunteerRepo.delete(project.getVolunteer());
+//		return "";
+//	}
 	
 }
