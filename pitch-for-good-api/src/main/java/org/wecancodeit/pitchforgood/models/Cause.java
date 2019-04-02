@@ -22,6 +22,7 @@ public class Cause {
 	@ManyToMany(mappedBy="causes")
 	private Collection<Volunteer> volunteers;
 	
+	public Cause() {}
 	
 	public Cause(String causeName, String causeDescription) {
 		this.causeName = causeName;

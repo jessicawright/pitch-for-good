@@ -27,6 +27,8 @@ public class Organization {
 	@OneToMany //(mappedBy="organization")
 	private Collection<Project> projects;
 	
+	public Organization() {}
+	
 	public Organization(String orgName, String orgMission, String contactPerson, String orgEmail, String websiteUrl) {
 		this.orgName = orgName;
 		this.orgMission = orgMission;
