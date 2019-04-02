@@ -7,4 +7,8 @@ import org.wecancodeit.pitchforgood.models.Volunteer;
 @Repository
 public interface VolunteerRepository extends CrudRepository<Volunteer, Long>{
 
+	Volunteer findByVolunteerName(String string);
+
+
+
 }
