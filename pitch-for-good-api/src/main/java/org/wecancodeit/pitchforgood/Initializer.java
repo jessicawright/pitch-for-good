@@ -46,7 +46,7 @@ public class Initializer implements CommandLineRunner {
 		Cause cause6 = causeRepo.save(new Cause("Health", ""));
 		Cause cause7 = causeRepo.save(new Cause("Human and Civil Rights", ""));
 		Cause cause8 = causeRepo.save(new Cause("Children's and Family Services", ""));
-		Cause cause9 = causeRepo.save(new Cause("Youth Development, Shelter, and Crisis Services", "");
+		Cause cause9 = causeRepo.save(new Cause("Youth Development, Shelter, and Crisis Services", ""));
 		Cause cause10 = causeRepo.save(new Cause("Hunger", ""));
 		Cause cause11 = causeRepo.save(new Cause("Homeless Services", ""));
 		Cause cause12 = causeRepo.save(new Cause("International Services", ""));
@@ -81,11 +81,11 @@ public class Initializer implements CommandLineRunner {
 		Skill skill26 = skillRepo.save(new Skill("Real Estate"));
 		Skill skill27 = skillRepo.save(new Skill("Fitness"));
 		
-		Organization organization1 = organizationRepo.save(new Organization("Ohio Environmental Council"));
-		Organization organization2 = organizationRepo.save(new Organization("Columbus Literacy Council"));
-		Organization organization3 = organizationRepo.save(new Organization("Ohio House Rabbit Rescue"));
-		Organization organization4 = organizationRepo.save(new Organization("Children's Hunger Alliance"));
-		Organization organization5 = organizationRepo.save(new Organization("Tech Corps"));
+		Organization organization1 = organizationRepo.save(new Organization("Ohio Environmental Council", "We want to protect the environment.", "Jason", "jason@gmail.com", "jason.com"));
+		Organization organization2 = organizationRepo.save(new Organization("Columbus Literacy Council", "We want to help ESL students learn English.", "Ariel", "ariel@gmail.com", "ariel.com"));
+		Organization organization3 = organizationRepo.save(new Organization("Ohio House Rabbit Rescue", "We want to protect the rabbits.", "Adam", "adam@gmail.com", "adam.com"));
+		Organization organization4 = organizationRepo.save(new Organization("Children's Hunger Alliance", "We want to help families get food.", "Ben", "ben@gmail.com", "ben.com"));
+		Organization organization5 = organizationRepo.save(new Organization("Tech Corps", "We want to help kids gain access to learning technological skills.", "Jess", "jess@gmail.com", "jess.com"));
 		
 		Volunteer volunteer1 = volunteerRepo.save(new Volunteer("John", "Smith", "8675309", "johnsmith@gmail.com", "Teacher"));
 		Volunteer volunteer2 = volunteerRepo.save(new Volunteer("Stuart", "Little", "8671111", "stuartlittle@gmail.com", "Cheese Chef"));
@@ -93,9 +93,9 @@ public class Initializer implements CommandLineRunner {
 		Volunteer volunteer4 = volunteerRepo.save(new Volunteer("Lila", "Jones", "8673333", "lilajones@gmail.com", "Software Developer"));
 		Volunteer volunteer5 = volunteerRepo.save(new Volunteer("Peggy", "Peggerson", "8674444", "pegpeg@gmail.com", "Accountant"));
 		
-		Project project1 = projectRepo.save(new Project("Dog Park", "We're building a dog park at the community center!", "3 months", 2007-12-03T10:15:30, "", organization3));
-		Project project2 = projectRepo.save(new Project("Free Software Class for Kids", "We're having a free software summer class series at the library!", "3 months", LocalDateTime, "", organization5));
-		Project project3 = projectRepo.save(new Project("Trash Cleanup", "We're picking up trash along the creek in our park.", "1 week", 3-4-19, "", organization1));
+		Project project1 = projectRepo.save(new Project("Dog Park", "We're building a dog park at the community center!", "3 months", organization3));
+		Project project2 = projectRepo.save(new Project("Free Software Class for Kids", "We're having a free software summer class series at the library!", "3 months", organization5));
+		Project project3 = projectRepo.save(new Project("Trash Cleanup", "We're picking up trash along the creek in our park.", "1 week", organization1));
 		
 		
 	

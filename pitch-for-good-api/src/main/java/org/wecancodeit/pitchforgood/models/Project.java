@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Project {
 	
@@ -23,18 +21,17 @@ public class Project {
 	private String projectDescription;
 	private String estimatedDuration;
 	private LocalDateTime createDate;
-	private String location;
+	private boolean status;
 	private Organization organization;
-	@ManyToMany(mappedBy="projects")
-	@JsonIgnore
+	@ManyToMany
 	private Collection<Skill> skills;
 	
-	public Project(String projectName, String projectDescription, String estimatedDuration, LocalDateTime createDate, String location, Organization organization) {
+	public Project(String projectName, String projectDescription, String estimatedDuration, Organization organization) {
 		this.projectName = projectName;
 		this.projectDescription = projectDescription;
 		this.estimatedDuration = estimatedDuration;
 		this.createDate = createDate;
-		this.location = location;
+		this.status = status;
 		this.organization = organization;
 		this.skills = new ArrayList<Skill>();
 	}
@@ -60,9 +57,9 @@ public class Project {
 	public LocalDateTime getCreateDate() {
 		return createDate;
 	}
-
-	public String getLocation() {
-		return location;
+	
+	public boolean getStatus() {
+		return status;
 	}
 
 	public Organization getOrganization() {
