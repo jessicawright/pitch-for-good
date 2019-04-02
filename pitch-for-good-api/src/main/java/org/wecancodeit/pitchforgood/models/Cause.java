@@ -17,9 +17,9 @@ public class Cause {
 	private String causeName;
 	@Lob
 	private String causeDescription;
-	@ManyToMany
+	@ManyToMany //(mappedBy="causes") needs fixed.........
 	private Collection<Organization> organizations;
-	@ManyToMany
+	@ManyToMany(mappedBy="causes")
 	private Collection<Volunteer> volunteers;
 	
 	
