@@ -1,7 +1,7 @@
-import VolForm from './components/VolForm'
-
-import landing from './landing'
-
+import VolBioForm from './components/VolBioForm'
+import VolCauseForm from './components/VolCauseForm'
+import VolSkillForm from './components/VolSkillForm'
+import landing from './components/landing'
 import api from './utils/api/api-actions'
 import events from './utils/events/event-actions'
 
@@ -14,9 +14,25 @@ function main() {
 
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--sign-up__volunteer')) {
-            api.getRequest('/volunteers/add', volunteer => {
-                getAppContext().innerHTML = VolForm(volunteer)
+            api.getRequest('http://localhost:8080/volunteers', volunteers => {
+                getAppContext().innerHTML = VolBioForm(volunteers)
             })
+            
+        }
+
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js--sign-up__volunteer-bio')) {
+            api.getRequest('http://localhost:8080/causes', causes => {
+                getAppContext().innerHTML = VolCauseForm(causes)
+            })
+            
+        }
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js-add-volunteer-cause')) {
+            api.getRequest('http://localhost:8080/skills', skills => {
+                getAppContext().innerHTML = VolSkillForm(skills)
+            })
+            
         }
     
     events.on(getAppContext(), 'click', () => {
@@ -40,9 +56,11 @@ function main() {
         }
     })
 
-
+})
+})
+    })
+    
     function getAppContext() {
         return document.querySelector("#app")
     }
-})
 }
