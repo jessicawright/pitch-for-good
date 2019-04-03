@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cause {
 	@Id
@@ -17,11 +19,14 @@ public class Cause {
 	private String causeName;
 	@Lob
 	private String causeDescription;
-	@ManyToMany //(mappedBy="causes") needs fixed.........
+	@ManyToMany (mappedBy="causes")
+	@JsonIgnore
 	private Collection<Organization> organizations;
 	@ManyToMany(mappedBy="causes")
+	@JsonIgnore
 	private Collection<Volunteer> volunteers;
 	
+	public Cause() {}
 	
 	public Cause(String causeName, String causeDescription) {
 		this.causeName = causeName;

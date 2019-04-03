@@ -117,143 +117,79 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/components/VolForm.js":[function(require,module,exports) {
-"use strict";
+})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = VolForm;
-
-function VolForm(volunteer) {
-
-  return "\n        <div class=\"grid-container>\n            <div class=\"contact-info>\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\">\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\">\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n\n            <div class=\"causes-container\">\n                <ul class=\"causes\">\n                    ".concat(causes.map(function (cause) {
-    return "\n                            <li class=\"cause\">      //check cause.causeName may need to change volunteerID\n                                <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.id, "\" value=\"").concat(cause.causeName, "\">\n                            </li>\n                            ");
-  }).join(''), "             \n                </ul>\n            </div>\n    \n            <div class=\"skills__container\">\n                <ul class=\"skills\">\n                ").concat(skills.map(function (skill) {
-    return "\n                        <li class=\"skill\">      //check cause.causeName may need to change volunteerID\n                            <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.id, "\" value=\"").concat(skill.skillName, "\">\n                        </li>\n                        ");
-  }).join(''), "             \n                </ul>\n            </div>  \n            <button class=\"js-add-volunteer button\">Create Profile</button>\n        </div>\n    "); // <h1>Hello World.</h1>
-  // <h2>This is the form where a volunteer signs up.</h2>
-
-}
-},{}],"js/landing.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = landing;
-
-function landing() {
-  return "\n\n<div class=\"landing\">\n\t<h1 class=\"landing__title\">Pitch For Good</h1>\n</div>\n<h2>Pitch For Good provides a platform for highly-skilled professionals to pitch specialized, project-based volunteer ideas to nonprofits they care about.</h2>\n\n<button class=\"js--sign-up__volunteer button__big\">I AM A VOLUNTEER</button>\n<button class=\"js--sign-up__volunteer button__big\">I AM A NON-PROFIT</button>\n\n<footer>\n\t<h3>Pitch For Good &copy;2019</h3>\n\t<h3>Photo by Dakota Corbin on <a href=\"https://unsplash.com/\">Unsplash</a></h3>\n</footer>\n\n";
-
-}
-},{}],"js/utils/api/api-actions.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function getRequest(location, callback) {
-  fetch(location).then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    return callback(data);
-  }).catch(function (err) {
-    return console.log(err);
-  });
-}
-
-function postRequest(location, requestBody, callback) {
-  fetch(location, {
-    method: "POST",
-    body: JSON.stringify(requestBody)
-  }).then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    return callback(data);
-  }).catch(function (err) {
-    return console.log(err);
-  });
-}
-
-var _default = {
-  getRequest: getRequest,
-  postRequest: postRequest
-};
-exports.default = _default;
-},{}],"js/utils/events/event-actions.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function on(element, eventType, callback) {
-  element.addEventListener(eventType, function (event) {
-    return callback(event);
-  });
-}
-
-var _default = {
-  on: on
-};
-exports.default = _default;
-},{}],"js/app.js":[function(require,module,exports) {
-"use strict";
-
-var _VolForm = _interopRequireDefault(require("./components/VolForm"));
-
-var _landing = _interopRequireDefault(require("./landing"));
-
-var _apiActions = _interopRequireDefault(require("./utils/api/api-actions"));
-
-var _eventActions = _interopRequireDefault(require("./utils/events/event-actions"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-main();
-
-function main() {
-
-  getAppContext().innerHTML = (0, _landing.default)();
-}
-
-_eventActions.default.on(getAppContext(), 'click', function () {
-  if (event.target.classList.contains('js--sign-up__volunteer')) {
-    _apiActions.default.getRequest('/volunteers/add', function (volunteer) {
-      getAppContext().innerHTML = (0, _VolForm.default)(volunteer);
-    });
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
   }
 
-  _eventActions.default.on(getAppContext(), 'click', function () {
-    if (event.target.classList.contains('js-add-volunteer')) {
-      var firstName = document.querySelector('.add__firstName').value;
-      var lastName = document.querySelector('.add__lastName').value;
-      var phoneNum = document.querySelector('.add__phoneNum').value;
-      var email = document.querySelector('.add__email').value;
-      var jobTitle = document.querySelector('.add__jobTitle').value; //const causeName = // figure out how to pull in causes
-      //const skills = // figure out how to pull in skills
+  return bundleURL;
+}
 
-      _apiActions.default.postRequest('http://localhost:8080/volunteers/add', {
-        firstName: firstName,
-        lastName: lastName,
-        phoneNum: phoneNum,
-        email: email,
-        jobTitle: jobTitle // causeName : causeName,
-        // skills : skills,
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
 
-      }, function (volunteer) {
-        return getAppContext().innerHTML = Volunteer(volunteer);
-      });
+    if (matches) {
+      return getBaseURL(matches[0]);
     }
-  });
-});
+  }
 
-},{"./components/VolForm":"js/components/VolForm.js","./landing":"js/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"css/index.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -281,9 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64725" + '/');
-
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63819" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -458,5 +392,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
-//# sourceMappingURL=/app.c3f9f951.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/css.967bad95.js.map

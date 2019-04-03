@@ -7,7 +7,6 @@ function getRequest(location, callback) {
 
 }
 
-
 function postRequest(location, requestBody, callback) {
     fetch(location, {
         method: "POST",

@@ -26,7 +26,7 @@ import org.wecancodeit.pitchforgood.repositories.VolunteerRepository;
 
 @CrossOrigin
 @RestController
-@RequestMapping
+@RequestMapping("/volunteers")
 public class VolunteerController {
 	
 	@Resource
@@ -53,9 +53,9 @@ public class VolunteerController {
 		String phoneNum = newVolunteer.getString("phoneNum");
 		String email = newVolunteer.getString("email");
 		String jobTitle = newVolunteer.getString("jobTitle");
-		Skill skills = skillRepo.findBySkillName(newVolunteer.getString("skillName"));
-		Cause causes = causeRepo.findByCauseName(newVolunteer.getString("causeName"));
-		Project projects = projectRepo.findByProjectName(newVolunteer.getString("projectName"));
+//		Skill skills = skillRepo.findBySkillName(newVolunteer.getString("skillName"));
+//		Cause causes = causeRepo.findByCauseName(newVolunteer.getString("causeName"));
+//		Project projects = projectRepo.findByProjectName(newVolunteer.getString("projectName"));
 		volunteerRepo.save(new Volunteer(firstName, lastName, phoneNum, email, jobTitle));
 		return (Collection<Volunteer>) volunteerRepo.findAll();
 		

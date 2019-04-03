@@ -30,17 +30,21 @@ public class Project {
 	@ManyToOne
 	private Volunteer volunteer;
 	
+
+	public Project() {}
+
+	
 	public Project(String projectName, String projectDescription, String estimatedDuration, Organization organization) {
 		this.projectName = projectName;
 		this.projectDescription = projectDescription;
 		this.estimatedDuration = estimatedDuration;
-		this.createDate = createDate;
+		this.createDate = LocalDateTime.now();
 		this.status = true;
 		this.organization = organization;
 		this.skills = new ArrayList<Skill>();
 	}
 	
-	public Project() {}
+	
 
 	public Long getProjectId() {
 		return projectId;
@@ -77,5 +81,7 @@ public class Project {
 	public void addSkillToProject(Skill skill) {
 		skills.add(skill);
 	}
-	
+	public Volunteer getVolunteer() {
+		return volunteer;
+	}
 }
