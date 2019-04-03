@@ -126,7 +126,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolForm;
 
 function VolForm(volunteer) {
-  return "\n    <h1>Hello World.</h1>\n    <h2>This is the form where a volunteer signs up.</h2>\n    ";
+
+  return "\n        <div class=\"grid-container>\n            <div class=\"contact-info>\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\">\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\">\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n\n            <div class=\"causes-container\">\n                <ul class=\"causes\">\n                    ".concat(causes.map(function (cause) {
+    return "\n                            <li class=\"cause\">      //check cause.causeName may need to change volunteerID\n                                <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.id, "\" value=\"").concat(cause.causeName, "\">\n                            </li>\n                            ");
+  }).join(''), "             \n                </ul>\n            </div>\n    \n            <div class=\"skills__container\">\n                <ul class=\"skills\">\n                ").concat(skills.map(function (skill) {
+    return "\n                        <li class=\"skill\">      //check cause.causeName may need to change volunteerID\n                            <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.id, "\" value=\"").concat(skill.skillName, "\">\n                        </li>\n                        ");
+  }).join(''), "             \n                </ul>\n            </div>  \n            <button class=\"js-add-volunteer button\">Create Profile</button>\n        </div>\n    "); // <h1>Hello World.</h1>
+  // <h2>This is the form where a volunteer signs up.</h2>
+
 }
 },{}],"js/landing.js":[function(require,module,exports) {
 "use strict";
@@ -134,10 +141,12 @@ function VolForm(volunteer) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
 exports.default = landing;
 
 function landing() {
   return "\n\n<div class=\"landing\">\n\t<h1 class=\"landing__title\">Pitch For Good</h1>\n</div>\n<h2>Pitch For Good provides a platform for highly-skilled professionals to pitch specialized, project-based volunteer ideas to nonprofits they care about.</h2>\n\n<button class=\"js--sign-up__volunteer button__big\">I AM A VOLUNTEER</button>\n<button class=\"js--sign-up__volunteer button__big\">I AM A NON-PROFIT</button>\n\n<footer>\n\t<h3>Pitch For Good &copy;2019</h3>\n\t<h3>Photo by Dakota Corbin on <a href=\"https://unsplash.com/\">Unsplash</a></h3>\n</footer>\n\n";
+
 }
 },{}],"js/utils/api/api-actions.js":[function(require,module,exports) {
 "use strict";
@@ -209,22 +218,41 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 main();
 
 function main() {
-  _apiActions.default.getRequest("http://localhost:8080/volunteers", function (volunteers) {
-    getAppContext().innerHTML = (0, _landing.default)();
-  });
+
+  getAppContext().innerHTML = (0, _landing.default)();
+}
+
+_eventActions.default.on(getAppContext(), 'click', function () {
+  if (event.target.classList.contains('js--sign-up__volunteer')) {
+    _apiActions.default.getRequest('/volunteers/add', function (volunteer) {
+      getAppContext().innerHTML = (0, _VolForm.default)(volunteer);
+    });
+  }
 
   _eventActions.default.on(getAppContext(), 'click', function () {
-    if (event.target.classList.contains('js--sign-up__volunteer')) {
-      _apiActions.default.getRequest('/volunteers/add', function (volunteer) {
-        getAppContext().innerHTML = (0, _VolForm.default)(volunteer);
+    if (event.target.classList.contains('js-add-volunteer')) {
+      var firstName = document.querySelector('.add__firstName').value;
+      var lastName = document.querySelector('.add__lastName').value;
+      var phoneNum = document.querySelector('.add__phoneNum').value;
+      var email = document.querySelector('.add__email').value;
+      var jobTitle = document.querySelector('.add__jobTitle').value; //const causeName = // figure out how to pull in causes
+      //const skills = // figure out how to pull in skills
+
+      _apiActions.default.postRequest('http://localhost:8080/volunteers/add', {
+        firstName: firstName,
+        lastName: lastName,
+        phoneNum: phoneNum,
+        email: email,
+        jobTitle: jobTitle // causeName : causeName,
+        // skills : skills,
+
+      }, function (volunteer) {
+        return getAppContext().innerHTML = Volunteer(volunteer);
       });
     }
   });
+});
 
-  function getAppContext() {
-    return document.querySelector("#app");
-  }
-}
 },{"./components/VolForm":"js/components/VolForm.js","./landing":"js/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -253,7 +281,9 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63819" + '/');
+
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64725" + '/');
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};
