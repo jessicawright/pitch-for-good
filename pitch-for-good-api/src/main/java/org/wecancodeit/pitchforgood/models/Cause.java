@@ -59,6 +59,24 @@ public class Cause {
 	public Collection<Volunteer> getVolunteers() {
 		return volunteers;
 	}
+
+	public void addOrganization(Organization organization) {
+		organizations.add(organization);
+		
+	}
+	public void addVolunteer(Volunteer volunteer) {
+		volunteers.add(volunteer);
+	}
+
+	public void removeOrganization(Organization organization) {
+		organizations.remove(organization);
+		
+	}
+
+	public void removeVolunteer(Volunteer volunteer) {
+		volunteers.remove(volunteer);
+		
+	}
 	
 	
 
