@@ -5,7 +5,7 @@ export default function VolSkillForm(skills) {
                 <ul class="skills">
                 ${skills.map(skill => {
                     return `
-                        <li class="skill">      //check cause.causeName may need to change volunteerID
+                        <li class="skill">     
                             <input type="checkbox" class="skill__skillName" id="${skill.id}" value="${skill.skillName}">
                         </li>
                         `  
