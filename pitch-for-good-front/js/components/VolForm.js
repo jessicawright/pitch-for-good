@@ -8,29 +8,29 @@ export default function VolForm(causes, skills) {
                 <input type="text" class="add__phoneNum" placeholder="Phone:">
                 <input type="text" class="add__email" placeholder="Email:">
             </div>
-            <button class="js-add-volunteer-bio button">Next</button>
-        </div>
-
-        <ul id="skills">
+            </div>
+            
+            <ul id="skills">
             ${skills.map(skill => {
-        return `
+                return `
             <li class="skill">     
-                <input type="checkbox" class="skill__skillName" id="${skill.id}" value="${skill.skillName}">${skill.skillName}
+            <input type="checkbox" class="skill__skillName" id="${skill.id}" name="skillIds" value="${skill.skillId}">${skill.skillName}
             </li>
-                `;
-    }).join('')}
-        </ul>
-
-        <ul id="skills">
-            ${causes.map(cause => {
-        return `
-            <li class="cause">     
-                <input type="checkbox" class="cause__causeName" id="${cause.causeId}" value="${cause.causeName}">${cause.causeName}
-            </li>
-                `;
-    }).join('')}
+            `;
+        }).join('')}
         </ul>
         
+        <ul id="skills">
+            ${causes.map(cause => {
+                return `
+                <li class="cause">     
+                <input type="checkbox" class="cause__causeName" id="${cause.causeId}" name="causeIds" value="${cause.causeId}">${cause.causeName}
+                </li>
+                `;
+            }).join('')}
+            </ul>
+            
+            <button class="js-add-volunteer button">Sign Up!</button>
         `;
    
 }
