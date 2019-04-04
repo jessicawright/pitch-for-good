@@ -47,6 +47,21 @@ public class Skill {
 	public Collection<Project> getProjects() {
 		return projects;
 	}
+
+	public void addVolunteerToSkill(Volunteer volunteer) {
+		volunteers.add(volunteer);
+		
+	}
+	public void removeVolunteer(Volunteer volunteer) {
+		volunteers.remove(volunteer);
+		
+	}
+	public void addProjectToSkill(Project project) {
+		projects.add(project);
+	}
+	public void removeProject(Project project) {
+		projects.remove(project);
+	}
 	
 	
 

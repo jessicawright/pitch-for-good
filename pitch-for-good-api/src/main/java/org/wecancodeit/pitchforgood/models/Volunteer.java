@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Volunteer {
 	
@@ -90,6 +88,24 @@ public class Volunteer {
 	
 	public void addProjectToVolunteer(Project project) {
 		projects.add(project);
+	}
+
+
+	public void removeSkill(Skill skill) {
+		skills.remove(skill);
+		
+	}
+
+
+	public void removeCause(Cause cause) {
+		causes.remove(cause);
+		
+	}
+
+
+	public void removeProject(Project project) {
+		projects.remove(project);
+		
 	}
 	
 }

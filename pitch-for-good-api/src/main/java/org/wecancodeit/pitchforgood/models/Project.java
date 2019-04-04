@@ -42,6 +42,7 @@ public class Project {
 		this.status = true;
 		this.organization = organization;
 		this.skills = new ArrayList<Skill>();
+		
 	}
 	
 	
@@ -73,6 +74,9 @@ public class Project {
 	public Organization getOrganization() {
 		return organization;
 	}
+	public Volunteer getVolunteer() {
+		return volunteer;
+	}
 
 	public Collection<Skill> getSkills() {
 		return skills;
@@ -81,7 +85,28 @@ public class Project {
 	public void addSkillToProject(Skill skill) {
 		skills.add(skill);
 	}
-	public Volunteer getVolunteer() {
-		return volunteer;
+
+
+
+	public void addVolunteerToProject(Volunteer volunteer) {
+		this.volunteer = volunteer;
+		
 	}
+
+
+	public void removeSkill(Skill skill) {
+		skills.remove(skill);
+		
+	}
+
+
+	public void addOrganizationToProject(Organization organization) {
+		this.organization = organization;
+		
+	}
+
+
+	
+
+
 }
