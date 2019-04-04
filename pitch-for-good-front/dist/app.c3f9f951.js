@@ -125,12 +125,68 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = VolForm;
 
+<<<<<<< HEAD
 function VolForm(causes, skills) {
   return "\n        <div class=\"grid-container>\n            <div class=\"contact-info>\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\">\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\">\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            <button class=\"js-add-volunteer-bio button\">Next</button>\n        </div>\n\n        <ul id=\"skills\">\n            ".concat(skills.map(function (skill) {
     return "\n            <li class=\"skill\">     \n                <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.id, "\" value=\"").concat(skill.skillName, "\">").concat(skill.skillName, "\n            </li>\n                ");
   }).join(''), "\n        </ul>\n\n        <ul id=\"skills\">\n            ").concat(causes.map(function (cause) {
     return "\n            <li class=\"cause\">     \n                <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" value=\"").concat(cause.causeName, "\">").concat(cause.causeName, "\n            </li>\n                ");
   }).join(''), "\n        </ul>\n        \n        ");
+=======
+function VolForm(volunteers) {
+  return "\n        <div class=\"grid-container>\n            <div class=\"contact-info>\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\">\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\">\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            <button class=\"js-add-volunteer-bio button\">Next</button>\n        </div>\n    ";
+}
+},{}],"js/components/VolCauseForm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = VolCauseForm;
+
+function VolCauseForm(causes) {
+  return "\n<div class=\"causes-container\">\n<ul class=\"causes\">\n    ".concat(causes.map(function (cause) {
+    return "\n            <li class=\"cause\">      //check cause.causeName may need to change volunteerID\n                <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.id, "\" value=\"").concat(cause.causeName, "\">\n            </li>\n            ");
+  }).join(''), "\n</ul>\n<button class=\"js-add-volunteer-cause button\">Next</button>\n</div>\n");
+}
+},{}],"js/components/VolSkillForm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = VolSkillForm;
+
+function VolSkillForm(skills) {
+  return "\n\n<div class=\"skills__container\">\n                <ul class=\"skills\">\n                ".concat(skills.map(function (skill) {
+    return "\n                        <li class=\"skill\">     \n                            <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.id, "\" value=\"").concat(skill.skillName, "\">\n                        </li>\n                        ");
+  }).join(''), "             \n                </ul>\n                <button class=\"js-add-volunteer button\">Create Profile</button>\n            </div>  \n            ");
+>>>>>>> ariel-project-form
+}
+},{}],"js/components/Organization.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Organization;
+
+function Organization(organizations) {
+  return "\n        <h3> If you would like to propose a project to this organization, click the button below.</h3>\n        <button class=\"js-get-project-form button\">Propose project</button>\n            ";
+}
+},{}],"js/components/ProjectForm.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ProjectForm;
+
+function ProjectForm(projects) {
+  return "\n        <div class=\"projectForm__container>\n            <h2>Propose a project idea here!</h2>\n                <h3>Project name: <input type=\"text\" class=\"add__projectName\" placeholder=\"Project Name\"></h3>\n                <h3>Description of project goal and plans: <input type=\"text\" class=\"add__projectDescription\" placeholder=\"Project Description\">\n                <h3>Estimated duration of project: <input type=\"text\" class=\"add__estimatedDuration\" placeholder=\"Estimated Duration\"></h3>\n                <div class=\"skills__container\">\n                    <h3>Skills involved in project: </h3>\n                    <ul class=\"skills\">\n                        ".concat(skills.map(function (skill) {
+    return "\n                                <li class=\"skill\">     \n                                    <input type=\"checkbox\" class=\"add__skills skill__skillName\" id=\"".concat(skill.id, "\" value=\"").concat(skill.skillName, "\">\n                                </li>\n                                    ");
+  }).join(''), "             \n                    </ul>\n                </div>  \n                \n                <button class=\"js-add-project button\" id=\"").concat(organization.id, ">Submit proposal</button>\n        </div>\n            "); // date thing?
+  // volunteer
 }
 },{}],"js/components/landing.js":[function(require,module,exports) {
 "use strict";
@@ -202,6 +258,10 @@ exports.default = _default;
 
 var _VolForm = _interopRequireDefault(require("./components/VolForm"));
 
+var _Organization = _interopRequireDefault(require("./components/Organization"));
+
+var _ProjectForm = _interopRequireDefault(require("./components/ProjectForm"));
+
 var _landing = _interopRequireDefault(require("./components/landing"));
 
 var _apiActions = _interopRequireDefault(require("./utils/api/api-actions"));
@@ -213,9 +273,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 main();
 
 function main() {
-  _apiActions.default.getRequest("http://localhost:8080/volunteers", function (volunteers) {
-    getAppContext().innerHTML = (0, _landing.default)();
-  });
+  //api.getRequest(`http://localhost:8080/volunteers`, volunteers => {
+  getAppContext().innerHTML = (0, _landing.default)(); // api.getRequest('http://localhost:8080/organizations', organizations => {
+  //     getAppContext().innerHTML = Organization(organizations)
+  // })
 
   volClickToSignUp();
   createNewVolunteer();
@@ -233,6 +294,7 @@ function volClickToSignUp() {
   });
 }
 
+<<<<<<< HEAD
 function createNewVolunteer() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js-add-volunteer')) {
@@ -250,6 +312,70 @@ function createNewVolunteer() {
         jobTitle: jobTitle
       }, function (volunteer) {
         return getAppContext().innerHTML = Volunteer(volunteer);
+=======
+    _eventActions.default.on(getAppContext(), 'click', function () {
+      if (event.target.classList.contains('js--sign-up__volunteer-bio')) {
+        _apiActions.default.getRequest('http://localhost:8080/causes', function (causes) {
+          getAppContext().innerHTML = (0, _VolCauseForm.default)(causes);
+        });
+      }
+
+      _eventActions.default.on(getAppContext(), 'click', function () {
+        if (event.target.classList.contains('js-add-volunteer-cause')) {
+          _apiActions.default.getRequest('http://localhost:8080/skills', function (skills) {
+            getAppContext().innerHTML = (0, _VolSkillForm.default)(skills);
+          });
+        }
+
+        _eventActions.default.on(getAppContext(), 'click', function () {
+          if (event.target.classList.contains('js-add-volunteer')) {
+            var firstName = document.querySelector('.add__firstName').value;
+            var lastName = document.querySelector('.add__lastName').value;
+            var phoneNum = document.querySelector('.add__phoneNum').value;
+            var email = document.querySelector('.add__email').value;
+            var jobTitle = document.querySelector('.add__jobTitle').value; //const causeName = // figure out how to pull in causes
+            //const skills = // figure out how to pull in skills
+
+            _apiActions.default.postRequest('http://localhost:8080/volunteers/add', {
+              firstName: firstName,
+              lastName: lastName,
+              phoneNum: phoneNum,
+              email: email,
+              jobTitle: jobTitle // causeName : causeName,
+              // skills : skills,
+
+            }, function (volunteer) {
+              return getAppContext().innerHTML = Volunteer(volunteer);
+            });
+          }
+        });
+
+        _eventActions.default.on(getAppContext(), 'click', function () {
+          if (event.target.classList.contains('js-get-project-form')) {
+            _apiActions.default.getRequest('http://localhost:8080/projects', function (projects) {
+              getAppContext().innerHTML = (0, _ProjectForm.default)(projects);
+            });
+          }
+        });
+
+        _eventActions.default.on(getAppcontext(), 'click', function () {
+          if (event.target.classList.contains('js-add-project')) {
+            var projectName = document.querySelector('.add__projectName').value;
+            var projectDescription = document.querySelector('.add__projectDescription').value;
+            var estimatedDuration = document.querySelector('.add__estimatedDuration').value;
+            var skills = document.querySelector('.add__skills').value;
+
+            _apiActions.default.postRequest("http://localhost:8080/projects/add/".concat(event.target.id), {
+              projectName: projectName,
+              projectDescription: projectDescription,
+              estimatedDuration: estimatedDuration,
+              skills: skills
+            }, function (project) {
+              return getAppContext().innerHTML = Project(project);
+            });
+          }
+        });
+>>>>>>> ariel-project-form
       });
     }
   });
@@ -258,7 +384,11 @@ function createNewVolunteer() {
 function getAppContext() {
   return document.querySelector("#app");
 }
+<<<<<<< HEAD
 },{"./components/VolForm":"js/components/VolForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+=======
+},{"./components/VolBioForm":"js/components/VolBioForm.js","./components/VolCauseForm":"js/components/VolCauseForm.js","./components/VolSkillForm":"js/components/VolSkillForm.js","./components/Organization":"js/components/Organization.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+>>>>>>> ariel-project-form
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -286,7 +416,11 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+<<<<<<< HEAD
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "65251" + '/');
+=======
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59808" + '/');
+>>>>>>> ariel-project-form
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -461,5 +595,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+},{}]},{},["../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
 //# sourceMappingURL=/app.c3f9f951.js.map
