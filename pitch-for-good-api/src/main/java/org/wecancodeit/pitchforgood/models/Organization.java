@@ -82,5 +82,17 @@ public class Organization {
 	public void addProjectToOrganization(Project project) {
 		projects.add(project);
 	}
+
+
+	public void removeProject(Project project) {
+		projects.remove(project);
+		
+	}
+
+
+	public void removeCause(Cause cause) {
+		causes.remove(cause);
+		
+	}
 	
 }

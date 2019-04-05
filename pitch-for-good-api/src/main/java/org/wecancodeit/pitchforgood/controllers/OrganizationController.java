@@ -43,6 +43,11 @@ public class OrganizationController {
 	public Collection<Organization> getOrganizations() {
 		return (Collection<Organization>) organizationRepo.findAll();
 	}
+	@GetMapping("/{organizationId}")
+	public Organization getSingleOrganization(@PathVariable Long id) {
+		return organizationRepo.findById(id).get();
+	
+	}
 	
 	@PostMapping("/add")
 	public Collection<Organization> addOrganization(@RequestBody String body) throws JSONException {
@@ -67,4 +72,5 @@ public class OrganizationController {
 		organizationRepo.deleteById(id);
 		return "";
 	}
+	
 }

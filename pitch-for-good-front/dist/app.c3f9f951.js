@@ -126,6 +126,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolForm;
 
 function VolForm(causes, skills) {
+
   return "\n        <div class=\"grid-container>\n            <div class=\"contact-info>\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\">\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\">\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            <button class=\"js-add-volunteer-bio button\">Next</button>\n        </div>\n\n        <ul id=\"skills\">\n            ".concat(skills.map(function (skill) {
     return "\n            <li class=\"skill\">     \n                <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.id, "\" value=\"").concat(skill.skillName, "\">").concat(skill.skillName, "\n            </li>\n                ");
   }).join(''), "\n        </ul>\n\n        <ul id=\"skills\">\n            ").concat(causes.map(function (cause) {
@@ -156,6 +157,7 @@ function Organizations(organizations) {
     return "\n                    <li class=\"organization\">     \n                        <h2 class=\"js-organization__orgName\" id=\"".concat(organization.organizationId, "\">").concat(organization.orgName, "</h2>\n                        <h3 class=\"organization__orgMission\">").concat(organization.orgMission, "</h3>\n                        <h3 class=\"organization__contactPerson\">").concat(organization.contactPerson, "</h3>\n                        <h3 class=\"organization__orgEmail\">").concat(organization.orgEmail, "</h3>\n                        <h3 class=\"organization__websiteUrl\">").concat(organization.websiteUrl, "</h3>\n                        <h3> If you would like to propose a project to this organization, click the button below.</h3>\n                        <button class=\"js-get-project-form button\" id=\"").concat(organization.organizationId, "\">Propose project</button>\n                    </li>\n                        ");
     console.log(organization.organizationId);
   }).join(''), "             \n        </ul>\n            ");
+
 }
 },{}],"js/components/Project.js":[function(require,module,exports) {
 "use strict";
@@ -254,7 +256,50 @@ var _default = {
   on: on
 };
 exports.default = _default;
-},{}],"js/app.js":[function(require,module,exports) {
+},{}],"js/components/Skills.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Skills;
+
+function Skills(skills) {
+  return "\n    <ul id=\"skill\">\n            ".concat(skills.map(function (skill) {
+    return "\n            <li class=\"skill\">\n                <h3 class=\"skillName\">".concat(skill.skillName, "</h3>\n            </li>\n        ");
+  }).join(''), "\n        </ul>\n\n    ");
+}
+},{}],"js/components/Cause.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Cause;
+
+function Cause(causes) {
+  return "\n    <ul id=\"cause\">\n            ".concat(causes.map(function (cause) {
+    return "\n            <li class=\"cause\">\n                <h3 class=\"causeName\">".concat(cause.causeName, "</h3>\n            </li>\n        ");
+  }).join(''), "\n        </ul>\n\n    ");
+}
+},{}],"js/components/VolunteerDashboard.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = VolunteerDashboard;
+
+var _Skills = _interopRequireDefault(require("./Skills"));
+
+var _Cause = _interopRequireDefault(require("./Cause"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function VolunteerDashboard(volunteer) {
+  return "\n    <h1>Welcome, ".concat(volunteer.firstName, "!</h1>\n\n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>First Name: ").concat(volunteer.firstName, "</li>\n        <li>Last Name: ").concat(volunteer.lastName, "</li>\n        <li>Username: ").concat(volunteer.volUserName, "</li>\n        <li>Password: ").concat(volunteer.volPassword, "</li>\n        <li>Phone Number: ").concat(volunteer.phoneNum, "</li>\n        <li>Email: ").concat(volunteer.email, "</li>\n        <li>Current Job Title: ").concat(volunteer.jobTitle, "</li>\n    </ul>\n\n    <h2>These are your skills:</h2>\n    <ul>\n        <li>").concat((0, _Skills.default)(volunteer.skills), "</li>\n    </ul>\n\n    <h2>These are the causes you support:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(volunteer.causes), "</li>\n    </ul>\n    \n    ");
+}
+},{"./Skills":"js/components/Skills.js","./Cause":"js/components/Cause.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
 var _VolForm = _interopRequireDefault(require("./components/VolForm"));
@@ -273,12 +318,19 @@ var _apiActions = _interopRequireDefault(require("./utils/api/api-actions"));
 
 var _eventActions = _interopRequireDefault(require("./utils/events/event-actions"));
 
+var _VolunteerDashboard = _interopRequireDefault(require("./components/VolunteerDashboard"));
+
+var _Skills = _interopRequireDefault(require("./components/Skills"));
+
+var _Cause = _interopRequireDefault(require("./components/Cause"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 main();
 
 function main() {
   getAppContext().innerHTML = (0, _landing.default)();
+
   getOrganizations();
   viewSingleOrganization();
   volClickToSignUp();
@@ -305,6 +357,7 @@ function viewSingleOrganization() {
       });
     }
   });
+
 }
 
 function volClickToSignUp() {
@@ -324,18 +377,36 @@ function createNewVolunteer() {
     if (event.target.classList.contains('js-add-volunteer')) {
       var firstName = document.querySelector('.add__firstName').value;
       var lastName = document.querySelector('.add__lastName').value;
+      var volUserName = document.querySelector('.add__volUserName').value;
+      var volPassword = document.querySelector('.add__volPassword').value;
       var phoneNum = document.querySelector('.add__phoneNum').value;
       var email = document.querySelector('.add__email').value;
       var jobTitle = document.querySelector('.add__jobTitle').value;
+      var skills = Array.from(document.querySelectorAll('.skill__skillName')).filter(function (checkbox) {
+        return checkbox.checked;
+      }).map(function (checkbox) {
+        return checkbox.value;
+      });
+      var causes = Array.from(document.querySelectorAll('.cause__causeName')).filter(function (checkbox) {
+        return checkbox.checked;
+      }).map(function (checkbox) {
+        return checkbox.value;
+      });
 
       _apiActions.default.postRequest('http://localhost:8080/volunteers/add', {
         firstName: firstName,
         lastName: lastName,
         phoneNum: phoneNum,
         email: email,
-        jobTitle: jobTitle
+        jobTitle: jobTitle,
+        volUserName: volUserName,
+        volPassword: volPassword,
+        skills: skills,
+        causes: causes
       }, function (volunteer) {
+
         return getAppContext().innerHTML = Volunteer(volunteer);
+
       });
     }
   });
@@ -344,17 +415,22 @@ function createNewVolunteer() {
 function getProjectForm() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js-get-project-form')) {
+
       _apiActions.default.getRequest("http://localhost:8080/organizations/".concat(event.target.id), function (organization) {
         _apiActions.default.getRequest('http://localhost:8080/skills', function (skills) {
           getAppContext().innerHTML = (0, _ProjectForm.default)(skills, organization);
         });
+
       });
     }
   });
 }
 
 function addProject() {
+
   _eventActions.default.on(getAppContext(), 'click', function () {
+
+    
     if (event.target.classList.contains('js-add-project')) {
       var projectName = document.querySelector('.add__projectName').value;
       var projectDescription = document.querySelector('.add__projectDescription').value;
@@ -366,8 +442,10 @@ function addProject() {
         projectDescription: projectDescription,
         estimatedDuration: estimatedDuration,
         skills: skills
+
       }, function (volunteer) {
         return getAppContext().innerHTML = (0, _landing.default)();
+
       });
     }
   });
@@ -376,7 +454,9 @@ function addProject() {
 function getAppContext() {
   return document.querySelector("#app");
 }
+
 },{"./components/VolForm":"js/components/VolForm.js","./components/Organization":"js/components/Organization.js","./components/Organizations":"js/components/Organizations.js","./components/Project":"js/components/Project.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js"}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -404,7 +484,9 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "53029" + '/');
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -579,5 +661,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
 //# sourceMappingURL=/app.c3f9f951.js.map
