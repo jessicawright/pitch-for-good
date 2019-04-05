@@ -87,11 +87,11 @@ public class Initializer implements CommandLineRunner {
 		Organization organization4 = organizationRepo.save(new Organization("Children's Hunger Alliance", "We want to help families get food.", "Ben", "ben@gmail.com", "ben.com"));
 		Organization organization5 = organizationRepo.save(new Organization("Tech Corps", "We want to help kids gain access to learning technological skills.", "Jess", "jess@gmail.com", "jess.com"));
 		
-		Volunteer volunteer1 = volunteerRepo.save(new Volunteer("John", "Smith", "8675309", "johnsmith@gmail.com", "Teacher"));
-		Volunteer volunteer2 = volunteerRepo.save(new Volunteer("Stuart", "Little", "8671111", "stuartlittle@gmail.com", "Cheese Chef"));
-		Volunteer volunteer3 = volunteerRepo.save(new Volunteer("Ivan", "Ford", "8672222", "ivanford@gmail.com", "Veterinarian"));
-		Volunteer volunteer4 = volunteerRepo.save(new Volunteer("Lila", "Jones", "8673333", "lilajones@gmail.com", "Software Developer"));
-		Volunteer volunteer5 = volunteerRepo.save(new Volunteer("Peggy", "Peggerson", "8674444", "pegpeg@gmail.com", "Accountant"));
+		Volunteer volunteer1 = volunteerRepo.save(new Volunteer("John", "Smith", "username1", "password", "8675309", "johnsmith@gmail.com", "Teacher"));
+		Volunteer volunteer2 = volunteerRepo.save(new Volunteer("Stuart", "Little", "username2", "password", "8671111", "stuartlittle@gmail.com", "Cheese Chef"));
+		Volunteer volunteer3 = volunteerRepo.save(new Volunteer("Ivan", "Ford", "username3", "password","8672222", "ivanford@gmail.com", "Veterinarian"));
+		Volunteer volunteer4 = volunteerRepo.save(new Volunteer("Lila", "Jones", "username4", "password","8673333", "lilajones@gmail.com", "Software Developer"));
+		Volunteer volunteer5 = volunteerRepo.save(new Volunteer("Peggy", "Peggerson", "username5", "password","8674444", "pegpeg@gmail.com", "Accountant"));
 		
 		
 		

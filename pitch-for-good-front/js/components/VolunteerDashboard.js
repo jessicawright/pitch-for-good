@@ -9,6 +9,8 @@ export default function VolunteerDashboard(volunteer) {
     <ul>
         <li>First Name: ${volunteer.firstName}</li>
         <li>Last Name: ${volunteer.lastName}</li>
+        <li>Username: ${volunteer.volUserName}</li>
+        <li>Password: ${volunteer.volPassword}</li>
         <li>Phone Number: ${volunteer.phoneNum}</li>
         <li>Email: ${volunteer.email}</li>
         <li>Current Job Title: ${volunteer.jobTitle}</li>
