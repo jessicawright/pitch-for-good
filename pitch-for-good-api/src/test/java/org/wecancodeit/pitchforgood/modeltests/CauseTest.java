@@ -11,7 +11,7 @@ public class CauseTest {
 	
 	Cause underTest = new Cause("TestCause", "");
 	Organization organization = new Organization("","","","","");
-	Volunteer volunteer = new Volunteer("","","","","");
+	Volunteer volunteer = new Volunteer("","","","","","","");
 	
 	@Test
 	public void shouldAddOrganization() {

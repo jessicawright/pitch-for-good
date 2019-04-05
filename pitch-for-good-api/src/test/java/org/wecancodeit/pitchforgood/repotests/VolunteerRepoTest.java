@@ -27,7 +27,7 @@ public class VolunteerRepoTest {
 	
 	@Test
 	public void shouldFindByLastName() {
-		Volunteer volunteer = volunteerRepo.save(new Volunteer("Bob", "Nelson", "","",""));
+		Volunteer volunteer = volunteerRepo.save(new Volunteer("Bob", "Nelson", "","","","",""));
 		Long volunteerId = volunteer.getVolunteerId();
 		entityManager.persist(volunteer);
 		entityManager.flush();

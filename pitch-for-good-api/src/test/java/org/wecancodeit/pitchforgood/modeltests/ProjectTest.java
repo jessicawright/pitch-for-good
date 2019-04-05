@@ -14,7 +14,7 @@ public class ProjectTest {
 	Organization organization = new Organization("Habitat for Humanity","","","","");
 	Project underTest = new Project("kids","","", organization);
 	Skill skill = new Skill("");
-	Volunteer volunteer = new Volunteer("","","","","");
+	Volunteer volunteer = new Volunteer("","","","","","","");
 
 	
 	@Test
