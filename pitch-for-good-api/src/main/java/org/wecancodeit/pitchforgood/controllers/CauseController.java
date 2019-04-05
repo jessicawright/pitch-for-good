@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,11 @@ public class CauseController {
 	@GetMapping("")
 	public Collection<Cause> getCauses() {
 		return (Collection<Cause>) causeRepo.findAll();
+	}
+	
+	@GetMapping("/{causeId}")
+	public Cause getSingleCause(@PathVariable Long id) {
+		return causeRepo.findById(id).get();
 	}
 	
 	@PostMapping("/add")

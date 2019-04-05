@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,10 @@ public class SkillController {
 	@GetMapping("")
 	public Collection<Skill> getSkills() {
 		return (Collection<Skill>) skillRepo.findAll();
+	}
+	@GetMapping("/{skillId}")
+	public Skill getSingleSkill(@PathVariable Long id) {
+		return skillRepo.findById(id).get();
 	}
 	
 	@PostMapping("/add")

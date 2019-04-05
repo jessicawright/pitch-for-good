@@ -7,7 +7,6 @@ import javax.annotation.Resource;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.pitchforgood.models.Organization;
 import org.wecancodeit.pitchforgood.models.Project;
-import org.wecancodeit.pitchforgood.models.Skill;
 import org.wecancodeit.pitchforgood.models.Volunteer;
 import org.wecancodeit.pitchforgood.repositories.CauseRepository;
 import org.wecancodeit.pitchforgood.repositories.OrganizationRepository;
@@ -43,6 +41,10 @@ public class ProjectController {
 	@GetMapping("")
 	public Collection<Project> getProjects() {
 		return (Collection<Project>) projectRepo.findAll();
+	}
+	@GetMapping("/{projectId}")
+	public Project getSingleProject(@PathVariable Long id) {
+		return projectRepo.findById(id).get();
 	}
 	
 	@PostMapping("/add/{id}")
