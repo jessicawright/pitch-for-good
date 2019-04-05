@@ -9,6 +9,7 @@ return `
 
 <button class="js--sign-up__volunteer button__big">I AM A VOLUNTEER</button>
 <button class="js--sign-up__volunteer button__big">I AM A NON-PROFIT</button>
+<button class="js--see-organizations button__big">SEE ORGANIZATIONS</button>
 
 <footer>
 	<h3>Pitch For Good &copy;2019</h3>

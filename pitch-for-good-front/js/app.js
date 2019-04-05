@@ -1,5 +1,7 @@
 import VolForm from './components/VolForm'
 import Organization from './components/Organization'
+import Organizations from './components/Organizations'
+import Project from './components/Project'
 import ProjectForm from './components/ProjectForm'
 import landing from './components/landing'
 import api from './utils/api/api-actions'
@@ -12,13 +14,37 @@ main()
 
 function main() {
     getAppContext().innerHTML = landing()
-  
+
+
+    getOrganizations()
+    viewSingleOrganization()
     volClickToSignUp()
     createNewVolunteer()
     getProjectForm()
-    // addProject()
+    addProject()
+}
+
+function getOrganizations() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js--see-organizations')) {
+            api.getRequest('http://localhost:8080/organizations', organizations => {
+                getAppContext().innerHTML = Organizations(organizations)
+            })
+        }
+    })
+}
+
+function viewSingleOrganization(){
+	events.on(getAppContext(), 'click', () => {
+		if(event.target.classList.contains('js-organization__name')){
+			api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+				getAppContext().innerHTML = Organization(organization)
+			})
+		}
+	})
 
 }
+
 function volClickToSignUp() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--sign-up__volunteer')) {
@@ -30,7 +56,6 @@ function volClickToSignUp() {
             })
         }
     })
-
 }
     
 function createNewVolunteer() {
@@ -70,33 +95,33 @@ function createNewVolunteer() {
 function getProjectForm() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-get-project-form')) {
-            api.getRequest('http://localhost:8080/projects', projects => {
-                getAppContext().innerHTML = ProjectForm(projects)
-            })  
-        }
+            api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+                api.getRequest('http://localhost:8080/skills', skills => {
+                getAppContext().innerHTML = ProjectForm(skills, organization)
+            })
+        })  
+    }
     })
 }
 
 function addProject() {
-    events.on(getAppcontext(), 'click', () => {
-            if(event.target.classList.contains('js-add-project')) {
-                const projectName = document.querySelector('.add__projectName').value
-                const projectDescription = document.querySelector('.add__projectDescription').value
-                const estimatedDuration = document.querySelector('.add__estimatedDuration').value
-                const skills = document.querySelector('.add__skills').value
-                api.postRequest(`http://localhost:8080/projects/add/${event.target.id}`, {
-                    projectName : projectName,
-                    projectDescription : projectDescription,
-                    estimatedDuration : estimatedDuration,
-                    skills : skills
-                }, (project) => getAppContext().innerHTML = Project(project))
-            }
-        })
-    }   
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js-add-project')) {
+            const projectName = document.querySelector('.add__projectName').value
+            const projectDescription = document.querySelector('.add__projectDescription').value
+            const estimatedDuration = document.querySelector('.add__estimatedDuration').value
+            const skills = document.querySelector('.add__skills').value
+            api.postRequest(`http://localhost:8080/projects/add/${event.target.id}`, {
+                projectName : projectName,
+                projectDescription : projectDescription,
+                estimatedDuration : estimatedDuration,
+                skills : skills
+            }, (volunteer) => getAppContext().innerHTML = landing())
+        }
+    })
+}
+   
 
-
-    
 function getAppContext() {
     return document.querySelector("#app")
 }
-
