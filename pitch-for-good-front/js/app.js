@@ -27,22 +27,24 @@ function main() {
 function getOrganizations() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--see-organizations')) {
-            api.getRequest('http://localhost:8080/organizations', organizations => {
-                getAppContext().innerHTML = Organizations(organizations)
-            })
+            api.getRequest(`http://localhost:8080/volunteers/${event.target.id}`, volunteer => {
+                api.getRequest(`http://localhost:8080/organizations`, organizations => {
+                    getAppContext().innerHTML = Organizations(volunteer, organizations)
+                })
+            })  
         }
-    })
-}
+        })
+    }
 
 function viewSingleOrganization(){
 	events.on(getAppContext(), 'click', () => {
-		if(event.target.classList.contains('js-organization__name')){
-			api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
-				getAppContext().innerHTML = Organization(organization)
+		if(event.target.classList.contains('js-organization__orgName')) {
+            api.getRequest(`http://localhost:8080/volunteers/${event.target.parentNode.id}`, volunteer => 
+			    api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+				    getAppContext().innerHTML = Organization(volunteer, organization)
 			})
 		}
-	})
-
+    })
 }
 
 function volClickToSignUp() {
@@ -95,7 +97,7 @@ function createNewVolunteer() {
 function getProjectForm() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-get-project-form')) {
-            api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+            api.getRequest(`http://localhost:8080/volunteers/${event.target.id}/organizations/${event.target.id}`, organization => {
                 api.getRequest('http://localhost:8080/skills', skills => {
                 getAppContext().innerHTML = ProjectForm(skills, organization)
             })
@@ -111,7 +113,7 @@ function addProject() {
             const projectDescription = document.querySelector('.add__projectDescription').value
             const estimatedDuration = document.querySelector('.add__estimatedDuration').value
             const skills = document.querySelector('.add__skills').value
-            api.postRequest(`http://localhost:8080/projects/add/${event.target.id}`, {
+            api.postRequest(`http://localhost:8080/volunteers/${event.target.id}/organizations/${event.target.id}`, {
                 projectName : projectName,
                 projectDescription : projectDescription,
                 estimatedDuration : estimatedDuration,

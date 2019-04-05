@@ -25,6 +25,9 @@ export default function VolunteerDashboard(volunteer) {
     <ul>
         <li>${Cause(volunteer.causes)}</li>
     </ul>
+
+    <h2>Click the button below to see organizations to make a proposal to.</h2>
+    <button class="js--see-organizations button__big" id="${volunteer.volunteerId}">SEE ORGANIZATIONS</button>
     
     `;
 }
