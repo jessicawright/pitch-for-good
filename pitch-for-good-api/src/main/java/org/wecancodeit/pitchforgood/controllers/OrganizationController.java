@@ -43,7 +43,8 @@ public class OrganizationController {
 	public Collection<Organization> getOrganizations() {
 		return (Collection<Organization>) organizationRepo.findAll();
 	}
-	@GetMapping("/{organizationId}")
+	
+	@GetMapping("/{id}")
 	public Organization getSingleOrganization(@PathVariable Long id) {
 		return organizationRepo.findById(id).get();
 	

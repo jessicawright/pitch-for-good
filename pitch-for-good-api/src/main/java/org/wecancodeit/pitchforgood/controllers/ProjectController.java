@@ -42,7 +42,7 @@ public class ProjectController {
 	public Collection<Project> getProjects() {
 		return (Collection<Project>) projectRepo.findAll();
 	}
-	@GetMapping("/{projectId}")
+	@GetMapping("/{id}")
 	public Project getSingleProject(@PathVariable Long id) {
 		return projectRepo.findById(id).get();
 	}
