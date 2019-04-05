@@ -1,9 +1,12 @@
 package org.wecancodeit.pitchforgood.controllers;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.annotation.Resource;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -51,40 +54,56 @@ public class VolunteerController {
 		JSONObject newVolunteer = new JSONObject(body);
 		String firstName = newVolunteer.getString("firstName");
 		String lastName = newVolunteer.getString("lastName");
-		String userName = newVolunteer.getString("userName");
-		String password = newVolunteer.getString("password");
+		String volUserName = newVolunteer.getString("volUserName");
+		String volPassword = newVolunteer.getString("volPassword");
 		String phoneNum = newVolunteer.getString("phoneNum");
 		String email = newVolunteer.getString("email");
 		String jobTitle = newVolunteer.getString("jobTitle");
-		Volunteer volunteer = new Volunteer(firstName, lastName, userName, password, phoneNum, email, jobTitle);
+		
+		Volunteer volunteer = new Volunteer(firstName, lastName, volUserName, volPassword, phoneNum, email, jobTitle);
+		volunteerRepo.save(volunteer);
+		
+		ArrayList<String> skills = new ArrayList<String>(); 
+		ArrayList<Long> skillsToAdd = new ArrayList<Long>();
+		JSONArray jsonArray = newVolunteer.getJSONArray("skills"); 
+		if (jsonArray != null) { 
+		   for (int i = 0; i < jsonArray.length(); i++){ 
+			   skills.add(jsonArray.get(i).toString());
+		   } 
+		} 
+		if (skills != null) {
+			for (String skill : skills) {
+				skillsToAdd.add((Long.parseLong(skill)));
+			}
+		}
+		for (Long skill : skillsToAdd) {
+			Skill newSkill = skillRepo.findById(skill).get();
+		  	volunteer.addSkillToVolunteer(newSkill);
+		}
+		
+		ArrayList<String> causes = new ArrayList<String>(); 
+		ArrayList<Long> causesToAdd = new ArrayList<Long>();
+		JSONArray jsonArrayTwo = newVolunteer.getJSONArray("causes"); 
+		if (jsonArrayTwo != null) { 
+		   for (int i = 0; i < jsonArrayTwo.length(); i++){ 
+			   causes.add(jsonArrayTwo.get(i).toString());
+		   } 
+		} 
+		if (causes != null) {
+			for (String cause : causes) {
+				causesToAdd.add((Long.parseLong(cause)));
+			}
+		}
+		for (Long cause : causesToAdd) {
+			Cause newCause = causeRepo.findById(cause).get();
+		  	volunteer.addCauseToVolunteer(newCause);
+		}
+		
+		System.out.println(newVolunteer);
 		volunteerRepo.save(volunteer);
 		return volunteer;
 		
 	}
-	
-	
-	
-//	@PostMapping("/add")
-//	public Volunteer addVolunteer(@RequestBody String body, @RequestParam(value = "skillIds") long[] skillIds, @RequestParam(value = "causeIds") long[] causeIds) throws JSONException {
-//		JSONObject newVolunteer = new JSONObject(body);
-//		String firstName = newVolunteer.getString("firstName");
-//		String lastName = newVolunteer.getString("lastName");
-//		String phoneNum = newVolunteer.getString("phoneNum");
-//		String email = newVolunteer.getString("email");
-//		String jobTitle = newVolunteer.getString("jobTitle");
-//		Volunteer volunteer = new Volunteer(firstName, lastName, phoneNum, email, jobTitle);
-//		volunteerRepo.save(volunteer);
-//		for (Long skill: skillIds) {
-//			Skill newSkill = skillRepo.findById(skill).get();
-//			volunteer.addSkillToVolunteer(newSkill);
-//		}
-//		for (Long cause: causeIds) {
-//			Cause newCause = causeRepo.findById(cause).get();
-//			volunteer.addCauseToVolunteer(newCause);
-//		}
-//		return volunteer;
-//		
-//	}
 	
 	@DeleteMapping("delete/{id}")
 	public String deleteVolunteer(@PathVariable Long id) {

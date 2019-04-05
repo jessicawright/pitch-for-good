@@ -127,7 +127,7 @@ exports.default = VolForm;
 
 function VolForm(causes, skills) {
   return "\n        <div class=\"grid-container>\n            <div class=\"contact-info>\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\">\n                <input type=\"text\" class=\"add__volUsername\" placeholder=\"Username:\">\n                <input type=\"text\" class=\"add__volPassword\" placeholder=\"Password:\">\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\">\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            </div>\n            \n            <ul id=\"skills\">\n            ".concat(skills.map(function (skill) {
-    return "\n            <li class=\"skill\">     \n            <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.id, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n            </li>\n            ");
+    return "\n            <li class=\"skill\">     \n            <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.skillId, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n            </li>\n            ");
   }).join(''), "\n        </ul>\n        \n        <ul id=\"skills\">\n            ").concat(causes.map(function (cause) {
     return "\n                <li class=\"cause\">     \n                <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                </li>\n                ");
   }).join(''), "\n            </ul>\n            \n            <button class=\"js-add-volunteer button\">Sign Up!</button>\n        ");
@@ -303,19 +303,32 @@ function createNewVolunteer() {
     if (event.target.classList.contains('js-add-volunteer')) {
       var firstName = document.querySelector('.add__firstName').value;
       var lastName = document.querySelector('.add__lastName').value;
+      var volUserName = document.querySelector('.add__volUsername');
+      var volPassword = document.querySelector('.add__volPassword');
       var phoneNum = document.querySelector('.add__phoneNum').value;
       var email = document.querySelector('.add__email').value;
-      var jobTitle = document.querySelector('.add__jobTitle').value; // const skills = document.querySelector('.skill__skillName').value
-      // const causes = document.querySelector('.cause__causeName').value
+      var jobTitle = document.querySelector('.add__jobTitle').value;
+      var skills = Array.from(document.querySelectorAll('.skill__skillName')).filter(function (checkbox) {
+        return checkbox.checked;
+      }).map(function (checkbox) {
+        return checkbox.value;
+      });
+      var causes = Array.from(document.querySelectorAll('.cause__causeName')).filter(function (checkbox) {
+        return checkbox.checked;
+      }).map(function (checkbox) {
+        return checkbox.value;
+      });
 
       _apiActions.default.postRequest('http://localhost:8080/volunteers/add', {
         firstName: firstName,
         lastName: lastName,
         phoneNum: phoneNum,
         email: email,
-        jobTitle: jobTitle // skills : skills,
-        // causes : causes
-
+        jobTitle: jobTitle,
+        volUserName: volUserName,
+        volPassword: volPassword,
+        skills: skills,
+        causes: causes
       }, function (volunteer) {
         return getAppContext().innerHTML = (0, _VolunteerDashboard.default)(volunteer);
       });
@@ -384,7 +397,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63829" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50487" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

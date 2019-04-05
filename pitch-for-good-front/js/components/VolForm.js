@@ -16,7 +16,7 @@ export default function VolForm(causes, skills) {
             ${skills.map(skill => {
                 return `
             <li class="skill">     
-            <input type="checkbox" class="skill__skillName" id="${skill.id}" name="skillIds" value="${skill.skillId}">${skill.skillName}
+            <input type="checkbox" class="skill__skillName" id="${skill.skillId}" name="skillIds" value="${skill.skillId}">${skill.skillName}
             </li>
             `;
         }).join('')}
