@@ -1,32 +1,22 @@
-<<<<<<< HEAD
 import VolForm from './components/VolForm'
-=======
-import VolBioForm from './components/VolBioForm'
-import VolCauseForm from './components/VolCauseForm'
-import VolSkillForm from './components/VolSkillForm'
 import Organization from './components/Organization'
 import ProjectForm from './components/ProjectForm'
->>>>>>> ariel-project-form
 import landing from './components/landing'
 import api from './utils/api/api-actions'
 import events from './utils/events/event-actions'
+import VolunteerDashboard from './components/VolunteerDashboard'
+import Skills from './components/Skills'
+import Cause from './components/Cause'
 
 main()
 
 function main() {
-    //api.getRequest(`http://localhost:8080/volunteers`, volunteers => {
-        getAppContext().innerHTML = landing()
-    
-
-    // api.getRequest('http://localhost:8080/organizations', organizations => {
-    //     getAppContext().innerHTML = Organization(organizations)
-    // })
-
-
+    getAppContext().innerHTML = landing()
+  
     volClickToSignUp()
     createNewVolunteer()
-
-
+    getProjectForm()
+    // addProject()
 
 }
 function volClickToSignUp() {
@@ -51,19 +41,22 @@ function createNewVolunteer() {
             const phoneNum = document.querySelector('.add__phoneNum').value
             const email = document.querySelector('.add__email').value
             const jobTitle = document.querySelector('.add__jobTitle').value
+            // const skills = document.querySelector('.skill__skillName').value
+            // const causes = document.querySelector('.cause__causeName').value
             api.postRequest('http://localhost:8080/volunteers/add', {
                 firstName : firstName,
                 lastName : lastName,
                 phoneNum : phoneNum,
                 email : email,
                 jobTitle : jobTitle
-            }, (volunteer) => getAppContext().innerHTML = Volunteer(volunteer))
+                // skills : skills,
+                // causes : causes
+            }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
         }
     })
-<<<<<<< HEAD
 }
-=======
 
+function getProjectForm() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-get-project-form')) {
             api.getRequest('http://localhost:8080/projects', projects => {
@@ -71,26 +64,26 @@ function createNewVolunteer() {
             })  
         }
     })
+}
 
+function addProject() {
     events.on(getAppcontext(), 'click', () => {
-        if(event.target.classList.contains('js-add-project')) {
-            const projectName = document.querySelector('.add__projectName').value
-            const projectDescription = document.querySelector('.add__projectDescription').value
-            const estimatedDuration = document.querySelector('.add__estimatedDuration').value
-            const skills = document.querySelector('.add__skills').value
-            api.postRequest(`http://localhost:8080/projects/add/${event.target.id}`, {
-                projectName : projectName,
-                projectDescription : projectDescription,
-                estimatedDuration : estimatedDuration,
-                skills : skills
-            }, (project) => getAppContext().innerHTML = Project(project))
-        }
-    })
+            if(event.target.classList.contains('js-add-project')) {
+                const projectName = document.querySelector('.add__projectName').value
+                const projectDescription = document.querySelector('.add__projectDescription').value
+                const estimatedDuration = document.querySelector('.add__estimatedDuration').value
+                const skills = document.querySelector('.add__skills').value
+                api.postRequest(`http://localhost:8080/projects/add/${event.target.id}`, {
+                    projectName : projectName,
+                    projectDescription : projectDescription,
+                    estimatedDuration : estimatedDuration,
+                    skills : skills
+                }, (project) => getAppContext().innerHTML = Project(project))
+            }
+        })
+    }   
 
-})
-})
-    })
->>>>>>> ariel-project-form
+
     
 function getAppContext() {
     return document.querySelector("#app")
