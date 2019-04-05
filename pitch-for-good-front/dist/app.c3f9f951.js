@@ -126,7 +126,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolForm;
 
 function VolForm(causes, skills) {
-  return "\n        <div class=\"grid-container>\n            <div class=\"contact-info>\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\">\n                <input type=\"text\" class=\"add__volUsername\" placeholder=\"Username:\">\n                <input type=\"text\" class=\"add__volPassword\" placeholder=\"Password:\">\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\">\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            </div>\n            \n            <ul id=\"skills\">\n            ".concat(skills.map(function (skill) {
+  return "\n        <div class=\"grid-container>\n            <div class=\"contact-info>\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\">\n                <input type=\"text\" class=\"add__volUserName\" placeholder=\"Username:\">\n                <input type=\"text\" class=\"add__volPassword\" placeholder=\"Password:\">\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\">\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            </div>\n            \n            <ul id=\"skills\">\n            ".concat(skills.map(function (skill) {
     return "\n            <li class=\"skill\">     \n            <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.skillId, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n            </li>\n            ");
   }).join(''), "\n        </ul>\n        \n        <ul id=\"skills\">\n            ").concat(causes.map(function (cause) {
     return "\n                <li class=\"cause\">     \n                <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                </li>\n                ");
@@ -236,7 +236,18 @@ function Skills(skills) {
   }).join(''), "\n        </ul>\n\n    ");
 }
 },{}],"js/components/Cause.js":[function(require,module,exports) {
+"use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Cause;
+
+function Cause(causes) {
+  return "\n    <ul id=\"cause\">\n            ".concat(causes.map(function (cause) {
+    return "\n            <li class=\"cause\">\n                <h3 class=\"causeName\">".concat(cause.causeName, "</h3>\n            </li>\n        ");
+  }).join(''), "\n        </ul>\n\n    ");
+}
 },{}],"js/components/VolunteerDashboard.js":[function(require,module,exports) {
 "use strict";
 
@@ -303,8 +314,8 @@ function createNewVolunteer() {
     if (event.target.classList.contains('js-add-volunteer')) {
       var firstName = document.querySelector('.add__firstName').value;
       var lastName = document.querySelector('.add__lastName').value;
-      var volUserName = document.querySelector('.add__volUsername');
-      var volPassword = document.querySelector('.add__volPassword');
+      var volUserName = document.querySelector('.add__volUserName').value;
+      var volPassword = document.querySelector('.add__volPassword').value;
       var phoneNum = document.querySelector('.add__phoneNum').value;
       var email = document.querySelector('.add__email').value;
       var jobTitle = document.querySelector('.add__jobTitle').value;
@@ -397,7 +408,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50487" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59233" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

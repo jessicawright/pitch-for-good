@@ -38,8 +38,8 @@ function createNewVolunteer() {
         if(event.target.classList.contains('js-add-volunteer')) {
             const firstName = document.querySelector('.add__firstName').value
             const lastName = document.querySelector('.add__lastName').value
-            const volUserName = document.querySelector('.add__volUsername')
-            const volPassword = document.querySelector('.add__volPassword')
+            const volUserName = document.querySelector('.add__volUserName').value
+            const volPassword = document.querySelector('.add__volPassword').value
             const phoneNum = document.querySelector('.add__phoneNum').value
             const email = document.querySelector('.add__email').value
             const jobTitle = document.querySelector('.add__jobTitle').value
