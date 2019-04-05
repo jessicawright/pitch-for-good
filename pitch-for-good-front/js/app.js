@@ -38,19 +38,30 @@ function createNewVolunteer() {
         if(event.target.classList.contains('js-add-volunteer')) {
             const firstName = document.querySelector('.add__firstName').value
             const lastName = document.querySelector('.add__lastName').value
+            const volUserName = document.querySelector('.add__volUsername')
+            const volPassword = document.querySelector('.add__volPassword')
             const phoneNum = document.querySelector('.add__phoneNum').value
             const email = document.querySelector('.add__email').value
             const jobTitle = document.querySelector('.add__jobTitle').value
-            // const skills = document.querySelector('.skill__skillName').value
-            // const causes = document.querySelector('.cause__causeName').value
+
+            const skills = Array.from(document.querySelectorAll('.skill__skillName'))
+            .filter((checkbox) => checkbox.checked)
+            .map((checkbox) => checkbox.value);
+
+            const causes = Array.from(document.querySelectorAll('.cause__causeName'))
+            .filter((checkbox) => checkbox.checked)
+            .map((checkbox) => checkbox.value);
+
             api.postRequest('http://localhost:8080/volunteers/add', {
                 firstName : firstName,
                 lastName : lastName,
                 phoneNum : phoneNum,
                 email : email,
-                jobTitle : jobTitle
-                // skills : skills,
-                // causes : causes
+                jobTitle : jobTitle,
+                volUserName : volUserName,
+                volPassword : volPassword,
+                skills : skills,
+                causes : causes
             }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
         }
     })
