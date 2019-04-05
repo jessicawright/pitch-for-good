@@ -1,12 +1,8 @@
-<<<<<<< HEAD
 import VolForm from './components/VolForm'
-=======
-import VolBioForm from './components/VolBioForm'
-import VolCauseForm from './components/VolCauseForm'
-import VolSkillForm from './components/VolSkillForm'
 import Organization from './components/Organization'
+import Organizations from './components/Organizations'
+import Project from './components/Project'
 import ProjectForm from './components/ProjectForm'
->>>>>>> ariel-project-form
 import landing from './components/landing'
 import api from './utils/api/api-actions'
 import events from './utils/events/event-actions'
@@ -14,21 +10,36 @@ import events from './utils/events/event-actions'
 main()
 
 function main() {
-    //api.getRequest(`http://localhost:8080/volunteers`, volunteers => {
-        getAppContext().innerHTML = landing()
-    
+    getAppContext().innerHTML = landing()
 
-    // api.getRequest('http://localhost:8080/organizations', organizations => {
-    //     getAppContext().innerHTML = Organization(organizations)
-    // })
-
-
+    getOrganizations()
+    viewSingleOrganization()
     volClickToSignUp()
     createNewVolunteer()
-
-
-
+    getProjectForm()
+    addProject()
 }
+
+function getOrganizations() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js--see-organizations')) {
+            api.getRequest('http://localhost:8080/organizations', organizations => {
+                getAppContext().innerHTML = Organizations(organizations)
+            })
+        }
+    })
+}
+
+function viewSingleOrganization(){
+	events.on(getAppContext(), 'click', () => {
+		if(event.target.classList.contains('js-organization__name')){
+			api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+				getAppContext().innerHTML = Organization(organization)
+			})
+		}
+	})
+}
+
 function volClickToSignUp() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--sign-up__volunteer')) {
@@ -40,7 +51,6 @@ function volClickToSignUp() {
             })
         }
     })
-
 }
     
 function createNewVolunteer() {
@@ -60,19 +70,23 @@ function createNewVolunteer() {
             }, (volunteer) => getAppContext().innerHTML = Volunteer(volunteer))
         }
     })
-<<<<<<< HEAD
 }
-=======
 
+function getProjectForm() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-get-project-form')) {
-            api.getRequest('http://localhost:8080/projects', projects => {
-                getAppContext().innerHTML = ProjectForm(projects)
-            })  
-        }
+            api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+                api.getRequest('http://localhost:8080/skills', skills => {
+                getAppContext().innerHTML = ProjectForm(skills, organization)
+            })
+        })  
+    }
     })
+}
 
-    events.on(getAppcontext(), 'click', () => {
+
+function addProject() {
+    events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-add-project')) {
             const projectName = document.querySelector('.add__projectName').value
             const projectDescription = document.querySelector('.add__projectDescription').value
@@ -83,16 +97,12 @@ function createNewVolunteer() {
                 projectDescription : projectDescription,
                 estimatedDuration : estimatedDuration,
                 skills : skills
-            }, (project) => getAppContext().innerHTML = Project(project))
+            }, (volunteer) => getAppContext().innerHTML = landing())
         }
     })
-
-})
-})
-    })
->>>>>>> ariel-project-form
+}
     
+
 function getAppContext() {
     return document.querySelector("#app")
 }
-
