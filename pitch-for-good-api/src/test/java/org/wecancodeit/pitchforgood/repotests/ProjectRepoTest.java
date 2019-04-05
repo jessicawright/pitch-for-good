@@ -1,8 +1,12 @@
 package org.wecancodeit.pitchforgood.repotests;
 
-import javax.annotation.Resource;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+
+import java.util.Optional;
+
+import javax.annotation.Resource;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -28,11 +32,13 @@ public class ProjectRepoTest {
 	public void shouldFindProjectByName() {
 		Organization organization = orgRepo.save(new Organization("","","","",""));
 		Project project = projectRepo.save(new Project("building stuff", "building stuff", "", organization));
+		Long projectId = project.getProjectId();
 		
 		entityManager.persist(project);
 		entityManager.flush();
 		entityManager.clear();
 		
+		Optional<Project> projectToFind = projectRepo.findById(projectId);
 		Project projectFromDatabase = projectRepo.findByProjectName("building stuff");
 		assertThat(projectFromDatabase.getProjectName(), is("building stuff"));
 		
