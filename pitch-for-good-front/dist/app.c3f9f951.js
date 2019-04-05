@@ -126,7 +126,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolForm;
 
 function VolForm(causes, skills) {
-  return "\n        <div class=\"grid-container>\n            <div class=\"contact-info>\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\">\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\">\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            </div>\n            \n            <ul id=\"skills\">\n            ".concat(skills.map(function (skill) {
+  return "\n        <div class=\"grid-container>\n            <div class=\"contact-info>\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\">\n                <input type=\"text\" class=\"add__volUsername\" placeholder=\"Username:\">\n                <input type=\"text\" class=\"add__volPassword\" placeholder=\"Password:\">\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\">\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            </div>\n            \n            <ul id=\"skills\">\n            ".concat(skills.map(function (skill) {
     return "\n            <li class=\"skill\">     \n            <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.id, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n            </li>\n            ");
   }).join(''), "\n        </ul>\n        \n        <ul id=\"skills\">\n            ").concat(causes.map(function (cause) {
     return "\n                <li class=\"cause\">     \n                <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                </li>\n                ");
@@ -252,7 +252,7 @@ var _Cause = _interopRequireDefault(require("./Cause"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function VolunteerDashboard(volunteer) {
-  return "\n    <h1>Welcome, ".concat(volunteer.firstName, "!</h1>\n\n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>First Name: ").concat(volunteer.firstName, "</li>\n        <li>Last Name: ").concat(volunteer.lastName, "</li>\n        <li>Phone Number: ").concat(volunteer.phoneNum, "</li>\n        <li>Email: ").concat(volunteer.email, "</li>\n        <li>Current Job Title: ").concat(volunteer.jobTitle, "</li>\n    </ul>\n\n    <h2>These are your skills:</h2>\n    <ul>\n        <li>").concat((0, _Skills.default)(volunteer.skills), "</li>\n    </ul>\n\n    <h2>These are the causes you support:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(volunteer.causes), "</li>\n    </ul>\n    \n    ");
+  return "\n    <h1>Welcome, ".concat(volunteer.firstName, "!</h1>\n\n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>First Name: ").concat(volunteer.firstName, "</li>\n        <li>Last Name: ").concat(volunteer.lastName, "</li>\n        <li>Username: ").concat(volunteer.volUserName, "</li>\n        <li>Password: ").concat(volunteer.volPassword, "</li>\n        <li>Phone Number: ").concat(volunteer.phoneNum, "</li>\n        <li>Email: ").concat(volunteer.email, "</li>\n        <li>Current Job Title: ").concat(volunteer.jobTitle, "</li>\n    </ul>\n\n    <h2>These are your skills:</h2>\n    <ul>\n        <li>").concat((0, _Skills.default)(volunteer.skills), "</li>\n    </ul>\n\n    <h2>These are the causes you support:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(volunteer.causes), "</li>\n    </ul>\n    \n    ");
 }
 },{"./Skills":"js/components/Skills.js","./Cause":"js/components/Cause.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
@@ -283,8 +283,7 @@ function main() {
   getAppContext().innerHTML = (0, _landing.default)();
   volClickToSignUp();
   createNewVolunteer();
-  getProjectForm();
-  addProject();
+  getProjectForm(); // addProject()
 }
 
 function volClickToSignUp() {
@@ -385,7 +384,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52425" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63829" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

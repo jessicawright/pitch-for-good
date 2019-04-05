@@ -50,10 +50,12 @@ public class VolunteerController {
 		JSONObject newVolunteer = new JSONObject(body);
 		String firstName = newVolunteer.getString("firstName");
 		String lastName = newVolunteer.getString("lastName");
+		String userName = newVolunteer.getString("userName");
+		String password = newVolunteer.getString("password");
 		String phoneNum = newVolunteer.getString("phoneNum");
 		String email = newVolunteer.getString("email");
 		String jobTitle = newVolunteer.getString("jobTitle");
-		Volunteer volunteer = new Volunteer(firstName, lastName, phoneNum, email, jobTitle);
+		Volunteer volunteer = new Volunteer(firstName, lastName, userName, password, phoneNum, email, jobTitle);
 		volunteerRepo.save(volunteer);
 		return volunteer;
 		

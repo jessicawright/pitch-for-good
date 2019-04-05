@@ -16,7 +16,7 @@ function main() {
     volClickToSignUp()
     createNewVolunteer()
     getProjectForm()
-    addProject()
+    // addProject()
 
 }
 function volClickToSignUp() {

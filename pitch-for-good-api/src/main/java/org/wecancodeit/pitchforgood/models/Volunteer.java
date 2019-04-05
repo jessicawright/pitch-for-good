@@ -15,6 +15,8 @@ public class Volunteer {
 	@Id
 	@GeneratedValue
 	private Long volunteerId;
+	private String volUserName;
+	private String volPassword;
 	private String firstName;
 	private String lastName;
 	private String phoneNum;
@@ -31,9 +33,11 @@ public class Volunteer {
 	public Volunteer() {}
 	
 	
-	public Volunteer(String firstName, String lastName, String phoneNum, String email, String jobTitle) {
+	public Volunteer(String firstName, String lastName, String volUserName, String volPassword, String phoneNum, String email, String jobTitle) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.volUserName = volUserName;
+		this.volPassword = volPassword;
 		this.phoneNum = phoneNum;
 		this.email = email;
 		this.jobTitle = jobTitle;
@@ -52,6 +56,14 @@ public class Volunteer {
 
 	public String getLastName() {
 		return lastName;
+	}
+	
+	public String getVolUserName() {
+		return volUserName;
+	}
+	
+	public String getVolPassword() {
+		return volPassword;
 	}
 
 	public String getPhoneNum() {
