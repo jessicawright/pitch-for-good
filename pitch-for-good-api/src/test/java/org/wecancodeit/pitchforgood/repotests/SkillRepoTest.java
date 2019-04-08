@@ -2,11 +2,8 @@ package org.wecancodeit.pitchforgood.repotests;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-
 import java.util.Optional;
-
 import javax.annotation.Resource;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
