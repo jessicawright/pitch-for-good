@@ -115,7 +115,6 @@ public class VolunteerController {
 		  	volunteer.addCauseToVolunteer(newCause);
 		}
 		
-		System.out.println(newVolunteer);
 		volunteerRepo.save(volunteer);
 		return volunteer;
 		
