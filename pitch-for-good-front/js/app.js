@@ -102,7 +102,8 @@ function getProjectForm() {
             console.log(organization)
             api.getRequest(`http://localhost:8080/skills`, skills => {
                 console.log(skills)
-                api.getRequest(`http://localhost:8080/volunteers/47`, volunteer => {
+                const volunteerId = document.querySelector(".parent-id").id
+                api.getRequest(`http://localhost:8080/volunteers/${volunteerId}`, volunteer => {
                 console.log(volunteer)
 				    getAppContext().innerHTML = ProjectForm(organization, skills, volunteer)
                     })
