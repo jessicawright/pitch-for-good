@@ -119,16 +119,19 @@ function addProject() {
             const projectName = document.querySelector('.add__projectName').value
             const projectDescription = document.querySelector('.add__projectDescription').value
             const estimatedDuration = document.querySelector('.add__estimatedDuration').value
+            const volunteerSubmitId = document.querySelector(".project__submit-parent-volunteer").id
+            const orgSubmitId = document.querySelector('.js-add-project').id
             
             const skills = Array.from(document.querySelectorAll('.js-skill__skillName'))
             .filter((checkbox) => checkbox.checked)
             .map((checkbox) => checkbox.value);
 
-            const volunteerSubmitId = document.querySelector(".project__submit-parent-volunteer").id
-            api.postRequest(`http://localhost:8080/projects/volunteers/56/organizations/44`, {
+            api.postRequest(`http://localhost:8080/projects/add`, {
                 projectName : projectName,
                 projectDescription : projectDescription,
                 estimatedDuration : estimatedDuration,
+                volunteerSubmitId : volunteerSubmitId,
+                orgSubmitId : orgSubmitId,
                 skills : skills
             }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
         }

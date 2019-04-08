@@ -50,17 +50,27 @@ public class ProjectController {
 		return projectRepo.findById(id).get();
 	}
 	
-	@PostMapping("/volunteers/{volunteerId}/organizations/{organizationId}")
-	public Volunteer addProject(@RequestBody String body, @PathVariable Long volunteerId, @PathVariable Long organizationId) throws JSONException {
+	@PostMapping("/add")
+	public Volunteer addProject(@RequestBody String body) throws JSONException {
 		JSONObject newProject = new JSONObject(body);
-		System.out.println(newProject);
 		String projectName = newProject.getString("projectName");
 		String projectDescription = newProject.getString("projectDescription");
 		String estimatedDuration = newProject.getString("estimatedDuration");
+		String volunteer = newProject.getString("volunteerSubmitId");
+		String organization = newProject.getString("orgSubmitId");
 		JSONArray jsonArray = newProject.getJSONArray("skills"); 
-		Organization organization = organizationRepo.findById(organizationId).get();
-		Project project = new Project(projectName, projectDescription, estimatedDuration, organization);
+		
+		System.out.println(newProject);
+		
+		Long projectOwner = Long.parseLong(volunteer);
+		Volunteer finalVolunteer = volunteerRepo.findById(projectOwner).get();
+
+		Long pitchedOrg = Long.parseLong(organization);
+		Organization finalOrganization = organizationRepo.findById(pitchedOrg).get();
+		
+		Project project = new Project(projectName, projectDescription, estimatedDuration, finalOrganization);
 		projectRepo.save(project);
+		
 		ArrayList<String> skills = new ArrayList<String>(); 
 		ArrayList<Long> skillsToAdd = new ArrayList<Long>();
 		if (jsonArray != null) { 
@@ -77,13 +87,12 @@ public class ProjectController {
 			Skill newSkill = skillRepo.findById(skill).get();
 		  	project.addSkillToProject(newSkill);
 		}
-		Volunteer volunteer = volunteerRepo.findById(volunteerId).get();
-		//project.addVolunteerToProject(volunteer);
-		volunteer.addProjectToVolunteer(project);
-		projectRepo.save(new Project(projectName, projectDescription, estimatedDuration, organization));
-		volunteerRepo.save(volunteer);
-		organizationRepo.save(organization);
-		return volunteer;
+		projectRepo.save(project);
+		
+		finalVolunteer.addProjectToVolunteer(project);
+		volunteerRepo.save(finalVolunteer);
+		organizationRepo.save(finalOrganization);
+		return finalVolunteer;
 	}
 	
 //	@DeleteMapping("delete/{id}")

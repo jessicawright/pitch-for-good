@@ -1,6 +1,4 @@
 export default function ProjectForm(organization, skills, volunteer) {
-    console.log(skills)
-    console.log(organization)
     return `
         <h2>Propose a project idea here!</h2>
             <div class="projectForm__container">
@@ -20,7 +18,7 @@ export default function ProjectForm(organization, skills, volunteer) {
                         ${skills.map(skill => {
                             return `
                                 <li class="skill">     
-                                    <input type="checkbox" class="js-skill__skillName" id="${skill.id}" value="${skill.skillName}">${skill.skillName}
+                                    <input type="checkbox" class="js-skill__skillName" id="${skill.skillId}" value="${skill.skillId}">${skill.skillName}
                                 </li>
                                     `  
                         }).join('')}             
