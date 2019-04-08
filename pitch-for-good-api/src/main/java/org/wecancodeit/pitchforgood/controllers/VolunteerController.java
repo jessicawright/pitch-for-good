@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.wecancodeit.pitchforgood.models.Cause;
+import org.wecancodeit.pitchforgood.models.Organization;
+import org.wecancodeit.pitchforgood.models.Skill;
 import org.wecancodeit.pitchforgood.models.Volunteer;
 import org.wecancodeit.pitchforgood.repositories.CauseRepository;
 import org.wecancodeit.pitchforgood.repositories.OrganizationRepository;
@@ -44,9 +47,22 @@ public class VolunteerController {
 	public Collection<Volunteer> getVolunteers() {
 		return (Collection<Volunteer>) volunteerRepo.findAll();
 	}
-	@GetMapping("/{volunteerId}")
+	
+	@GetMapping("/{id}")
 	public Volunteer getSingleVolunteer(@PathVariable Long id) {
 		return volunteerRepo.findById(id).get();
+	}
+	
+	@GetMapping("/{id}/organizations")
+	public Collection<Organization> getOrganizationsAsVolunteer(@PathVariable Long id) {
+		volunteerRepo.findById(id).get();
+		return (Collection<Organization>) organizationRepo.findAll();
+	}
+	
+	@GetMapping("/{volunteerId}/organizations/{organizationId}")
+	public Organization getSpecificOrganizationAsVolunteer(@PathVariable Long volunteerId, @PathVariable Long organizationId) {
+		volunteerRepo.findById(volunteerId).get();
+		return organizationRepo.findById(organizationId).get();
 	}
 	
 	@PostMapping("/add")
@@ -99,7 +115,6 @@ public class VolunteerController {
 		  	volunteer.addCauseToVolunteer(newCause);
 		}
 		
-		System.out.println(newVolunteer);
 		volunteerRepo.save(volunteer);
 		return volunteer;
 		

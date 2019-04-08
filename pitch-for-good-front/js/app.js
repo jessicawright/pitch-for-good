@@ -17,7 +17,7 @@ function main() {
 
 
     getOrganizations()
-    viewSingleOrganization()
+    // viewSingleOrganization()
     volClickToSignUp()
     createNewVolunteer()
     getProjectForm()
@@ -27,23 +27,26 @@ function main() {
 function getOrganizations() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--see-organizations')) {
-            api.getRequest('http://localhost:8080/organizations', organizations => {
-                getAppContext().innerHTML = Organizations(organizations)
-            })
+            api.getRequest(`http://localhost:8080/volunteers/${event.target.id}`, volunteer => {
+                api.getRequest('http://localhost:8080/organizations', organizations => {
+                    getAppContext().innerHTML = Organizations(volunteer, organizations)
+                })
+            })  
         }
-    })
-}
+        })
+    }
 
-function viewSingleOrganization(){
-	events.on(getAppContext(), 'click', () => {
-		if(event.target.classList.contains('js-organization__name')){
-			api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
-				getAppContext().innerHTML = Organization(organization)
-			})
-		}
-	})
-
-}
+// function viewSingleOrganization(){
+// 	events.on(getAppContext(), 'click', () => {
+// 		if(event.target.classList.contains('js-organization__orgName')) {
+//             api.getRequest(`http://localhost:8080/volunteers/${event.target.parentNode.id}`, volunteer => {
+// 			    api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+// 				    getAppContext().innerHTML = Organization(volunteer, organization)
+// 			    })
+// 		    })
+//         }
+//     })
+// }
 
 function volClickToSignUp() {
     events.on(getAppContext(), 'click', () => {
@@ -96,11 +99,17 @@ function getProjectForm() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-get-project-form')) {
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
-                api.getRequest('http://localhost:8080/skills', skills => {
-                getAppContext().innerHTML = ProjectForm(skills, organization)
-            })
-        })  
-    }
+            console.log(organization)
+            api.getRequest(`http://localhost:8080/skills`, skills => {
+                console.log(skills)
+                const volunteerId = document.querySelector(".parent-id").id
+                api.getRequest(`http://localhost:8080/volunteers/${volunteerId}`, volunteer => {
+                console.log(volunteer)
+				    getAppContext().innerHTML = ProjectForm(organization, skills, volunteer)
+                    })
+                })
+            })  
+        }
     })
 }
 
@@ -110,13 +119,21 @@ function addProject() {
             const projectName = document.querySelector('.add__projectName').value
             const projectDescription = document.querySelector('.add__projectDescription').value
             const estimatedDuration = document.querySelector('.add__estimatedDuration').value
-            const skills = document.querySelector('.add__skills').value
-            api.postRequest(`http://localhost:8080/projects/add/${event.target.id}`, {
+            const volunteerSubmitId = document.querySelector(".project__submit-parent-volunteer").id
+            const orgSubmitId = document.querySelector('.js-add-project').id
+            
+            const skills = Array.from(document.querySelectorAll('.js-skill__skillName'))
+            .filter((checkbox) => checkbox.checked)
+            .map((checkbox) => checkbox.value);
+
+            api.postRequest(`http://localhost:8080/projects/add`, {
                 projectName : projectName,
                 projectDescription : projectDescription,
                 estimatedDuration : estimatedDuration,
+                volunteerSubmitId : volunteerSubmitId,
+                orgSubmitId : orgSubmitId,
                 skills : skills
-            }, (volunteer) => getAppContext().innerHTML = landing())
+            }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
         }
     })
 }
