@@ -1,7 +1,5 @@
-import organizations from './Organizations'
-import organization from './Organization'
 
-export default function ProjectForm(skills, organization) {
+export default function ProjectForm(organization, skills, volunteer) {
     console.log(organization)
     return `
         <h2>Propose a project idea here!</h2>

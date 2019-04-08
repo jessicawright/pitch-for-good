@@ -151,9 +151,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Organizations;
 
-function Organizations(organizations, volunteer) {
+function Organizations(volunteer, organizations) {
   return "\n        <h1>Organizations:</h1>\n        <ul class=\"organizations\">\n            ".concat(organizations.map(function (organization) {
-    return "\n                    <li class=\"organization\">     \n                        <h2 class=\"js-organization__orgName\" id=\"".concat(organization.organizationId, "\">").concat(organization.orgName, "</h2>\n                        <h3 class=\"organization__orgMission\">").concat(organization.orgMission, "</h3>\n                        <h3 class=\"organization__contactPerson\">").concat(organization.contactPerson, "</h3>\n                        <h3 class=\"organization__orgEmail\">").concat(organization.orgEmail, "</h3>\n                        <h3 class=\"organization__websiteUrl\">").concat(organization.websiteUrl, "</h3>\n                        <h3> If you would like to propose a project to this organization, click the button below.</h3>\n                        <div id=\"").concat(volunteer.volunteerId, "\">\n                           <button class=\"js-get-project-form button\" id=\"").concat(organization.organizationId, "\">Propose project</button>\n                        </div>\n                    </li>\n                        ");
+    return "\n                    <li class=\"organization\">     \n                        <h2 class=\"js-organization__orgName\" id=\"".concat(organization.organizationId, "\">").concat(organization.orgName, "</h2>\n                        <h3 class=\"organization__orgMission\">").concat(organization.orgMission, "</h3>\n                        <h3 class=\"organization__contactPerson\">").concat(organization.contactPerson, "</h3>\n                        <h3 class=\"organization__orgEmail\">").concat(organization.orgEmail, "</h3>\n                        <h3 class=\"organization__websiteUrl\">").concat(organization.websiteUrl, "</h3>\n                        <h3> If you would like to propose a project to this organization, click the button below.</h3>\n                        \n                        <div id=\"").concat(volunteer.volunteerId, "\">\n                           <button class=\"js-get-project-form button\" id=\"").concat(organization.organizationId, "\">Propose project</button>\n                        </div>\n                    </li>\n                        ");
     console.log(organization.organizationId);
   }).join(''), "             \n        </ul>\n            ");
 }
@@ -176,20 +176,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = ProjectForm;
 
-var _Organizations = _interopRequireDefault(require("./Organizations"));
-
-var _Organization = _interopRequireDefault(require("./Organization"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function ProjectForm(skills, organization) {
+function ProjectForm(organization, skills, volunteer) {
   console.log(organization);
   return "\n        <h2>Propose a project idea here!</h2>\n            <div class=\"projectForm__container\">\n            <h3 class=\"organization__orgName\" id=\"".concat(organization.organizationId, "\">Project proposal will be for ").concat(organization.orgName, "</h2>\n            <h3>Project name:\n                <input type=\"text\" class=\"add__projectName\" placeholder=\"Project Name\">\n            </h3>\n            <h3>Description of project goal and plans:\n                <input type=\"text\" class=\"add__projectDescription\" placeholder=\"Project Description\">\n            </h3>   \n            <h3>Estimated duration of project: \n                <input type=\"text\" class=\"add__estimatedDuration\" placeholder=\"Estimated Duration\">\n            </h3>\n                <div class=\"skills__container\">\n                    <h3>Skills involved in project: </h3>\n                    <ul class=\"skills\">\n                        ").concat(skills.map(function (skill) {
     return "\n                                <li class=\"skill\">     \n                                    <input type=\"checkbox\" class=\"add__skills skill__skillName\" id=\"".concat(skill.id, "\" value=\"").concat(skill.skillName, "\">").concat(skill.skillName, "\n                                </li>\n                                    ");
   }).join(''), "             \n                    </ul>\n                </div>  \n                \n                <button class=\"js-add-project button\" id=\"").concat(organization.organizationId, "\">Submit proposal</button>\n            </div>\n            "); // date thing?
   // volunteer
 }
-},{"./Organizations":"js/components/Organizations.js","./Organization":"js/components/Organization.js"}],"js/components/landing.js":[function(require,module,exports) {
+},{}],"js/components/landing.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -328,8 +322,8 @@ main();
 
 function main() {
   getAppContext().innerHTML = (0, _landing.default)();
-  getOrganizations();
-  viewSingleOrganization();
+  getOrganizations(); // viewSingleOrganization()
+
   volClickToSignUp();
   createNewVolunteer();
   getProjectForm();
@@ -340,23 +334,24 @@ function getOrganizations() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js--see-organizations')) {
       _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(event.target.id), function (volunteer) {
-        _apiActions.default.getRequest("http://localhost:8080/organizations", function (organizations) {
+        _apiActions.default.getRequest('http://localhost:8080/organizations', function (organizations) {
           getAppContext().innerHTML = (0, _Organizations.default)(volunteer, organizations);
         });
       });
     }
   });
-}
+} // function viewSingleOrganization(){
+// 	events.on(getAppContext(), 'click', () => {
+// 		if(event.target.classList.contains('js-organization__orgName')) {
+//             api.getRequest(`http://localhost:8080/volunteers/${event.target.parentNode.id}`, volunteer => {
+// 			    api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+// 				    getAppContext().innerHTML = Organization(volunteer, organization)
+// 			    })
+// 		    })
+//         }
+//     })
+// }
 
-function viewSingleOrganization() {
-  _eventActions.default.on(getAppContext(), 'click', function () {
-    if (event.target.classList.contains('js-organization__orgName')) {
-      _apiActions.default.getRequest("http://localhost:8080/organizations/".concat(event.target.id), function (organization) {
-        getAppContext().innerHTML = (0, _Organization.default)(organization);
-      });
-    }
-  });
-}
 
 function volClickToSignUp() {
   _eventActions.default.on(getAppContext(), 'click', function () {
@@ -411,9 +406,16 @@ function createNewVolunteer() {
 function getProjectForm() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js-get-project-form')) {
-      _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(event.target.id, "/organizations/").concat(event.target.id), function (organization) {
-        _apiActions.default.getRequest('http://localhost:8080/skills', function (skills) {
-          getAppContext().innerHTML = (0, _ProjectForm.default)(skills, organization);
+      _apiActions.default.getRequest("http://localhost:8080/organizations/".concat(event.target.id), function (organization) {
+        console.log(organization);
+
+        _apiActions.default.getRequest("http://localhost:8080/skills", function (skills) {
+          console.log(skills);
+
+          _apiActions.default.getRequest("http://localhost:8080/volunteers/47", function (volunteer) {
+            console.log(volunteer);
+            getAppContext().innerHTML = (0, _ProjectForm.default)(organization, skills, volunteer);
+          });
         });
       });
     }
@@ -471,7 +473,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61464" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64215" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

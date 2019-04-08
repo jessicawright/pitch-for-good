@@ -17,7 +17,7 @@ function main() {
 
 
     getOrganizations()
-    viewSingleOrganization()
+    // viewSingleOrganization()
     volClickToSignUp()
     createNewVolunteer()
     getProjectForm()
@@ -28,7 +28,7 @@ function getOrganizations() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--see-organizations')) {
             api.getRequest(`http://localhost:8080/volunteers/${event.target.id}`, volunteer => {
-                api.getRequest(`http://localhost:8080/organizations`, organizations => {
+                api.getRequest('http://localhost:8080/organizations', organizations => {
                     getAppContext().innerHTML = Organizations(volunteer, organizations)
                 })
             })  
@@ -36,16 +36,17 @@ function getOrganizations() {
         })
     }
 
-function viewSingleOrganization(){
-	events.on(getAppContext(), 'click', () => {
-		if(event.target.classList.contains('js-organization__orgName')) {
-            api.getRequest(`http://localhost:8080/volunteers/${event.target.parentNode.id}`, volunteer => 
-			    api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
-				    getAppContext().innerHTML = Organization(volunteer, organization)
-			})
-		}
-    })
-}
+// function viewSingleOrganization(){
+// 	events.on(getAppContext(), 'click', () => {
+// 		if(event.target.classList.contains('js-organization__orgName')) {
+//             api.getRequest(`http://localhost:8080/volunteers/${event.target.parentNode.id}`, volunteer => {
+// 			    api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+// 				    getAppContext().innerHTML = Organization(volunteer, organization)
+// 			    })
+// 		    })
+//         }
+//     })
+// }
 
 function volClickToSignUp() {
     events.on(getAppContext(), 'click', () => {
@@ -97,12 +98,17 @@ function createNewVolunteer() {
 function getProjectForm() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-get-project-form')) {
-            api.getRequest(`http://localhost:8080/volunteers/${event.target.id}/organizations/${event.target.id}`, organization => {
-                api.getRequest('http://localhost:8080/skills', skills => {
-                getAppContext().innerHTML = ProjectForm(skills, organization)
-            })
-        })  
-    }
+            api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+            console.log(organization)
+            api.getRequest(`http://localhost:8080/skills`, skills => {
+                console.log(skills)
+                api.getRequest(`http://localhost:8080/volunteers/47`, volunteer => {
+                console.log(volunteer)
+				    getAppContext().innerHTML = ProjectForm(organization, skills, volunteer)
+                    })
+                })
+            })  
+        }
     })
 }
 
