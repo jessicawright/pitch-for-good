@@ -1,5 +1,6 @@
 import Skills from './Skills'
 import Cause from './Cause'
+import Project from './Project'
 
 export default function VolunteerDashboard(volunteer) {
     return `
@@ -24,6 +25,11 @@ export default function VolunteerDashboard(volunteer) {
     <h2>These are the causes you support:</h2>
     <ul>
         <li>${Cause(volunteer.causes)}</li>
+    </ul>
+
+    <h2>These are the projects you've pitched:</h2>
+    <ul>
+        <li>${Project(volunteer.projects)}</li>
     </ul>
 
     <h2>Click the button below to see organizations to make a proposal to.</h2>
