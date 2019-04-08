@@ -1,5 +1,5 @@
-
 export default function ProjectForm(organization, skills, volunteer) {
+    console.log(skills)
     console.log(organization)
     return `
         <h2>Propose a project idea here!</h2>
@@ -20,14 +20,16 @@ export default function ProjectForm(organization, skills, volunteer) {
                         ${skills.map(skill => {
                             return `
                                 <li class="skill">     
-                                    <input type="checkbox" class="add__skills skill__skillName" id="${skill.id}" value="${skill.skillName}">${skill.skillName}
+                                    <input type="checkbox" class="js-skill__skillName" id="${skill.id}" value="${skill.skillName}">${skill.skillName}
                                 </li>
                                     `  
                         }).join('')}             
                     </ul>
                 </div>  
                 
-                <button class="js-add-project button" id="${organization.organizationId}">Submit proposal</button>
+                <div class="project__submit-parent-volunteer" id="${volunteer.volunteerId}">
+                    <button class="js-add-project button" id="${organization.organizationId}">Submit proposal</button>
+                </div>
             </div>
             `
                 // date thing?

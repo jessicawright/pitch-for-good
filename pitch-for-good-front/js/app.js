@@ -119,13 +119,18 @@ function addProject() {
             const projectName = document.querySelector('.add__projectName').value
             const projectDescription = document.querySelector('.add__projectDescription').value
             const estimatedDuration = document.querySelector('.add__estimatedDuration').value
-            const skills = document.querySelector('.add__skills').value
-            api.postRequest(`http://localhost:8080/volunteers/${event.target.id}/organizations/${event.target.id}`, {
+            
+            const skills = Array.from(document.querySelectorAll('.js-skill__skillName'))
+            .filter((checkbox) => checkbox.checked)
+            .map((checkbox) => checkbox.value);
+
+            const volunteerSubmitId = document.querySelector(".project__submit-parent-volunteer").id
+            api.postRequest(`http://localhost:8080/projects/volunteers/56/organizations/44`, {
                 projectName : projectName,
                 projectDescription : projectDescription,
                 estimatedDuration : estimatedDuration,
                 skills : skills
-            }, (volunteer) => getAppContext().innerHTML = landing())
+            }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
         }
     })
 }

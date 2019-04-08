@@ -177,10 +177,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = ProjectForm;
 
 function ProjectForm(organization, skills, volunteer) {
+  console.log(skills);
   console.log(organization);
   return "\n        <h2>Propose a project idea here!</h2>\n            <div class=\"projectForm__container\">\n            <h3 class=\"organization__orgName\" id=\"".concat(organization.organizationId, "\">Project proposal will be for ").concat(organization.orgName, "</h2>\n            <h3>Project name:\n                <input type=\"text\" class=\"add__projectName\" placeholder=\"Project Name\">\n            </h3>\n            <h3>Description of project goal and plans:\n                <input type=\"text\" class=\"add__projectDescription\" placeholder=\"Project Description\">\n            </h3>   \n            <h3>Estimated duration of project: \n                <input type=\"text\" class=\"add__estimatedDuration\" placeholder=\"Estimated Duration\">\n            </h3>\n                <div class=\"skills__container\">\n                    <h3>Skills involved in project: </h3>\n                    <ul class=\"skills\">\n                        ").concat(skills.map(function (skill) {
-    return "\n                                <li class=\"skill\">     \n                                    <input type=\"checkbox\" class=\"add__skills skill__skillName\" id=\"".concat(skill.id, "\" value=\"").concat(skill.skillName, "\">").concat(skill.skillName, "\n                                </li>\n                                    ");
-  }).join(''), "             \n                    </ul>\n                </div>  \n                \n                <button class=\"js-add-project button\" id=\"").concat(organization.organizationId, "\">Submit proposal</button>\n            </div>\n            "); // date thing?
+    return "\n                                <li class=\"skill\">     \n                                    <input type=\"checkbox\" class=\"js-skill__skillName\" id=\"".concat(skill.id, "\" value=\"").concat(skill.skillName, "\">").concat(skill.skillName, "\n                                </li>\n                                    ");
+  }).join(''), "             \n                    </ul>\n                </div>  \n                \n                <div class=\"project__submit-parent-volunteer\" id=\"").concat(volunteer.volunteerId, "\">\n                    <button class=\"js-add-project button\" id=\"").concat(organization.organizationId, "\">Submit proposal</button>\n                </div>\n            </div>\n            "); // date thing?
   // volunteer
 }
 },{}],"js/components/landing.js":[function(require,module,exports) {
@@ -429,15 +430,20 @@ function addProject() {
       var projectName = document.querySelector('.add__projectName').value;
       var projectDescription = document.querySelector('.add__projectDescription').value;
       var estimatedDuration = document.querySelector('.add__estimatedDuration').value;
-      var skills = document.querySelector('.add__skills').value;
+      var skills = Array.from(document.querySelectorAll('.js-skill__skillName')).filter(function (checkbox) {
+        return checkbox.checked;
+      }).map(function (checkbox) {
+        return checkbox.value;
+      });
+      var volunteerSubmitId = document.querySelector(".project__submit-parent-volunteer").id;
 
-      _apiActions.default.postRequest("http://localhost:8080/volunteers/".concat(event.target.id, "/organizations/").concat(event.target.id), {
+      _apiActions.default.postRequest("http://localhost:8080/projects/volunteers/56/organizations/44", {
         projectName: projectName,
         projectDescription: projectDescription,
         estimatedDuration: estimatedDuration,
         skills: skills
       }, function (volunteer) {
-        return getAppContext().innerHTML = (0, _landing.default)();
+        return getAppContext().innerHTML = (0, _VolunteerDashboard.default)(volunteer);
       });
     }
   });
@@ -474,7 +480,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58085" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60438" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
