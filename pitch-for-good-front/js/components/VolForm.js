@@ -1,17 +1,30 @@
 export default function VolForm(causes, skills) {
     return `
-        <div class="grid-container>
-            <div class="contact-info>
+    <h1>Volunteer Sign Up Page</h1>
+        <div class="volForm__container">
+            <div class="contact-info__container">
                 <input type="text" class="add__firstName" placeholder="First Name:">
-                <input type="text" class="add__lastName" placeholder="Last Name:">
+                <input type="text" class="add__lastName" placeholder="Last Name:"><br>
                 <input type="text" class="add__volUserName" placeholder="Username:">
-                <input type="text" class="add__volPassword" placeholder="Password:">
-                <input type="text" class="add__jobTitle" placeholder="Job Title:">
+                <input type="text" class="add__volPassword" placeholder="Password:"><br>
+                <input type="text" class="add__jobTitle" placeholder="Job Title:"><br>
+
                 <input type="text" class="add__phoneNum" placeholder="Phone:">
                 <input type="text" class="add__email" placeholder="Email:">
             </div>
+            <div class="skills__container">   
+                <ul id="skills">
+                    ${skills.map(skill => {
+                        return `
+                            <li class="skill">     
+                                <input type="checkbox" class="skill__skillName" id="${skill.id}" name="skillIds" value="${skill.skillId}">${skill.skillName}
+                            </li>
+                        `;
+                    }).join('')}
+                </ul>
             </div>
-            
+
+            <div class="causes__container">
             <ul id="skills">
             ${skills.map(skill => {
                 return `
@@ -31,8 +44,9 @@ export default function VolForm(causes, skills) {
                 `;
             }).join('')}
             </ul>
-            
+            </div>
             <button class="js-add-volunteer button">Sign Up!</button>
         `;
+
    
 }

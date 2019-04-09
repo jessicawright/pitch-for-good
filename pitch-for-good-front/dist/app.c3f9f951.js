@@ -126,11 +126,13 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolForm;
 
 function VolForm(causes, skills) {
-  return "\n        <div class=\"grid-container>\n            <div class=\"contact-info>\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\">\n                <input type=\"text\" class=\"add__volUserName\" placeholder=\"Username:\">\n                <input type=\"text\" class=\"add__volPassword\" placeholder=\"Password:\">\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\">\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            </div>\n            \n            <ul id=\"skills\">\n            ".concat(skills.map(function (skill) {
+  return "\n    <h1>Volunteer Sign Up Page</h1>\n        <div class=\"volForm__container\">\n            <div class=\"contact-info__container\">\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\"><br>\n                <input type=\"text\" class=\"add__volUserName\" placeholder=\"Username:\">\n                <input type=\"text\" class=\"add__volPassword\" placeholder=\"Password:\"><br>\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\"><br>\n\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            <div class=\"skills__container\">   \n                <ul id=\"skills\">\n                    ".concat(skills.map(function (skill) {
+    return "\n                            <li class=\"skill\">     \n                                <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.id, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n                            </li>\n                        ");
+  }).join(''), "\n                </ul>\n            </div>\n\n            <div class=\"causes__container\">\n            <ul id=\"skills\">\n            ").concat(skills.map(function (skill) {
     return "\n            <li class=\"skill\">     \n            <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.skillId, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n            </li>\n            ");
   }).join(''), "\n        </ul>\n        \n        <ul id=\"skills\">\n            ").concat(causes.map(function (cause) {
     return "\n                <li class=\"cause\">     \n                <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                </li>\n                ");
-  }).join(''), "\n            </ul>\n            \n            <button class=\"js-add-volunteer button\">Sign Up!</button>\n        ");
+  }).join(''), "\n            </ul>\n            </div>\n            <button class=\"js-add-volunteer button\">Sign Up!</button>\n        ");
 }
 },{}],"js/components/Organization.js":[function(require,module,exports) {
 "use strict";
@@ -193,7 +195,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = landing;
 
 function landing() {
-  return "\n\n<div class=\"landing\">\n\t<h1 class=\"landing__title\">Pitch For Good</h1>\n</div>\n<h2>Pitch For Good provides a platform for highly-skilled professionals to pitch specialized, project-based volunteer ideas to nonprofits they care about.</h2>\n\n<button class=\"js--sign-up__volunteer button__big\">I AM A VOLUNTEER</button>\n<button class=\"js--sign-up__volunteer button__big\">I AM A NON-PROFIT</button>\n\n<footer>\n\t<h3>Pitch For Good &copy;2019</h3>\n\t<h3>Photo by Dakota Corbin on <a href=\"https://unsplash.com/\">Unsplash</a></h3>\n</footer>\n\n";
+  return "\n\t\t<div class=\"landing\">\n\t\t\t<h1 class=\"landing__title\">Pitch For Good</h1>\n\t\t</div>\n\t\t\t<h3>Pitch For Good provides a platform for highly-skilled professionals to pitch specialized, project-based volunteer ideas to nonprofits they are passionate about.</h3>\n\n\t\t<button class=\"js--sign-up__volunteer button__big\">I AM A VOLUNTEER</button>\n\t\t<button class=\"js--sign-up__volunteer button__big\">I AM A NON-PROFIT</button>\n\n\t\t<footer>\n\t\t\t<h5>Pitch For Good &copy;2019</h5>\n\t\t\t<h6>Photo by Dakota Corbin on <a href=\"https://unsplash.com/\">Unsplash</a></h6>\n\t\t</footer>\n\t";
 }
 },{}],"js/utils/api/api-actions.js":[function(require,module,exports) {
 "use strict";
@@ -485,7 +487,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64307" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59946" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

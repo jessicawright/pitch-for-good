@@ -1,15 +1,151 @@
 * {
-	border-style: box-border;
-	margin: 0;
-	padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* html {
-	background: url("https://github.com/jessicawright/my-files/blob/master/landing.jpg?raw=true") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+a {
+text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 1rem;
+}
+
+html {
+	background: url("https://github.com/jessicawright/my-files/blob/master/landing.jpg?raw=true") no-repeat center center/cover; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  font: 20px/1.618 Garamond, Cambria, sans-serif;
+  --primary-color: rgb(127, 200, 59);
+  --secondary-gray: rgb(96, 117, 67);
+  --tertiary-white: rgb(246, 248, 213);
+  text-align: center;
+}
+
+body {
+  background-color: rgb(255, 255, 255, .8);
+  height: 100%;
+  position: relative;
+
+}
+
+.volForm__container {
+  display: grid;
+	grid-gap: 5px 5px;
+	grid-template-columns: repeat(4, 1fr); 
+	grid-template-rows: repeat(3, 1fr); 
+	margin: 1rem;
+	padding: 1rem;
+	max-width: 100%;	
+  height: flex;	
+  
+}
+.contact-info__container, .skills__container, .causes__container {
+  background: var(--secondary-gray);
+  color: var(--tertiary-white);
+  opacity: .85;
+  padding: 1rem;
+  border-radius: .35rem;
+
+}
+
+/* .add__jobTitle {
+  width: 80%;
+} */
+
+input[type=text] {
+  width: 40%;
+  border: 2px solid rgb(0, 0, 0, 0.7);
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.contact-info__container {
+  grid-column: 1 / span 2;
+}
+
+.skills__container {
+  grid-column: 3 / span 2;
+  grid-row: 1 / span 3;
+  text-align: left;
+  display: ;
+  
+}
+
+.causes__container {
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 2;
+  text-align: left;
+  
+}
+
+.js-add-volunteer {
+  grid-column: 2 / span 2;
+  grid-row: 4 / span 2;
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
+  font-size: 30px;
+  padding: 7px 24px;
+  border-radius: 8px;
+    
+}
+
+.js--sign-up__volunteer {
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
+  font-size: 30px;
+  padding: 1.5rem;
+  margin: 1rem;
+  border-radius: 8px;
+}
+
+h1 {
+  font-size: 60px;
+  color: var(--primary-color);
+}
+
+h2 {
+  font-size: 40px;
+  color: var(--secondary-gray);
+}
+
+h3 {
+  font-size: 25px;
+  color: var(--secondary-gray);
+}
+
+h4 {
+  font-size: 20px;
+  color: var(--secondary-gray);
+}
+
+h5 {
+  font-size: 15px;
+  color: var(--primary-color);
+}
+
+h6 {
+  font-size: 10px;
+  color: var(--primary-color);
+}
+
+/* start stlying check boxes */
+
+/* .skills {
+  width: flex;
+}
+.skills, .skill {
+  display:inline-block;
+  width:25%;
 } */
 
 

@@ -19,9 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.pitchforgood.models.Cause;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import org.wecancodeit.pitchforgood.models.Organization;
 >>>>>>> a8292f40898056d22424008a2c65511020bb44e2
+=======
+
+import org.wecancodeit.pitchforgood.models.Organization;
+>>>>>>> 04e61fb864612e72bafe2ab99429d5ce3b19e572
 import org.wecancodeit.pitchforgood.models.Skill;
 import org.wecancodeit.pitchforgood.models.Volunteer;
 import org.wecancodeit.pitchforgood.repositories.CauseRepository;
