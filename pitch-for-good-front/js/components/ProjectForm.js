@@ -1,8 +1,4 @@
-import organizations from './Organizations'
-import organization from './Organization'
-
-export default function ProjectForm(skills, organization) {
-    console.log(organization)
+export default function ProjectForm(organization, skills, volunteer) {
     return `
         <h2>Propose a project idea here!</h2>
             <div class="projectForm__container">
@@ -22,14 +18,16 @@ export default function ProjectForm(skills, organization) {
                         ${skills.map(skill => {
                             return `
                                 <li class="skill">     
-                                    <input type="checkbox" class="add__skills skill__skillName" id="${skill.id}" value="${skill.skillName}">${skill.skillName}
+                                    <input type="checkbox" class="js-skill__skillName" id="${skill.skillId}" value="${skill.skillId}">${skill.skillName}
                                 </li>
                                     `  
                         }).join('')}             
                     </ul>
                 </div>  
                 
-                <button class="js-add-project button" id="${organization.organizationId}">Submit proposal</button>
+                <div class="project__submit-parent-volunteer" id="${volunteer.volunteerId}">
+                    <button class="js-add-project button" id="${organization.organizationId}">Submit proposal</button>
+                </div>
             </div>
             `
                 // date thing?

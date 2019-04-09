@@ -1,4 +1,4 @@
-export default function Organizations(organizations) {
+export default function Organizations(volunteer, organizations) {
     return `
         <h1>Organizations:</h1>
         <ul class="organizations">
@@ -11,7 +11,10 @@ export default function Organizations(organizations) {
                         <h3 class="organization__orgEmail">${organization.orgEmail}</h3>
                         <h3 class="organization__websiteUrl">${organization.websiteUrl}</h3>
                         <h3> If you would like to propose a project to this organization, click the button below.</h3>
-                        <button class="js-get-project-form button" id="${organization.organizationId}">Propose project</button>
+                        
+                        <div class="parent-id" id="${volunteer.volunteerId}">
+                           <button class="js-get-project-form button" id="${organization.organizationId}">Propose project</button>
+                        </div>
                     </li>
                         `  
                         console.log(organization.organizationId)
