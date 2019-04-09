@@ -4,10 +4,10 @@ export default function VolForm(causes, skills) {
         <div class="volForm__container">
             <div class="contact-info__container">
                 <input type="text" class="add__firstName" placeholder="First Name:">
-                <input type="text" class="add__lastName" placeholder="Last Name:">
+                <input type="text" class="add__lastName" placeholder="Last Name:"><br>
                 <input type="text" class="add__volUsername" placeholder="Username:">
-                <input type="text" class="add__volPassword" placeholder="Password:">
-                <input type="text" class="add__jobTitle" placeholder="Job Title:">
+                <input type="text" class="add__volPassword" placeholder="Password:"><br>
+                <input type="text" class="add__jobTitle" placeholder="Job Title:"><br>
                 <input type="text" class="add__phoneNum" placeholder="Phone:">
                 <input type="text" class="add__email" placeholder="Email:">
             </div>
@@ -23,7 +23,7 @@ export default function VolForm(causes, skills) {
                 </ul>
             </div>
             <div class="causes__container">
-                <ul id="skills">
+                <ul id="causes">
                     ${causes.map(cause => {
                         return `
                             <li class="cause">     
@@ -33,7 +33,7 @@ export default function VolForm(causes, skills) {
                     }).join('')}
                 </ul>
             </div>
-            <button class="js-add-volunteer button">Sign Up!</button>
+            <button class="js-add-volunteer button">Create Volunteer Profile</button>
         </div>
     `;
    
