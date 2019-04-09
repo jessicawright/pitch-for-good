@@ -30,7 +30,7 @@ html {
 
 body {
   background-color: rgb(255, 255, 255, .8);
-  height: 100vh;
+  height: 100%;
   position: relative;
 
 }
@@ -52,24 +52,25 @@ body {
   opacity: .85;
   padding: 1rem;
   border-radius: .35rem;
-  
 
 }
 
-.contact-info__container {
-  grid-column: 1 / span 2;
-  
-  
-}
+/* .add__jobTitle {
+  width: 80%;
+} */
 
 input[type=text] {
-  width: 30%;
+  width: 40%;
   border: 2px solid rgb(0, 0, 0, 0.7);
   border-radius: 4px;
   margin: 8px 0;
   outline: none;
-  padding: 8px;
+  padding: 10px;
   box-sizing: border-box;
+}
+
+.contact-info__container {
+  grid-column: 1 / span 2;
 }
 
 .skills__container {
