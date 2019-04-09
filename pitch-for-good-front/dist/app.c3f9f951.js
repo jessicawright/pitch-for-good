@@ -126,12 +126,13 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolForm;
 
 function VolForm(causes, skills) {
-  return "\n    <h1>Volunteer Sign Up Page</h1>\n        <div class=\"volForm__container\">\n            <div class=\"contact-info__container\">\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\"><br>\n                <input type=\"text\" class=\"add__volUsername\" placeholder=\"Username:\">\n                <input type=\"text\" class=\"add__volPassword\" placeholder=\"Password:\"><br>\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\"><br>\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            <div class=\"skills__container\">   \n                <ul id=\"skills\">\n                    ".concat(skills.map(function (skill) {
+  return "\n    <h1>Volunteer Sign Up Page</h1>\n        <div class=\"volForm__container\">\n            <div class=\"contact-info__container\">\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\"><br>\n                <input type=\"text\" class=\"add__volUserName\" placeholder=\"Username:\">\n                <input type=\"text\" class=\"add__volPassword\" placeholder=\"Password:\"><br>\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\"><br>\n\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            <div class=\"skills__container\">   \n                <ul id=\"skills\">\n                    ".concat(skills.map(function (skill) {
     return "\n                            <li class=\"skill\">     \n                                <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.id, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n                            </li>\n                        ");
-  }).join(''), "\n                </ul>\n            </div>\n            <div class=\"causes__container\">\n                <ul id=\"causes\">\n                    ").concat(causes.map(function (cause) {
-    return "\n                            <li class=\"cause\">     \n                                <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                            </li>\n                        ");
-  }).join(''), "\n                </ul>\n            </div>\n            <button class=\"js-add-volunteer button\">Create Volunteer Profile</button>\n        </div>\n    ");
-
+  }).join(''), "\n                </ul>\n            </div>\n\n            <div class=\"causes__container\">\n            <ul id=\"skills\">\n            ").concat(skills.map(function (skill) {
+    return "\n            <li class=\"skill\">     \n            <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.skillId, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n            </li>\n            ");
+  }).join(''), "\n        </ul>\n        \n        <ul id=\"skills\">\n            ").concat(causes.map(function (cause) {
+    return "\n                <li class=\"cause\">     \n                <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                </li>\n                ");
+  }).join(''), "\n            </ul>\n            </div>\n            <button class=\"js-add-volunteer button\">Sign Up!</button>\n        ");
 }
 },{}],"js/components/Organization.js":[function(require,module,exports) {
 "use strict";
@@ -179,12 +180,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = ProjectForm;
 
-
 function ProjectForm(organization, skills, volunteer) {
   return "\n        <h2>Propose a project idea here!</h2>\n            <div class=\"projectForm__container\">\n            <h3 class=\"organization__orgName\" id=\"".concat(organization.organizationId, "\">Project proposal will be for ").concat(organization.orgName, "</h2>\n            <h3>Project name:\n                <input type=\"text\" class=\"add__projectName\" placeholder=\"Project Name\">\n            </h3>\n            <h3>Description of project goal and plans:\n                <input type=\"text\" class=\"add__projectDescription\" placeholder=\"Project Description\">\n            </h3>   \n            <h3>Estimated duration of project: \n                <input type=\"text\" class=\"add__estimatedDuration\" placeholder=\"Estimated Duration\">\n            </h3>\n                <div class=\"skills__container\">\n                    <h3>Skills involved in project: </h3>\n                    <ul class=\"skills\">\n                        ").concat(skills.map(function (skill) {
     return "\n                                <li class=\"skill\">     \n                                    <input type=\"checkbox\" class=\"js-skill__skillName\" id=\"".concat(skill.skillId, "\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n                                </li>\n                                    ");
   }).join(''), "             \n                    </ul>\n                </div>  \n                \n                <div class=\"project__submit-parent-volunteer\" id=\"").concat(volunteer.volunteerId, "\">\n                    <button class=\"js-add-project button\" id=\"").concat(organization.organizationId, "\">Submit proposal</button>\n                </div>\n            </div>\n            "); // date thing?
-
   // volunteer
 }
 },{}],"js/components/landing.js":[function(require,module,exports) {
@@ -488,9 +487,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64307" + '/');
-
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59946" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

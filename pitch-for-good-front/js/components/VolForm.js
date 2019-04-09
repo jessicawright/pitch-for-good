@@ -5,7 +5,7 @@ export default function VolForm(causes, skills) {
             <div class="contact-info__container">
                 <input type="text" class="add__firstName" placeholder="First Name:">
                 <input type="text" class="add__lastName" placeholder="Last Name:"><br>
-                <input type="text" class="add__volUsername" placeholder="Username:">
+                <input type="text" class="add__volUserName" placeholder="Username:">
                 <input type="text" class="add__volPassword" placeholder="Password:"><br>
                 <input type="text" class="add__jobTitle" placeholder="Job Title:"><br>
 
