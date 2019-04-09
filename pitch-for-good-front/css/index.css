@@ -14,7 +14,7 @@ ul {
 }
 
 html {
-	background: url("https://github.com/jessicawright/my-files/blob/master/landing.jpg?raw=true") no-repeat center center/cover; 
+	background: url("https://github.com/jessicawright/my-files/blob/master/landing.jpg") no-repeat center center/cover; 
   position: absolute;
   top: 0;
   left: 0;
