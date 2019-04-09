@@ -1,8 +1,9 @@
 package org.wecancodeit.pitchforgood.repotests;
 
-import javax.annotation.Resource;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import java.util.Optional;
+import javax.annotation.Resource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -23,11 +24,13 @@ public class SkillRepoTest {
 	@Test
 	public void shouldFindSkillByName() {
 		Skill skill = skillRepo.save(new Skill("programming"));
+		Long skillId = skill.getSkillId();
 		
 		entityManager.persist(skill);
 		entityManager.flush();
 		entityManager.clear();
 		
+		Optional<Skill> skillToFind = skillRepo.findById(skillId);
 		Skill skillFromDatabase = skillRepo.findBySkillName("programming");
 		assertThat(skillFromDatabase.getSkillName(), is("programming"));
 	}

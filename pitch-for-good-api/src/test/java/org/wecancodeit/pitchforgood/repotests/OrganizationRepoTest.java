@@ -2,6 +2,8 @@ package org.wecancodeit.pitchforgood.repotests;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.Optional;
+
 import javax.annotation.Resource;
 
 import org.junit.Test;
@@ -25,11 +27,13 @@ public class OrganizationRepoTest {
 	@Test 
 	public void shouldFindOrganizationByName() {
 		Organization organization = orgRepo.save(new Organization("Habitat for Humanity", "","","",""));
+		Long organizationId = organization.getOrganizationId();
 		
 		entityManager.persist(organization);
 		entityManager.flush();
 		entityManager.clear();
 		
+		Optional<Organization> organizationToFind = orgRepo.findById(organizationId);
 		Organization organizationFromDatabase = orgRepo.findByOrgName("Habitat for Humanity");
 		assertThat(organizationFromDatabase.getOrgName(), is("Habitat for Humanity"));
 	}

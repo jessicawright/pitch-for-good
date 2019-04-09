@@ -11,7 +11,7 @@ import org.wecancodeit.pitchforgood.models.Volunteer;
 
 public class VolunteerTest {
 
-	Volunteer underTest = new Volunteer("","","","","");
+	Volunteer underTest = new Volunteer("","","","","","","");
 	Skill skill = new Skill("");
 	Cause cause = new Cause("","");
 	Organization organization = new Organization("","","","","");
