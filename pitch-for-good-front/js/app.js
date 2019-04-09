@@ -9,6 +9,8 @@ import events from './utils/events/event-actions'
 import VolunteerDashboard from './components/VolunteerDashboard'
 import Skills from './components/Skills'
 import Cause from './components/Cause'
+import OrgForm from './components/OrgForm'
+import OrganizationDashboard from './components/OrganizationDashboard'
 
 main()
 
@@ -22,6 +24,8 @@ function main() {
     createNewVolunteer()
     getProjectForm()
     addProject()
+    orgClickToSignUp()
+    addOrganization()
 }
 
 function getOrganizations() {
@@ -60,6 +64,17 @@ function volClickToSignUp() {
         }
     })
 }
+
+function orgClickToSignUp() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js--sign-up__organization')) {
+            api.getRequest('http://localhost:8080/causes', causes => {
+                    getAppContext().innerHTML = OrgForm(causes)
+
+            })
+        }
+    })
+}
     
 function createNewVolunteer() {
     events.on(getAppContext(), 'click', () => {
@@ -71,15 +86,15 @@ function createNewVolunteer() {
             const phoneNum = document.querySelector('.add__phoneNum').value
             const email = document.querySelector('.add__email').value
             const jobTitle = document.querySelector('.add__jobTitle').value
-
+ 
             const skills = Array.from(document.querySelectorAll('.skill__skillName'))
             .filter((checkbox) => checkbox.checked)
             .map((checkbox) => checkbox.value);
-
+ 
             const causes = Array.from(document.querySelectorAll('.cause__causeName'))
             .filter((checkbox) => checkbox.checked)
             .map((checkbox) => checkbox.value);
-
+ 
             api.postRequest('http://localhost:8080/volunteers/add', {
                 firstName : firstName,
                 lastName : lastName,
@@ -93,7 +108,8 @@ function createNewVolunteer() {
             }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
         }
     })
-}
+ }
+
 
 function getProjectForm() {
     events.on(getAppContext(), 'click', () => {
@@ -134,6 +150,32 @@ function addProject() {
                 orgSubmitId : orgSubmitId,
                 skills : skills
             }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
+        }
+    })
+}
+
+
+function addOrganization() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js-add-organization')) {
+            const orgName = document.querySelector('.add__orgName').value
+            const mission = document.querySelector('.add__mission').value
+            const contactPerson = document.querySelector('.add__contactPerson').value
+            const contactEmail = document.querySelector(".add__contactEmail").id
+            const orgUrl = document.querySelector('.add__orgUrl').id
+            
+            const causes = Array.from(document.querySelectorAll('.cause__causeName'))
+            .filter((checkbox) => checkbox.checked)
+            .map((checkbox) => checkbox.value);
+
+            api.postRequest(`http://localhost:8080/organizations/add`, {
+                orgName : orgName,
+                mission : mission,
+                contactPerson : contactPerson,
+                contactEmail : contactEmail,
+                orgUrl : orgUrl,
+                causes : causes
+            }, (organization) => getAppContext().innerHTML = OrganizationDashboard(organization))
         }
     })
 }
