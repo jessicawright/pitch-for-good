@@ -22,7 +22,6 @@ export default function VolForm(causes, skills) {
                     }).join('')}
                 </ul>
             </div>
-
         <div class="causes__container">    
             <ul id="skills">
                 ${causes.map(cause => {
@@ -34,9 +33,7 @@ export default function VolForm(causes, skills) {
                 }).join('')}
             </ul>
         </div>
-        <button class="js-add-volunteer button">Sign Up!</button>
-        `;
-        
-
-   
+        <button class="js-add-volunteer button">Volunteer Sign Up!</button>
+        </div>
+        `;  
 }
