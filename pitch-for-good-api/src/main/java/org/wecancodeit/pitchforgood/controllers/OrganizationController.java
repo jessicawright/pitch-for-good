@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.pitchforgood.models.Cause;
 import org.wecancodeit.pitchforgood.models.Organization;
 import org.wecancodeit.pitchforgood.models.Project;
+import org.wecancodeit.pitchforgood.models.Skill;
+import org.wecancodeit.pitchforgood.models.Volunteer;
 import org.wecancodeit.pitchforgood.repositories.CauseRepository;
 import org.wecancodeit.pitchforgood.repositories.OrganizationRepository;
 import org.wecancodeit.pitchforgood.repositories.ProjectRepository;
@@ -72,6 +74,11 @@ public class OrganizationController {
 		projectRepo.deleteAll(organization.getProjects());
 		organizationRepo.deleteById(id);
 		return "";
+	}
+
+	private Collection<Volunteer> findAllBySkills(Skill volunteerSkill) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

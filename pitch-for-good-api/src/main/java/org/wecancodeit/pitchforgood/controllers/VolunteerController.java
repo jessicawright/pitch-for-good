@@ -1,6 +1,5 @@
 package org.wecancodeit.pitchforgood.controllers;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -64,6 +63,7 @@ public class VolunteerController {
 		volunteerRepo.findById(volunteerId).get();
 		return organizationRepo.findById(organizationId).get();
 	}
+	
 	
 	@PostMapping("/add")
 	public Volunteer addVolunteer(@RequestBody String body) throws JSONException {
