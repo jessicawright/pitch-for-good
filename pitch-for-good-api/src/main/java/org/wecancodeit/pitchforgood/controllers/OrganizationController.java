@@ -1,9 +1,11 @@
 package org.wecancodeit.pitchforgood.controllers;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.annotation.Resource;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -53,17 +55,37 @@ public class OrganizationController {
 	}
 	
 	@PostMapping("/add")
-	public Collection<Organization> addOrganization(@RequestBody String body) throws JSONException {
+	public Organization addOrganization(@RequestBody String body) throws JSONException {
 		JSONObject newOrganization = new JSONObject(body);
 		String orgName = newOrganization.getString("orgName");
-		String orgMission = newOrganization.getString("orgMission");
+		String mission = newOrganization.getString("mission");
 		String contactPerson = newOrganization.getString("contactPerson");
-		String orgEmail = newOrganization.getString("orgEmail");
-		String websiteUrl = newOrganization.getString("websiteUrl");
-		Cause causes = causeRepo.findByCauseName(newOrganization.getString("causeName"));
-		Project projects = projectRepo.findByProjectName(newOrganization.getString("projectName"));
-		organizationRepo.save(new Organization(orgName, orgMission, contactPerson, orgEmail, websiteUrl));
-		return (Collection<Organization>) organizationRepo.findAll();
+		String contactEmail = newOrganization.getString("contactEmail");
+		String website = newOrganization.getString("orgUrl");
+		
+		Organization organization = new Organization(orgName, mission, contactPerson, contactEmail, website);
+		organizationRepo.save(organization);
+		
+		ArrayList<String> causes = new ArrayList<String>(); 
+		ArrayList<Long> causesToAdd = new ArrayList<Long>();
+		JSONArray jsonArray = newOrganization.getJSONArray("causes"); 
+		if (jsonArray != null) { 
+		   for (int i = 0; i < jsonArray.length(); i++){ 
+			   causes.add(jsonArray.get(i).toString());
+		   } 
+		} 
+		if (causes != null) {
+			for (String cause : causes) {
+				causesToAdd.add((Long.parseLong(cause)));
+			}
+		}
+		for (Long cause : causesToAdd) {
+			Cause newCause = causeRepo.findById(cause).get();
+		  	organization.addCauseToOrganization(newCause);
+		}
+		
+		organizationRepo.save(organization);
+		return organization;
 		
 	}
 	

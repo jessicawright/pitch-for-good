@@ -11,6 +11,8 @@ import org.wecancodeit.pitchforgood.models.Volunteer;
 public interface VolunteerRepository extends CrudRepository<Volunteer, Long>{
 
 	Volunteer findByLastName(String string);
+	
+	Collection<Volunteer> findAllBySkills(Skill skill);
 
 	Collection<Volunteer> findAllBySkills(Skill skill);
 
