@@ -14,6 +14,6 @@ public interface VolunteerRepository extends CrudRepository<Volunteer, Long>{
 	
 	Collection<Volunteer> findAllBySkills(Skill skill);
 
-	
+	Collection<Volunteer> findAllBySkills(Skill skill);
 
 }
