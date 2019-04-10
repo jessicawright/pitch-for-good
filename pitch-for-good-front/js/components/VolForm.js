@@ -8,7 +8,6 @@ export default function VolForm(causes, skills) {
                 <input type="text" class="add__volUserName" placeholder="Username:">
                 <input type="text" class="add__volPassword" placeholder="Password:"><br>
                 <input type="text" class="add__jobTitle" placeholder="Job Title:"><br>
-
                 <input type="text" class="add__phoneNum" placeholder="Phone:">
                 <input type="text" class="add__email" placeholder="Email:">
             </div>
@@ -23,31 +22,18 @@ export default function VolForm(causes, skills) {
                     }).join('')}
                 </ul>
             </div>
-
-            
+        <div class="causes__container">    
             <ul id="skills">
-            ${skills.map(skill => {
-                return `
-            <li class="skill">     
-            <input type="checkbox" class="skill__skillName" id="${skill.skillId}" name="skillIds" value="${skill.skillId}">${skill.skillName}
-            </li>
-            `;
-        }).join('')}
-        </ul>
-        
-        <ul id="skills">
-            ${causes.map(cause => {
-                return `
-                <li class="cause">     
-                <input type="checkbox" class="cause__causeName" id="${cause.causeId}" name="causeIds" value="${cause.causeId}">${cause.causeName}
-                </li>
-                `;
-            }).join('')}
+                ${causes.map(cause => {
+                    return `
+                    <li class="cause">     
+                    <input type="checkbox" class="cause__causeName" id="${cause.causeId}" name="causeIds" value="${cause.causeId}">${cause.causeName}
+                    </li>
+                    `;
+                }).join('')}
             </ul>
-            
-            <button class="js-add-volunteer button">Sign Up!</button>
-
-        `;
-
-   
+        </div>
+        <button class="js-add-volunteer button">Volunteer Sign Up!</button>
+        </div>
+        `;  
 }

@@ -81,6 +81,10 @@ input[type=text] {
   
 }
 
+.skill__skillName, .cause__causeName {
+  margin: .5rem;
+}
+
 .causes__container {
   grid-column: 1 / span 2;
   grid-row: 2 / span 2;
@@ -99,7 +103,7 @@ input[type=text] {
     
 }
 
-.js--sign-up__volunteer {
+.js--sign-up__volunteer, .js--sign-up__organization {
   background-color: var(--secondary-gray);
   color: var(--tertiary-white);
   font-size: 30px;
