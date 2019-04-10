@@ -9,6 +9,8 @@ import OrgForm from './components/OrgForm'
 import OrganizationDashboard from './components/OrganizationDashboard'
 import VolHeader from './components/VolHeader';
 import OrgHeader from './components/OrgHeader'
+import none from './components/none'
+
 
 
 main()
@@ -25,7 +27,18 @@ function main() {
     addProject()
     orgClickToSignUp()
     addOrganization()
+    goHome()
 
+
+}
+
+function goHome() {
+    events.on(getHeaderContext(), 'click', () => {
+        if(event.target.classList.contains('js-log-out')) {
+            getAppContext().innerHTML = landing()
+            getHeaderContext().innerHTML = ""
+        }
+    })
 }
 
 
@@ -59,7 +72,6 @@ function volClickToSignUp() {
             api.getRequest('http://localhost:8080/causes', causes => {
                 api.getRequest('http://localhost:8080/skills', skills => {
                     getAppContext().innerHTML = VolForm(causes, skills)
-                    getHeaderContext().innerHTML = VolHeader()
                     
                 })
             })
@@ -72,7 +84,6 @@ function orgClickToSignUp() {
         if(event.target.classList.contains('js--sign-up__organization')) {
             api.getRequest('http://localhost:8080/causes', causes => {
                     getAppContext().innerHTML = OrgForm(causes)
-                    getHeaderContext().innerHTML = OrgHeader()
 
             })
         }
@@ -108,8 +119,7 @@ function createNewVolunteer() {
                 volPassword : volPassword,
                 skills : skills,
                 causes : causes
-            }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
-            getHeaderContext().innerHTML = VolHeader()
+            }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer), getHeaderContext().innerHTML = VolHeader())
         }
     })
  }
@@ -126,7 +136,6 @@ function getProjectForm() {
                 api.getRequest(`http://localhost:8080/volunteers/${volunteerId}`, volunteer => {
                 console.log(volunteer)
                     getAppContext().innerHTML = ProjectForm(organization, skills, volunteer)
-                    getHeaderContext().innerHTML = VolHeader()
                     })
                 })
             })  
@@ -155,7 +164,6 @@ function addProject() {
                 orgSubmitId : orgSubmitId,
                 skills : skills
             }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
-            getHeaderContext().innerHTML = VolHeader()
         }
     })
 }
@@ -182,7 +190,6 @@ function addOrganization() {
                 orgUrl : orgUrl,
                 causes : causes
             }, (organization) => getAppContext().innerHTML = OrganizationDashboard(organization))
-            getHeaderContext().innerHTML = OrgHeader()
         }
     })
 }

@@ -324,7 +324,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolHeader;
 
 function VolHeader() {
-  return "\n\n<h1>This is the header for volunteers.</h1>\n";
+  return "\n\n<div class=\"nav\">\n    <ul>\n        <li class=\"logo js-landing\">Logo Image HERE</li>\n        <li class=\"title js-landing\">Pitch For Good</li>\n        <li class=\"welcome\">Welcome!</li>\n        <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n        <li class=\"js-delete-account delete\"><button type=\"button\">Delete Account</button></li>\n    </ul>\n</div>\n";
 }
 },{}],"js/components/OrgHeader.js":[function(require,module,exports) {
 "use strict";
@@ -337,6 +337,15 @@ exports.default = OrgHeader;
 function OrgHeader() {
   return "\n    \n    <h1>This is the header for organizations.</h1>\n    ";
 }
+},{}],"js/components/none.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = none;
+
+function none() {}
 },{}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -362,6 +371,8 @@ var _VolHeader = _interopRequireDefault(require("./components/VolHeader"));
 
 var _OrgHeader = _interopRequireDefault(require("./components/OrgHeader"));
 
+var _none = _interopRequireDefault(require("./components/none"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 main();
@@ -376,6 +387,16 @@ function main() {
   addProject();
   orgClickToSignUp();
   addOrganization();
+  goHome();
+}
+
+function goHome() {
+  _eventActions.default.on(getHeaderContext(), 'click', function () {
+    if (event.target.classList.contains('js-log-out')) {
+      getAppContext().innerHTML = (0, _landing.default)();
+      getHeaderContext().innerHTML = "";
+    }
+  });
 }
 
 function getOrganizations() {
@@ -407,7 +428,6 @@ function volClickToSignUp() {
       _apiActions.default.getRequest('http://localhost:8080/causes', function (causes) {
         _apiActions.default.getRequest('http://localhost:8080/skills', function (skills) {
           getAppContext().innerHTML = (0, _VolForm.default)(causes, skills);
-          getHeaderContext().innerHTML = (0, _VolHeader.default)();
         });
       });
     }
@@ -419,7 +439,6 @@ function orgClickToSignUp() {
     if (event.target.classList.contains('js--sign-up__organization')) {
       _apiActions.default.getRequest('http://localhost:8080/causes', function (causes) {
         getAppContext().innerHTML = (0, _OrgForm.default)(causes);
-        getHeaderContext().innerHTML = (0, _OrgHeader.default)();
       });
     }
   });
@@ -458,9 +477,7 @@ function createNewVolunteer() {
         causes: causes
       }, function (volunteer) {
         return getAppContext().innerHTML = (0, _VolunteerDashboard.default)(volunteer);
-      });
-
-      getHeaderContext().innerHTML = (0, _VolHeader.default)();
+      }, getHeaderContext().innerHTML = (0, _VolHeader.default)());
     }
   });
 }
@@ -478,7 +495,6 @@ function getProjectForm() {
           _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(volunteerId), function (volunteer) {
             console.log(volunteer);
             getAppContext().innerHTML = (0, _ProjectForm.default)(organization, skills, volunteer);
-            getHeaderContext().innerHTML = (0, _VolHeader.default)();
           });
         });
       });
@@ -510,8 +526,6 @@ function addProject() {
       }, function (volunteer) {
         return getAppContext().innerHTML = (0, _VolunteerDashboard.default)(volunteer);
       });
-
-      getHeaderContext().innerHTML = (0, _VolHeader.default)();
     }
   });
 }
@@ -540,8 +554,6 @@ function addOrganization() {
       }, function (organization) {
         return getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
       });
-
-      getHeaderContext().innerHTML = (0, _OrgHeader.default)();
     }
   });
 }
@@ -553,7 +565,7 @@ function getHeaderContext() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/none":"js/components/none.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -581,7 +593,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59750" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49705" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
