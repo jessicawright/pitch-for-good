@@ -128,9 +128,9 @@ exports.default = VolForm;
 function VolForm(causes, skills) {
   return "\n    <h1>Volunteer Sign Up Page</h1>\n        <div class=\"volForm__container\">\n            <div class=\"contact-info__container\">\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\"><br>\n                <input type=\"text\" class=\"add__volUserName\" placeholder=\"Username:\">\n                <input type=\"text\" class=\"add__volPassword\" placeholder=\"Password:\"><br>\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\"><br>\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            <div class=\"skills__container\">   \n                <ul id=\"skills\">\n                    ".concat(skills.map(function (skill) {
     return "\n                            <li class=\"skill\">     \n                                <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.id, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n                            </li>\n                        ");
-  }).join(''), "\n                </ul>\n            </div>\n\n        <div class=\"causes__container\">    \n            <ul id=\"skills\">\n                ").concat(causes.map(function (cause) {
+  }).join(''), "\n                </ul>\n            </div>\n        <div class=\"causes__container\">    \n            <ul id=\"skills\">\n                ").concat(causes.map(function (cause) {
     return "\n                    <li class=\"cause\">     \n                    <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                    </li>\n                    ");
-  }).join(''), "\n            </ul>\n        </div>\n        <button class=\"js-add-volunteer button\">Sign Up!</button>\n        ");
+  }).join(''), "\n            </ul>\n        </div>\n        <button class=\"js-add-volunteer button\">Volunteer Sign Up!</button>\n        </div>\n        ");
 }
 },{}],"js/components/Organization.js":[function(require,module,exports) {
 "use strict";
@@ -322,9 +322,22 @@ var _Project = _interopRequireDefault(require("./Project"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function OrganizationDashboard(organization) {
-  return "\n    <h1>Welcome, ".concat(organization.orgName, "!</h1>\n\n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>Organization: ").concat(organization.orgName, "</li>\n        <li>Mission: ").concat(organization.orgMission, "</li>\n        <li>Contact Person: ").concat(organization.contactPerson, "</li>\n        <li>Contact Email: ").concat(organization.orgEmail, "</li>\n        <li>Website: ").concat(organization.websiteUrl, "</li>\n    </ul>\n\n    <h2>Your organization supports:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(organization.causes), "</li>\n    </ul>\n\n    ");
+  return "\n    <h1>Welcome, ".concat(organization.orgName, "!</h1>\n\n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>Organization: ").concat(organization.orgName, "</li>\n        <li>Mission: ").concat(organization.orgMission, "</li>\n        <li>Contact Person: ").concat(organization.contactPerson, "</li>\n        <li>Contact Email: ").concat(organization.orgEmail, "</li>\n        <li>Website: ").concat(organization.websiteUrl, "</li>\n    </ul>\n\n    <h2>Your organization supports:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(organization.causes), "</li>\n    </ul>\n    <h3>Click to search volunteers</h3>\n    <button class=\"js-get-volunteer-search\" id=\"").concat(organization.organizationId, "\">click here</button>\n    ");
 }
-},{"./Cause":"js/components/Cause.js","./Project":"js/components/Project.js"}],"js/app.js":[function(require,module,exports) {
+},{"./Cause":"js/components/Cause.js","./Project":"js/components/Project.js"}],"js/components/VolunteerSearch.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = VolunterSearch;
+
+function VolunterSearch(organization, skills, volunteers) {
+  return "\n   \n        <h3>Search for volunteers by a skill here:</h3>\n            \n        ".concat(skills.map(function (skill) {
+    return "\n                <select>\n                    <option class=\"js-dropdown-skill\" id=\"".concat(skill.skillId, "\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "</option>\n        </select>\n                        ");
+  }).join(''), "              \n                        <button class=\"js-find-volunteers-by-skill button\">Find Volunteers</button>\n            ");
+}
+},{}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
 var _VolForm = _interopRequireDefault(require("./components/VolForm"));
@@ -353,6 +366,8 @@ var _OrgForm = _interopRequireDefault(require("./components/OrgForm"));
 
 var _OrganizationDashboard = _interopRequireDefault(require("./components/OrganizationDashboard"));
 
+var _VolunteerSearch = _interopRequireDefault(require("./components/VolunteerSearch"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 main();
@@ -367,6 +382,7 @@ function main() {
   addProject();
   orgClickToSignUp();
   addOrganization();
+  findVolunteersBySkill();
 }
 
 function getOrganizations() {
@@ -528,10 +544,25 @@ function addOrganization() {
   });
 }
 
+function findVolunteersBySkill() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('js-get-volunteer-search')) {
+      _apiActions.default.getRequest("http://localhost:8080/organizations/".concat(event.target.id), function (organization) {
+        // const skillId = document.querySelector('.js-dropdown-skill').id
+        _apiActions.default.getRequest('http://localhost:8080/skills/', function (skills) {
+          _apiActions.default.getRequest('http://localhost:8080/volunteers', function (volunteers) {
+            getAppContext().innerHTML = (0, _VolunteerSearch.default)(organization, skills, volunteers);
+          });
+        });
+      });
+    }
+  });
+}
+
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./components/VolForm":"js/components/VolForm.js","./components/Organization":"js/components/Organization.js","./components/Organizations":"js/components/Organizations.js","./components/Project":"js/components/Project.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/Skills":"js/components/Skills.js","./components/Cause":"js/components/Cause.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/VolForm":"js/components/VolForm.js","./components/Organization":"js/components/Organization.js","./components/Organizations":"js/components/Organizations.js","./components/Project":"js/components/Project.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/Skills":"js/components/Skills.js","./components/Cause":"js/components/Cause.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -559,9 +590,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59179" + '/');
-
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63335" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

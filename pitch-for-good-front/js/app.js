@@ -11,6 +11,7 @@ import Skills from './components/Skills'
 import Cause from './components/Cause'
 import OrgForm from './components/OrgForm'
 import OrganizationDashboard from './components/OrganizationDashboard'
+import VolunterSearch from './components/VolunteerSearch';
 
 main()
 
@@ -26,6 +27,7 @@ function main() {
     addProject()
     orgClickToSignUp()
     addOrganization()
+    findVolunteersBySkill()
 }
 
 function getOrganizations() {
@@ -176,6 +178,21 @@ function addOrganization() {
                 orgUrl : orgUrl,
                 causes : causes
             }, (organization) => getAppContext().innerHTML = OrganizationDashboard(organization))
+        }
+    })
+}
+
+function findVolunteersBySkill() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js-get-volunteer-search')) {
+            api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+                // const skillId = document.querySelector('.js-dropdown-skill').id
+                api.getRequest('http://localhost:8080/skills/', skills => {          
+                    api.getRequest('http://localhost:8080/volunteers', volunteers => {    
+                    getAppContext().innerHTML = VolunterSearch(organization, skills, volunteers)
+                    })
+                }) 
+            }) 
         }
     })
 }
