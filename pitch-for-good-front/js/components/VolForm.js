@@ -46,6 +46,7 @@ export default function VolForm(causes, skills) {
             </ul>
             
             <button class="js-add-volunteer button">Sign Up!</button>
+
         `;
 
    
