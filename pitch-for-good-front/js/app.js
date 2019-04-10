@@ -1,16 +1,17 @@
 import VolForm from './components/VolForm'
-import Organization from './components/Organization'
 import Organizations from './components/Organizations'
-import Project from './components/Project'
 import ProjectForm from './components/ProjectForm'
 import landing from './components/landing'
 import api from './utils/api/api-actions'
 import events from './utils/events/event-actions'
 import VolunteerDashboard from './components/VolunteerDashboard'
-import Skills from './components/Skills'
-import Cause from './components/Cause'
 import OrgForm from './components/OrgForm'
 import OrganizationDashboard from './components/OrganizationDashboard'
+import VolHeader from './components/VolHeader';
+import OrgHeader from './components/OrgHeader'
+import none from './components/none'
+
+
 
 main()
 
@@ -26,7 +27,20 @@ function main() {
     addProject()
     orgClickToSignUp()
     addOrganization()
+    goHome()
+
+
 }
+
+function goHome() {
+    events.on(getHeaderContext(), 'click', () => {
+        if(event.target.classList.contains('js-log-out')) {
+            getAppContext().innerHTML = landing()
+            getHeaderContext().innerHTML = ""
+        }
+    })
+}
+
 
 function getOrganizations() {
     events.on(getAppContext(), 'click', () => {
@@ -58,7 +72,7 @@ function volClickToSignUp() {
             api.getRequest('http://localhost:8080/causes', causes => {
                 api.getRequest('http://localhost:8080/skills', skills => {
                     getAppContext().innerHTML = VolForm(causes, skills)
-
+                    
                 })
             })
         }
@@ -105,7 +119,7 @@ function createNewVolunteer() {
                 volPassword : volPassword,
                 skills : skills,
                 causes : causes
-            }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
+            }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer), getHeaderContext().innerHTML = VolHeader())
         }
     })
  }
@@ -121,7 +135,7 @@ function getProjectForm() {
                 const volunteerId = document.querySelector(".parent-id").id
                 api.getRequest(`http://localhost:8080/volunteers/${volunteerId}`, volunteer => {
                 console.log(volunteer)
-				    getAppContext().innerHTML = ProjectForm(organization, skills, volunteer)
+                    getAppContext().innerHTML = ProjectForm(organization, skills, volunteer)
                     })
                 })
             })  
@@ -180,6 +194,10 @@ function addOrganization() {
     })
 }
    
+
+function getHeaderContext() {
+    return document.querySelector("#header");
+}
 
 function getAppContext() {
     return document.querySelector("#app")
