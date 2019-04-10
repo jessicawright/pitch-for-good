@@ -42,8 +42,8 @@ public class CauseController {
 	}
 	
 	@GetMapping("/{causeId}")
-	public Cause getSingleCause(@PathVariable Long id) {
-		return causeRepo.findById(id).get();
+	public Cause getSingleCause(@PathVariable Long causeId) {
+		return causeRepo.findById(causeId).get();
 	}
 	
 	@PostMapping("/add")
