@@ -9,6 +9,7 @@ import OrgForm from './components/OrgForm'
 import OrganizationDashboard from './components/OrganizationDashboard'
 import VolHeader from './components/VolHeader';
 import OrgHeader from './components/OrgHeader'
+import VolLanding from './components/VolLanding'
 
 main()
 
@@ -27,6 +28,9 @@ function main() {
     goHome()
     deleteVolAccount()
     landing()
+    volEnter()
+    volSignIn()
+    VolLanding()
 
 
 }
@@ -75,6 +79,27 @@ function volClickToSignUp() {
                     
                 })
             })
+        }
+    })
+}
+
+function volEnter() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js--enter__volunteer')) {
+            getAppContext().innerHTML = VolLanding()
+        }
+    })
+}
+
+function volSignIn() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js-vol-signin')) {
+            const username = document.querySelector('.vol-username').value
+            const password = document.querySelector('.vol-password').value
+            api.postRequest('http://localhost:8080/volunteers/signin', {
+                username : username,
+                password : password
+            }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))         
         }
     })
 }
