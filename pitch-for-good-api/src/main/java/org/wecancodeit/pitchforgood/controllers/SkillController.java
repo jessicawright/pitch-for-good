@@ -49,11 +49,11 @@ public class SkillController {
 		return skillRepo.findById(id).get();
 	}
 	
-	@GetMapping("/{skillId}")
-	public Collection<Volunteer> findVolunteersBySkill(@PathVariable Long skillId) {
-		Skill volunteerSkill = skillRepo.findById(skillId).get();
-		return (Collection<Volunteer>)volunteerSkill.getVolunteers();
-	}
+//	@GetMapping("/{skillId}")
+//	public Collection<Volunteer> findVolunteersBySkill(@PathVariable Long skillId) {
+//		Skill volunteerSkill = skillRepo.findById(skillId).get();
+//		return (Collection<Volunteer>)volunteerSkill.getVolunteers();
+//	}
 	
 	@PostMapping("/add")
 	public Collection<Skill> addSkill(@RequestBody String body) throws JSONException {

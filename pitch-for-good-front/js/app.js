@@ -9,9 +9,6 @@ import OrgForm from './components/OrgForm'
 import OrganizationDashboard from './components/OrganizationDashboard'
 import VolHeader from './components/VolHeader';
 import OrgHeader from './components/OrgHeader'
-import none from './components/none'
-
-
 
 main()
 
@@ -28,6 +25,8 @@ function main() {
     orgClickToSignUp()
     addOrganization()
     goHome()
+    deleteVolAccount()
+    landing()
 
 
 }
@@ -42,6 +41,7 @@ function goHome() {
 }
 
 
+
 function getOrganizations() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--see-organizations')) {
@@ -51,21 +51,21 @@ function getOrganizations() {
                 })
             })  
         }
-        })
-    }
+    })
+}
 
 // function viewSingleOrganization(){
-// 	events.on(getAppContext(), 'click', () => {
-// 		if(event.target.classList.contains('js-organization__orgName')) {
-//             api.getRequest(`http://localhost:8080/volunteers/${event.target.parentNode.id}`, volunteer => {
-// 			    api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
-// 				    getAppContext().innerHTML = Organization(volunteer, organization)
-// 			    })
-// 		    })
-//         }
-//     })
-// }
-
+    // 	events.on(getAppContext(), 'click', () => {
+        // 		if(event.target.classList.contains('js-organization__orgName')) {
+            //             api.getRequest(`http://localhost:8080/volunteers/${event.target.parentNode.id}`, volunteer => {
+                // 			    api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+                    // 				    getAppContext().innerHTML = Organization(volunteer, organization)
+                    // 			    })
+                    // 		    })
+                    //         }
+                    //     })
+                    // }
+                    
 function volClickToSignUp() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--sign-up__volunteer')) {
@@ -78,18 +78,18 @@ function volClickToSignUp() {
         }
     })
 }
-
+                    
 function orgClickToSignUp() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--sign-up__organization')) {
             api.getRequest('http://localhost:8080/causes', causes => {
                     getAppContext().innerHTML = OrgForm(causes)
-
-            })
-        }
+                    
+                })
+            }
     })
 }
-    
+
 function createNewVolunteer() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-add-volunteer')) {
@@ -100,15 +100,15 @@ function createNewVolunteer() {
             const phoneNum = document.querySelector('.add__phoneNum').value
             const email = document.querySelector('.add__email').value
             const jobTitle = document.querySelector('.add__jobTitle').value
- 
+            
             const skills = Array.from(document.querySelectorAll('.skill__skillName'))
             .filter((checkbox) => checkbox.checked)
             .map((checkbox) => checkbox.value);
- 
+            
             const causes = Array.from(document.querySelectorAll('.cause__causeName'))
             .filter((checkbox) => checkbox.checked)
             .map((checkbox) => checkbox.value);
- 
+            
             api.postRequest('http://localhost:8080/volunteers/add', {
                 firstName : firstName,
                 lastName : lastName,
@@ -119,10 +119,31 @@ function createNewVolunteer() {
                 volPassword : volPassword,
                 skills : skills,
                 causes : causes
-            }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer), getHeaderContext().innerHTML = VolHeader())
+            }, (volunteer) => volDashboardAndHeader(volunteer))
         }
     })
- }
+}
+
+function deleteVolAccount() {
+    events.on(getHeaderContext(), 'click', () => {
+        if(event.target.classList.contains('js-delete-account')) {
+            if(confirm('This action is final! Are you sure you want to delete your account?')) {
+                api.deleteRequest(`http://localhost:8080/volunteers/delete/${event.target.id}`, {
+            }, (volunteers) => getAppContext().innerHTML = landing(), getHeaderContext().innerHTML = ""
+            )} else {
+                return false;
+            }
+        }
+    })
+}      
+
+          
+
+
+function volDashboardAndHeader(volunteer) {
+    getAppContext().innerHTML = VolunteerDashboard(volunteer)
+    getHeaderContext().innerHTML = VolHeader(volunteer)
+}
 
 
 function getProjectForm() {
