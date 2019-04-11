@@ -24,7 +24,7 @@ function main() {
     createNewVolunteer()
     getProjectForm()
     addProject()
-    orgClickToSignUp()
+    OrgClickToSignUp()
     addOrganization()
     goHome()
     deleteVolAccount()
@@ -32,9 +32,11 @@ function main() {
     VolEnter()
     volSignIn()
     VolLanding()
-    // orgDashboardAndHeader()
     OrgEnter()
     orgSignIn()
+    OrganizationDashboard()
+    deleteOrgAccount()
+    VolForm()
 
 }
 
@@ -88,7 +90,7 @@ function OrgEnter() {
     })
 }
                     
-function orgClickToSignUp() {
+function OrgClickToSignUp() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--sign-up__organization')) {
             api.getRequest('http://localhost:8080/causes', causes => {
@@ -146,15 +148,21 @@ function deleteVolAccount() {
     })
 }            
 
+function deleteOrgAccount() {
+    events.on(getHeaderContext(), 'click', () => {
+        if(event.target.classList.contains('js-org-delete-account')) {
+            api.deleteRequest(`http://localhost:8080/organizations/delete/${event.target.id}`, {
+            }, (organizations) => getAppContext().innerHTML = landing(), getHeaderContext().innerHTML = ""
+        )} 
+    })   
+}
+
+        
+
 function volDashboardAndHeader(volunteer) {
     getAppContext().innerHTML = VolunteerDashboard(volunteer)
     getHeaderContext().innerHTML = VolHeader(volunteer)
 }
-
-// function orgDashboardAndHeader(organization) {
-//     getAppContext().innerHTML = OrganizationDashboard(organization)
-//     getHeaderContext().innerHTML = OrgHeader(organization)
-// }
 
 function getProjectForm() {
     events.on(getAppContext(), 'click', () => {
@@ -223,7 +231,7 @@ function addOrganization() {
                 orgUserName : orgUserName,
                 orgPassword : orgPassword,
                 causes : causes
-            }, (organization) => getAppContext().innerHTML = OrganizationDashboard(organization))
+            }, (organization) => orgHeaderAndDashboard(organization))
         }
     })
 }
@@ -252,10 +260,15 @@ function orgSignIn() {
             api.postRequest('http://localhost:8080/organizations/signin', {
                 username : username,
                 password : password
-            }, (organization) => getAppContext().innerHTML = OrganizationDashboard(organization))  
+            }, (organization) => orgHeaderAndDashboard(organization))  
                   
         }
     })
+}
+
+function orgHeaderAndDashboard(organization) {
+    getAppContext().innerHTML = OrganizationDashboard(organization)
+    getHeaderContext().innerHTML = OrgHeader(organization)
 }
 
    

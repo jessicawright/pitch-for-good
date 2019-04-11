@@ -345,7 +345,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgHeader;
 
 function OrgHeader(organization) {
-  return "\n    \n    <div class=\"nav\">\n        <ul>\n            <li class=\"logo js-landing\">Logo Image HERE</li>\n            <li class=\"title js-landing\">Pitch For Good</li>\n            <li class=\"welcome\">Welcome, ".concat(organization.orgName, "!</li>\n            <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n            <li><button type=\"button\" class=\"js-delete-account delete\" id=\"").concat(organization.organizationId, "\">Delete Account</button></li>\n        </ul>\n    </div>\n    ");
+  return "\n    \n    <div class=\"nav\">\n        <ul>\n            <li class=\"logo js-landing\">Logo Image HERE</li>\n            <li class=\"title js-landing\">Pitch For Good</li>\n            <li class=\"welcome\">Welcome, ".concat(organization.orgName, "!</li>\n            <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n            <li><button type=\"button\" class=\"js-org-delete-account delete\" id=\"").concat(organization.organizationId, "\">Delete Account</button></li>\n        </ul>\n    </div>\n    ");
 }
 },{}],"js/components/VolLanding.js":[function(require,module,exports) {
 "use strict";
@@ -410,17 +410,19 @@ function main() {
   createNewVolunteer();
   getProjectForm();
   addProject();
-  orgClickToSignUp();
+  OrgClickToSignUp();
   addOrganization();
   goHome();
   deleteVolAccount();
   (0, _landing.default)();
   VolEnter();
   volSignIn();
-  (0, _VolLanding.default)(); // orgDashboardAndHeader()
-
+  (0, _VolLanding.default)();
   OrgEnter();
   orgSignIn();
+  (0, _OrganizationDashboard.default)();
+  deleteOrgAccount();
+  (0, _VolForm.default)();
 }
 
 function goHome() {
@@ -472,7 +474,7 @@ function OrgEnter() {
   });
 }
 
-function orgClickToSignUp() {
+function OrgClickToSignUp() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js--sign-up__organization')) {
       _apiActions.default.getRequest('http://localhost:8080/causes', function (causes) {
@@ -534,14 +536,20 @@ function deleteVolAccount() {
   });
 }
 
+function deleteOrgAccount() {
+  _eventActions.default.on(getHeaderContext(), 'click', function () {
+    if (event.target.classList.contains('js-org-delete-account')) {
+      _apiActions.default.deleteRequest("http://localhost:8080/organizations/delete/".concat(event.target.id), {}, function (organizations) {
+        return getAppContext().innerHTML = (0, _landing.default)();
+      }, getHeaderContext().innerHTML = "");
+    }
+  });
+}
+
 function volDashboardAndHeader(volunteer) {
   getAppContext().innerHTML = (0, _VolunteerDashboard.default)(volunteer);
   getHeaderContext().innerHTML = (0, _VolHeader.default)(volunteer);
-} // function orgDashboardAndHeader(organization) {
-//     getAppContext().innerHTML = OrganizationDashboard(organization)
-//     getHeaderContext().innerHTML = OrgHeader(organization)
-// }
-
+}
 
 function getProjectForm() {
   _eventActions.default.on(getAppContext(), 'click', function () {
@@ -617,7 +625,7 @@ function addOrganization() {
         orgPassword: orgPassword,
         causes: causes
       }, function (organization) {
-        return getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
+        return orgHeaderAndDashboard(organization);
       });
     }
   });
@@ -651,10 +659,15 @@ function orgSignIn() {
         username: username,
         password: password
       }, function (organization) {
-        return getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
+        return orgHeaderAndDashboard(organization);
       });
     }
   });
+}
+
+function orgHeaderAndDashboard(organization) {
+  getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
+  getHeaderContext().innerHTML = (0, _OrgHeader.default)(organization);
 }
 
 function getHeaderContext() {
@@ -692,7 +705,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56832" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61513" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
