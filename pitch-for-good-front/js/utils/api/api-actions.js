@@ -3,9 +3,17 @@ function getRequest(location, callback) {
         .then(response => response.json())
         .then(data => callback(data))
         .catch(err => console.log(err))
-
-
 }
+
+function deleteRequest(location, requestBody, callback) {
+    fetch(location, {
+            method: "DELETE",
+            body: JSON.stringify(requestBody)
+        })
+        .then(response => response.json())
+        .then(data => callback(data))
+        .catch(err => console.log(err))
+  }
 
 function postRequest(location, requestBody, callback) {
     fetch(location, {
@@ -20,5 +28,6 @@ function postRequest(location, requestBody, callback) {
 
 export default {
     getRequest,
-    postRequest
+    postRequest,
+    deleteRequest
 }

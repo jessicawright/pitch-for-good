@@ -86,14 +86,6 @@ public class Project {
 		skills.add(skill);
 	}
 
-
-
-	public void addVolunteerToProject(Volunteer volunteer) {
-		this.volunteer = volunteer;
-		
-	}
-
-
 	public void removeSkill(Skill skill) {
 		skills.remove(skill);
 		
@@ -104,6 +96,7 @@ public class Project {
 		this.organization = organization;
 		
 	}
+
 
 
 	
