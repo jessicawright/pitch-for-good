@@ -99,7 +99,8 @@ function volSignIn() {
             api.postRequest('http://localhost:8080/volunteers/signin', {
                 username : username,
                 password : password
-            }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))         
+            }, (volunteer) => console.log(volunteer))  
+                  
         }
     })
 }
