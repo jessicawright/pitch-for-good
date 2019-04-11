@@ -1,19 +1,21 @@
 import VolForm from './components/VolForm'
-import Organization from './components/Organization'
 import Organizations from './components/Organizations'
-import Project from './components/Project'
 import ProjectForm from './components/ProjectForm'
 import landing from './components/landing'
 import api from './utils/api/api-actions'
 import events from './utils/events/event-actions'
 import VolunteerDashboard from './components/VolunteerDashboard'
-import Skills from './components/Skills'
-import Cause from './components/Cause'
 import OrgForm from './components/OrgForm'
 import OrganizationDashboard from './components/OrganizationDashboard'
+
 import Volunteers from './components/Volunteers'
 import VolunterSearch from './components/VolunteerSearch'
 import VolunteerList from './components/VolunteerList'
+
+import VolHeader from './components/VolHeader';
+import OrgHeader from './components/OrgHeader'
+import VolLanding from './components/VolLanding'
+
 
 main()
 
@@ -29,9 +31,27 @@ function main() {
     addProject()
     orgClickToSignUp()
     addOrganization()
+
     getVolunteerSearchForm()
     getVolunteerListFromForm()
     getBackToOrgDashboard()
+
+    goHome()
+    deleteVolAccount()
+    landing()
+    volEnter()
+    volSignIn()
+    VolLanding()
+
+}
+
+function goHome() {
+    events.on(getHeaderContext(), 'click', () => {
+        if(event.target.classList.contains('js-log-out')) {
+            getAppContext().innerHTML = landing()
+            getHeaderContext().innerHTML = ""
+        }
+    })
 }
 
 function getOrganizations() {
@@ -43,45 +63,41 @@ function getOrganizations() {
                 })
             })  
         }
-        })
-    }
-
-// function viewSingleOrganization(){
-// 	events.on(getAppContext(), 'click', () => {
-// 		if(event.target.classList.contains('js-organization__orgName')) {
-//             api.getRequest(`http://localhost:8080/volunteers/${event.target.parentNode.id}`, volunteer => {
-// 			    api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
-// 				    getAppContext().innerHTML = Organization(volunteer, organization)
-// 			    })
-// 		    })
-//         }
-//     })
-// }
-
+    })
+}
+                    
 function volClickToSignUp() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--sign-up__volunteer')) {
             api.getRequest('http://localhost:8080/causes', causes => {
                 api.getRequest('http://localhost:8080/skills', skills => {
                     getAppContext().innerHTML = VolForm(causes, skills)
-
+                    
                 })
             })
         }
     })
 }
 
+function volEnter() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js--enter__volunteer')) {
+            getAppContext().innerHTML = VolLanding()
+        }
+    })
+}
+                    
 function orgClickToSignUp() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--sign-up__organization')) {
             api.getRequest('http://localhost:8080/causes', causes => {
                     getAppContext().innerHTML = OrgForm(causes)
-
-            })
-        }
+                    
+                })
+            }
     })
 }
-    
+
 function createNewVolunteer() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-add-volunteer')) {
@@ -92,15 +108,15 @@ function createNewVolunteer() {
             const phoneNum = document.querySelector('.add__phoneNum').value
             const email = document.querySelector('.add__email').value
             const jobTitle = document.querySelector('.add__jobTitle').value
- 
+            
             const skills = Array.from(document.querySelectorAll('.skill__skillName'))
             .filter((checkbox) => checkbox.checked)
             .map((checkbox) => checkbox.value);
- 
+            
             const causes = Array.from(document.querySelectorAll('.cause__causeName'))
             .filter((checkbox) => checkbox.checked)
             .map((checkbox) => checkbox.value);
- 
+            
             api.postRequest('http://localhost:8080/volunteers/add', {
                 firstName : firstName,
                 lastName : lastName,
@@ -111,11 +127,28 @@ function createNewVolunteer() {
                 volPassword : volPassword,
                 skills : skills,
                 causes : causes
-            }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
+            }, (volunteer) => volDashboardAndHeader(volunteer))
         }
     })
- }
+}
 
+function deleteVolAccount() {
+    events.on(getHeaderContext(), 'click', () => {
+        if(event.target.classList.contains('js-delete-account')) {
+            if(confirm('This action is final! Are you sure you want to delete your account?')) {
+                api.deleteRequest(`http://localhost:8080/volunteers/delete/${event.target.id}`, {
+            }, (volunteers) => getAppContext().innerHTML = landing(), getHeaderContext().innerHTML = ""
+            )} else {
+                return false;
+            }
+        }
+    })
+}            
+
+function volDashboardAndHeader(volunteer) {
+    getAppContext().innerHTML = VolunteerDashboard(volunteer)
+    getHeaderContext().innerHTML = VolHeader(volunteer)
+}
 
 function getProjectForm() {
     events.on(getAppContext(), 'click', () => {
@@ -129,7 +162,7 @@ function getProjectForm() {
                 const volunteerId = document.querySelector('.volunteerId').id
                 api.getRequest(`http://localhost:8080/volunteers/${volunteerId}`, volunteer => {
                 console.log(volunteer)
-				    getAppContext().innerHTML = ProjectForm(organization, skills, volunteer)
+                    getAppContext().innerHTML = ProjectForm(organization, skills, volunteer)
                     })
                 })
             })  
@@ -161,7 +194,6 @@ function addProject() {
         }
     })
 }
-
 
 function addOrganization() {
     events.on(getAppContext(), 'click', () => {
@@ -221,10 +253,24 @@ function getBackToOrgDashboard() {
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
                 getAppContext().innerHTML = OrganizationDashboard(organization)
             })
+
+function volSignIn() {
+    events.on(getAppContext(), 'click', e => {
+        if(event.target.classList.contains('js-vol-signin')) {
+            e.preventDefault()
+            const username = document.querySelector('.vol-username').value
+            const password = document.querySelector('.vol-password').value
+            api.postRequest('http://localhost:8080/volunteers/signin', {
+                username : username,
+                password : password
+            }, (volunteer) => volDashboardAndHeader(volunteer))  
         }
     })
 }
    
+function getHeaderContext() {
+    return document.querySelector("#header");
+}
 
 function getAppContext() {
     return document.querySelector("#app")
