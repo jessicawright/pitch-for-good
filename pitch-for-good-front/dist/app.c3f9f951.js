@@ -169,7 +169,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = landing;
 
 function landing() {
-  return "\n\t\t<div class=\"landing\">\n\t\t\t<h1 class=\"landing__title\">Pitch For Good</h1>\n\t\t</div>\n\t\t\t<h3>Pitch For Good provides a platform for highly-skilled professionals to pitch specialized, project-based volunteer ideas to nonprofits they are passionate about.</h3>\n\n\t\t<button class=\"js--sign-up__volunteer button__big\">I AM A VOLUNTEER</button>\n\t\t<button class=\"js--sign-up__organization button__big\">I AM A NON-PROFIT</button>\n\n\t\t<footer>\n\t\t\t<h5>Pitch For Good &copy;2019</h5>\n\t\t\t<h6>Photo by Dakota Corbin on <a href=\"https://unsplash.com/\">Unsplash</a></h6>\n\t\t</footer>\n\t";
+  return "\n\t\t<div class=\"landing\">\n\t\t\t<h1 class=\"landing__title\">Pitch For Good</h1>\n\t\t</div>\n\t\t\t<h3>Pitch For Good provides a platform for highly-skilled professionals to pitch specialized, project-based volunteer ideas to nonprofits they are passionate about.</h3>\n\n\t\t<button class=\"js--enter__volunteer button__big\">I AM A VOLUNTEER</button>\n\t\t<button class=\"js--enter__organization button__big\">I AM A NON-PROFIT</button>\n\n\t\t<footer>\n\t\t\t<h5>Pitch For Good &copy;2019</h5>\n\t\t\t<h6>Photo by Dakota Corbin on <a href=\"https://unsplash.com/\">Unsplash</a></h6>\n\t\t</footer>\n\t";
 }
 },{}],"js/utils/api/api-actions.js":[function(require,module,exports) {
 "use strict";
@@ -349,6 +349,17 @@ exports.default = OrgHeader;
 function OrgHeader() {
   return "\n    \n    <h1>This is the header for organizations.</h1>\n    ";
 }
+},{}],"js/components/VolLanding.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = VolLanding;
+
+function VolLanding() {
+  return "\n    <h1>Returning User Sign In</h1>\n    <form>\n        <span>Username: <input type=\"text\" id=\"username\" class=\"vol-username\"></span><br>\n        <span>Password: <input type=\"text\" id=\"password\" class=\"vol-password\"></span><br>\n        <button class=\"js-vol-signin\">Submit</button>\n    </form>\n\n    <h1>New User?</h1>\n    <button class=\"js--sign-up__volunteer\">Create Account</button>\n    ";
+}
 },{}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
@@ -374,6 +385,8 @@ var _VolHeader = _interopRequireDefault(require("./components/VolHeader"));
 
 var _OrgHeader = _interopRequireDefault(require("./components/OrgHeader"));
 
+var _VolLanding = _interopRequireDefault(require("./components/VolLanding"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 main();
@@ -391,6 +404,9 @@ function main() {
   goHome();
   deleteVolAccount();
   (0, _landing.default)();
+  volEnter();
+  volSignIn();
+  (0, _VolLanding.default)();
 }
 
 function goHome() {
@@ -412,18 +428,7 @@ function getOrganizations() {
       });
     }
   });
-} // function viewSingleOrganization(){
-// 	events.on(getAppContext(), 'click', () => {
-// 		if(event.target.classList.contains('js-organization__orgName')) {
-//             api.getRequest(`http://localhost:8080/volunteers/${event.target.parentNode.id}`, volunteer => {
-// 			    api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
-// 				    getAppContext().innerHTML = Organization(volunteer, organization)
-// 			    })
-// 		    })
-//         }
-//     })
-// }
-
+}
 
 function volClickToSignUp() {
   _eventActions.default.on(getAppContext(), 'click', function () {
@@ -433,6 +438,14 @@ function volClickToSignUp() {
           getAppContext().innerHTML = (0, _VolForm.default)(causes, skills);
         });
       });
+    }
+  });
+}
+
+function volEnter() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('js--enter__volunteer')) {
+      getAppContext().innerHTML = (0, _VolLanding.default)();
     }
   });
 }
@@ -580,6 +593,23 @@ function addOrganization() {
   });
 }
 
+function volSignIn() {
+  _eventActions.default.on(getAppContext(), 'click', function (e) {
+    if (event.target.classList.contains('js-vol-signin')) {
+      e.preventDefault();
+      var username = document.querySelector('.vol-username').value;
+      var password = document.querySelector('.vol-password').value;
+
+      _apiActions.default.postRequest('http://localhost:8080/volunteers/signin', {
+        username: username,
+        password: password
+      }, function (volunteer) {
+        return volDashboardAndHeader(volunteer);
+      });
+    }
+  });
+}
+
 function getHeaderContext() {
   return document.querySelector("#header");
 }
@@ -587,7 +617,7 @@ function getHeaderContext() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -615,7 +645,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59714" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50275" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
