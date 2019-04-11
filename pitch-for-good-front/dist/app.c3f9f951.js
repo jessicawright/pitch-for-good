@@ -306,7 +306,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgForm;
 
 function OrgForm(causes) {
-  return "\n    <h1>Organization Sign Up Page</h1>\n        <div class=\"orgForm__container\">\n            <div class=\"contact-info__container\">\n                <input type=\"text\" class=\"add__orgName\" placeholder=\"Organization Name:\">\n                <input type=\"text\" class=\"add__mission\" placeholder=\"Your mission:\"><br>\n                <input type=\"text\" class=\"add__contactPerson\" placeholder=\"Organization contact:\">\n                <input type=\"text\" class=\"add__contactEmail\" placeholder=\"Contact Email:\"><br>\n                <input type=\"text\" class=\"add__orgUrl\" placeholder=\"Website:\"><br>\n            </div>\n                       \n            \n            <ul id=\"causes\">\n                ".concat(causes.map(function (cause) {
+  return "\n    <h1>Organization Sign Up Page</h1>\n        <div class=\"orgForm__container\">\n            <div class=\"contact-info__container\">\n                <input type=\"text\" class=\"add__orgName\" placeholder=\"Organization Name:\">\n                <input type=\"text\" class=\"add__mission\" placeholder=\"Your mission:\"><br>\n                <input type=\"text\" class=\"add__contactPerson\" placeholder=\"Organization contact:\">\n                <input type=\"text\" class=\"add__contactEmail\" placeholder=\"Contact Email:\"><br>\n                <input type=\"text\" class=\"add__orgUrl\" placeholder=\"Website:\"><br>\n                <input type=\"text\" class=\"add__orgUserName\" placeholder=\"Username:\"><br>\n                <input type=\"text\" class=\"add__orgPassword\" placeholder=\"Password:\"><br>\n            </div>\n                       \n            \n            <ul id=\"causes\">\n                ".concat(causes.map(function (cause) {
     return "\n                    <li class=\"cause\">     \n                        <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                    </li>\n                ");
   }).join(''), "\n            </ul>\n            \n            <button class=\"js-add-organization button\">Sign Up!</button>\n        ");
 }
@@ -320,14 +320,12 @@ exports.default = OrganizationDashboard;
 
 var _Cause = _interopRequireDefault(require("./Cause"));
 
-var _Project = _interopRequireDefault(require("./Project"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function OrganizationDashboard(organization) {
   return "\n    <h1>Welcome, ".concat(organization.orgName, "!</h1>\n\n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>Organization: ").concat(organization.orgName, "</li>\n        <li>Mission: ").concat(organization.orgMission, "</li>\n        <li>Contact Person: ").concat(organization.contactPerson, "</li>\n        <li>Contact Email: ").concat(organization.orgEmail, "</li>\n        <li>Website: ").concat(organization.websiteUrl, "</li>\n    </ul>\n\n    <h2>Your organization supports:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(organization.causes), "</li>\n    </ul>\n\n    ");
 }
-},{"./Cause":"js/components/Cause.js","./Project":"js/components/Project.js"}],"js/components/VolHeader.js":[function(require,module,exports) {
+},{"./Cause":"js/components/Cause.js"}],"js/components/VolHeader.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -346,8 +344,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = OrgHeader;
 
-function OrgHeader() {
-  return "\n    \n    <h1>This is the header for organizations.</h1>\n    ";
+function OrgHeader(organization) {
+  return "\n    \n    <div class=\"nav\">\n        <ul>\n            <li class=\"logo js-landing\">Logo Image HERE</li>\n            <li class=\"title js-landing\">Pitch For Good</li>\n            <li class=\"welcome\">Welcome, ".concat(organization.orgName, "!</li>\n            <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n            <li><button type=\"button\" class=\"js-delete-account delete\" id=\"").concat(organization.organizationId, "\">Delete Account</button></li>\n        </ul>\n    </div>\n    ");
 }
 },{}],"js/components/VolLanding.js":[function(require,module,exports) {
 "use strict";
@@ -359,6 +357,17 @@ exports.default = VolLanding;
 
 function VolLanding() {
   return "\n    <h1>Returning User Sign In</h1>\n    <form>\n        <span>Username: <input type=\"text\" id=\"username\" class=\"vol-username\"></span><br>\n        <span>Password: <input type=\"text\" id=\"password\" class=\"vol-password\"></span><br>\n        <button class=\"js-vol-signin\">Submit</button>\n    </form>\n\n    <h1>New User?</h1>\n    <button class=\"js--sign-up__volunteer\">Create Account</button>\n    ";
+}
+},{}],"js/components/OrgLanding.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = OrgLanding;
+
+function OrgLanding() {
+  return "\n    <h1>Returning Organization Sign In</h1>\n    <form>\n        <span>Username: <input type=\"text\" id=\"username\" class=\"org-username\"></span><br>\n        <span>Password: <input type=\"text\" id=\"password\" class=\"org-password\"></span><br>\n        <button class=\"js-org-signin\">Submit</button>\n    </form>\n\n    <h1>New User?</h1>\n    <button class=\"js--sign-up__organization\">Create Account</button>\n    ";
 }
 },{}],"js/app.js":[function(require,module,exports) {
 "use strict";
@@ -387,6 +396,8 @@ var _OrgHeader = _interopRequireDefault(require("./components/OrgHeader"));
 
 var _VolLanding = _interopRequireDefault(require("./components/VolLanding"));
 
+var _OrgLanding = _interopRequireDefault(require("./components/OrgLanding"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 main();
@@ -404,9 +415,12 @@ function main() {
   goHome();
   deleteVolAccount();
   (0, _landing.default)();
-  volEnter();
+  VolEnter();
   volSignIn();
-  (0, _VolLanding.default)();
+  (0, _VolLanding.default)(); // orgDashboardAndHeader()
+
+  OrgEnter();
+  orgSignIn();
 }
 
 function goHome() {
@@ -442,10 +456,18 @@ function volClickToSignUp() {
   });
 }
 
-function volEnter() {
+function VolEnter() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js--enter__volunteer')) {
       getAppContext().innerHTML = (0, _VolLanding.default)();
+    }
+  });
+}
+
+function OrgEnter() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('js--enter__organization')) {
+      getAppContext().innerHTML = (0, _OrgLanding.default)();
     }
   });
 }
@@ -515,7 +537,11 @@ function deleteVolAccount() {
 function volDashboardAndHeader(volunteer) {
   getAppContext().innerHTML = (0, _VolunteerDashboard.default)(volunteer);
   getHeaderContext().innerHTML = (0, _VolHeader.default)(volunteer);
-}
+} // function orgDashboardAndHeader(organization) {
+//     getAppContext().innerHTML = OrganizationDashboard(organization)
+//     getHeaderContext().innerHTML = OrgHeader(organization)
+// }
+
 
 function getProjectForm() {
   _eventActions.default.on(getAppContext(), 'click', function () {
@@ -571,8 +597,10 @@ function addOrganization() {
       var orgName = document.querySelector('.add__orgName').value;
       var mission = document.querySelector('.add__mission').value;
       var contactPerson = document.querySelector('.add__contactPerson').value;
-      var contactEmail = document.querySelector(".add__contactEmail").id;
-      var orgUrl = document.querySelector('.add__orgUrl').id;
+      var contactEmail = document.querySelector(".add__contactEmail").value;
+      var orgUrl = document.querySelector('.add__orgUrl').value;
+      var orgUserName = document.querySelector('.add__orgUserName').value;
+      var orgPassword = document.querySelector('.add__orgPassword').value;
       var causes = Array.from(document.querySelectorAll('.cause__causeName')).filter(function (checkbox) {
         return checkbox.checked;
       }).map(function (checkbox) {
@@ -585,6 +613,8 @@ function addOrganization() {
         contactPerson: contactPerson,
         contactEmail: contactEmail,
         orgUrl: orgUrl,
+        orgUserName: orgUserName,
+        orgPassword: orgPassword,
         causes: causes
       }, function (organization) {
         return getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
@@ -610,6 +640,23 @@ function volSignIn() {
   });
 }
 
+function orgSignIn() {
+  _eventActions.default.on(getAppContext(), 'click', function (e) {
+    if (event.target.classList.contains('js-org-signin')) {
+      e.preventDefault();
+      var username = document.querySelector('.org-username').value;
+      var password = document.querySelector('.org-password').value;
+
+      _apiActions.default.postRequest('http://localhost:8080/organizations/signin', {
+        username: username,
+        password: password
+      }, function (organization) {
+        return getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
+      });
+    }
+  });
+}
+
 function getHeaderContext() {
   return document.querySelector("#header");
 }
@@ -617,7 +664,7 @@ function getHeaderContext() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -645,7 +692,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50275" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56832" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

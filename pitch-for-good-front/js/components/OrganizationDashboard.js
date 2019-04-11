@@ -1,5 +1,4 @@
 import Cause from './Cause'
-import Project from './Project'
 
 export default function OrganizationDashboard(organization) {
     return `

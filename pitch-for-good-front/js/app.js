@@ -7,9 +7,10 @@ import events from './utils/events/event-actions'
 import VolunteerDashboard from './components/VolunteerDashboard'
 import OrgForm from './components/OrgForm'
 import OrganizationDashboard from './components/OrganizationDashboard'
-import VolHeader from './components/VolHeader';
+import VolHeader from './components/VolHeader'
 import OrgHeader from './components/OrgHeader'
 import VolLanding from './components/VolLanding'
+import OrgLanding from './components/OrgLanding'
 
 main()
 
@@ -28,9 +29,12 @@ function main() {
     goHome()
     deleteVolAccount()
     landing()
-    volEnter()
+    VolEnter()
     volSignIn()
     VolLanding()
+    // orgDashboardAndHeader()
+    OrgEnter()
+    orgSignIn()
 
 }
 
@@ -68,10 +72,18 @@ function volClickToSignUp() {
     })
 }
 
-function volEnter() {
+function VolEnter() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--enter__volunteer')) {
             getAppContext().innerHTML = VolLanding()
+        }
+    })
+}
+
+function OrgEnter() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js--enter__organization')) {
+            getAppContext().innerHTML = OrgLanding()
         }
     })
 }
@@ -139,6 +151,11 @@ function volDashboardAndHeader(volunteer) {
     getHeaderContext().innerHTML = VolHeader(volunteer)
 }
 
+// function orgDashboardAndHeader(organization) {
+//     getAppContext().innerHTML = OrganizationDashboard(organization)
+//     getHeaderContext().innerHTML = OrgHeader(organization)
+// }
+
 function getProjectForm() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-get-project-form')) {
@@ -188,8 +205,10 @@ function addOrganization() {
             const orgName = document.querySelector('.add__orgName').value
             const mission = document.querySelector('.add__mission').value
             const contactPerson = document.querySelector('.add__contactPerson').value
-            const contactEmail = document.querySelector(".add__contactEmail").id
-            const orgUrl = document.querySelector('.add__orgUrl').id
+            const contactEmail = document.querySelector(".add__contactEmail").value
+            const orgUrl = document.querySelector('.add__orgUrl').value
+            const orgUserName = document.querySelector('.add__orgUserName').value
+            const orgPassword = document.querySelector('.add__orgPassword').value
             
             const causes = Array.from(document.querySelectorAll('.cause__causeName'))
             .filter((checkbox) => checkbox.checked)
@@ -201,6 +220,8 @@ function addOrganization() {
                 contactPerson : contactPerson,
                 contactEmail : contactEmail,
                 orgUrl : orgUrl,
+                orgUserName : orgUserName,
+                orgPassword : orgPassword,
                 causes : causes
             }, (organization) => getAppContext().innerHTML = OrganizationDashboard(organization))
         }
@@ -221,11 +242,27 @@ function volSignIn() {
         }
     })
 }
+
+function orgSignIn() {
+    events.on(getAppContext(), 'click', e => {
+        if(event.target.classList.contains('js-org-signin')) {
+            e.preventDefault()
+            const username = document.querySelector('.org-username').value
+            const password = document.querySelector('.org-password').value
+            api.postRequest('http://localhost:8080/organizations/signin', {
+                username : username,
+                password : password
+            }, (organization) => getAppContext().innerHTML = OrganizationDashboard(organization))  
+                  
+        }
+    })
+}
+
    
 function getHeaderContext() {
     return document.querySelector("#header");
 }
 
 function getAppContext() {
-    return document.querySelector("#app")
+    return document.querySelector("#app");
 }

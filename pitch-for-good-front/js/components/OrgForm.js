@@ -8,6 +8,8 @@ export default function OrgForm(causes) {
                 <input type="text" class="add__contactPerson" placeholder="Organization contact:">
                 <input type="text" class="add__contactEmail" placeholder="Contact Email:"><br>
                 <input type="text" class="add__orgUrl" placeholder="Website:"><br>
+                <input type="text" class="add__orgUserName" placeholder="Username:"><br>
+                <input type="text" class="add__orgPassword" placeholder="Password:"><br>
             </div>
                        
             

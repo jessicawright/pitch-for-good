@@ -54,6 +54,18 @@ public class OrganizationController {
 	
 	}
 	
+	@PostMapping("/signin")
+	public Organization getOrganization(@RequestBody String body) throws JSONException {
+		JSONObject returningOrg = new JSONObject(body);
+		String username = returningOrg.getString("username");
+//		String password = returningVolunteer.getString("password");
+//		System.out.println(username);
+		Organization organizationToCheck = organizationRepo.findByOrgUserName(username);
+		System.out.println(organizationToCheck);
+		
+		return organizationToCheck;
+	}
+	
 	@PostMapping("/add")
 	public Organization addOrganization(@RequestBody String body) throws JSONException {
 		JSONObject newOrganization = new JSONObject(body);
@@ -62,8 +74,10 @@ public class OrganizationController {
 		String contactPerson = newOrganization.getString("contactPerson");
 		String contactEmail = newOrganization.getString("contactEmail");
 		String website = newOrganization.getString("orgUrl");
+		String orgUserName = newOrganization.getString("orgUserName");
+		String orgPassword = newOrganization.getString("orgPassword");
 		
-		Organization organization = new Organization(orgName, mission, contactPerson, contactEmail, website);
+		Organization organization = new Organization(orgName, mission, contactPerson, contactEmail, website, orgUserName, orgPassword);
 		organizationRepo.save(organization);
 		
 		ArrayList<String> causes = new ArrayList<String>(); 
