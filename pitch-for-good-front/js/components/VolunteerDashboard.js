@@ -8,31 +8,31 @@ export default function VolunteerDashboard(volunteer) {
 
     <div class="dashboard__container">
         <div class="volDashboard__contact">
-            <h2>Here is your user information:</h2>
+            <h6>Here is your user information:</h6>
             <ul>
                 <li>First Name: ${volunteer.firstName}</li>
-                <li>Last Name: ${volunteer.lastName}</li>
+                <li>Last Name: ${volunteer.lastName}</li><br>
                 <li>Username: ${volunteer.volUserName}</li>
-                <li>Password: ${volunteer.volPassword}</li>
+                <li>Password: ${volunteer.volPassword}</li><bf>
                 <li>Phone Number: ${volunteer.phoneNum}</li>
-                <li>Email: ${volunteer.email}</li>
+                <li>Email: ${volunteer.email}</li><br>
                 <li>Current Job Title: ${volunteer.jobTitle}</li>
             </ul>
         </div>
         <div class="volDashboard__skills">
-            <h2>These are your skills:</h2>
+            <h6>These are your skills:</h6>
             <ul>
                 <li>${Skills(volunteer.skills)}</li>
             </ul>
         </div>
         <div class="volDashboard__causes">
-            <h2>These are the causes you support:</h2>
+            <h6>These are the causes you support:</h6>
             <ul>
                 <li>${Cause(volunteer.causes)}</li>
             </ul>
         </div>
         <div class="volDashboard__projects">
-            <h2>These are the projects you've pitched:</h2>
+            <h6>These are the projects you've pitched:</h6>
             <ul>
                 <li>${Project(volunteer.projects)}</li>
             </ul>
