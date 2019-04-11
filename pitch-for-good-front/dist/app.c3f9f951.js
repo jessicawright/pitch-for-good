@@ -428,18 +428,7 @@ function getOrganizations() {
       });
     }
   });
-} // function viewSingleOrganization(){
-// 	events.on(getAppContext(), 'click', () => {
-// 		if(event.target.classList.contains('js-organization__orgName')) {
-//             api.getRequest(`http://localhost:8080/volunteers/${event.target.parentNode.id}`, volunteer => {
-// 			    api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
-// 				    getAppContext().innerHTML = Organization(volunteer, organization)
-// 			    })
-// 		    })
-//         }
-//     })
-// }
-
+}
 
 function volClickToSignUp() {
   _eventActions.default.on(getAppContext(), 'click', function () {
@@ -457,22 +446,6 @@ function volEnter() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js--enter__volunteer')) {
       getAppContext().innerHTML = (0, _VolLanding.default)();
-    }
-  });
-}
-
-function volSignIn() {
-  _eventActions.default.on(getAppContext(), 'click', function () {
-    if (event.target.classList.contains('js-vol-signin')) {
-      var username = document.querySelector('.vol-username').value;
-      var password = document.querySelector('.vol-password').value;
-
-      _apiActions.default.postRequest('http://localhost:8080/volunteers/signin', {
-        username: username,
-        password: password
-      }, function (volunteer) {
-        return console.log(volunteer);
-      });
     }
   });
 }
@@ -620,6 +593,23 @@ function addOrganization() {
   });
 }
 
+function volSignIn() {
+  _eventActions.default.on(getAppContext(), 'click', function (e) {
+    if (event.target.classList.contains('js-vol-signin')) {
+      e.preventDefault();
+      var username = document.querySelector('.vol-username').value;
+      var password = document.querySelector('.vol-password').value;
+
+      _apiActions.default.postRequest('http://localhost:8080/volunteers/signin', {
+        username: username,
+        password: password
+      }, function (volunteer) {
+        return volDashboardAndHeader(volunteer);
+      });
+    }
+  });
+}
+
 function getHeaderContext() {
   return document.querySelector("#header");
 }
@@ -655,7 +645,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52869" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50275" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
