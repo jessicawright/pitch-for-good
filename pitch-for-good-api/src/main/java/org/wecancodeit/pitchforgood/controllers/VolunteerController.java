@@ -1,8 +1,8 @@
 package org.wecancodeit.pitchforgood.controllers;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.pitchforgood.models.Cause;
 import org.wecancodeit.pitchforgood.models.Organization;
+import org.wecancodeit.pitchforgood.models.Project;
 import org.wecancodeit.pitchforgood.models.Skill;
 import org.wecancodeit.pitchforgood.models.Volunteer;
 import org.wecancodeit.pitchforgood.repositories.CauseRepository;
@@ -64,6 +65,7 @@ public class VolunteerController {
 		volunteerRepo.findById(volunteerId).get();
 		return organizationRepo.findById(organizationId).get();
 	}
+	
 	
 	@PostMapping("/add")
 	public Volunteer addVolunteer(@RequestBody String body) throws JSONException {
@@ -120,13 +122,33 @@ public class VolunteerController {
 		
 	}
 	
-	@DeleteMapping("delete/{id}")
-	public String deleteVolunteer(@PathVariable Long id) {
-		Volunteer volunteer = volunteerRepo.findById(id).get();
-		skillRepo.deleteAll(volunteer.getSkills());
-		causeRepo.deleteAll(volunteer.getCauses());
-		projectRepo.deleteAll(volunteer.getProjects());
-		volunteerRepo.deleteById(id);
-		return "";
+	@DeleteMapping("delete/{volunteerId}")
+	public Collection<Volunteer> deleteVolunteer(@PathVariable Long volunteerId) {
+		System.out.println(volunteerId);
+		Volunteer volunteerToDelete = volunteerRepo.findById(volunteerId).get();
+		Collection<Skill> skillsToRemove = volunteerToDelete.getSkills();
+		if (skillsToRemove != null) {
+			for (Skill skill : skillsToRemove) {
+				volunteerToDelete.removeSkill(skill);
+			}
+		} 
+		volunteerRepo.save(volunteerToDelete);
+		Collection<Cause> causesToRemove = volunteerToDelete.getCauses();
+		if (causesToRemove != null) {
+			for (Cause cause : causesToRemove) {
+				volunteerToDelete.removeCause(cause);
+			}
+		}
+		volunteerRepo.save(volunteerToDelete);
+		Collection<Project> projectsToRemove = volunteerToDelete.getProjects();
+		if (projectsToRemove != null) {
+			for (Project project : projectsToRemove) {
+				volunteerToDelete.removeProject(project);
+			}
+		}
+		volunteerRepo.save(volunteerToDelete);
+		volunteerRepo.delete(volunteerToDelete);
+		return (Collection<Volunteer>) volunteerRepo.findAll();
 	}
+	
 }

@@ -97,5 +97,10 @@ public class OrganizationController {
 		organizationRepo.deleteById(id);
 		return "";
 	}
+
+	private Collection<Volunteer> findAllBySkills(Skill volunteerSkill) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

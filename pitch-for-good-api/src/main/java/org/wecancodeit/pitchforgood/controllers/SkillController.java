@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.pitchforgood.models.Skill;
+import org.wecancodeit.pitchforgood.models.Volunteer;
 import org.wecancodeit.pitchforgood.repositories.CauseRepository;
 import org.wecancodeit.pitchforgood.repositories.OrganizationRepository;
 import org.wecancodeit.pitchforgood.repositories.ProjectRepository;
@@ -44,10 +45,17 @@ public class SkillController {
 		return (Collection<Skill>) skillRepo.findAll();
 	}
 	@GetMapping("/{skillId}")
-	public Skill getSingleSkill(@PathVariable Long id) {
-		return skillRepo.findById(id).get();
+	public Skill getSingleSkill(@PathVariable Long skillId) {
+		return skillRepo.findById(skillId).get();
 	}
 	
+
+	@GetMapping("/{skillId}/volunteers")
+	public Collection<Volunteer> findVolunteersBySkill(@PathVariable Long skillId) {
+		Skill volunteerSkill = skillRepo.findById(skillId).get();
+		return (Collection<Volunteer>)volunteerSkill.getVolunteers();
+	}
+
 	@PostMapping("/add")
 	public Collection<Skill> addSkill(@RequestBody String body) throws JSONException {
 		JSONObject newSkill = new JSONObject(body);
