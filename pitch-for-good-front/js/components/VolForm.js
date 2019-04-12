@@ -11,29 +11,29 @@ export default function VolForm(causes, skills) {
                 <input type="text" class="add__phoneNum" placeholder="Phone:">
                 <input type="text" class="add__email" placeholder="Email:">
             </div>
-            <div class="skills__container">   
-                <ul id="skills">
-                    ${skills.map(skill => {
+            <div class="skills__container">
+                    <ul id="skills">
+                        ${skills.map(skill => {
+                            return `
+                                <li class="skill">     
+                                    <input type="checkbox" class="skill__skillName" id="${skill.id}" name="skillIds" value="${skill.skillId}">${skill.skillName}
+                                </li>
+                            `;
+                        }).join('')}
+                    </ul>
+            </div>
+            <div class="causes__container">    
+                <ul id="causes">
+                    ${causes.map(cause => {
                         return `
-                            <li class="skill">     
-                                <input type="checkbox" class="skill__skillName" id="${skill.id}" name="skillIds" value="${skill.skillId}">${skill.skillName}
+                            <li class="cause">     
+                                <input type="checkbox" class="cause__causeName" id="${cause.causeId}" name="causeIds" value="${cause.causeId}">${cause.causeName}
                             </li>
                         `;
                     }).join('')}
                 </ul>
             </div>
-        <div class="causes__container">    
-            <ul id="skills">
-                ${causes.map(cause => {
-                    return `
-                    <li class="cause">     
-                    <input type="checkbox" class="cause__causeName" id="${cause.causeId}" name="causeIds" value="${cause.causeId}">${cause.causeName}
-                    </li>
-                    `;
-                }).join('')}
-            </ul>
-        </div>
-        <button class="js-add-volunteer button">Volunteer Sign Up!</button>
+            <button class="js-add-volunteer button">Volunteer Sign Up!</button>
         </div>
         `;  
 }

@@ -218,7 +218,7 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
 
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50275" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65075" + '/');
 
 
   ws.onmessage = function (event) {
