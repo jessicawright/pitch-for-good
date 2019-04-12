@@ -54,9 +54,9 @@ public class VolunteerController {
 		JSONObject returningVolunteer = new JSONObject(body);
 		String username = returningVolunteer.getString("username");
 //		String password = returningVolunteer.getString("password");
-		System.out.println(username);
+//		System.out.println(username);
 		Volunteer volunteerToCheck = volunteerRepo.findByVolUserName(username);
-		System.out.println(volunteerToCheck.getFirstName());
+//		System.out.println(volunteerToCheck.getFirstName());
 		
 		return volunteerToCheck;
 	}
