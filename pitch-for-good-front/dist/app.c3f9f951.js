@@ -470,10 +470,10 @@ function main() {
   volSignIn();
   (0, _VolLanding.default)();
   OrgEnter();
-  orgSignIn();
-  (0, _OrganizationDashboard.default)();
-  deleteOrgAccount();
-  (0, _VolForm.default)();
+  orgSignIn(); //OrganizationDashboard()
+
+  deleteOrgAccount(); //VolForm()
+
   orgSignIn();
 }
 
@@ -797,7 +797,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56249" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54420" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

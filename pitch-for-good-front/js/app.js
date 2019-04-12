@@ -44,9 +44,9 @@ function main() {
     VolLanding()
     OrgEnter()
     orgSignIn()
-    OrganizationDashboard()
+    //OrganizationDashboard()
     deleteOrgAccount()
-    VolForm()
+    //VolForm()
     orgSignIn()
 
 }
