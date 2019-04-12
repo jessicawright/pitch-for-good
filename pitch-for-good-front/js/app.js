@@ -13,6 +13,8 @@ import VolHeader from './components/VolHeader'
 import OrgHeader from './components/OrgHeader'
 import VolLanding from './components/VolLanding'
 import OrgLanding from './components/OrgLanding'
+import VolunterSearch from './components/VolunteerSearch'
+import VolunteerList from './components/VolunteerList'
 
 
 main()
@@ -45,6 +47,7 @@ function main() {
     OrganizationDashboard()
     deleteOrgAccount()
     VolForm()
+    orgSignIn()
 
 }
 
@@ -281,6 +284,9 @@ function getBackToOrgDashboard() {
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
                 getAppContext().innerHTML = OrganizationDashboard(organization)
             })
+        }
+    })
+}
 
 function volSignIn() {
     events.on(getAppContext(), 'click', e => {
