@@ -54,6 +54,43 @@ public class OrganizationController {
 	
 	}
 	
+	@PostMapping("/signin")
+	public Organization getOrganization(@RequestBody String body) throws JSONException {
+		JSONObject returningOrg = new JSONObject(body);
+		String username = returningOrg.getString("username");
+//		String password = returningVolunteer.getString("password");
+//		System.out.println(username);
+		Organization organizationToCheck = organizationRepo.findByOrgUserName(username);
+		System.out.println(organizationToCheck);
+		
+		return organizationToCheck;
+	}
+	
+	@DeleteMapping("delete/{organizationId}")
+	public Collection<Organization> deleteOrganization(@PathVariable Long organizationId) {
+		System.out.println(organizationId);
+		Organization organizationToDelete = organizationRepo.findById(organizationId).get();
+		
+		Collection<Cause> causesToRemove = organizationToDelete.getCauses();
+		if (causesToRemove != null) {
+			for (Cause cause : causesToRemove) {
+				organizationToDelete.removeCause(cause);
+			}
+		} 
+
+		organizationRepo.save(organizationToDelete);
+		Collection<Project> projectsToRemove = organizationToDelete.getProjects();
+		if (projectsToRemove != null) {
+			for (Project project : projectsToRemove) {
+				organizationToDelete.removeProject(project);
+			}
+		}
+		organizationRepo.save(organizationToDelete);
+		System.out.println(organizationToDelete);
+		organizationRepo.delete(organizationToDelete);
+		return (Collection<Organization>) organizationRepo.findAll();
+	}
+	
 	@PostMapping("/add")
 	public Organization addOrganization(@RequestBody String body) throws JSONException {
 		JSONObject newOrganization = new JSONObject(body);
@@ -62,8 +99,10 @@ public class OrganizationController {
 		String contactPerson = newOrganization.getString("contactPerson");
 		String contactEmail = newOrganization.getString("contactEmail");
 		String website = newOrganization.getString("orgUrl");
+		String orgUserName = newOrganization.getString("orgUserName");
+		String orgPassword = newOrganization.getString("orgPassword");
 		
-		Organization organization = new Organization(orgName, mission, contactPerson, contactEmail, website);
+		Organization organization = new Organization(orgName, mission, contactPerson, contactEmail, website, orgUserName, orgPassword);
 		organizationRepo.save(organization);
 		
 		ArrayList<String> causes = new ArrayList<String>(); 
@@ -89,15 +128,6 @@ public class OrganizationController {
 		
 	}
 	
-	@DeleteMapping("delete/{id}")
-	public String deleteOrganization(@PathVariable Long id) {
-		Organization organization = organizationRepo.findById(id).get();
-		causeRepo.deleteAll(organization.getCauses());
-		projectRepo.deleteAll(organization.getProjects());
-		organizationRepo.deleteById(id);
-		return "";
-	}
-
 	private Collection<Volunteer> findAllBySkills(Skill volunteerSkill) {
 		// TODO Auto-generated method stub
 		return null;
