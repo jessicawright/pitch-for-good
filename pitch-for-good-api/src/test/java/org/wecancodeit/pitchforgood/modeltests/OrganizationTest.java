@@ -9,7 +9,7 @@ import org.wecancodeit.pitchforgood.models.Project;
 
 public class OrganizationTest {
 	
-	Organization testOrg = new Organization("Habitat for Humanity", "", "","","");
+	Organization testOrg = new Organization("Habitat for Humanity", "", "","","", null, null);
 	Project project = new Project("", "", "", testOrg);
 	Cause cause = new Cause("","");
 	

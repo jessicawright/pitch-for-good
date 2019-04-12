@@ -30,7 +30,7 @@ public class ProjectRepoTest {
 	
 	@Test
 	public void shouldFindProjectByName() {
-		Organization organization = orgRepo.save(new Organization("","","","",""));
+		Organization organization = orgRepo.save(new Organization("","","","","", null, null));
 		Project project = projectRepo.save(new Project("building stuff", "building stuff", "", organization));
 		Long projectId = project.getProjectId();
 		
