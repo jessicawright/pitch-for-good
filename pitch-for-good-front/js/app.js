@@ -7,10 +7,13 @@ import events from './utils/events/event-actions'
 import VolunteerDashboard from './components/VolunteerDashboard'
 import OrgForm from './components/OrgForm'
 import OrganizationDashboard from './components/OrganizationDashboard'
+
 import VolHeader from './components/VolHeader'
+
 import OrgHeader from './components/OrgHeader'
 import VolLanding from './components/VolLanding'
 import OrgLanding from './components/OrgLanding'
+
 
 main()
 
@@ -26,6 +29,11 @@ function main() {
     addProject()
     OrgClickToSignUp()
     addOrganization()
+
+    getVolunteerSearchForm()
+    getVolunteerListFromForm()
+    getBackToOrgDashboard()
+
     goHome()
     deleteVolAccount()
     landing()
@@ -167,11 +175,13 @@ function volDashboardAndHeader(volunteer) {
 function getProjectForm() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-get-project-form')) {
+            // use hidden inputs (see volunteerDashboard) to pull in an id, as opposed to div, then do line below to get different id, in addition to event target id
+            // use event.target.parentElement.querySelector().id ... somehow. broke the app
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
-            console.log(organization)
-            api.getRequest(`http://localhost:8080/skills`, skills => {
-                console.log(skills)
-                const volunteerId = document.querySelector(".parent-id").id
+                console.log(organization)
+                api.getRequest('http://localhost:8080/skills', skills => {
+                    console.log(skills)
+                const volunteerId = document.querySelector('.volunteerId').id
                 api.getRequest(`http://localhost:8080/volunteers/${volunteerId}`, volunteer => {
                 console.log(volunteer)
                     getAppContext().innerHTML = ProjectForm(organization, skills, volunteer)
@@ -215,8 +225,10 @@ function addOrganization() {
             const contactPerson = document.querySelector('.add__contactPerson').value
             const contactEmail = document.querySelector(".add__contactEmail").value
             const orgUrl = document.querySelector('.add__orgUrl').value
+
             const orgUserName = document.querySelector('.add__orgUserName').value
             const orgPassword = document.querySelector('.add__orgPassword').value
+
             
             const causes = Array.from(document.querySelectorAll('.cause__causeName'))
             .filter((checkbox) => checkbox.checked)
@@ -236,6 +248,40 @@ function addOrganization() {
     })
 }
 
+function getVolunteerSearchForm() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js-get-volunteer-search')) {
+            api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+                api.getRequest('http://localhost:8080/skills/', skills => {      
+                    getAppContext().innerHTML = VolunterSearch(organization, skills)
+                }) 
+            }) 
+        }
+    })
+}
+
+function getVolunteerListFromForm() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js-find-volunteers-by-skill')) {
+            api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+            const skillId = document.querySelector('.js-dropdown-skill').id
+            api.getRequest(`http://localhost:8080/skills/${skillId}`, skill => {
+                api.getRequest(`http://localhost:8080/skills/${skillId}/volunteers`, volunteers => {
+                    getAppContext().innerHTML = VolunteerList(organization, skill, volunteers)
+                })
+            })
+        })
+        }
+    })
+}
+
+function getBackToOrgDashboard() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js-back-to-dashboard')) {
+            api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+                getAppContext().innerHTML = OrganizationDashboard(organization)
+            })
+
 function volSignIn() {
     events.on(getAppContext(), 'click', e => {
         if(event.target.classList.contains('js-vol-signin')) {
@@ -246,7 +292,6 @@ function volSignIn() {
                 username : username,
                 password : password
             }, (volunteer) => volDashboardAndHeader(volunteer))  
-                  
         }
     })
 }

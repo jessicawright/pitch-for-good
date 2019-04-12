@@ -17,6 +17,7 @@ export default function OrganizationDashboard(organization) {
     <ul>
         <li>${Cause(organization.causes)}</li>
     </ul>
-
+    <h3>Click to search volunteers</h3>
+    <button class="js-get-volunteer-search" id="${organization.organizationId}">click here</button>
     `;
 }
