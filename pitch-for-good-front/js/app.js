@@ -8,13 +8,13 @@ import VolunteerDashboard from './components/VolunteerDashboard'
 import OrgForm from './components/OrgForm'
 import OrganizationDashboard from './components/OrganizationDashboard'
 
-import Volunteers from './components/Volunteers'
-import VolunterSearch from './components/VolunteerSearch'
-import VolunteerList from './components/VolunteerList'
+import VolHeader from './components/VolHeader'
 
-import VolHeader from './components/VolHeader';
 import OrgHeader from './components/OrgHeader'
 import VolLanding from './components/VolLanding'
+import OrgLanding from './components/OrgLanding'
+import VolunterSearch from './components/VolunteerSearch'
+import VolunteerList from './components/VolunteerList'
 
 
 main()
@@ -29,7 +29,7 @@ function main() {
     createNewVolunteer()
     getProjectForm()
     addProject()
-    orgClickToSignUp()
+    OrgClickToSignUp()
     addOrganization()
 
     getVolunteerSearchForm()
@@ -39,9 +39,15 @@ function main() {
     goHome()
     deleteVolAccount()
     landing()
-    volEnter()
+    VolEnter()
     volSignIn()
     VolLanding()
+    OrgEnter()
+    orgSignIn()
+    OrganizationDashboard()
+    deleteOrgAccount()
+    VolForm()
+    orgSignIn()
 
 }
 
@@ -79,15 +85,23 @@ function volClickToSignUp() {
     })
 }
 
-function volEnter() {
+function VolEnter() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--enter__volunteer')) {
             getAppContext().innerHTML = VolLanding()
         }
     })
 }
+
+function OrgEnter() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js--enter__organization')) {
+            getAppContext().innerHTML = OrgLanding()
+        }
+    })
+}
                     
-function orgClickToSignUp() {
+function OrgClickToSignUp() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--sign-up__organization')) {
             api.getRequest('http://localhost:8080/causes', causes => {
@@ -144,6 +158,17 @@ function deleteVolAccount() {
         }
     })
 }            
+
+function deleteOrgAccount() {
+    events.on(getHeaderContext(), 'click', () => {
+        if(event.target.classList.contains('js-org-delete-account')) {
+            api.deleteRequest(`http://localhost:8080/organizations/delete/${event.target.id}`, {
+            }, (organizations) => getAppContext().innerHTML = landing(), getHeaderContext().innerHTML = ""
+        )} 
+    })   
+}
+
+        
 
 function volDashboardAndHeader(volunteer) {
     getAppContext().innerHTML = VolunteerDashboard(volunteer)
@@ -203,6 +228,10 @@ function addOrganization() {
             const contactPerson = document.querySelector('.add__contactPerson').value
             const contactEmail = document.querySelector(".add__contactEmail").value
             const orgUrl = document.querySelector('.add__orgUrl').value
+
+            const orgUserName = document.querySelector('.add__orgUserName').value
+            const orgPassword = document.querySelector('.add__orgPassword').value
+
             
             const causes = Array.from(document.querySelectorAll('.cause__causeName'))
             .filter((checkbox) => checkbox.checked)
@@ -214,8 +243,10 @@ function addOrganization() {
                 contactPerson : contactPerson,
                 contactEmail : contactEmail,
                 orgUrl : orgUrl,
+                orgUserName : orgUserName,
+                orgPassword : orgPassword,
                 causes : causes
-            }, (organization) => getAppContext().innerHTML = OrganizationDashboard(organization))
+            }, (organization) => orgHeaderAndDashboard(organization))
         }
     })
 }
@@ -253,6 +284,9 @@ function getBackToOrgDashboard() {
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
                 getAppContext().innerHTML = OrganizationDashboard(organization)
             })
+        }
+    })
+}
 
 function volSignIn() {
     events.on(getAppContext(), 'click', e => {
@@ -267,11 +301,32 @@ function volSignIn() {
         }
     })
 }
+
+function orgSignIn() {
+    events.on(getAppContext(), 'click', e => {
+        if(event.target.classList.contains('js-org-signin')) {
+            e.preventDefault()
+            const username = document.querySelector('.org-username').value
+            const password = document.querySelector('.org-password').value
+            api.postRequest('http://localhost:8080/organizations/signin', {
+                username : username,
+                password : password
+            }, (organization) => orgHeaderAndDashboard(organization))  
+                  
+        }
+    })
+}
+
+function orgHeaderAndDashboard(organization) {
+    getAppContext().innerHTML = OrganizationDashboard(organization)
+    getHeaderContext().innerHTML = OrgHeader(organization)
+}
+
    
 function getHeaderContext() {
     return document.querySelector("#header");
 }
 
 function getAppContext() {
-    return document.querySelector("#app")
+    return document.querySelector("#app");
 }

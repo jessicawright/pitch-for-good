@@ -49,6 +49,18 @@ public class VolunteerController {
 		return (Collection<Volunteer>) volunteerRepo.findAll();
 	}
 	
+	@PostMapping("/signin")
+	public Volunteer getVolunteer(@RequestBody String body) throws JSONException {
+		JSONObject returningVolunteer = new JSONObject(body);
+		String username = returningVolunteer.getString("username");
+//		String password = returningVolunteer.getString("password");
+//		System.out.println(username);
+		Volunteer volunteerToCheck = volunteerRepo.findByVolUserName(username);
+//		System.out.println(volunteerToCheck.getFirstName());
+		
+		return volunteerToCheck;
+	}
+	
 	@GetMapping("/{id}")
 	public Volunteer getSingleVolunteer(@PathVariable Long id) {
 		return volunteerRepo.findById(id).get();

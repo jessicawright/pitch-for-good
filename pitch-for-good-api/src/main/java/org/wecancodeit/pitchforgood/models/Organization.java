@@ -24,6 +24,8 @@ public class Organization {
 	private String contactPerson;
 	private String orgEmail;
 	private String websiteUrl;
+	private String orgUserName;
+	private String orgPassword;
 	@ManyToMany
 	private Collection<Cause> causes;
 	@OneToMany //(mappedBy="organization")
@@ -33,12 +35,14 @@ public class Organization {
 	public Organization() {}
 
 	
-	public Organization(String orgName, String orgMission, String contactPerson, String orgEmail, String websiteUrl) {
+	public Organization(String orgName, String orgMission, String contactPerson, String orgEmail, String websiteUrl, String orgUserName, String orgPassword) {
 		this.orgName = orgName;
 		this.orgMission = orgMission;
 		this.contactPerson = contactPerson;
 		this.orgEmail = orgEmail;
 		this.websiteUrl = websiteUrl;
+		this.orgUserName = orgUserName;
+		this.orgPassword = orgPassword;
 		this.causes = new ArrayList<Cause>();
 		this.projects = new ArrayList<Project>();
 		
@@ -65,6 +69,14 @@ public class Organization {
 	
 	public String getWebsiteUrl() {
 		return websiteUrl;
+	}
+	
+	public String getOrgUserName() {
+		return orgUserName;
+	}
+	
+	public String getOrgPassword() {
+		return orgPassword;
 	}
 	
 	public Collection<Cause> getCauses() {

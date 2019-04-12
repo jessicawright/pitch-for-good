@@ -9,4 +9,6 @@ public interface OrganizationRepository extends CrudRepository<Organization, Lon
 
 	Organization findByOrgName(String string);
 
+	Organization findByOrgUserName(String username);
+
 }

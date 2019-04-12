@@ -81,11 +81,11 @@ public class Initializer implements CommandLineRunner {
 		Skill skill26 = skillRepo.save(new Skill("Real Estate"));
 		Skill skill27 = skillRepo.save(new Skill("Fitness"));
 		
-		Organization organization1 = organizationRepo.save(new Organization("Ohio Environmental Council", "We want to protect the environment.", "Jason", "jason@gmail.com", "jason.com"));
-		Organization organization2 = organizationRepo.save(new Organization("Columbus Literacy Council", "We want to help ESL students learn English.", "Ariel", "ariel@gmail.com", "ariel.com"));
-		Organization organization3 = organizationRepo.save(new Organization("Ohio House Rabbit Rescue", "We want to protect the rabbits.", "Adam", "adam@gmail.com", "adam.com"));
-		Organization organization4 = organizationRepo.save(new Organization("Children's Hunger Alliance", "We want to help families get food.", "Ben", "ben@gmail.com", "ben.com"));
-		Organization organization5 = organizationRepo.save(new Organization("Tech Corps", "We want to help kids gain access to learning technological skills.", "Jess", "jess@gmail.com", "jess.com"));
+		Organization organization1 = organizationRepo.save(new Organization("Ohio Environmental Council", "We want to protect the environment.", "Jason", "jason@gmail.com", "jason.com", "username1", "password"));
+		Organization organization2 = organizationRepo.save(new Organization("Columbus Literacy Council", "We want to help ESL students learn English.", "Ariel", "ariel@gmail.com", "ariel.com", "username2", "password"));
+		Organization organization3 = organizationRepo.save(new Organization("Ohio House Rabbit Rescue", "We want to protect the rabbits.", "Adam", "adam@gmail.com", "adam.com", "username3", "password"));
+		Organization organization4 = organizationRepo.save(new Organization("Children's Hunger Alliance", "We want to help families get food.", "Ben", "ben@gmail.com", "ben.com", "username4", "password"));
+		Organization organization5 = organizationRepo.save(new Organization("Tech Corps", "We want to help kids gain access to learning technological skills.", "Jess", "jess@gmail.com", "jess.com", "username5", "password"));
 		
 		Volunteer volunteer1 = volunteerRepo.save(new Volunteer("John", "Smith", "username1", "password", "8675309", "johnsmith@gmail.com", "Teacher"));
 		Volunteer volunteer2 = volunteerRepo.save(new Volunteer("Stuart", "Little", "username2", "password", "8671111", "stuartlittle@gmail.com", "Cheese Chef"));
