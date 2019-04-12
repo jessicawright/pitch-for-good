@@ -1,0 +1,224 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+li {
+  color: var(--tertiary-white)
+}
+
+html {
+	background: url("https://github.com/jessicawright/my-files/blob/master/landing.jpg") no-repeat center center/cover; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  font: 20px/1.618 Garamond, Cambria, sans-serif;
+  --primary-color: rgb(127, 200, 59);
+  --secondary-gray: rgb(96, 117, 67);
+  --tertiary-white: rgb(246, 248, 213);
+  text-align: center;
+}
+
+body {
+  background-color: rgb(255, 255, 255, .8);
+  height: 100%;
+  position: relative;
+}
+
+.volForm__container {
+  display: grid;
+	grid-gap: 5px 5px;
+	grid-template-columns: repeat(4, 1fr); 
+	grid-template-rows: repeat(3, 1fr); 
+	margin: 1rem;
+	padding: 1rem;
+	max-width: 100%;	
+  height: 1000px;	
+}
+
+.contact-info__container, .skills__container, .causes__container, .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
+  background: var(--secondary-gray);
+  color: var(--tertiary-white);
+  opacity: .85;
+  padding: 1rem;
+  border-radius: .35rem;
+
+}
+
+
+
+/* input[type=text] {
+  width: 40%;
+  border: 2px solid rgb(0, 0, 0, 0.7);
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 10px;
+  box-sizing: border-box;
+} */
+
+.add__jobTitle, .add__firstName, .add__lastName, .add__volUserName, .add__volPassword, .add__phoneNum, .add__email {
+  width: 40%;
+  border: 2px solid rgb(0, 0, 0, 0.7);
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.add__jobTitle {
+  width: 60%;
+}
+
+.contact-info__container {
+  grid-column: 1 / span 2;
+}
+
+.skills__container {
+  display: inline-flex;
+  grid-column: 3 / span 2;
+  grid-row: 1 / span 3;
+  text-align: left;
+  
+}
+
+#skills {
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  
+}
+
+#causes {
+  display: inline;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.skill__skillName, .cause__causeName {
+  margin: .5rem;
+}
+
+.causes__container {
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 2;
+  text-align: left;
+  display: flex;
+}
+
+.js-add-volunteer {
+  grid-column: 2 / span 2;
+  grid-row: 4 / span 2;
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
+  font-size: 30px;
+  padding: 7px 24px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 50px 15px var(--secondary-gray, .4);
+    
+}
+
+.js--sign-up__volunteer, .js--sign-up__organization, .js--see-organizations {
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
+  font-size: 30px;
+  padding: 1.5rem;
+  margin: 1rem;
+  border-radius: 8px;
+  box-shadow: 5px 5px 50px 15px rgb(96, 117, 67, .4);
+}
+
+h1 {
+  font-size: 60px;
+  color: var(--primary-color);
+}
+
+h2 {
+  font-size: 40px;
+  color: var(--secondary-gray);
+}
+
+h3 {
+  font-size: 25px;
+  color: var(--secondary-gray);
+}
+
+h4 {
+  font-size: 20px;
+  color: var(--secondary-gray);
+}
+
+h5 {
+  font-size: 15px;
+  color: var(--primary-color);
+}
+
+h6 {
+  font-size: 30px;
+  color: var(--tertiary-white);
+  opacity: 1;
+}
+
+/* start volDashboard grid */
+
+.dashboard__container {
+  display: grid;
+	grid-gap: 5px 5px;
+	grid-template-columns: repeat(4, auto); 
+	grid-template-rows: repeat(4, auto); 
+	margin: 1rem;
+	padding: 1rem;
+	max-width: 100%;	
+  height: flex;	
+}
+.volDashboard__contact, .volDashboard__skills, .volDashboard__causes,.volDashboard__projects {
+  color: var(--tertiary-white);
+} 
+
+/* .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects > h2 {
+  color: var(--tertiary-white);
+} */
+
+.volDashboard__contact {
+  display: block;
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 1;
+  text-align: left;
+}
+
+.volDashboard__skills {
+  display: inline;
+  grid-column: 1 / span 4;
+  grid-row: 4 / span 1;
+  text-align: left;
+}
+
+.volDashboard__causes {
+  display: inline;
+  grid-column: 1 / span 4;
+  grid-row: 3 / span 1;
+  text-align: left;
+}
+
+.volDashboard__projects {
+  display: flex;
+  grid-column: 3 / span 2;
+  grid-row: 1 / span 1;
+  text-align: left;
+}

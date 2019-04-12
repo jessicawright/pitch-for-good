@@ -1,12 +1,16 @@
 package org.wecancodeit.pitchforgood.controllers;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.pitchforgood.models.Cause;
+import org.wecancodeit.pitchforgood.models.Organization;
 import org.wecancodeit.pitchforgood.models.Project;
 import org.wecancodeit.pitchforgood.models.Skill;
 import org.wecancodeit.pitchforgood.models.Volunteer;
@@ -25,7 +30,7 @@ import org.wecancodeit.pitchforgood.repositories.VolunteerRepository;
 
 @CrossOrigin
 @RestController
-@RequestMapping
+@RequestMapping("/volunteers")
 public class VolunteerController {
 	
 	@Resource
@@ -44,19 +49,118 @@ public class VolunteerController {
 		return (Collection<Volunteer>) volunteerRepo.findAll();
 	}
 	
+	@PostMapping("/signin")
+	public Volunteer getVolunteer(@RequestBody String body) throws JSONException {
+		JSONObject returningVolunteer = new JSONObject(body);
+		String username = returningVolunteer.getString("username");
+//		String password = returningVolunteer.getString("password");
+//		System.out.println(username);
+		Volunteer volunteerToCheck = volunteerRepo.findByVolUserName(username);
+//		System.out.println(volunteerToCheck.getFirstName());
+		
+		return volunteerToCheck;
+	}
+	
+	@GetMapping("/{id}")
+	public Volunteer getSingleVolunteer(@PathVariable Long id) {
+		return volunteerRepo.findById(id).get();
+	}
+	
+	@GetMapping("/{id}/organizations")
+	public Collection<Organization> getOrganizationsAsVolunteer(@PathVariable Long id) {
+		volunteerRepo.findById(id).get();
+		return (Collection<Organization>) organizationRepo.findAll();
+	}
+	
+	@GetMapping("/{volunteerId}/organizations/{organizationId}")
+	public Organization getSpecificOrganizationAsVolunteer(@PathVariable Long volunteerId, @PathVariable Long organizationId) {
+		volunteerRepo.findById(volunteerId).get();
+		return organizationRepo.findById(organizationId).get();
+	}
+	
+	
 	@PostMapping("/add")
-	public Collection<Volunteer> addVolunteer(@RequestBody String body) throws JSONException {
+	public Volunteer addVolunteer(@RequestBody String body) throws JSONException {
 		JSONObject newVolunteer = new JSONObject(body);
 		String firstName = newVolunteer.getString("firstName");
 		String lastName = newVolunteer.getString("lastName");
+		String volUserName = newVolunteer.getString("volUserName");
+		String volPassword = newVolunteer.getString("volPassword");
 		String phoneNum = newVolunteer.getString("phoneNum");
 		String email = newVolunteer.getString("email");
 		String jobTitle = newVolunteer.getString("jobTitle");
-		Skill skills = skillRepo.findBySkillName(newVolunteer.getString("skillName"));
-		Cause causes = causeRepo.findByCauseName(newVolunteer.getString("causeName"));
-		Project projects = projectRepo.findByProjectName(newVolunteer.getString("projectName"));
-		volunteerRepo.save(new Volunteer(firstName, lastName, phoneNum, email, jobTitle));
-		return (Collection<Volunteer>) volunteerRepo.findAll();
+		
+		Volunteer volunteer = new Volunteer(firstName, lastName, volUserName, volPassword, phoneNum, email, jobTitle);
+		volunteerRepo.save(volunteer);
+		
+		ArrayList<String> skills = new ArrayList<String>(); 
+		ArrayList<Long> skillsToAdd = new ArrayList<Long>();
+		JSONArray jsonArray = newVolunteer.getJSONArray("skills"); 
+		if (jsonArray != null) { 
+		   for (int i = 0; i < jsonArray.length(); i++){ 
+			   skills.add(jsonArray.get(i).toString());
+		   } 
+		} 
+		if (skills != null) {
+			for (String skill : skills) {
+				skillsToAdd.add((Long.parseLong(skill)));
+			}
+		}
+		for (Long skill : skillsToAdd) {
+			Skill newSkill = skillRepo.findById(skill).get();
+		  	volunteer.addSkillToVolunteer(newSkill);
+		}
+		
+		ArrayList<String> causes = new ArrayList<String>(); 
+		ArrayList<Long> causesToAdd = new ArrayList<Long>();
+		JSONArray jsonArrayTwo = newVolunteer.getJSONArray("causes"); 
+		if (jsonArrayTwo != null) { 
+		   for (int i = 0; i < jsonArrayTwo.length(); i++){ 
+			   causes.add(jsonArrayTwo.get(i).toString());
+		   } 
+		} 
+		if (causes != null) {
+			for (String cause : causes) {
+				causesToAdd.add((Long.parseLong(cause)));
+			}
+		}
+		for (Long cause : causesToAdd) {
+			Cause newCause = causeRepo.findById(cause).get();
+		  	volunteer.addCauseToVolunteer(newCause);
+		}
+		
+		volunteerRepo.save(volunteer);
+		return volunteer;
 		
 	}
+	
+	@DeleteMapping("delete/{volunteerId}")
+	public Collection<Volunteer> deleteVolunteer(@PathVariable Long volunteerId) {
+		System.out.println(volunteerId);
+		Volunteer volunteerToDelete = volunteerRepo.findById(volunteerId).get();
+		Collection<Skill> skillsToRemove = volunteerToDelete.getSkills();
+		if (skillsToRemove != null) {
+			for (Skill skill : skillsToRemove) {
+				volunteerToDelete.removeSkill(skill);
+			}
+		} 
+		volunteerRepo.save(volunteerToDelete);
+		Collection<Cause> causesToRemove = volunteerToDelete.getCauses();
+		if (causesToRemove != null) {
+			for (Cause cause : causesToRemove) {
+				volunteerToDelete.removeCause(cause);
+			}
+		}
+		volunteerRepo.save(volunteerToDelete);
+		Collection<Project> projectsToRemove = volunteerToDelete.getProjects();
+		if (projectsToRemove != null) {
+			for (Project project : projectsToRemove) {
+				volunteerToDelete.removeProject(project);
+			}
+		}
+		volunteerRepo.save(volunteerToDelete);
+		volunteerRepo.delete(volunteerToDelete);
+		return (Collection<Volunteer>) volunteerRepo.findAll();
+	}
+	
 }
