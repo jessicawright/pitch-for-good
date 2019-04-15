@@ -106,5 +106,18 @@ public class Organization {
 		causes.remove(cause);
 		
 	}
+
+
+	public void removeCausesInCollection() {
+		causes.removeAll(causes);
+		
+	}
+
+
+	public void removeProjectsInCollection() {
+		projects.removeAll(projects);
+		
+	}
+
 	
 }

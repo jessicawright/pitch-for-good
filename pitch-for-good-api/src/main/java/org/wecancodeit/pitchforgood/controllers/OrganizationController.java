@@ -2,6 +2,7 @@ package org.wecancodeit.pitchforgood.controllers;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import javax.annotation.Resource;
 
@@ -68,25 +69,16 @@ public class OrganizationController {
 	
 	@DeleteMapping("delete/{organizationId}")
 	public Collection<Organization> deleteOrganization(@PathVariable Long organizationId) {
-		System.out.println(organizationId);
 		Organization organizationToDelete = organizationRepo.findById(organizationId).get();
 		
-		Collection<Cause> causesToRemove = organizationToDelete.getCauses();
-		if (causesToRemove != null) {
-			for (Cause cause : causesToRemove) {
-				organizationToDelete.removeCause(cause);
-			}
-		} 
-
-		organizationRepo.save(organizationToDelete);
-		Collection<Project> projectsToRemove = organizationToDelete.getProjects();
-		if (projectsToRemove != null) {
-			for (Project project : projectsToRemove) {
-				organizationToDelete.removeProject(project);
-			}
-		}
-		organizationRepo.save(organizationToDelete);
-		System.out.println(organizationToDelete);
+		organizationToDelete.removeCausesInCollection();
+		organizationToDelete.removeProjectsInCollection();
+		
+		Collection<Project> projects = projectRepo.findAllByOrganization(organizationToDelete);
+		
+		projectRepo.deleteAll(projects);
+		
+		
 		organizationRepo.delete(organizationToDelete);
 		return (Collection<Organization>) organizationRepo.findAll();
 	}
