@@ -306,7 +306,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgForm;
 
 function OrgForm(causes) {
-  return "\n    <h1>Organization Sign Up Page</h1>\n        <div class=\"orgForm__container\">\n            <div class=\"contact-info__container\">\n                <input type=\"text\" class=\"add__orgName\" placeholder=\"Organization Name:\">\n                <input type=\"text\" class=\"add__mission\" placeholder=\"Your mission:\"><br>\n                <input type=\"text\" class=\"add__contactPerson\" placeholder=\"Organization contact:\">\n                <input type=\"text\" class=\"add__contactEmail\" placeholder=\"Contact Email:\"><br>\n                <input type=\"text\" class=\"add__orgUrl\" placeholder=\"Website:\"><br>\n            </div>\n                       \n            \n            <ul id=\"causes\">\n                ".concat(causes.map(function (cause) {
+  return "\n    <h1>Organization Sign Up Page</h1>\n        <div class=\"orgForm__container\">\n            <div class=\"contact-info__container\">\n                <input type=\"text\" class=\"add__orgName\" placeholder=\"Organization Name:\">\n                <input type=\"text\" class=\"add__mission\" placeholder=\"Your mission:\"><br>\n                <input type=\"text\" class=\"add__contactPerson\" placeholder=\"Organization contact:\">\n                <input type=\"text\" class=\"add__contactEmail\" placeholder=\"Contact Email:\"><br>\n                <input type=\"text\" class=\"add__orgUrl\" placeholder=\"Website:\"><br>\n                <input type=\"text\" class=\"add__orgUserName\" placeholder=\"Username:\"><br>\n                <input type=\"text\" class=\"add__orgPassword\" placeholder=\"Password:\"><br>\n            </div>\n                       \n            \n            <ul id=\"causes\">\n                ".concat(causes.map(function (cause) {
     return "\n                    <li class=\"cause\">     \n                        <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                    </li>\n                ");
   }).join(''), "\n            </ul>\n            \n            <button class=\"js-add-organization button\">Sign Up!</button>\n        ");
 }
@@ -346,8 +346,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = OrgHeader;
 
-function OrgHeader() {
-  return "\n    \n    <h1>This is the header for organizations.</h1>\n    ";
+function OrgHeader(organization) {
+  return "\n    \n    <div class=\"nav\">\n        <ul>\n            <li class=\"logo js-landing\">Logo Image HERE</li>\n            <li class=\"title js-landing\">Pitch For Good</li>\n            <li class=\"welcome\">Welcome, ".concat(organization.orgName, "!</li>\n            <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n            <li><button type=\"button\" class=\"js-org-delete-account delete\" id=\"").concat(organization.organizationId, "\">Delete Account</button></li>\n        </ul>\n    </div>\n    ");
 }
 },{}],"js/components/VolLanding.js":[function(require,module,exports) {
 "use strict";
@@ -455,8 +455,7 @@ main();
 
 function main() {
   getAppContext().innerHTML = (0, _landing.default)();
-  getOrganizations(); // viewSingleOrganization()
-
+  getOrganizations();
   volClickToSignUp();
   createNewVolunteer();
   getProjectForm();
@@ -473,11 +472,8 @@ function main() {
   volSignIn();
   (0, _VolLanding.default)();
   OrgEnter();
-  orgSignIn(); //OrganizationDashboard()
-
-  deleteOrgAccount(); //VolForm()
-
   orgSignIn();
+  deleteOrgAccount();
 }
 
 function goHome() {
@@ -800,7 +796,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61297" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56281" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
