@@ -25,12 +25,18 @@ export default function VolunteerDashboard(volunteer) {
             <ul>
                 <li>${Skills(volunteer.skills)}</li>
             </ul>
+            <div>
+            <button class="js--vol-add-skills" id=${volunteer.volunteerId}>Add Additional Skills</button>
+            <div>
         </div>
         <div class="volDashboard__causes">
             <h6>These are the causes you support:</h6>
             <ul>
                 <li>${Cause(volunteer.causes)}</li>
             </ul>
+            <div>
+            <button class="js--vol-add-causes" id=${volunteer.volunteerId}>Add Additional Causes</button>
+            <div>
         </div>
         <div class="volDashboard__projects">
             <h6>These are the projects you've pitched:</h6>

@@ -66,6 +66,63 @@ public class VolunteerController {
 		return volunteerRepo.findById(id).get();
 	}
 	
+	@PostMapping("/add/skills")
+	public Volunteer addAdditionalSkillsToVolunteer(@RequestBody String body) throws JSONException {
+		JSONObject skills = new JSONObject(body);
+		String volId = skills.getString("volId");
+		Long volIdLong = (Long.parseLong(volId));
+		Volunteer volunteer = volunteerRepo.findById(volIdLong).get();
+		ArrayList<String> skill = new ArrayList<String>(); 
+		ArrayList<Long> skillsToAdd = new ArrayList<Long>();
+		JSONArray jsonArray = skills.getJSONArray("skills"); 
+		if (jsonArray != null) { 
+			   for (int i = 0; i < jsonArray.length(); i++){ 
+				   skill.add(jsonArray.get(i).toString());
+			   } 
+			} 
+		if (skills != null) {
+			for (String skill1 : skill) {
+				skillsToAdd.add((Long.parseLong(skill1)));
+			}
+		}
+		for (Long skill2 : skillsToAdd) {
+			Skill skillToAdd = skillRepo.findById(skill2).get();
+		  	volunteer.addSkillToVolunteer(skillToAdd);
+		  	volunteerRepo.save(volunteer);
+		}
+		
+		return volunteer;
+	} 
+	
+	
+	@PostMapping("/add/causes")
+	public Volunteer addAdditionalCausesToVolunteer(@RequestBody String body) throws JSONException {
+		JSONObject causes = new JSONObject(body);
+		String volId = causes.getString("volId");
+		Long volIdLong = (Long.parseLong(volId));
+		Volunteer volunteer = volunteerRepo.findById(volIdLong).get();
+		ArrayList<String> cause = new ArrayList<String>(); 
+		ArrayList<Long> causesToAdd = new ArrayList<Long>();
+		JSONArray jsonArray = causes.getJSONArray("causes"); 
+		if (jsonArray != null) { 
+			   for (int i = 0; i < jsonArray.length(); i++){ 
+				   cause.add(jsonArray.get(i).toString());
+			   } 
+			} 
+		if (causes != null) {
+			for (String cause1 : cause) {
+				causesToAdd.add((Long.parseLong(cause1)));
+			}
+		}
+		for (Long cause2 : causesToAdd) {
+			Cause causeToAdd = causeRepo.findById(cause2).get();
+		  	volunteer.addCauseToVolunteer(causeToAdd);
+		  	volunteerRepo.save(volunteer);
+		}
+		return volunteer;
+	} 
+	
+	
 	@GetMapping("/{id}/organizations")
 	public Collection<Organization> getOrganizationsAsVolunteer(@PathVariable Long id) {
 		volunteerRepo.findById(id).get();
@@ -147,5 +204,6 @@ public class VolunteerController {
 		volunteerRepo.delete(volunteerToDelete);
 		return (Collection<Volunteer>) volunteerRepo.findAll();
 	}
+
 	
 }
