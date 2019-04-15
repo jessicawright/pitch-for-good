@@ -358,7 +358,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolLanding;
 
 function VolLanding() {
-  return "\n    <h1>Returning User Sign In</h1>\n    <form>\n        <span>Username: <input type=\"text\" id=\"username\" class=\"vol-username\"></span><br>\n        <span>Password: <input type=\"text\" id=\"password\" class=\"vol-password\"></span><br>\n        <button class=\"js-vol-signin\">Submit</button>\n    </form>\n\n    <h1>New User?</h1>\n    <button class=\"js--sign-up__volunteer\">Create Account</button>\n    ";
+  return "\n        <div class=\"vollanding__grid-container\">\n            <form class=\"vollanding__signin\">\n                <h1>User Sign In</h1>\n                <span><input type=\"text\" id=\"username\" class=\"vol-username\" placeholder=\"User Name:\"></span><br>\n                <span><input type=\"text\" id=\"password\" class=\"vol-password\" placeholder=\"Password:\"></span><br>\n                <button class=\"js-vol-signin\">Submit</button>\n            </form>\n            <div class=\"vollanding__signup\">\n                <h1>New User?</h1> \n                <button class=\"js--sign-up__volunteer\">Create Account</button>\n            </div> \n        </div>\n    ";
 }
 },{}],"js/components/OrgLanding.js":[function(require,module,exports) {
 "use strict";
@@ -369,7 +369,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgLanding;
 
 function OrgLanding() {
-  return "\n    <h1>Returning Organization Sign In</h1>\n    <form>\n        <span>Username: <input type=\"text\" id=\"username\" class=\"org-username\"></span><br>\n        <span>Password: <input type=\"text\" id=\"password\" class=\"org-password\"></span><br>\n        <button class=\"js-org-signin\">Submit</button>\n    </form>\n\n    <h1>New User?</h1>\n    <button class=\"js--sign-up__organization\">Create Account</button>\n    ";
+  return "\n        <div class=\"orglanding__grid-container\">\n            <form>\n                <div class=\"orglanding__signin\">\n                <h1>Returning Organization Sign In</h1>\n                <span>Username: <input type=\"text\" id=\"username\" class=\"org-username\"></span><br>\n                <span>Password: <input type=\"text\" id=\"password\" class=\"org-password\"></span>\n                </div>\n                <div class=\"orglanding__button\">\n                <button class=\"js-org-signin\">Submit</button></div>\n            </form>\n            <div class=\"orglanding__signup\">\n                <h1>New User?</h1>\n                <button class=\"js--sign-up__organization\">Create Account</button>\n            </div>\n        </div>\n    ";
 }
 },{}],"js/components/VolunteerSearch.js":[function(require,module,exports) {
 "use strict";
@@ -911,7 +911,9 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "50456" + '/');
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};
