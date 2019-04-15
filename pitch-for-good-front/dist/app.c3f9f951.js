@@ -265,6 +265,17 @@ function Cause(causes) {
     return "\n            <li class=\"cause\">\n                <h3 class=\"causeName\">".concat(cause.causeName, "</h3>\n            </li>\n        ");
   }).join(''), "\n        </ul>\n\n    ");
 }
+},{}],"js/components/Organization.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Organization;
+
+function Organization(organization) {
+  return "\n        <h2 class=\"organization__name\">".concat(organization.orgName, "</h2>\n        <h3 class=\"organization__orgMission\">").concat(organization.orgMission, "</h3>\n        <h3 class=\"organization__contactPerson\">").concat(organization.contactPerson, "</h3>\n        <h3 class=\"organization__orgEmail\">").concat(organization.orgEmail, "</h3>\n        <h3 class=\"organization__websiteUrl\">").concat(organization.websiteUrl, "</h3>\n\n        <h3> If you would like to propose a project to this organization, click the button below.</h3>\n        <button class=\"js-get-project-form button\" id=\"").concat(organization.organizationId, "\">Propose project</button>\n            ");
+}
 },{}],"js/components/Project.js":[function(require,module,exports) {
 "use strict";
 
@@ -273,12 +284,16 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Project;
 
+var _Organization = _interopRequireDefault(require("./Organization"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function Project(projects) {
   return "\n    ".concat(projects.map(function (project) {
-    return "\n\n        <h2 class=\"project__projectName\" id=\"".concat(project.projectId, "\">").concat(project.projectName, "</h2>\n        ");
+    return "\n\n        <h3 class=\"project__projectName\" id=\"".concat(project.projectId, "\">Project Name: ").concat(project.projectName, "</h3>\n        <h3>Project Description: ").concat(project.projectDescription, "</h3>\n        <h3>Estimated Duration: ").concat(project.estimatedDuration, "</h3>\n        <h3>Date of Submission: ").concat(project.createDate, "</h3>\n        <h3>Current Status: ").concat(project.status, "</h3>\n        <h3>Organization: ").concat((0, _Organization.default)(project.organization), "</h3>\n        ");
   }).join(''), "     \n    ");
 }
-},{}],"js/components/VolunteerDashboard.js":[function(require,module,exports) {
+},{"./Organization":"js/components/Organization.js"}],"js/components/VolunteerDashboard.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -911,9 +926,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50456" + '/');
-
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53672" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
