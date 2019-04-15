@@ -51,7 +51,7 @@ public class SkillController {
 		return skillRepo.findById(skillId).get();
 	}
 	
-	@GetMapping("{volunteerId}/add")
+	@GetMapping("/{volunteerId}/add")
 	public Collection<Skill> getUnusedSkills(@PathVariable Long volunteerId) {
 		Volunteer volunteer = volunteerRepo.findById(volunteerId).get();
 		ArrayList<Skill> remainingSkills = new ArrayList<>();
