@@ -39,6 +39,32 @@ body {
   position: relative;
 }
 
+/* button styling */
+.js--enter__volunteer, .js--enter__organization, .js--sign-up__volunteer, .js--sign-up__organization, .js--see-organizations, .js-vol-signin, .js-org-signin {
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
+  font-size: 30px;
+  padding: 1.5rem;
+  margin: 1rem;
+  border-radius: 8px;
+  box-shadow: 5px 5px 50px 15px rgb(96, 117, 67, .4);
+}
+
+/* text box styling */
+.add__jobTitle, .add__firstName, .add__lastName, .add__volUserName, .add__volPassword, .add__phoneNum, .add__email, .vol-password, .vol-username, .org-username, .org-password {
+  width: 40%;
+  border: 2px solid rgb(0, 0, 0, 0.7);
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.add__jobTitle {
+  width: 60%;
+}
+
 .volForm__container {
   display: grid;
 	grid-gap: 5px 5px;
@@ -60,30 +86,6 @@ body {
 }
 
 
-
-/* input[type=text] {
-  width: 40%;
-  border: 2px solid rgb(0, 0, 0, 0.7);
-  border-radius: 4px;
-  margin: 8px 0;
-  outline: none;
-  padding: 10px;
-  box-sizing: border-box;
-} */
-
-.add__jobTitle, .add__firstName, .add__lastName, .add__volUserName, .add__volPassword, .add__phoneNum, .add__email {
-  width: 40%;
-  border: 2px solid rgb(0, 0, 0, 0.7);
-  border-radius: 4px;
-  margin: 8px 0;
-  outline: none;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.add__jobTitle {
-  width: 60%;
-}
 
 .contact-info__container {
   grid-column: 1 / span 2;
@@ -134,15 +136,6 @@ body {
     
 }
 
-.js--sign-up__volunteer, .js--sign-up__organization, .js--see-organizations {
-  background-color: var(--secondary-gray);
-  color: var(--tertiary-white);
-  font-size: 30px;
-  padding: 1.5rem;
-  margin: 1rem;
-  border-radius: 8px;
-  box-shadow: 5px 5px 50px 15px rgb(96, 117, 67, .4);
-}
 
 h1 {
   font-size: 60px;
@@ -222,5 +215,31 @@ h6 {
   grid-row: 1 / span 1;
   text-align: left;
 }
+
+/* start org and vol landing grid */
+.vollanding__grid-container, .orglanding__grid-container {
+    display: grid;
+    grid-gap: 5px;
+    /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-rows: repeat(2, 100px); */
+    grid-template-columns: 4, 1fr;
+    grid-template-rows: 2, 1fr;
+}
+
+.orglanding__signin {
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1; 
+}
+
+.orglanding__button {
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1; 
+}
+
+.orglanding__signup {
+  grid-column: 3 / span 2;
+  grid-row: 2 / span 2; 
+}
+
 
 /*# sourceMappingURL=/css.967bad95.css.map */
