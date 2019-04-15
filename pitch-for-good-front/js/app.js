@@ -15,6 +15,7 @@ import VolLanding from './components/VolLanding'
 import OrgLanding from './components/OrgLanding'
 import VolunterSearch from './components/VolunteerSearch'
 import VolunteerList from './components/VolunteerList'
+import addSkills from './components/addSkills'
 
 
 main()
@@ -44,6 +45,8 @@ function main() {
     OrgEnter()
     orgSignIn()
     deleteOrgAccount()
+    volAddSkills()
+    
 
 }
 
@@ -64,6 +67,18 @@ function getOrganizations() {
                     getAppContext().innerHTML = Organizations(volunteer, organizations)
                 })
             })  
+        }
+    })
+}
+
+function volAddSkills() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js--vol-add-skills')) {
+            api.getRequest(`http://localhost:8080/volunteers/${event.target.id}`, volunteer => {
+                api.getRequest(`http://localhost:8080/skills/${event.target.id}/add`, skills => {
+                    getAppContext().innerHTML = addSkills(volunteer, skills)
+                })
+            })
         }
     })
 }
