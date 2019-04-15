@@ -1,5 +1,6 @@
 package org.wecancodeit.pitchforgood.controllers;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -44,9 +45,26 @@ public class SkillController {
 	public Collection<Skill> getSkills() {
 		return (Collection<Skill>) skillRepo.findAll();
 	}
+	
 	@GetMapping("/{skillId}")
 	public Skill getSingleSkill(@PathVariable Long skillId) {
 		return skillRepo.findById(skillId).get();
+	}
+	
+	@GetMapping("/{volunteerId}/add")
+	public Collection<Skill> getUnusedSkills(@PathVariable Long volunteerId) {
+		Volunteer volunteer = volunteerRepo.findById(volunteerId).get();
+		ArrayList<Skill> remainingSkills = new ArrayList<>();
+		Collection<Skill> currentSkills = volunteer.getSkills();
+		Collection<Skill> allSkills = (Collection<Skill>) skillRepo.findAll();
+		
+		for(Skill skill : allSkills){
+		    if(currentSkills.contains(skill)){
+		        continue;
+		    }else{
+		        remainingSkills.add(skill);
+		    }
+		} return remainingSkills;
 	}
 	
 
