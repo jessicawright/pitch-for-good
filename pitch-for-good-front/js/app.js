@@ -24,7 +24,6 @@ function main() {
 
 
     getOrganizations()
-    // viewSingleOrganization()
     volClickToSignUp()
     createNewVolunteer()
     getProjectForm()
@@ -44,10 +43,7 @@ function main() {
     VolLanding()
     OrgEnter()
     orgSignIn()
-    //OrganizationDashboard()
     deleteOrgAccount()
-    //VolForm()
-    orgSignIn()
 
 }
 
@@ -228,10 +224,8 @@ function addOrganization() {
             const contactPerson = document.querySelector('.add__contactPerson').value
             const contactEmail = document.querySelector(".add__contactEmail").value
             const orgUrl = document.querySelector('.add__orgUrl').value
-
             const orgUserName = document.querySelector('.add__orgUserName').value
             const orgPassword = document.querySelector('.add__orgPassword').value
-
             
             const causes = Array.from(document.querySelectorAll('.cause__causeName'))
             .filter((checkbox) => checkbox.checked)

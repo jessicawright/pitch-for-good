@@ -2,7 +2,7 @@ package org.wecancodeit.pitchforgood.controllers;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Optional;
+import java.util.Iterator;
 
 import javax.annotation.Resource;
 
@@ -138,27 +138,12 @@ public class VolunteerController {
 	public Collection<Volunteer> deleteVolunteer(@PathVariable Long volunteerId) {
 		System.out.println(volunteerId);
 		Volunteer volunteerToDelete = volunteerRepo.findById(volunteerId).get();
-		Collection<Skill> skillsToRemove = volunteerToDelete.getSkills();
-		if (skillsToRemove != null) {
-			for (Skill skill : skillsToRemove) {
-				volunteerToDelete.removeSkill(skill);
-			}
-		} 
-		volunteerRepo.save(volunteerToDelete);
-		Collection<Cause> causesToRemove = volunteerToDelete.getCauses();
-		if (causesToRemove != null) {
-			for (Cause cause : causesToRemove) {
-				volunteerToDelete.removeCause(cause);
-			}
-		}
-		volunteerRepo.save(volunteerToDelete);
-		Collection<Project> projectsToRemove = volunteerToDelete.getProjects();
-		if (projectsToRemove != null) {
-			for (Project project : projectsToRemove) {
-				volunteerToDelete.removeProject(project);
-			}
-		}
-		volunteerRepo.save(volunteerToDelete);
+		System.out.println(volunteerToDelete);
+		
+		volunteerToDelete.removeSkillsInCollection();
+		volunteerToDelete.removeCausesInCollection();
+		volunteerToDelete.removeProjectsInCollection();
+		
 		volunteerRepo.delete(volunteerToDelete);
 		return (Collection<Volunteer>) volunteerRepo.findAll();
 	}
