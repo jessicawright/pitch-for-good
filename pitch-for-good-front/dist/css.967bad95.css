@@ -88,6 +88,7 @@ body {
 
 
 
+
 /* input[type=text] {
   width: 40%;
   border: 2px solid rgb(0, 0, 0, 0.7);
@@ -163,6 +164,7 @@ body {
 }
 
 
+
 .js--sign-up__volunteer, .js--sign-up__organization, .js--see-organizations {
 
   background-color: var(--secondary-gray);
@@ -173,6 +175,7 @@ body {
   border-radius: 8px;
   box-shadow: 5px 5px 50px 15px rgb(96, 117, 67, .4);
 }
+
 
 
 h1 {

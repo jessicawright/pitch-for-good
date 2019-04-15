@@ -82,7 +82,7 @@ public class Initializer implements CommandLineRunner {
 		Skill skill27 = skillRepo.save(new Skill("Fitness"));
 		
 		Organization organization1 = organizationRepo.save(new Organization("Ohio Environmental Council", "We want to protect the environment.", "Jason", "jason@gmail.com", "jason.com", "username1", "password"));
-		Organization organization2 = organizationRepo.save(new Organization("Columbus Literacy Council", "We want to help ESL students learn English.", "Ariel", "ariel@gmail.com", "ariel.com", "username2", "password"));
+		Organization organization2 = organizationRepo.save(new Organization("Columbus Literacy Council", "We want to help ESL students learn English.", "Ariel", "arielwebb12@gmail.com", "ariel.com", "username2", "password"));
 		Organization organization3 = organizationRepo.save(new Organization("Ohio House Rabbit Rescue", "We want to protect the rabbits.", "Adam", "adam@gmail.com", "adam.com", "username3", "password"));
 		Organization organization4 = organizationRepo.save(new Organization("Children's Hunger Alliance", "We want to help families get food.", "Ben", "ben@gmail.com", "ben.com", "username4", "password"));
 		Organization organization5 = organizationRepo.save(new Organization("Tech Corps", "We want to help kids gain access to learning technological skills.", "Jess", "jess@gmail.com", "jess.com", "username5", "password"));
