@@ -31,6 +31,7 @@ public class Project {
 	private Organization organization;
 	@ManyToMany
 	private Collection<Skill> skills;
+	@JsonIgnore
 	@ManyToOne
 	private Volunteer volunteer;
 	
@@ -38,12 +39,13 @@ public class Project {
 	public Project() {}
 
 	
-	public Project(String projectName, String projectDescription, String estimatedDuration, Organization organization) {
+	public Project(String projectName, String projectDescription, String estimatedDuration, Organization organization, Volunteer volunteer) {
 		this.projectName = projectName;
 		this.projectDescription = projectDescription;
 		this.estimatedDuration = estimatedDuration;
 		this.createDate = LocalDateTime.now();
 		this.status = true;
+		this.volunteer = volunteer;
 		this.organization = organization;
 		this.skills = new ArrayList<Skill>();
 		

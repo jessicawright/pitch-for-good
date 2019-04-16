@@ -77,7 +77,7 @@ public class ProjectController {
 		Long pitchedOrg = Long.parseLong(organization);
 		Organization finalOrganization = organizationRepo.findById(pitchedOrg).get();
 		
-		Project project = new Project(projectName, projectDescription, estimatedDuration, finalOrganization);
+		Project project = new Project(projectName, projectDescription, estimatedDuration, finalOrganization, finalVolunteer);
 		projectRepo.save(project);
 		
 		ArrayList<String> skills = new ArrayList<String>(); 
