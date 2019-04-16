@@ -12,6 +12,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Project {
 	
@@ -25,6 +27,7 @@ public class Project {
 	private LocalDateTime createDate;
 	private boolean status;
 	@ManyToOne
+	@JsonIgnore
 	private Organization organization;
 	@ManyToMany
 	private Collection<Skill> skills;

@@ -274,7 +274,7 @@ exports.default = Project;
 
 function Project(projects) {
   return "\n    ".concat(projects.map(function (project) {
-    return "\n\n        <h2 class=\"project__projectName\" id=\"".concat(project.projectId, "\">").concat(project.projectName, "</h2>\n        <h2 class=\"project__createDate\">").concat(project.createDate, "</h2>\n        ");
+    return "\n\n        <h2 class=\"project__projectName\" id=\"".concat(project.projectId, "\">Project name: ").concat(project.projectName, "</h2>\n        <h3 class=\"project__projectDescription\">Project description: ").concat(project.projectDescription, "</h3>\n        <h3 class=\"project__estimatedDuration\">Estimated project duration: ").concat(project.estimatedDuration, "</h3>\n        <h3 class=\"project__createDate\">Date project was created: ").concat(project.createDate, "</h3>\n        <h3 class=\"project__status\">Current project status: ").concat(project.status, "</h3>\n        \n        ");
   }).join(''), "     \n    ");
 }
 },{}],"js/components/VolunteerDashboard.js":[function(require,module,exports) {
@@ -319,12 +319,14 @@ exports.default = OrganizationDashboard;
 
 var _Cause = _interopRequireDefault(require("./Cause"));
 
+var _Project = _interopRequireDefault(require("./Project"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function OrganizationDashboard(organization) {
-  return "\n    <h1>Welcome, ".concat(organization.orgName, "!</h1>\n\n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>Organization: ").concat(organization.orgName, "</li>\n        <li>Mission: ").concat(organization.orgMission, "</li>\n        <li>Contact Person: ").concat(organization.contactPerson, "</li>\n        <li>Contact Email: ").concat(organization.orgEmail, "</li>\n        <li>Website: ").concat(organization.websiteUrl, "</li>\n    </ul>\n\n    <h2>Your organization supports:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(organization.causes), "</li>\n    </ul>\n    <h3>Click to search volunteers</h3>\n    <button class=\"js-get-volunteer-search\" id=\"").concat(organization.organizationId, "\">click here</button>\n    ");
+  return "\n    <h1>Welcome, ".concat(organization.orgName, "!</h1>\n\n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>Organization: ").concat(organization.orgName, "</li>\n        <li>Mission: ").concat(organization.orgMission, "</li>\n        <li>Contact Person: ").concat(organization.contactPerson, "</li>\n        <li>Contact Email: ").concat(organization.orgEmail, "</li>\n        <li>Website: ").concat(organization.websiteUrl, "</li>\n    </ul>\n\n    <h2>Your organization supports:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(organization.causes), "</li>\n    </ul>\n\n    <h2>Projects that have been pitched to you:</h2>\n    <ul>\n        <li>").concat((0, _Project.default)(organization.projects), "</li>\n    </ul>\n\n    <h3>Click to search volunteers</h3>\n    <button class=\"js-get-volunteer-search\" id=\"").concat(organization.organizationId, "\">click here</button>\n    ");
 }
-},{"./Cause":"js/components/Cause.js"}],"js/components/VolHeader.js":[function(require,module,exports) {
+},{"./Cause":"js/components/Cause.js","./Project":"js/components/Project.js"}],"js/components/VolHeader.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -908,7 +910,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50700" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51629" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
