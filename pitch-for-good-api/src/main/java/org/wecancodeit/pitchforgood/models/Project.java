@@ -1,6 +1,7 @@
 package org.wecancodeit.pitchforgood.models;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -45,8 +46,13 @@ public class Project {
 		
 	}
 	
+	public String getCreateDate() {
+		LocalDateTime postDateTime = createDate;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+		String formattedStringDate = postDateTime.format(formatter);
+		return formattedStringDate;
+	}
 	
-
 	public Long getProjectId() {
 		return projectId;
 	}
@@ -63,9 +69,6 @@ public class Project {
 		return estimatedDuration;
 	}
 
-	public LocalDateTime getCreateDate() {
-		return createDate;
-	}
 	
 	public boolean getStatus() {
 		return status;
