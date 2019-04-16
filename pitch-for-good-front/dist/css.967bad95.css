@@ -87,33 +87,6 @@ body {
 
 
 
-
-
-/* input[type=text] {
-  width: 40%;
-  border: 2px solid rgb(0, 0, 0, 0.7);
-  border-radius: 4px;
-  margin: 8px 0;
-  outline: none;
-  padding: 10px;
-  box-sizing: border-box;
-} */
-
-.add__jobTitle, .add__firstName, .add__lastName, .add__volUserName, .add__volPassword, .add__phoneNum, .add__email {
-  width: 40%;
-  border: 2px solid rgb(0, 0, 0, 0.7);
-  border-radius: 4px;
-  margin: 8px 0;
-  outline: none;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.add__jobTitle {
-  width: 60%;
-}
-
-
 .contact-info__container {
   grid-column: 1 / span 2;
 }
@@ -162,20 +135,6 @@ body {
   box-shadow: 5px 5px 50px 15px var(--secondary-gray, .4);
     
 }
-
-
-
-.js--sign-up__volunteer, .js--sign-up__organization, .js--see-organizations {
-
-  background-color: var(--secondary-gray);
-  color: var(--tertiary-white);
-  font-size: 30px;
-  padding: 1.5rem;
-  margin: 1rem;
-  border-radius: 8px;
-  box-shadow: 5px 5px 50px 15px rgb(96, 117, 67, .4);
-}
-
 
 
 h1 {
