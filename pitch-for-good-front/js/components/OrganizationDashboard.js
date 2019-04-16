@@ -1,4 +1,5 @@
 import Cause from './Cause'
+import Project from  './Project'
 
 export default function OrganizationDashboard(organization) {
     return `
@@ -17,6 +18,12 @@ export default function OrganizationDashboard(organization) {
     <ul>
         <li>${Cause(organization.causes)}</li>
     </ul>
+
+    <h2>Projects that have been pitched to you:</h2>
+    <ul>
+        <li>${Project(organization.projects)}</li>
+    </ul>
+
     <h3>Click to search volunteers</h3>
     <button class="js-get-volunteer-search" id="${organization.organizationId}">click here</button>
     `;

@@ -30,7 +30,7 @@ public class Organization {
 	@ManyToMany
 	private Collection<Cause> causes;
 	@OneToMany //(mappedBy="organization")
-	@JsonIgnore
+	
 	private Collection<Project> projects;
 	
 	public Organization() {}
