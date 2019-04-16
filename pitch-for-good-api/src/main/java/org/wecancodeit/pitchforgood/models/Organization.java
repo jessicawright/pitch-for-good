@@ -19,6 +19,7 @@ public class Organization {
 	@GeneratedValue
 	private Long organizationId;
 	private String orgName;
+	private String orgLogo;
 	@Lob
 	private String orgMission;
 	private String contactPerson;
@@ -35,8 +36,9 @@ public class Organization {
 	public Organization() {}
 
 	
-	public Organization(String orgName, String orgMission, String contactPerson, String orgEmail, String websiteUrl, String orgUserName, String orgPassword) {
+	public Organization(String orgName, String orgLogo, String orgMission, String contactPerson, String orgEmail, String websiteUrl, String orgUserName, String orgPassword) {
 		this.orgName = orgName;
+		this.orgLogo = orgLogo;
 		this.orgMission = orgMission;
 		this.contactPerson = contactPerson;
 		this.orgEmail = orgEmail;

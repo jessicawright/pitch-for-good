@@ -14,7 +14,7 @@ public class VolunteerTest {
 	Volunteer underTest = new Volunteer("","","","","","","");
 	Skill skill = new Skill("");
 	Cause cause = new Cause("","");
-	Organization organization = new Organization("","","","","", null, null);
+	Organization organization = new Organization("","","","","","", null, null);
 	Project project = new Project("","","", organization);
 	
 	@Test

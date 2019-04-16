@@ -11,7 +11,7 @@ import org.wecancodeit.pitchforgood.models.Volunteer;
 
 public class ProjectTest {
 	
-	Organization organization = new Organization("Habitat for Humanity","","","","", null, null);
+	Organization organization = new Organization("Habitat for Humanity","","","","","", null, null);
 	Project underTest = new Project("kids","","", organization);
 	Skill skill = new Skill("");
 	Volunteer volunteer = new Volunteer("","","","","","","");

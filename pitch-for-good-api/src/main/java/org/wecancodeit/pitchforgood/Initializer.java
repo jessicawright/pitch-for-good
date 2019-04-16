@@ -81,11 +81,20 @@ public class Initializer implements CommandLineRunner {
 		Skill skill26 = skillRepo.save(new Skill("Real Estate"));
 		Skill skill27 = skillRepo.save(new Skill("Fitness"));
 		
-		Organization organization1 = organizationRepo.save(new Organization("Ohio Environmental Council", "We want to protect the environment.", "Jason", "jason@gmail.com", "jason.com", "username1", "password"));
-		Organization organization2 = organizationRepo.save(new Organization("Columbus Literacy Council", "We want to help ESL students learn English.", "Ariel", "arielwebb12@gmail.com", "ariel.com", "username2", "password"));
-		Organization organization3 = organizationRepo.save(new Organization("Ohio House Rabbit Rescue", "We want to protect the rabbits.", "Adam", "adam@gmail.com", "adam.com", "username3", "password"));
-		Organization organization4 = organizationRepo.save(new Organization("Children's Hunger Alliance", "We want to help families get food.", "Ben", "ben@gmail.com", "ben.com", "username4", "password"));
-		Organization organization5 = organizationRepo.save(new Organization("Tech Corps", "We want to help kids gain access to learning technological skills.", "Jess", "jess@gmail.com", "jess.com", "username5", "password"));
+		Organization organization1 = organizationRepo.save(new Organization("Ohio Environmental Council", "https://theoec.org/wp-content/uploads/2019/02/fifty_logo.png","The Ohio Environmental Council is the state’s most comprehensive, effective and respected environmental advocate for a healthier, more sustainable Ohio. "
+				+ "Our experts work daily to restore, protect, and strengthen the quality of life for families and communities—from the air we breathe and the water we drink to the food we eat and natural resources we enjoy.", 
+				"TAMALIYAPO MPHANDE", "jsunh98@gmail.com", " OEC@theOEC.org", "username1", "password"));
+		Organization organization2 = organizationRepo.save(new Organization("Columbus Gives Back", "https://columbusgivesback.org/wp-content/uploads/2018/01/CGB-Logo.png","We’re proud to partner with so many local organizations, but the heart of Columbus Gives Back is our leadership team. We strive to create a welcoming, engaging, and fun experience for you at every event – something that sets CGB apart from other volunteer opportunities.",
+				 "Taylor Putnam-Majarian", "jsunh98@gmail.com", "www.columbusgivesback.org", "username2", "password"));
+		Organization organization3 = organizationRepo.save(new Organization("See Kids Dream", "http://seekidsdream.org/wp-content/themes/seekidsdream/img/images/logo.png","To empower youth with the skills, motivation and confidence" + 
+				"to make the world a better place", "Cynthia Armstrong", "jsunh98@gmail.com", "http://seekidsdream.org", "username3", "password"));
+		Organization organization4 = organizationRepo.save(new Organization("Children's Hunger Alliance", "https://childrenshungeralliance.org/wp-content/uploads/2016/08/CHA-Logo_NoTag_Transparent-e1480374378812.png","Our mission is to ensure that children" + 
+				"without access receive healthy food, nutrition education, and physical activity.", "Adrienne Galloway", "jsunh98@gmail.com", "childrenshungeralliance.org", "username4", "password"));
+		Organization organization5 = organizationRepo.save(new Organization("Tech Corps", "http://www.techcorps.org/sites/default/files/tclogo250.png","To create a technologically literate society in which all K-12 students have equal access to the technology skills, "
+				+ "programs and resources that will enrich their education today and prepare them for college or career tomorrow.", "Jess", "jsunh98@gmail.com", "http://www.techcorps.org", "username5", "password"));
+		Organization organization6 = organizationRepo.save(new Organization("Mid Ohio Food Bank", "https://www.midohiofoodbank.org/wordpress/wp-content/themes/MOFB_Ibel_Agency_Child_Theme/img/image002.jpeg", 
+				"At Mid-Ohio Foodbank, we find it unacceptable for thousands of our neighbors—most of them children and seniors—to go hungry. "
+				+ "We aim to provide efficient, effective ways for hungry people to meet their basic food and nutrition needs.", "info", "info@midohiofoodbank.org", "www.midohiofoodbank.org", null, null));
 		
 		Volunteer volunteer1 = volunteerRepo.save(new Volunteer("John", "Smith", "username1", "password", "8675309", "johnsmith@gmail.com", "Teacher"));
 		Volunteer volunteer2 = volunteerRepo.save(new Volunteer("Stuart", "Little", "username2", "password", "8671111", "stuartlittle@gmail.com", "Cheese Chef"));

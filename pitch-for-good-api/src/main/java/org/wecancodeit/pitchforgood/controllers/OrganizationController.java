@@ -87,6 +87,7 @@ public class OrganizationController {
 	public Organization addOrganization(@RequestBody String body) throws JSONException {
 		JSONObject newOrganization = new JSONObject(body);
 		String orgName = newOrganization.getString("orgName");
+		String orgLogo = newOrganization.getString("orgLogo");
 		String mission = newOrganization.getString("mission");
 		String contactPerson = newOrganization.getString("contactPerson");
 		String contactEmail = newOrganization.getString("contactEmail");
@@ -94,7 +95,7 @@ public class OrganizationController {
 		String orgUserName = newOrganization.getString("orgUserName");
 		String orgPassword = newOrganization.getString("orgPassword");
 		
-		Organization organization = new Organization(orgName, mission, contactPerson, contactEmail, website, orgUserName, orgPassword);
+		Organization organization = new Organization(orgName, orgLogo, mission, contactPerson, contactEmail, website, orgUserName, orgPassword);
 		organizationRepo.save(organization);
 		
 		ArrayList<String> causes = new ArrayList<String>(); 
