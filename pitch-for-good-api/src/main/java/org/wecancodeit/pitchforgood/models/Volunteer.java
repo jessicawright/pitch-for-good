@@ -23,7 +23,6 @@ public class Volunteer {
 	private String email;
 	private String jobTitle;
 	@ManyToMany
-	
 	private Collection<Skill> skills;
 	@ManyToMany
 	private Collection<Cause> causes;
