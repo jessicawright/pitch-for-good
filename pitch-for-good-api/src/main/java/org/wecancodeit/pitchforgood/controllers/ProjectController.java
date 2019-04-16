@@ -8,6 +8,10 @@ import javax.annotation.Resource;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +28,7 @@ import org.wecancodeit.pitchforgood.repositories.OrganizationRepository;
 import org.wecancodeit.pitchforgood.repositories.ProjectRepository;
 import org.wecancodeit.pitchforgood.repositories.SkillRepository;
 import org.wecancodeit.pitchforgood.repositories.VolunteerRepository;
+import org.wecancodeit.pitchforgood.service.NotificationService;
 
 @CrossOrigin
 @RestController
@@ -40,6 +45,10 @@ public class ProjectController {
 	ProjectRepository projectRepo;
 	@Resource
 	CauseRepository causeRepo;
+	
+	private Logger logger = LoggerFactory.getLogger(ProjectController.class);
+	@Autowired
+	private NotificationService notificationService;
 	
 	@GetMapping("")
 	public Collection<Project> getProjects() {
@@ -92,6 +101,14 @@ public class ProjectController {
 		finalVolunteer.addProjectToVolunteer(project);
 		volunteerRepo.save(finalVolunteer);
 		organizationRepo.save(finalOrganization);
+		
+		System.out.println("|"+finalOrganization.getOrgEmail()+"|" );
+		try {
+			notificationService.sendNotification(finalOrganization);
+		}catch(MailException e) {
+			// catch error
+			logger.info("error sending:" + e.getMessage());
+		}
 		return finalVolunteer;
 	}
 	

@@ -11,19 +11,13 @@ import org.wecancodeit.pitchforgood.models.Volunteer;
 
 public class ProjectTest {
 	
-	Organization organization = new Organization("Habitat for Humanity","","","","");
+	Organization organization = new Organization("Habitat for Humanity","","","","", null, null);
 	Project underTest = new Project("kids","","", organization);
 	Skill skill = new Skill("");
 	Volunteer volunteer = new Volunteer("","","","","","","");
 
 	
-	@Test
-	public void shouldAddVolunteer() {
-		underTest.addVolunteerToProject(volunteer);
-		Volunteer volunteerFromDatabase = underTest.getVolunteer();
-		assertThat(volunteerFromDatabase, is(volunteer));
-		
-	}
+	
 	@Test
 	public void shouldAddOrganization() {
 		underTest.addOrganizationToProject(organization);

@@ -10,7 +10,7 @@ import org.wecancodeit.pitchforgood.models.Volunteer;
 public class CauseTest {
 	
 	Cause underTest = new Cause("TestCause", "");
-	Organization organization = new Organization("","","","","");
+	Organization organization = new Organization("","","","","", null, null);
 	Volunteer volunteer = new Volunteer("","","","","","","");
 	
 	@Test

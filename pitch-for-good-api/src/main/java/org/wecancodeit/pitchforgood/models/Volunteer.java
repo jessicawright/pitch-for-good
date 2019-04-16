@@ -107,17 +107,29 @@ public class Volunteer {
 		skills.remove(skill);
 		
 	}
+	
+	public void removeSkillsInCollection() {
+		skills.removeAll(skills);
+	}
 
 
 	public void removeCause(Cause cause) {
 		causes.remove(cause);
 		
 	}
+	
+	public void removeCausesInCollection() {
+		causes.removeAll(causes);
+	}
 
 
 	public void removeProject(Project project) {
 		projects.remove(project);
 		
+	}
+	
+	public void removeProjectsInCollection() {
+		projects.removeAll(projects);
 	}
 	
 }

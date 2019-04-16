@@ -91,15 +91,9 @@ public class Project {
 		
 	}
 
-
 	public void addOrganizationToProject(Organization organization) {
 		this.organization = organization;
 		
 	}
-
-
-
 	
-
-
 }

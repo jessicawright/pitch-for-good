@@ -2,7 +2,7 @@ package org.wecancodeit.pitchforgood.controllers;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Optional;
+import java.util.Iterator;
 
 import javax.annotation.Resource;
 
@@ -65,6 +65,63 @@ public class VolunteerController {
 	public Volunteer getSingleVolunteer(@PathVariable Long id) {
 		return volunteerRepo.findById(id).get();
 	}
+	
+	@PostMapping("/add/skills")
+	public Volunteer addAdditionalSkillsToVolunteer(@RequestBody String body) throws JSONException {
+		JSONObject skills = new JSONObject(body);
+		String volId = skills.getString("volId");
+		Long volIdLong = (Long.parseLong(volId));
+		Volunteer volunteer = volunteerRepo.findById(volIdLong).get();
+		ArrayList<String> skill = new ArrayList<String>(); 
+		ArrayList<Long> skillsToAdd = new ArrayList<Long>();
+		JSONArray jsonArray = skills.getJSONArray("skills"); 
+		if (jsonArray != null) { 
+			   for (int i = 0; i < jsonArray.length(); i++){ 
+				   skill.add(jsonArray.get(i).toString());
+			   } 
+			} 
+		if (skills != null) {
+			for (String skill1 : skill) {
+				skillsToAdd.add((Long.parseLong(skill1)));
+			}
+		}
+		for (Long skill2 : skillsToAdd) {
+			Skill skillToAdd = skillRepo.findById(skill2).get();
+		  	volunteer.addSkillToVolunteer(skillToAdd);
+		  	volunteerRepo.save(volunteer);
+		}
+		
+		return volunteer;
+	} 
+	
+	
+	@PostMapping("/add/causes")
+	public Volunteer addAdditionalCausesToVolunteer(@RequestBody String body) throws JSONException {
+		JSONObject causes = new JSONObject(body);
+		String volId = causes.getString("volId");
+		Long volIdLong = (Long.parseLong(volId));
+		Volunteer volunteer = volunteerRepo.findById(volIdLong).get();
+		ArrayList<String> cause = new ArrayList<String>(); 
+		ArrayList<Long> causesToAdd = new ArrayList<Long>();
+		JSONArray jsonArray = causes.getJSONArray("causes"); 
+		if (jsonArray != null) { 
+			   for (int i = 0; i < jsonArray.length(); i++){ 
+				   cause.add(jsonArray.get(i).toString());
+			   } 
+			} 
+		if (causes != null) {
+			for (String cause1 : cause) {
+				causesToAdd.add((Long.parseLong(cause1)));
+			}
+		}
+		for (Long cause2 : causesToAdd) {
+			Cause causeToAdd = causeRepo.findById(cause2).get();
+		  	volunteer.addCauseToVolunteer(causeToAdd);
+		  	volunteerRepo.save(volunteer);
+		}
+		return volunteer;
+	} 
+	
 	
 	@GetMapping("/{id}/organizations")
 	public Collection<Organization> getOrganizationsAsVolunteer(@PathVariable Long id) {
@@ -138,29 +195,15 @@ public class VolunteerController {
 	public Collection<Volunteer> deleteVolunteer(@PathVariable Long volunteerId) {
 		System.out.println(volunteerId);
 		Volunteer volunteerToDelete = volunteerRepo.findById(volunteerId).get();
-		Collection<Skill> skillsToRemove = volunteerToDelete.getSkills();
-		if (skillsToRemove != null) {
-			for (Skill skill : skillsToRemove) {
-				volunteerToDelete.removeSkill(skill);
-			}
-		} 
-		volunteerRepo.save(volunteerToDelete);
-		Collection<Cause> causesToRemove = volunteerToDelete.getCauses();
-		if (causesToRemove != null) {
-			for (Cause cause : causesToRemove) {
-				volunteerToDelete.removeCause(cause);
-			}
-		}
-		volunteerRepo.save(volunteerToDelete);
-		Collection<Project> projectsToRemove = volunteerToDelete.getProjects();
-		if (projectsToRemove != null) {
-			for (Project project : projectsToRemove) {
-				volunteerToDelete.removeProject(project);
-			}
-		}
-		volunteerRepo.save(volunteerToDelete);
+		System.out.println(volunteerToDelete);
+		
+		volunteerToDelete.removeSkillsInCollection();
+		volunteerToDelete.removeCausesInCollection();
+		volunteerToDelete.removeProjectsInCollection();
+		
 		volunteerRepo.delete(volunteerToDelete);
 		return (Collection<Volunteer>) volunteerRepo.findAll();
 	}
+
 	
 }
