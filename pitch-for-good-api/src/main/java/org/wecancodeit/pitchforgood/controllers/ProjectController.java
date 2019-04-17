@@ -100,6 +100,7 @@ public class ProjectController {
 		
 		finalVolunteer.addProjectToVolunteer(project);
 		volunteerRepo.save(finalVolunteer);
+		finalOrganization.addProjectToOrganization(project);
 		organizationRepo.save(finalOrganization);
 		
 		System.out.println("|"+finalOrganization.getOrgEmail()+"|" );
