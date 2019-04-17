@@ -1,5 +1,5 @@
 import Cause from './Cause'
-import Project from  './Project'
+import OrgProject from  './OrgProject'
 
 export default function OrganizationDashboard(organization) {
     return `
@@ -21,7 +21,7 @@ export default function OrganizationDashboard(organization) {
 
     <h2>Projects that have been pitched to you:</h2>
     <ul>
-        <li>${Project(organization.projects)}</li>
+        <li>${OrgProject(organization.projects)}</li>
     </ul>
 
     <h3>Click to search volunteers</h3>
