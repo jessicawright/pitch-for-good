@@ -379,7 +379,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolunterSearch;
 
 function VolunterSearch(organization, skills) {
-  return "\n        <h3>Search for volunteers by a skill here:</h3>\n        <select class=\"\">\n        ".concat(skills.map(function (skill) {
+  return "\n        <h3>Search for volunteers by a skill here:</h3>\n        <select id=\"skillId\">\n        ".concat(skills.map(function (skill) {
     return "\n                <option class=\"js-dropdown-skill\" id=\"".concat(skill.skillId, "\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "</option> \n            ");
   }).join(''), "\n        </select>      \n                \n        <button class=\"js-find-volunteers-by-skill button\" id=\"").concat(organization.organizationId, "\">Find Volunteers</button>\n    ");
 }
@@ -413,7 +413,7 @@ function VolunteerList(organization, skill, volunteers) {
   console.log(skill.skillId);
   return "\n    ".concat(volunteers.map(function (volunteer) {
     return "\n        <h2 class=\"volunteer\" id=\"".concat(volunteer.volunteerId, "\">").concat(volunteer.firstName, " ").concat(volunteer.lastName, "</h2>\n        <h3 class =\"volunteer__email\">").concat(volunteer.email, "</h3>\n        ");
-  }).join(''), "\n    <ul class=\"volunteers\">\n    \n    <button class=\"js-back-to-dashboard\" id=\"").concat(organization.organizationId, "\">Back to Dashboard</button>\n    ");
+  }).join(''), "\n    <ul class=\"volunteers\">\n    \n    <button class=\"js-back-to-org-dashboard\" id=\"").concat(organization.organizationId, "\">Back to Dashboard</button>\n    ");
 }
 },{"./Volunteers":"js/components/Volunteers.js"}],"js/components/addSkills.js":[function(require,module,exports) {
 "use strict";
@@ -802,7 +802,7 @@ function getVolunteerListFromForm() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js-find-volunteers-by-skill')) {
       _apiActions.default.getRequest("http://localhost:8080/organizations/".concat(event.target.id), function (organization) {
-        var skillId = document.querySelector('.js-dropdown-skill').id;
+        var skillId = document.getElementById('skillId').value;
 
         _apiActions.default.getRequest("http://localhost:8080/skills/".concat(skillId), function (skill) {
           _apiActions.default.getRequest("http://localhost:8080/skills/".concat(skillId, "/volunteers"), function (volunteers) {
@@ -816,7 +816,7 @@ function getVolunteerListFromForm() {
 
 function getBackToOrgDashboard() {
   _eventActions.default.on(getAppContext(), 'click', function () {
-    if (event.target.classList.contains('js-back-to-dashboard')) {
+    if (event.target.classList.contains('js-back-to-org-dashboard')) {
       _apiActions.default.getRequest("http://localhost:8080/organizations/".concat(event.target.id), function (organization) {
         getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
         getHeaderContext().innerHTML = (0, _OrgHeader.default)(organization);
@@ -882,7 +882,7 @@ function getHeaderContext() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -911,6 +911,7 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "58535" + '/');
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -1085,5 +1086,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
 //# sourceMappingURL=/app.c3f9f951.js.map
