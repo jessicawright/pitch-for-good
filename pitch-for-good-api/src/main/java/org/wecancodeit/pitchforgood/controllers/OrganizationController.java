@@ -71,14 +71,26 @@ public class OrganizationController {
 	public Collection<Organization> deleteOrganization(@PathVariable Long organizationId) {
 		Organization organizationToDelete = organizationRepo.findById(organizationId).get();
 		
+		//delete causes in org collection
 		organizationToDelete.removeCausesInCollection();
+		
+		//delete projects in org collection
 		organizationToDelete.removeProjectsInCollection();
 		
+		//find all projects pitched to that org 
 		Collection<Project> projects = projectRepo.findAllByOrganization(organizationToDelete);
 		
+		//find all volunteers related to those projects 
+		for (Project project1 : projects) {
+			Volunteer volunteer = project1.getVolunteer();
+			//and remove the project from their collection of projects
+			volunteer.removeProject(project1);
+		}
+		
+		//delete all projects from the repo
 		projectRepo.deleteAll(projects);
 		
-		
+		//delete the organization
 		organizationRepo.delete(organizationToDelete);
 		return (Collection<Organization>) organizationRepo.findAll();
 	}
