@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.wecancodeit.pitchforgood.models.Project;
 import org.wecancodeit.pitchforgood.models.Skill;
 import org.wecancodeit.pitchforgood.models.Volunteer;
 
@@ -17,5 +18,7 @@ public interface VolunteerRepository extends CrudRepository<Volunteer, Long>{
 	Volunteer findByVolUserName(String username);
 
 	Volunteer findByVolPassword(String password);
+
+//	Volunteer findVolunteerByProject(Project project1);
 
 }
