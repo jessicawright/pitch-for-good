@@ -25,7 +25,7 @@ public class Project {
 	private String projectDescription;
 	private String estimatedDuration;
 	private LocalDateTime createDate;
-	private boolean status;
+	private String status;
 	@ManyToOne
 	@JsonIgnore
 	private Organization organization;
@@ -44,7 +44,7 @@ public class Project {
 		this.projectDescription = projectDescription;
 		this.estimatedDuration = estimatedDuration;
 		this.createDate = LocalDateTime.now();
-		this.status = true;
+		this.status = "Pitched";
 		this.volunteer = volunteer;
 		this.organization = organization;
 		this.skills = new ArrayList<Skill>();
@@ -75,13 +75,14 @@ public class Project {
 	}
 
 	
-	public boolean getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
 	public Organization getOrganization() {
 		return organization;
 	}
+	
 	public Volunteer getVolunteer() {
 		return volunteer;
 	}
@@ -90,18 +91,20 @@ public class Project {
 		return skills;
 	}
 	
+	public void toggleStatus() {
+		this.status = "Accepted";
+	}
+	
 	public void addSkillToProject(Skill skill) {
 		skills.add(skill);
 	}
 
 	public void removeSkill(Skill skill) {
 		skills.remove(skill);
-		
 	}
 
 	public void addOrganizationToProject(Organization organization) {
 		this.organization = organization;
-		
 	}
 	
 }
