@@ -51,7 +51,7 @@ function main() {
     goToVolunteerDashboard()
     volSubmitNewSkills()
     volSubmitNewCauses()
-    
+    orgAcceptProject()
 
 }
 
@@ -354,6 +354,17 @@ function getBackToOrgDashboard() {
         }
     })
 }
+
+function orgAcceptProject() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js-accept-project')) {
+            api.getRequest(`http://localhost:8080/projects/${event.target.id}/accept`, organization => {
+                getAppContext().innerHTML = OrganizationDashboard(organization)
+                getHeaderContext().innerHTML = OrgHeader(organization)
+            })
+        }
+    })
+ }
 
 function goToVolunteerDashboard() {
     events.on(getAppContext(), 'click', () => {

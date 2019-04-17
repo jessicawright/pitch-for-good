@@ -309,6 +309,19 @@ function OrgForm(causes) {
     return "\n                    <li class=\"cause\">     \n                        <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                    </li>\n                ");
   }).join(''), "\n            </ul>\n            \n            <button class=\"js-add-organization button\">Sign Up!</button>\n        ");
 }
+},{}],"js/components/OrgProject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = OrgProject;
+
+function OrgProject(projects) {
+  return "\n    ".concat(projects.map(function (project) {
+    return "\n \n        <h2 class=\"project__projectName\" id=\"".concat(project.projectId, "\">Project name: ").concat(project.projectName, "</h2>\n        <h3 class=\"project__projectDescription\">Project description: ").concat(project.projectDescription, "</h3>\n        <h3 class=\"project__estimatedDuration\">Estimated project duration: ").concat(project.estimatedDuration, "</h3>\n        <h3 class=\"project__createDate\">Date project was created: ").concat(project.createDate, "</h3>\n        <h3 class=\"project__status\">Current project status: ").concat(project.status, "</h3>\n        <h3>Accept this project by clicking the button below. The volunteer who pitched the project will receive an email that their pitch has been accepted, and will reach out to you.</h3>\n        <button class=\"js-accept-project button\" id=\"").concat(project.projectId, "\">Accept Project</button>\n        ");
+  }).join(''), "\n    ");
+}
 },{}],"js/components/OrganizationDashboard.js":[function(require,module,exports) {
 "use strict";
 
@@ -319,14 +332,14 @@ exports.default = OrganizationDashboard;
 
 var _Cause = _interopRequireDefault(require("./Cause"));
 
-var _Project = _interopRequireDefault(require("./Project"));
+var _OrgProject = _interopRequireDefault(require("./OrgProject"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function OrganizationDashboard(organization) {
-  return "\n    <h1>Welcome, ".concat(organization.orgName, "!</h1>\n\n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>Organization: ").concat(organization.orgName, "</li>\n        <li>Mission: ").concat(organization.orgMission, "</li>\n        <li>Contact Person: ").concat(organization.contactPerson, "</li>\n        <li>Contact Email: ").concat(organization.orgEmail, "</li>\n        <li>Website: ").concat(organization.websiteUrl, "</li>\n    </ul>\n\n    <h2>Your organization supports:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(organization.causes), "</li>\n    </ul>\n\n    <h2>Projects that have been pitched to you:</h2>\n    <ul>\n        <li>").concat((0, _Project.default)(organization.projects), "</li>\n    </ul>\n\n    <h3>Click to search volunteers</h3>\n    <button class=\"js-get-volunteer-search\" id=\"").concat(organization.organizationId, "\">click here</button>\n    ");
+  return "\n    <h1>Welcome, ".concat(organization.orgName, "!</h1>\n\n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>Organization: ").concat(organization.orgName, "</li>\n        <li>Mission: ").concat(organization.orgMission, "</li>\n        <li>Contact Person: ").concat(organization.contactPerson, "</li>\n        <li>Contact Email: ").concat(organization.orgEmail, "</li>\n        <li>Website: ").concat(organization.websiteUrl, "</li>\n    </ul>\n\n    <h2>Your organization supports:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(organization.causes), "</li>\n    </ul>\n\n    <h2>Projects that have been pitched to you:</h2>\n    <ul>\n        <li>").concat((0, _OrgProject.default)(organization.projects), "</li>\n    </ul>\n\n    <h3>Click to search volunteers</h3>\n    <button class=\"js-get-volunteer-search\" id=\"").concat(organization.organizationId, "\">click here</button>\n    ");
 }
-},{"./Cause":"js/components/Cause.js","./Project":"js/components/Project.js"}],"js/components/VolHeader.js":[function(require,module,exports) {
+},{"./Cause":"js/components/Cause.js","./OrgProject":"js/components/OrgProject.js"}],"js/components/VolHeader.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -508,6 +521,7 @@ function main() {
   goToVolunteerDashboard();
   volSubmitNewSkills();
   volSubmitNewCauses();
+  orgAcceptProject();
 }
 
 function goHome() {
@@ -825,6 +839,17 @@ function getBackToOrgDashboard() {
   });
 }
 
+function orgAcceptProject() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('js-accept-project')) {
+      _apiActions.default.getRequest("http://localhost:8080/projects/".concat(event.target.id, "/accept"), function (organization) {
+        getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
+        getHeaderContext().innerHTML = (0, _OrgHeader.default)(organization);
+      });
+    }
+  });
+}
+
 function goToVolunteerDashboard() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js-back-to-dashboard')) {
@@ -910,8 +935,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58535" + '/');
-
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59130" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
