@@ -333,7 +333,7 @@ function getVolunteerListFromForm() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-find-volunteers-by-skill')) {
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
-            const skillId = document.querySelector('.js-dropdown-skill').id
+            const skillId = document.getElementById('skillId').value
             api.getRequest(`http://localhost:8080/skills/${skillId}`, skill => {
                 api.getRequest(`http://localhost:8080/skills/${skillId}/volunteers`, volunteers => {
                     getAppContext().innerHTML = VolunteerList(organization, skill, volunteers)
@@ -346,7 +346,7 @@ function getVolunteerListFromForm() {
 
 function getBackToOrgDashboard() {
     events.on(getAppContext(), 'click', () => {
-        if(event.target.classList.contains('js-back-to-dashboard')) {
+        if(event.target.classList.contains('js-back-to-org-dashboard')) {
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
                 getAppContext().innerHTML = OrganizationDashboard(organization)
                 getHeaderContext().innerHTML = OrgHeader(organization)
