@@ -358,11 +358,13 @@ function getBackToOrgDashboard() {
 function orgAcceptProject() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-accept-project')) {
+            if(confirm('Are you sure you would like to accept the project? If you do, the volunteer will receive an email that their project has been accepted. They also will be able to contact you to move forward with the project.')) {
             api.getRequest(`http://localhost:8080/projects/${event.target.id}/accept`, organization => {
                 getAppContext().innerHTML = OrganizationDashboard(organization)
                 getHeaderContext().innerHTML = OrgHeader(organization)
             })
         }
+    }
     })
  }
 
