@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Organization {
 	
+
 	@Id
 	@GeneratedValue
 	private Long organizationId;
@@ -55,6 +56,10 @@ public class Organization {
 	
 	public String getOrgName() {
 		return orgName;
+	}
+	
+	public String getOrgLogo() {
+		return orgLogo;
 	}
 	
 	public String getOrgMission() {
