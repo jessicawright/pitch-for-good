@@ -2,11 +2,13 @@ export default function VolHeader(volunteer) {
 return `
 
 <div class="nav">
-    <ul>
-        <li class="logo js-landing">Logo Image HERE</li>
+    <ul class="nav-links">
+        <li><img src="/images/lotus.png" class="logo js-landing"></li>
         <li class="title js-landing">Pitch For Good</li>
-        <li class="welcome">Welcome, ${volunteer.firstName}!</li>
+    <div class="nav-name">
+        <li class="welcome">${volunteer.firstName} ${volunteer.lastName}</li>  
         <li><button type="button" class="js-log-out logout">Log Out</button></li>
+    </div>
     </ul>
 </div>
 `;
