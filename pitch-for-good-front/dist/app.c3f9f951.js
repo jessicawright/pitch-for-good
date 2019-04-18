@@ -126,11 +126,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolForm;
 
 function VolForm(causes, skills) {
-  return "\n    <h1>Volunteer Sign Up Page</h1>\n        <div class=\"volForm__container\">\n            <div class=\"contact-info__container\">\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\"><br>\n                <input type=\"text\" class=\"add__volUserName\" placeholder=\"Username:\">\n                <input type=\"text\" class=\"add__volPassword\" placeholder=\"Password:\"><br>\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\"><br>\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            <div class=\"skills__container\">\n                    <ul id=\"skills\">\n                        ".concat(skills.map(function (skill) {
-    return "\n                                <li class=\"skill\">     \n                                    <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.id, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n                                </li>\n                            ");
-  }).join(''), "\n                    </ul>\n            </div>\n            <div class=\"causes__container\">    \n                <ul id=\"causes\">\n                    ").concat(causes.map(function (cause) {
-    return "\n                            <li class=\"cause\">     \n                                <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                            </li>\n                        ");
-  }).join(''), "\n                </ul>\n            </div>\n            <button class=\"js-add-volunteer button\">Volunteer Sign Up!</button>\n        </div>\n        ");
+  return "\n    <h1>Volunteer Sign Up Page</h1>\n        <div class=\"volForm__container\">\n            <div class=\"contact-info__container\">\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\"><br>\n                <input type=\"text\" class=\"add__volUserName\" placeholder=\"Username:\">\n                <input type=\"text\" class=\"add__volPassword\" placeholder=\"Password:\"><br>\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\"><br>\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            <div class=\"skills__container\">   \n                <ul id=\"skills\">\n                    ".concat(skills.map(function (skill) {
+    return "\n                            <li class=\"skill\">     \n                                <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.id, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n                            </li>\n                        ");
+  }).join(''), "\n                </ul>\n            </div>\n\n        <div class=\"causes__container\">    \n            <ul id=\"skills\">\n                ").concat(causes.map(function (cause) {
+    return "\n                    <li class=\"cause\">     \n                    <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                    </li>\n                    ");
+  }).join(''), "\n            </ul>\n        </div>\n        <button class=\"js-add-volunteer button\">Sign Up!</button>\n        ");
 }
 },{}],"js/components/Organizations.js":[function(require,module,exports) {
 "use strict";
@@ -154,7 +154,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = ProjectForm;
 
 function ProjectForm(organization, skills, volunteer) {
-  return "\n        <h2>Propose a project idea here!</h2>\n            <div class=\"projectForm__container\">\n            <h3 class=\"organization__orgName\" id=\"".concat(organization.organizationId, "\">Project proposal will be for ").concat(organization.orgName, "</h2>\n            <h3>Project name:\n                <input type=\"text\" class=\"add__projectName\" placeholder=\"Project Name\">\n            </h3>\n            <h3>Description of project goal and plans:\n                <input type=\"text\" class=\"add__projectDescription\" placeholder=\"Project Description\">\n            </h3>   \n            <h3>Estimated duration of project: \n                <input type=\"text\" class=\"add__estimatedDuration\" placeholder=\"Estimated Duration\">\n            </h3>\n                <div class=\"skills__container\">\n                    <h3>Skills involved in project: </h3>\n                    <ul class=\"skills\">\n                        ").concat(skills.map(function (skill) {
+  return "\n        <h2>Propose a project idea here!</h2>\n            <div class=\"projectForm__container\">\n                <h3 class=\"organization__orgName\" id=\"".concat(organization.organizationId, "\">Project proposal will be for ").concat(organization.orgName, "</h3>\n                <h3>Project name:\n                    <input type=\"text\" class=\"add__projectName\" placeholder=\"Project Name\">\n                </h3>\n                <h3>Estimated duration of project: \n                    <input type=\"text\" class=\"add__estimatedDuration\" placeholder=\"Estimated Duration\">\n                </h3>\n                <h3>Description of project goal and plans:\n                    <input type=\"text\" class=\"add__projectDescription\" placeholder=\"Project Description\">\n                </h3>   \n                <div class=\"skills__container\">\n                    <h3>Skills involved in project: </h3>\n                    <ul class=\"skills\">\n                        ").concat(skills.map(function (skill) {
     return "\n                                <li class=\"skill\">     \n                                    <input type=\"checkbox\" class=\"js-skill__skillName\" id=\"".concat(skill.skillId, "\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n                                </li>\n                                    ");
   }).join(''), "             \n                    </ul>\n                </div>  \n                \n                <div class=\"project__submit-parent-volunteer\" id=\"").concat(volunteer.volunteerId, "\">\n                    <button class=\"js-add-project button\" id=\"").concat(organization.organizationId, "\">Submit proposal</button>\n                </div>\n            </div>\n            "); // date thing?
   // volunteer
@@ -294,7 +294,8 @@ var _Project = _interopRequireDefault(require("./Project"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function VolunteerDashboard(volunteer) {
-  return "\n\n    <div class=\"dashboard__container\">\n    <h6>Welcome, ".concat(volunteer.firstName, "!</h6>\n        <div class=\"volDashboard__contact\">\n            <h6>Here is your user information:</h6>\n            <ul>\n                <li>First Name: ").concat(volunteer.firstName, "</li>\n                <li>Last Name: ").concat(volunteer.lastName, "</li><br>\n                <li>Username: ").concat(volunteer.volUserName, "</li>\n                <li>Password: ").concat(volunteer.volPassword, "</li><bf>\n                <li>Phone Number: ").concat(volunteer.phoneNum, "</li>\n                <li>Email: ").concat(volunteer.email, "</li><br>\n                <li>Current Job Title: ").concat(volunteer.jobTitle, "</li>\n            </ul>\n        </div>\n        <div class=\"volDashboard__skills\">\n            <h6>These are your skills:</h6>\n            <ul>\n                <li>").concat((0, _Skills.default)(volunteer.skills), "</li>\n            </ul>\n            <div>\n            <button class=\"js--vol-add-skills\" id=").concat(volunteer.volunteerId, ">Add Additional Skills</button>\n            <div>\n        </div>\n        <div class=\"volDashboard__causes\">\n            <h6>These are the causes you support:</h6>\n            <ul>\n                <li>").concat((0, _Cause.default)(volunteer.causes), "</li>\n            </ul>\n            <div>\n            <button class=\"js--vol-add-causes\" id=").concat(volunteer.volunteerId, ">Add Additional Causes</button>\n            <div>\n        </div>\n        <div class=\"volDashboard__projects\">\n            <h6>These are the projects you've pitched:</h6>\n            <ul>\n                <li>").concat((0, _Project.default)(volunteer.projects), "</li>\n            </ul>\n        </div>\n    </div>\n    <h2>Click the button below to see organizations to make a proposal to.</h2>\n    <button class=\"js--see-organizations button__big\" id=\"").concat(volunteer.volunteerId, "\">SEE ORGANIZATIONS</button>\n    \n    "); // <input type="hidden" value="${volunteer.volunteerId}" class="volunteerId">
+
+  return "\n\n    <h1>Welcome, ".concat(volunteer.firstName, "!</h1>\n\n    <div class=\"dashboard__container\">\n        <div class=\"volDashboard__contact\">\n            <h6>Here is your user information:</h6>\n            <ul>\n                <li>First Name: ").concat(volunteer.firstName, "</li>\n                <li>Last Name: ").concat(volunteer.lastName, "</li><br>\n                <li>Username: ").concat(volunteer.volUserName, "</li>\n                <li>Password: ").concat(volunteer.volPassword, "</li><br>\n                <li>Phone Number: ").concat(volunteer.phoneNum, "</li>\n                <li>Email: ").concat(volunteer.email, "</li><br>\n                <li>Current Job Title: ").concat(volunteer.jobTitle, "</li>\n            </ul>\n        </div>\n        <div class=\"volDashboard__skills\">\n            <h6>These are your skills:</h6>\n            <ul>\n                <li>").concat((0, _Skills.default)(volunteer.skills), "</li>\n            </ul>\n            \n            <button class=\"js--vol-add-skills\" id=").concat(volunteer.volunteerId, ">Add Additional Skills</button>\n            \n        </div>\n        <div class=\"volDashboard__causes\">\n            <h6>These are the causes you support:</h6>\n            <ul>\n                <li>").concat((0, _Cause.default)(volunteer.causes), "</li>\n            </ul>\n            \n            <button class=\"js--vol-add-causes\" id=").concat(volunteer.volunteerId, ">Add Additional Causes</button>\n            \n        </div>\n        <div class=\"volDashboard__projects\">\n            <h6>These are the projects you've pitched:</h6>\n            <ul>\n                <li>").concat((0, _Project.default)(volunteer.projects), "</li>\n            </ul>\n        </div>\n    </div>\n    <h2>Click the button below to see organizations to make a proposal to.</h2>\n    <button class=\"js--see-organizations button__big\" id=\"").concat(volunteer.volunteerId, "\">SEE ORGANIZATIONS</button>\n    \n    "); // <input type="hidden" value="${volunteer.volunteerId}" class="volunteerId">
 }
 },{"./Skills":"js/components/Skills.js","./Cause":"js/components/Cause.js","./Project":"js/components/Project.js"}],"js/components/OrgForm.js":[function(require,module,exports) {
 "use strict";
@@ -350,7 +351,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolHeader;
 
 function VolHeader(volunteer) {
-  return "\n\n<div class=\"nav\">\n    <ul class=\"nav-links\">\n        <li><img src=\"/images/lotus.png\" class=\"logo js-landing\"></li>\n        <li class=\"title js-landing\">Pitch For Good</li>\n    <div class=\"nav-name\">\n        <li class=\"welcome\">".concat(volunteer.firstName, " ").concat(volunteer.lastName, "</li>  \n        <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n    </div>\n    </ul>\n</div>\n");
+
+  return "\n\n<div class=\"nav\">\n    <ul>\n        <li class=\"logo js-landing\">Logo Image HERE</li>\n        <li class=\"title js-landing\">Pitch For Good</li>\n        <li class=\"welcome\">Welcome, ".concat(volunteer.firstName, "!</li>\n        <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n    </ul>\n</div>\n");
+
 }
 },{}],"js/components/OrgHeader.js":[function(require,module,exports) {
 "use strict";
@@ -362,7 +365,7 @@ exports.default = OrgHeader;
 
 function OrgHeader(organization) {
 
-  return "\n    \n    <div class=\"nav\">\n    <ul class=\"nav-links\">\n        <li><img src=\"/images/lotus.png\" class=\"logo js-landing\"></li>\n        <li class=\"title js-landing\">Pitch For Good</li>\n    <div class=\"nav-name\">\n        <li class=\"welcome\">".concat(organization.orgName, "</li>  \n        <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n    </div>\n    </ul>\n</div>\n    ");
+  return "\n    \n    <div class=\"nav\">\n        <ul>\n            <li class=\"logo js-landing\"></li>\n            <li class=\"title js-landing\">Pitch For Good</li>\n            <li class=\"welcome\">Welcome, ".concat(organization.orgName, "!</li>\n            <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n        </ul>\n    </div>\n    ");
 
 }
 },{}],"js/components/VolLanding.js":[function(require,module,exports) {
@@ -526,6 +529,7 @@ function main() {
   volSubmitNewSkills();
   volSubmitNewCauses();
   orgAcceptProject();
+  searchAgain();
 }
 
 function goHome() {
@@ -816,6 +820,18 @@ function getVolunteerSearchForm() {
   });
 }
 
+function searchAgain() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('js-search-again')) {
+      _apiActions.default.getRequest("http://localhost:8080/organizations/".concat(event.target.id), function (organization) {
+        _apiActions.default.getRequest('http://localhost:8080/skills/', function (skills) {
+          getAppContext().innerHTML = (0, _VolunteerSearch.default)(organization, skills);
+        });
+      });
+    }
+  });
+}
+
 function getVolunteerListFromForm() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js-find-volunteers-by-skill')) {
@@ -942,7 +958,7 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
 
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53600" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55296" + '/');
 
 
   ws.onmessage = function (event) {
