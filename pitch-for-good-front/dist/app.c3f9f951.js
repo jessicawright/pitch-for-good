@@ -168,7 +168,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = landing;
 
 function landing() {
-  return "\n\t\t\n\t\t<header class=\"hero-header\">\n\t\t\t<h1 class=\"main-title\">Pitch For Good</h1>\n\t\t</header>\n\t\t<div class=\"hero-image\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<h3 class=\"hero-intro\">Pitch For Good provides a platform for highly-skilled professionals to pitch specialized, project-based volunteer ideas to nonprofits.</h3>\n\n\t\t\t\t<h4 hero-description>Passionate and skilled volunteers want to contribute to real change. Pitch for Good addresses a need in the community service space for volunteers to drive the creation of meaningful projects for causes they care about. Pitch for Good allows volunteers to pitch specific and time-bound projects directly to their nonprofits of choice. Organizations are notified when a project is pitched, and volunteers are notified when projects are accepted. In addition, nonprofits can search for volunteers with specialized skills. Pitch for Good provides a new paradigm for community service in your community.</h4>\n\t\t\t</div>\n\n\t\t\t\t<button class=\"js--enter__volunteer button__big\">Volunteers</button>\n\t\t\t\t<button class=\"js--enter__organization button__big\">Nonprofits</button>\n\t\t\t</div>\n\t\t<footer>\n\t\t\t<h5>Pitch For Good &copy;2019</h5>\n\t\t</footer>\n\t";
+  return "\n\t\t\n\t\t<header class=\"hero-header\">\n\t\t\t<h1 class=\"main-title\">Pitch For Good</h1>\n\t\t</header>\n\t\t<div class=\"hero-image\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<h3 class=\"hero-intro\">Pitch For Good provides a platform for highly-skilled professionals to pitch specialized, project-based volunteer ideas to nonprofits.</h3>\n\n\t\t\t\t<h4 hero-description>Passionate and skilled volunteers want to contribute to real change. Pitch for Good addresses a need in the community service space for volunteers to drive the creation of meaningful projects for causes they care about. Pitch for Good allows volunteers to pitch specific and time-bound projects directly to their nonprofits of choice. Organizations are notified when a project is pitched, and volunteers are notified when projects are accepted. In addition, nonprofits can search for volunteers with specialized skills. Pitch for Good provides a new paradigm for community service in your community.</h4>\n\t\t\t</div>\n\n\t\t\t\t<button class=\"js--enter__volunteer button__big\">Volunteers</button>\n\t\t\t\t<button class=\"js--enter__organization button__big\">Nonprofits</button>\n\t\t\t</div>\n\t\t</div>\n\t";
 }
 },{}],"js/utils/api/api-actions.js":[function(require,module,exports) {
 "use strict";
@@ -309,6 +309,19 @@ function OrgForm(causes) {
     return "\n                    <li class=\"cause\">     \n                        <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                    </li>\n                ");
   }).join(''), "\n            </ul>\n            \n            <button class=\"js-add-organization button\">Sign Up!</button>\n        ");
 }
+},{}],"js/components/OrgProject.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = OrgProject;
+
+function OrgProject(projects) {
+  return "\n    ".concat(projects.map(function (project) {
+    return "\n \n        <h2 class=\"project__projectName\" id=\"".concat(project.projectId, "\">Project name: ").concat(project.projectName, "</h2>\n        <h3 class=\"project__projectDescription\">Project description: ").concat(project.projectDescription, "</h3>\n        <h3 class=\"project__estimatedDuration\">Estimated project duration: ").concat(project.estimatedDuration, "</h3>\n        <h3 class=\"project__createDate\">Date project was created: ").concat(project.createDate, "</h3>\n        <h3 class=\"project__status\">Current project status: ").concat(project.status, "</h3>\n        <h3>Accept this project by clicking the button below. The volunteer who pitched the project will receive an email that their pitch has been accepted, and will reach out to you.</h3>\n        <button class=\"js-accept-project button\" id=\"").concat(project.projectId, "\">Accept Project</button>\n        ");
+  }).join(''), "\n    ");
+}
 },{}],"js/components/OrganizationDashboard.js":[function(require,module,exports) {
 "use strict";
 
@@ -319,14 +332,14 @@ exports.default = OrganizationDashboard;
 
 var _Cause = _interopRequireDefault(require("./Cause"));
 
-var _Project = _interopRequireDefault(require("./Project"));
+var _OrgProject = _interopRequireDefault(require("./OrgProject"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function OrganizationDashboard(organization) {
-  return "\n    <h1>Welcome, ".concat(organization.orgName, "!</h1>\n\n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>Organization: ").concat(organization.orgName, "</li>\n        <li>Mission: ").concat(organization.orgMission, "</li>\n        <li>Contact Person: ").concat(organization.contactPerson, "</li>\n        <li>Contact Email: ").concat(organization.orgEmail, "</li>\n        <li>Website: ").concat(organization.websiteUrl, "</li>\n    </ul>\n\n    <h2>Your organization supports:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(organization.causes), "</li>\n    </ul>\n\n    <h2>Projects that have been pitched to you:</h2>\n    <ul>\n        <li>").concat((0, _Project.default)(organization.projects), "</li>\n    </ul>\n\n    <h3>Click to search volunteers</h3>\n    <button class=\"js-get-volunteer-search\" id=\"").concat(organization.organizationId, "\">click here</button>\n    ");
+  return "\n    <h1>Welcome, ".concat(organization.orgName, "!</h1>\n\n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>Organization: ").concat(organization.orgName, "</li>\n        <li>Mission: ").concat(organization.orgMission, "</li>\n        <li>Contact Person: ").concat(organization.contactPerson, "</li>\n        <li>Contact Email: ").concat(organization.orgEmail, "</li>\n        <li>Website: ").concat(organization.websiteUrl, "</li>\n    </ul>\n\n    <h2>Your organization supports:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(organization.causes), "</li>\n    </ul>\n\n    <h2>Projects that have been pitched to you:</h2>\n    <ul>\n        <li>").concat((0, _OrgProject.default)(organization.projects), "</li>\n    </ul>\n\n    <h3>Click to search volunteers</h3>\n    <button class=\"js-get-volunteer-search\" id=\"").concat(organization.organizationId, "\">click here</button>\n    ");
 }
-},{"./Cause":"js/components/Cause.js","./Project":"js/components/Project.js"}],"js/components/VolHeader.js":[function(require,module,exports) {
+},{"./Cause":"js/components/Cause.js","./OrgProject":"js/components/OrgProject.js"}],"js/components/VolHeader.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -346,7 +359,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgHeader;
 
 function OrgHeader(organization) {
-  return "\n    \n    <div class=\"nav\">\n        <ul>\n            <li class=\"logo js-landing\"></li>\n            <li class=\"title js-landing\">Pitch For Good</li>\n            <li class=\"welcome\">Welcome, ".concat(organization.orgName, "!</li>\n            <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n            <li><button type=\"button\" class=\"js-org-delete-account delete\" id=\"").concat(organization.organizationId, "\">Delete Account</button></li>\n        </ul>\n    </div>\n    ");
+  return "\n    \n    <div class=\"nav\">\n        <ul>\n            <li class=\"logo js-landing\">Logo Image HERE</li>\n            <li class=\"title js-landing\">Pitch For Good</li>\n            <li class=\"welcome\">Welcome, ".concat(organization.orgName, "!</li>\n            <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n            <li><button type=\"button\" class=\"js-org-delete-account delete\" id=\"").concat(organization.organizationId, "\">Delete Account</button></li>\n        </ul>\n    </div>\n    ");
 }
 },{}],"js/components/VolLanding.js":[function(require,module,exports) {
 "use strict";
@@ -357,7 +370,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolLanding;
 
 function VolLanding() {
-  return "\n        <div class=\"vollanding__grid-container\">\n            <form class=\"vollanding__signin\">\n                <h1>User Sign In</h1>\n                <span><input type=\"text\" id=\"username\" class=\"vol-username\" placeholder=\"User Name:\"></span><br>\n                <span><input type=\"text\" id=\"password\" class=\"vol-password\" placeholder=\"Password:\"></span><br>\n                <button class=\"js-vol-signin\">Submit</button>\n            </form>\n            <div class=\"vollanding__signup\">\n                <h1>New User?</h1> \n                <button class=\"js--sign-up__volunteer\">Create Account</button>\n            </div> \n        </div>\n    ";
+  return "\n        <div class=\"vollanding__grid-container\">\n            <form class=\"vollanding__signin\">\n                <h1>User Sign In</h1>\n                <input type=\"text\" id=\"username\" class=\"vol-username\" placeholder=\"User Name:\"><br>\n                <input type=\"text\" id=\"password\" class=\"vol-password\" placeholder=\"Password:\"><br>\n                <button class=\"js-vol-signin\">Submit</button>\n            </form>\n            <div class=\"vollanding__signup\">\n                <h1>New User?</h1> \n                <button class=\"js--sign-up__volunteer\">Create Account</button>\n            </div> \n        </div>\n    ";
 }
 },{}],"js/components/OrgLanding.js":[function(require,module,exports) {
 "use strict";
@@ -368,7 +381,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgLanding;
 
 function OrgLanding() {
-  return "\n        <div class=\"orglanding__grid-container\">\n            <form>\n                <div class=\"orglanding__signin\">\n                <h1>Returning Organization Sign In</h1>\n                <span>Username: <input type=\"text\" id=\"username\" class=\"org-username\"></span><br>\n                <span>Password: <input type=\"text\" id=\"password\" class=\"org-password\"></span>\n                </div>\n                <div class=\"orglanding__button\">\n                <button class=\"js-org-signin\">Submit</button></div>\n            </form>\n            <div class=\"orglanding__signup\">\n                <h1>New User?</h1>\n                <button class=\"js--sign-up__organization\">Create Account</button>\n            </div>\n        </div>\n    ";
+  return "\n        <div class=\"orglanding__grid-container\">\n            <form class=\"orglanding__signin\">\n                <h1>Organization Sign In</h1>\n                <input type=\"text\" id=\"username\" class=\"org-username\" placeholder=\"Username:\"><br>\n                <input type=\"text\" id=\"password\" class=\"org-password\" placeholder=\"Password:\"><br>\n                <button class=\"js-org-signin\">Submit</button>\n            </form>\n            <div class=\"orglanding__signup\">\n                <h1>New User?</h1>\n                <button class=\"js--sign-up__organization\">Create Account</button>\n            </div>\n        </div>\n    ";
 }
 },{}],"js/components/VolunteerSearch.js":[function(require,module,exports) {
 "use strict";
@@ -379,7 +392,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolunterSearch;
 
 function VolunterSearch(organization, skills) {
-  return "\n        <h3>Search for volunteers by a skill here:</h3>\n        <select class=\"\">\n        ".concat(skills.map(function (skill) {
+  return "\n        <h3>Search for volunteers by a skill here:</h3>\n        <select id=\"skillId\">\n        ".concat(skills.map(function (skill) {
     return "\n                <option class=\"js-dropdown-skill\" id=\"".concat(skill.skillId, "\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "</option> \n            ");
   }).join(''), "\n        </select>      \n                \n        <button class=\"js-find-volunteers-by-skill button\" id=\"").concat(organization.organizationId, "\">Find Volunteers</button>\n    ");
 }
@@ -413,13 +426,7 @@ function VolunteerList(organization, skill, volunteers) {
   console.log(skill.skillId);
   return "\n    ".concat(volunteers.map(function (volunteer) {
     return "\n        <h2 class=\"volunteer\" id=\"".concat(volunteer.volunteerId, "\">").concat(volunteer.firstName, " ").concat(volunteer.lastName, "</h2>\n        <h3 class =\"volunteer__email\">").concat(volunteer.email, "</h3>\n        ");
-<<<<<<< HEAD
-  }).join(''), "\n    <ul class=\"volunteers\">\n    \n    <button class=\"js-back-to-org-dashboard\" id=\"").concat(organization.organizationId, "\">Back to Dashboard</button>\n    ");
-=======
-
-  }).join(''), "\n    <ul class=\"volunteers\">\n    \n    <button class=\"js-back-to-dashboard\" id=\"").concat(organization.organizationId, "\">Back to Dashboard</button>\n    ");
-
->>>>>>> 15fe778a9d8a2a1ab76f84e83be1c7522a878188
+  }).join(''), "\n    <ul class=\"volunteers\">\n    \n    <button class=\"js-search-again\" id=\"").concat(organization.organizationId, "\">Search Again</button>\n    <button class=\"js-back-to-org-dashboard\" id=\"").concat(organization.organizationId, "\">Back to Dashboard</button>\n    ");
 }
 },{"./Volunteers":"js/components/Volunteers.js"}],"js/components/addSkills.js":[function(require,module,exports) {
 "use strict";
@@ -515,7 +522,6 @@ function main() {
   volSubmitNewSkills();
   volSubmitNewCauses();
   orgAcceptProject();
-  searchAgain();
 }
 
 function goHome() {
@@ -806,18 +812,6 @@ function getVolunteerSearchForm() {
   });
 }
 
-function searchAgain() {
-  _eventActions.default.on(getAppContext(), 'click', function () {
-    if (event.target.classList.contains('js-search-again')) {
-      _apiActions.default.getRequest("http://localhost:8080/organizations/".concat(event.target.id), function (organization) {
-        _apiActions.default.getRequest('http://localhost:8080/skills/', function (skills) {
-          getAppContext().innerHTML = (0, _VolunteerSearch.default)(organization, skills);
-        });
-      });
-    }
-  });
-}
-
 function getVolunteerListFromForm() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js-find-volunteers-by-skill')) {
@@ -913,7 +907,7 @@ function getHeaderContext() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -941,13 +935,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-<<<<<<< HEAD
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62411" + '/');
-=======
-
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64531" + '/');
->>>>>>> 15fe778a9d8a2a1ab76f84e83be1c7522a878188
-
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62498" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -1122,5 +1110,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
 //# sourceMappingURL=/app.c3f9f951.js.map
