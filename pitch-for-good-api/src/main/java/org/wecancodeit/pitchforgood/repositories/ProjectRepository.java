@@ -14,6 +14,8 @@ public interface ProjectRepository extends CrudRepository<Project, Long>{
 	Project findByProjectName(String string);
 
 	Collection<Project> findAllByOrganization(Organization organizationToDelete);
+	
+	Collection<Project> findAllByVolunteer(Volunteer volunteerToDelete);
 
 	Collection<Project> findProjectsByVolunteer(Volunteer volunteerToDelete);
 
