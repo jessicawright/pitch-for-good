@@ -5,7 +5,7 @@ export default function Organizations(volunteer, organizations) {
             ${organizations.map(organization => {
                 return `
                     <li class="organization">     
-                        <image src="${organization.orgLogo}" class="org__orgLogo">
+                        <img src="/images/${organization.orgLogo}">
                         <h2 class="js-organization__orgName" id="${organization.organizationId}">${organization.orgName}</h2>
                         <h3 class="organization__orgMission">${organization.orgMission}</h3>
                         <h3 class="organization__websiteUrl">${organization.websiteUrl}</h3>
