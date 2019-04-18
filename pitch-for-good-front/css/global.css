@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+li {
+  color: var(--tertiary-white)
+}
+
+html {
+  font: 20px/1.618 Arial;
+  --primary-color: rgb(127, 200, 59);
+  --secondary-color: rgb(102, 203, 229);
+  --secondary-gray: rgb(96, 117, 67);
+  --tertiary-white: rgb(246, 248, 213);
+  text-align: center;
+}
+
+body {
+  background-color: rgb(255, 255, 255, .8);
+  height: 100%;
+  position: relative;
+}
+
+/* text box styling */
+.add__jobTitle, .add__firstName, .add__lastName, .add__volUserName, .add__volPassword, .add__phoneNum, .add__email, .vol-password, .vol-username, .org-username, .org-password, .add__projectName, .add__estimatedDuration, .add__projectDescription, .add__orgName, .add__mission, .add__contactPerson, .add__contactEmail, .add__orgUrl, .add__orgUserName, .add__orgPassword {
+  width: 40%;
+  border: 2px solid rgb(0, 0, 0, 0.7);
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* button styling */
+.js--enter__volunteer, .js--enter__organization, .js--sign-up__volunteer, .js--sign-up__organization, .js--see-organizations, .js-vol-signin, .js-org-signin, .js--vol-add-causes, .js--see-organizations, .js--vol-add-skills, .js-get-project-form, .js-log-out, .js-add-project, .js-add-organization {
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
+  font-size: 30px;
+  padding: 1.5rem;
+  margin: 1rem;
+  border-radius: 8px;
+  box-shadow: 5px 5px 50px 15px rgb(96, 117, 67, .4);
+}
+
+h1 {
+  font-size: 60px;
+  color: var(--primary-color);
+}
+
+h2 {
+  font-size: 40px;
+  color: var(--secondary-gray);
+}
+
+h3 {
+  font-size: 25px;
+  color: var(--secondary-gray);
+}
+
+h4 {
+  font-size: 20px;
+  color: var(--secondary-gray);
+}
+
+h5 {
+  font-size: 20px;
+  color: var(--primary-color);
+}
+
+h6 {
+  font-size: 30px;
+  color: var(--tertiary-white);
+}
+
+

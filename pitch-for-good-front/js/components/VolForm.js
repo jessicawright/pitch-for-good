@@ -1,6 +1,6 @@
 export default function VolForm(causes, skills) {
     return `
-    <h1>Volunteer Sign Up Page</h1>
+        <h1>Volunteer Sign Up Page</h1>
         <div class="volForm__container">
             <div class="contact-info__container">
                 <input type="text" class="add__firstName" placeholder="First Name:">
@@ -11,6 +11,7 @@ export default function VolForm(causes, skills) {
                 <input type="text" class="add__phoneNum" placeholder="Phone:">
                 <input type="text" class="add__email" placeholder="Email:">
             </div>
+            
             <div class="skills__container">
                     <ul id="skills">
                         ${skills.map(skill => {
@@ -22,6 +23,7 @@ export default function VolForm(causes, skills) {
                         }).join('')}
                     </ul>
             </div>
+            
             <div class="causes__container">    
                 <ul id="causes">
                     ${causes.map(cause => {
@@ -35,5 +37,5 @@ export default function VolForm(causes, skills) {
             </div>
             <button class="js-add-volunteer button">Volunteer Sign Up!</button>
         </div>
-        `;  
+    `;  
 }
