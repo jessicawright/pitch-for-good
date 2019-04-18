@@ -277,3 +277,7 @@ footer {
 .hero-description {
   margin-top: 20vh;
 }
+
+.logo {
+  background-image: url('../images/lotus.png');
+}

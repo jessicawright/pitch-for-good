@@ -346,7 +346,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgHeader;
 
 function OrgHeader(organization) {
-  return "\n    \n    <div class=\"nav\">\n        <ul>\n            <li class=\"logo js-landing\">Logo Image HERE</li>\n            <li class=\"title js-landing\">Pitch For Good</li>\n            <li class=\"welcome\">Welcome, ".concat(organization.orgName, "!</li>\n            <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n            <li><button type=\"button\" class=\"js-org-delete-account delete\" id=\"").concat(organization.organizationId, "\">Delete Account</button></li>\n        </ul>\n    </div>\n    ");
+  return "\n    \n    <div class=\"nav\">\n        <ul>\n            <li class=\"logo js-landing\"></li>\n            <li class=\"title js-landing\">Pitch For Good</li>\n            <li class=\"welcome\">Welcome, ".concat(organization.orgName, "!</li>\n            <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n            <li><button type=\"button\" class=\"js-org-delete-account delete\" id=\"").concat(organization.organizationId, "\">Delete Account</button></li>\n        </ul>\n    </div>\n    ");
 }
 },{}],"js/components/VolLanding.js":[function(require,module,exports) {
 "use strict";
@@ -413,7 +413,7 @@ function VolunteerList(organization, skill, volunteers) {
   console.log(skill.skillId);
   return "\n    ".concat(volunteers.map(function (volunteer) {
     return "\n        <h2 class=\"volunteer\" id=\"".concat(volunteer.volunteerId, "\">").concat(volunteer.firstName, " ").concat(volunteer.lastName, "</h2>\n        <h3 class =\"volunteer__email\">").concat(volunteer.email, "</h3>\n        ");
-  }).join(''), "\n    <ul class=\"volunteers\">\n    \n    <button class=\"js-back-to-dashboard\" id=\"").concat(organization.organizationId, "\">Back to Dashboard</button>\n    ");
+  }).join(''), "\n    <ul class=\"volunteers\">\n    \n    <button class=\"js-back-to-org-dashboard\" id=\"").concat(organization.organizationId, "\">Back to Dashboard</button>\n    ");
 }
 },{"./Volunteers":"js/components/Volunteers.js"}],"js/components/addSkills.js":[function(require,module,exports) {
 "use strict";
@@ -922,7 +922,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64531" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62411" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
