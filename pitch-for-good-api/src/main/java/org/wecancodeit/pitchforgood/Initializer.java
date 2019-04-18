@@ -112,7 +112,7 @@ public class Initializer implements CommandLineRunner {
 		project1.addSkillToProject(skill2);
 		projectRepo.save(project1);
 		organization1.addCauseToOrganization(cause1);
-		organization1.addProjectToOrganization(project2);
+		organization5.addProjectToOrganization(project2);
 		organization3.addProjectToOrganization(project1);
 		organization3.addCauseToOrganization(cause1);
 		organizationRepo.save(organization1);
@@ -121,6 +121,8 @@ public class Initializer implements CommandLineRunner {
 		volunteer1.addCauseToVolunteer(cause1);
 		volunteer1.addSkillToVolunteer(skill1);
 		volunteerRepo.save(volunteer1);
+		volunteer2.addProjectToVolunteer(project2);
+		volunteerRepo.save(volunteer2);
 	
 	}
 

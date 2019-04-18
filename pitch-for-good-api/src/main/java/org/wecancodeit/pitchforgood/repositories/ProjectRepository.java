@@ -17,4 +17,6 @@ public interface ProjectRepository extends CrudRepository<Project, Long>{
 	
 	Collection<Project> findAllByVolunteer(Volunteer volunteerToDelete);
 
+	Collection<Project> findProjectsByVolunteer(Volunteer volunteerToDelete);
+
 }
