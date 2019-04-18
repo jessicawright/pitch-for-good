@@ -193,15 +193,46 @@ public class VolunteerController {
 	
 	@DeleteMapping("delete/{volunteerId}")
 	public Collection<Volunteer> deleteVolunteer(@PathVariable Long volunteerId) {
-		System.out.println(volunteerId);
 		Volunteer volunteerToDelete = volunteerRepo.findById(volunteerId).get();
 		System.out.println(volunteerToDelete);
 		
 		volunteerToDelete.removeSkillsInCollection();
 		volunteerToDelete.removeCausesInCollection();
 		volunteerToDelete.removeProjectsInCollection();
+		volunteerRepo.save(volunteerToDelete);
+		
+		//get projects by that volunteer
+		Collection<Project> projects = projectRepo.findProjectsByVolunteer(volunteerToDelete);
+		System.out.println(projects);
+		
+		ArrayList<Organization> organizations = new ArrayList<>();
+		
+		if (projects != null) {
+			
+			for (Project project : projects) {
+				Organization organization = project.getOrganization();
+				System.out.println(organization);
+				System.out.println(organization.getProjects());
+				organizations.add(organization);
+				
+				
+				for (Organization org : organizations) {
+					if (org.getProjects().contains(project)) {
+						org.removeProject(project);
+						projectRepo.delete(project);
+					}
+				}
+				System.out.println(organization.getProjects());
+			}
+		
+		}
 		
 		volunteerRepo.delete(volunteerToDelete);
+		System.out.println(volunteerToDelete);
+		
+		
+		
+//		volunteerRepo.delete(volunteerToDelete);
 		return (Collection<Volunteer>) volunteerRepo.findAll();
 	}
 
