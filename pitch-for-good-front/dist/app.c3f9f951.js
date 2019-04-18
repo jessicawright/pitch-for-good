@@ -413,7 +413,13 @@ function VolunteerList(organization, skill, volunteers) {
   console.log(skill.skillId);
   return "\n    ".concat(volunteers.map(function (volunteer) {
     return "\n        <h2 class=\"volunteer\" id=\"".concat(volunteer.volunteerId, "\">").concat(volunteer.firstName, " ").concat(volunteer.lastName, "</h2>\n        <h3 class =\"volunteer__email\">").concat(volunteer.email, "</h3>\n        ");
+<<<<<<< HEAD
   }).join(''), "\n    <ul class=\"volunteers\">\n    \n    <button class=\"js-back-to-org-dashboard\" id=\"").concat(organization.organizationId, "\">Back to Dashboard</button>\n    ");
+=======
+
+  }).join(''), "\n    <ul class=\"volunteers\">\n    \n    <button class=\"js-back-to-dashboard\" id=\"").concat(organization.organizationId, "\">Back to Dashboard</button>\n    ");
+
+>>>>>>> 15fe778a9d8a2a1ab76f84e83be1c7522a878188
 }
 },{"./Volunteers":"js/components/Volunteers.js"}],"js/components/addSkills.js":[function(require,module,exports) {
 "use strict";
@@ -509,6 +515,7 @@ function main() {
   volSubmitNewSkills();
   volSubmitNewCauses();
   orgAcceptProject();
+  searchAgain();
 }
 
 function goHome() {
@@ -799,6 +806,18 @@ function getVolunteerSearchForm() {
   });
 }
 
+function searchAgain() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('js-search-again')) {
+      _apiActions.default.getRequest("http://localhost:8080/organizations/".concat(event.target.id), function (organization) {
+        _apiActions.default.getRequest('http://localhost:8080/skills/', function (skills) {
+          getAppContext().innerHTML = (0, _VolunteerSearch.default)(organization, skills);
+        });
+      });
+    }
+  });
+}
+
 function getVolunteerListFromForm() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js-find-volunteers-by-skill')) {
@@ -922,7 +941,13 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+<<<<<<< HEAD
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "62411" + '/');
+=======
+
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64531" + '/');
+>>>>>>> 15fe778a9d8a2a1ab76f84e83be1c7522a878188
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};
