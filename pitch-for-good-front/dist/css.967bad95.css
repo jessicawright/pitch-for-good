@@ -26,7 +26,7 @@ html {
   width: 100%;
   height: 100%;
   z-index: -1; */
-  font: 20px/1.618 Garamond, Cambria, sans-serif;
+  font: 20px/1.618 Arial;
   --primary-color: rgb(127, 200, 59);
   --secondary-gray: rgb(96, 117, 67);
   --tertiary-white: rgb(246, 248, 213);
@@ -244,7 +244,7 @@ h6 {
 .hero-image {
   background-image: url('/hero.d8eebeaf.png');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   position: absolute;
   top: 20vh;
 }
@@ -261,7 +261,7 @@ h6 {
 }
 
 .hero-intro {
-  margin-top: 40vh;
+  margin-top: 100vh;
 
 }
 
@@ -272,6 +272,10 @@ h6 {
 footer {
   position: absolute;
   bottom: 100%;
+}
+
+.hero-description {
+  margin-top: 20vh;
 }
 
 

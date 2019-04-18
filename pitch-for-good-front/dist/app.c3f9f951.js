@@ -168,7 +168,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = landing;
 
 function landing() {
-  return "\n\t\t\n\t\t<header class=\"hero-header\">\n\t\t\t<h1 class=\"main-title\">Pitch For Good</h1>\n\t\t</header>\n\t\t<div class=\"hero-image\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<h3 class=\"hero-intro\">Pitch For Good provides a platform for highly-skilled professionals to pitch specialized, project-based volunteer ideas to nonprofits.</h3>\n\n\t\t\t\t<h4>Passionate and skilled volunteers want to contribute to real change. Pitch for Good addresses a need in the community service space for volunteers to drive the creation of meaningful projects for causes they care about. Pitch for Good allows volunteers to pitch specific and time-bound projects directly to their nonprofits of choice. Organizations are notified when a project is pitched, and volunteers are notified when projects are accepted. In addition, nonprofits can search for volunteers with specialized skills. Pitch for Good provides a new paradigm for community service in your community.</h4>\n\t\t\t</div>\n\n\t\t\t\t<button class=\"js--enter__volunteer button__big\">Volunteers</button>\n\t\t\t\t<button class=\"js--enter__organization button__big\">Nonprofits</button>\n\t\t\t</div>\n\t\t<footer>\n\t\t\t<h5>Pitch For Good &copy;2019</h5>\n\t\t</footer>\n\t";
+  return "\n\t\t\n\t\t<header class=\"hero-header\">\n\t\t\t<h1 class=\"main-title\">Pitch For Good</h1>\n\t\t</header>\n\t\t<div class=\"hero-image\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<h3 class=\"hero-intro\">Pitch For Good provides a platform for highly-skilled professionals to pitch specialized, project-based volunteer ideas to nonprofits.</h3>\n\n\t\t\t\t<h4 hero-description>Passionate and skilled volunteers want to contribute to real change. Pitch for Good addresses a need in the community service space for volunteers to drive the creation of meaningful projects for causes they care about. Pitch for Good allows volunteers to pitch specific and time-bound projects directly to their nonprofits of choice. Organizations are notified when a project is pitched, and volunteers are notified when projects are accepted. In addition, nonprofits can search for volunteers with specialized skills. Pitch for Good provides a new paradigm for community service in your community.</h4>\n\t\t\t</div>\n\n\t\t\t\t<button class=\"js--enter__volunteer button__big\">Volunteers</button>\n\t\t\t\t<button class=\"js--enter__organization button__big\">Nonprofits</button>\n\t\t\t</div>\n\t\t<footer>\n\t\t\t<h5>Pitch For Good &copy;2019</h5>\n\t\t</footer>\n\t";
 }
 },{}],"js/utils/api/api-actions.js":[function(require,module,exports) {
 "use strict";
@@ -922,7 +922,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62578" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64531" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
