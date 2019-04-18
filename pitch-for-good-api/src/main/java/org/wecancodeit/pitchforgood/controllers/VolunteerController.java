@@ -195,12 +195,13 @@ public class VolunteerController {
 	public Collection<Volunteer> deleteVolunteer(@PathVariable Long volunteerId) {
 		System.out.println(volunteerId);
 		Volunteer volunteerToDelete = volunteerRepo.findById(volunteerId).get();
+		Collection<Project> projectsToDelete = projectRepo.findAllByVolunteer(volunteerToDelete);
 		System.out.println(volunteerToDelete);
 		
 		volunteerToDelete.removeSkillsInCollection();
 		volunteerToDelete.removeCausesInCollection();
 		volunteerToDelete.removeProjectsInCollection();
-		
+		projectRepo.deleteAll(projectsToDelete);
 		volunteerRepo.delete(volunteerToDelete);
 		return (Collection<Volunteer>) volunteerRepo.findAll();
 	}
