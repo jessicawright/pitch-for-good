@@ -5,9 +5,8 @@ import Project from './Project'
 export default function VolunteerDashboard(volunteer) {
     return `
 
-    <h1>Welcome, ${volunteer.firstName}!</h1>
-
     <div class="dashboard__container">
+    <h6>Welcome, ${volunteer.firstName}!</h6>
         <div class="volDashboard__contact">
             <h6>Here is your user information:</h6>
             <ul>

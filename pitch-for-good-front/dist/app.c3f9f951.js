@@ -294,7 +294,7 @@ var _Project = _interopRequireDefault(require("./Project"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function VolunteerDashboard(volunteer) {
-  return "\n\n    <h1>Welcome, ".concat(volunteer.firstName, "!</h1>\n\n    <div class=\"dashboard__container\">\n        <div class=\"volDashboard__contact\">\n            <h6>Here is your user information:</h6>\n            <ul>\n                <li>First Name: ").concat(volunteer.firstName, "</li>\n                <li>Last Name: ").concat(volunteer.lastName, "</li><br>\n                <li>Username: ").concat(volunteer.volUserName, "</li>\n                <li>Password: ").concat(volunteer.volPassword, "</li><bf>\n                <li>Phone Number: ").concat(volunteer.phoneNum, "</li>\n                <li>Email: ").concat(volunteer.email, "</li><br>\n                <li>Current Job Title: ").concat(volunteer.jobTitle, "</li>\n            </ul>\n        </div>\n        <div class=\"volDashboard__skills\">\n            <h6>These are your skills:</h6>\n            <ul>\n                <li>").concat((0, _Skills.default)(volunteer.skills), "</li>\n            </ul>\n            <div>\n            <button class=\"js--vol-add-skills\" id=").concat(volunteer.volunteerId, ">Add Additional Skills</button>\n            <div>\n        </div>\n        <div class=\"volDashboard__causes\">\n            <h6>These are the causes you support:</h6>\n            <ul>\n                <li>").concat((0, _Cause.default)(volunteer.causes), "</li>\n            </ul>\n            <div>\n            <button class=\"js--vol-add-causes\" id=").concat(volunteer.volunteerId, ">Add Additional Causes</button>\n            <div>\n        </div>\n        <div class=\"volDashboard__projects\">\n            <h6>These are the projects you've pitched:</h6>\n            <ul>\n                <li>").concat((0, _Project.default)(volunteer.projects), "</li>\n            </ul>\n        </div>\n    </div>\n    <h2>Click the button below to see organizations to make a proposal to.</h2>\n    <button class=\"js--see-organizations button__big\" id=\"").concat(volunteer.volunteerId, "\">SEE ORGANIZATIONS</button>\n    \n    "); // <input type="hidden" value="${volunteer.volunteerId}" class="volunteerId">
+  return "\n\n    <div class=\"dashboard__container\">\n    <h6>Welcome, ".concat(volunteer.firstName, "!</h6>\n        <div class=\"volDashboard__contact\">\n            <h6>Here is your user information:</h6>\n            <ul>\n                <li>First Name: ").concat(volunteer.firstName, "</li>\n                <li>Last Name: ").concat(volunteer.lastName, "</li><br>\n                <li>Username: ").concat(volunteer.volUserName, "</li>\n                <li>Password: ").concat(volunteer.volPassword, "</li><bf>\n                <li>Phone Number: ").concat(volunteer.phoneNum, "</li>\n                <li>Email: ").concat(volunteer.email, "</li><br>\n                <li>Current Job Title: ").concat(volunteer.jobTitle, "</li>\n            </ul>\n        </div>\n        <div class=\"volDashboard__skills\">\n            <h6>These are your skills:</h6>\n            <ul>\n                <li>").concat((0, _Skills.default)(volunteer.skills), "</li>\n            </ul>\n            <div>\n            <button class=\"js--vol-add-skills\" id=").concat(volunteer.volunteerId, ">Add Additional Skills</button>\n            <div>\n        </div>\n        <div class=\"volDashboard__causes\">\n            <h6>These are the causes you support:</h6>\n            <ul>\n                <li>").concat((0, _Cause.default)(volunteer.causes), "</li>\n            </ul>\n            <div>\n            <button class=\"js--vol-add-causes\" id=").concat(volunteer.volunteerId, ">Add Additional Causes</button>\n            <div>\n        </div>\n        <div class=\"volDashboard__projects\">\n            <h6>These are the projects you've pitched:</h6>\n            <ul>\n                <li>").concat((0, _Project.default)(volunteer.projects), "</li>\n            </ul>\n        </div>\n    </div>\n    <h2>Click the button below to see organizations to make a proposal to.</h2>\n    <button class=\"js--see-organizations button__big\" id=\"").concat(volunteer.volunteerId, "\">SEE ORGANIZATIONS</button>\n    \n    "); // <input type="hidden" value="${volunteer.volunteerId}" class="volunteerId">
 }
 },{"./Skills":"js/components/Skills.js","./Cause":"js/components/Cause.js","./Project":"js/components/Project.js"}],"js/components/OrgForm.js":[function(require,module,exports) {
 "use strict";
@@ -337,7 +337,9 @@ var _OrgProject = _interopRequireDefault(require("./OrgProject"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function OrganizationDashboard(organization) {
-  return "\n    <h1>Welcome, ".concat(organization.orgName, "!</h1>\n\n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>Organization: ").concat(organization.orgName, "</li>\n        <li>Mission: ").concat(organization.orgMission, "</li>\n        <li>Contact Person: ").concat(organization.contactPerson, "</li>\n        <li>Contact Email: ").concat(organization.orgEmail, "</li>\n        <li>Website: ").concat(organization.websiteUrl, "</li>\n    </ul>\n\n    <h2>Your organization supports:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(organization.causes), "</li>\n    </ul>\n\n    <h2>Projects that have been pitched to you:</h2>\n    <ul>\n        <li>").concat((0, _OrgProject.default)(organization.projects), "</li>\n    </ul>\n\n    <h3>Click to search volunteers</h3>\n    <button class=\"js-get-volunteer-search\" id=\"").concat(organization.organizationId, "\">click here</button>\n    ");
+
+  return "\n    \n    <h2>Here is your user information:</h2>\n    <ul>\n        <li>Organization: ".concat(organization.orgName, "</li>\n        <li>Mission: ").concat(organization.orgMission, "</li>\n        <li>Contact Person: ").concat(organization.contactPerson, "</li>\n        <li>Contact Email: ").concat(organization.orgEmail, "</li>\n        <li>Website: ").concat(organization.websiteUrl, "</li>\n    </ul>\n\n    <h2>Your organization supports:</h2>\n    <ul>\n        <li>").concat((0, _Cause.default)(organization.causes), "</li>\n    </ul>\n\n    <h2>Projects that have been pitched to you:</h2>\n    <ul>\n        <li>").concat((0, _OrgProject.default)(organization.projects), "</li>\n    </ul>\n\n    <h3>Click to search volunteers</h3>\n    <button class=\"js-get-volunteer-search\" id=\"").concat(organization.organizationId, "\">click here</button>\n    ");
+
 }
 },{"./Cause":"js/components/Cause.js","./OrgProject":"js/components/OrgProject.js"}],"js/components/VolHeader.js":[function(require,module,exports) {
 "use strict";
@@ -348,7 +350,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolHeader;
 
 function VolHeader(volunteer) {
-  return "\n\n<div class=\"nav\">\n    <ul>\n        <li class=\"logo js-landing\">Logo Image HERE</li>\n        <li class=\"title js-landing\">Pitch For Good</li>\n        <li class=\"welcome\">Welcome, ".concat(volunteer.firstName, "!</li>\n        <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n        <li><button type=\"button\" class=\"js-delete-account delete\" id=\"").concat(volunteer.volunteerId, "\">Delete Account</button></li>\n    </ul>\n</div>\n");
+  return "\n\n<div class=\"nav\">\n    <ul class=\"nav-links\">\n        <li><img src=\"/images/lotus.png\" class=\"logo js-landing\"></li>\n        <li class=\"title js-landing\">Pitch For Good</li>\n    <div class=\"nav-name\">\n        <li class=\"welcome\">".concat(volunteer.firstName, " ").concat(volunteer.lastName, "</li>  \n        <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n    </div>\n    </ul>\n</div>\n");
 }
 },{}],"js/components/OrgHeader.js":[function(require,module,exports) {
 "use strict";
@@ -359,7 +361,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgHeader;
 
 function OrgHeader(organization) {
-  return "\n    \n    <div class=\"nav\">\n        <ul>\n            <li class=\"logo js-landing\">Logo Image HERE</li>\n            <li class=\"title js-landing\">Pitch For Good</li>\n            <li class=\"welcome\">Welcome, ".concat(organization.orgName, "!</li>\n            <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n            <li><button type=\"button\" class=\"js-org-delete-account delete\" id=\"").concat(organization.organizationId, "\">Delete Account</button></li>\n        </ul>\n    </div>\n    ");
+
+  return "\n    \n    <div class=\"nav\">\n    <ul class=\"nav-links\">\n        <li><img src=\"/images/lotus.png\" class=\"logo js-landing\"></li>\n        <li class=\"title js-landing\">Pitch For Good</li>\n    <div class=\"nav-name\">\n        <li class=\"welcome\">".concat(organization.orgName, "</li>  \n        <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n    </div>\n    </ul>\n</div>\n    ");
+
 }
 },{}],"js/components/VolLanding.js":[function(require,module,exports) {
 "use strict";
@@ -937,7 +941,8 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62498" + '/');
+
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53600" + '/');
 
 
   ws.onmessage = function (event) {

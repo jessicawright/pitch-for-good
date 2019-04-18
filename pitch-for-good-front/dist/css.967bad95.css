@@ -226,7 +226,7 @@ h6 {
 }
 
 .hero-image {
-  background-image: url('/hero.d8eebeaf.png');
+  background-image: url('/hero.01f29576.png');
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
@@ -252,7 +252,11 @@ h6 {
 }
 
 .main-title {
-  font-size: 80px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 60px;
+  color: #65cce5;
 }
 
 footer {
@@ -264,10 +268,32 @@ footer {
   margin-top: 20vh;
 }
 
-.logo {
-  background-image: url('/lotus.bfd324af.png');
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 20vh;
 }
 
+.title {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 60px;
+  color: #65cce5;
+
+}
+
+.logout {
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.welcome {
+  color: black;
+  margin-bottom: -10px;
+}
 
 
 /*# sourceMappingURL=/css.967bad95.css.map */
