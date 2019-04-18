@@ -14,7 +14,7 @@ export default function VolunteerDashboard(volunteer) {
                 <li>First Name: ${volunteer.firstName}</li>
                 <li>Last Name: ${volunteer.lastName}</li><br>
                 <li>Username: ${volunteer.volUserName}</li>
-                <li>Password: ${volunteer.volPassword}</li><bf>
+                <li>Password: ${volunteer.volPassword}</li><br>
                 <li>Phone Number: ${volunteer.phoneNum}</li>
                 <li>Email: ${volunteer.email}</li><br>
                 <li>Current Job Title: ${volunteer.jobTitle}</li>
@@ -25,18 +25,18 @@ export default function VolunteerDashboard(volunteer) {
             <ul>
                 <li>${Skills(volunteer.skills)}</li>
             </ul>
-            <div>
+            
             <button class="js--vol-add-skills" id=${volunteer.volunteerId}>Add Additional Skills</button>
-            <div>
+            
         </div>
         <div class="volDashboard__causes">
             <h6>These are the causes you support:</h6>
             <ul>
                 <li>${Cause(volunteer.causes)}</li>
             </ul>
-            <div>
+            
             <button class="js--vol-add-causes" id=${volunteer.volunteerId}>Add Additional Causes</button>
-            <div>
+            
         </div>
         <div class="volDashboard__projects">
             <h6>These are the projects you've pitched:</h6>
