@@ -19,14 +19,14 @@ li {
 }
 
 html {
-	background: url("https://github.com/jessicawright/my-files/blob/master/landing.jpg") no-repeat center center/cover; 
+	/* background: url("https://github.com/jessicawright/my-files/blob/master/landing.jpg") no-repeat center center/cover; 
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
-  font: 20px/1.618 Garamond, Cambria, sans-serif;
+  z-index: -1; */
+  font: 20px/1.618 Arial;
   --primary-color: rgb(127, 200, 59);
   --secondary-gray: rgb(96, 117, 67);
   --tertiary-white: rgb(246, 248, 213);
@@ -239,6 +239,47 @@ h6 {
 .orglanding__signup {
   grid-column: 3 / span 2;
   grid-row: 2 / span 2; 
+}
+
+.hero-image {
+  background-image: url('/hero.d8eebeaf.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 20vh;
+}
+
+.hero-header {
+  background-color: white;
+  width: 100%;
+  height: 20vh;
+}
+
+.container {
+  max-width: 70%;
+  margin: auto;
+}
+
+.hero-intro {
+  margin-top: 100vh;
+
+}
+
+.main-title {
+  font-size: 80px;
+}
+
+footer {
+  position: absolute;
+  bottom: 100%;
+}
+
+.hero-description {
+  margin-top: 20vh;
+}
+
+.logo {
+  background-image: url('/lotus.bfd324af.png');
 }
 
 
