@@ -130,5 +130,13 @@ public class Volunteer {
 	public void removeProjectsInCollection() {
 		projects.removeAll(projects);
 	}
+
+
+	@Override
+	public String toString() {
+		return "Volunteer [firstName=" + firstName + ", lastName=" + lastName + "]";
+	}
+	
+	
 	
 }
