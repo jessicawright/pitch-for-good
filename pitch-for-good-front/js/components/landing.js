@@ -15,9 +15,7 @@ export default function landing() {
 				<button class="js--enter__volunteer button__big">Volunteers</button>
 				<button class="js--enter__organization button__big">Nonprofits</button>
 			</div>
-		<footer>
-			<h5>Pitch For Good &copy;2019</h5>
-		</footer>
+		</div>
 	`;
 	
 }

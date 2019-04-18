@@ -194,11 +194,13 @@ public class VolunteerController {
 	@DeleteMapping("delete/{volunteerId}")
 	public Collection<Volunteer> deleteVolunteer(@PathVariable Long volunteerId) {
 		Volunteer volunteerToDelete = volunteerRepo.findById(volunteerId).get();
+		Collection<Project> projectsToDelete = projectRepo.findAllByVolunteer(volunteerToDelete);
 		System.out.println(volunteerToDelete);
 		
 		volunteerToDelete.removeSkillsInCollection();
 		volunteerToDelete.removeCausesInCollection();
 		volunteerToDelete.removeProjectsInCollection();
+
 		volunteerRepo.save(volunteerToDelete);
 		
 		//get projects by that volunteer
@@ -227,6 +229,7 @@ public class VolunteerController {
 		
 		}
 		
+
 		volunteerRepo.delete(volunteerToDelete);
 		System.out.println(volunteerToDelete);
 		
