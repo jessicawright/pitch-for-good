@@ -81,10 +81,11 @@ public class Initializer implements CommandLineRunner {
 		Skill skill26 = skillRepo.save(new Skill("Real Estate"));
 		Skill skill27 = skillRepo.save(new Skill("Fitness"));
 		
-		Organization organization1 = organizationRepo.save(new Organization("Ohio Environmental Council","OhioEnvironmentalCouncilLogo.png", "The Ohio Environmental Council is the state’s most comprehensive, effective and respected environmental advocate for a healthier, more sustainable Ohio. "
-				+ "Our experts work daily to restore, protect, and strengthen the quality of life for families and communities—from the air we breathe and the water we drink to the food we eat and natural resources we enjoy.", 
+
+		Organization organization1 = organizationRepo.save(new Organization("Ohio Environmental Council","OhioEnvironmentalCouncilLogo.png", "The Ohio Environmental Council is the stateï¿½s most comprehensive, effective and respected environmental advocate for a healthier, more sustainable Ohio. "
+				+ "Our experts work daily to restore, protect, and strengthen the quality of life for families and communitiesï¿½from the air we breathe and the water we drink to the food we eat and natural resources we enjoy.", 
 				"TAMALIYAPO MPHANDE", "jsunh98@gmail.com", " OEC@theOEC.org", "username1", "password"));
-		Organization organization2 = organizationRepo.save(new Organization("Columbus Gives Back", "ColumbusGivesBack_Logo.png","We’re proud to partner with so many local organizations, but the heart of Columbus Gives Back is our leadership team. We strive to create a welcoming, engaging, and fun experience for you at every event – something that sets CGB apart from other volunteer opportunities.",
+		Organization organization2 = organizationRepo.save(new Organization("Columbus Gives Back", "ColumbusGivesBack_Logo.png","Weï¿½re proud to partner with so many local organizations, but the heart of Columbus Gives Back is our leadership team. We strive to create a welcoming, engaging, and fun experience for you at every event ï¿½ something that sets CGB apart from other volunteer opportunities.",
 				 "Taylor Putnam-Majarian", "jsunh98@gmail.com", "www.columbusgivesback.org", "username2", "password"));
 		Organization organization3 = organizationRepo.save(new Organization("See Kids Dream", "SeeKidsDream_Logo.png","To empower youth with the skills, motivation and confidence" + 
 				"to make the world a better place", "Cynthia Armstrong", "jsunh98@gmail.com", "http://seekidsdream.org", "username3", "password"));
@@ -93,7 +94,7 @@ public class Initializer implements CommandLineRunner {
 		Organization organization5 = organizationRepo.save(new Organization("Tech Corps", "TechCorps_Logo.png", "To create a technologically literate society in which all K-12 students have equal access to the technology skills, "
 				+ "programs and resources that will enrich their education today and prepare them for college or career tomorrow.", "Jess", "jsunh98@gmail.com", "http://www.techcorps.org", "username5", "password"));
 		Organization organization6 = organizationRepo.save(new Organization("Mid Ohio Food Bank", "MidOhioFoodbank_Logo.png", 
-				"At Mid-Ohio Foodbank, we find it unacceptable for thousands of our neighbors—most of them children and seniors—to go hungry. "
+				"At Mid-Ohio Foodbank, we find it unacceptable for thousands of our neighborsï¿½most of them children and seniorsï¿½to go hungry. "
 				+ "We aim to provide efficient, effective ways for hungry people to meet their basic food and nutrition needs.", "info", "info@midohiofoodbank.org", "www.midohiofoodbank.org", "username6", "password"));
 		
 		Volunteer volunteer1 = volunteerRepo.save(new Volunteer("John", "Smith", "username1", "password", "8675309", "arielwebb12@gmail.com", "Teacher"));
@@ -112,7 +113,7 @@ public class Initializer implements CommandLineRunner {
 		project1.addSkillToProject(skill2);
 		projectRepo.save(project1);
 		organization1.addCauseToOrganization(cause1);
-		organization1.addProjectToOrganization(project2);
+		organization5.addProjectToOrganization(project2);
 		organization3.addProjectToOrganization(project1);
 		organization3.addCauseToOrganization(cause1);
 		organizationRepo.save(organization1);
@@ -121,6 +122,8 @@ public class Initializer implements CommandLineRunner {
 		volunteer1.addCauseToVolunteer(cause1);
 		volunteer1.addSkillToVolunteer(skill1);
 		volunteerRepo.save(volunteer1);
+		volunteer2.addProjectToVolunteer(project2);
+		volunteerRepo.save(volunteer2);
 	
 	}
 

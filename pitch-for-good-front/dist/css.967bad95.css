@@ -19,15 +19,9 @@ li {
 }
 
 html {
-	background: url("https://github.com/jessicawright/my-files/blob/master/landing.jpg") no-repeat center center/cover; 
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  font: 20px/1.618 Garamond, Cambria, sans-serif;
+  font: 20px/1.618 Arial;
   --primary-color: rgb(127, 200, 59);
+  --secondary-color: rgb(102, 203, 229);
   --secondary-gray: rgb(96, 117, 67);
   --tertiary-white: rgb(246, 248, 213);
   text-align: center;
@@ -65,6 +59,10 @@ body {
   width: 60%;
 }
 
+.org-username, .org-password, .vol-username, .vol-password {
+  width: 60%;
+}
+
 .volForm__container {
   display: grid;
 	grid-gap: 5px 5px;
@@ -84,8 +82,6 @@ body {
   border-radius: .35rem;
 
 }
-
-
 
 .contact-info__container {
   grid-column: 1 / span 2;
@@ -169,7 +165,6 @@ h6 {
 }
 
 /* start volDashboard grid */
-
 .dashboard__container {
   display: grid;
 	grid-gap: 5px 5px;
@@ -183,10 +178,6 @@ h6 {
 .volDashboard__contact, .volDashboard__skills, .volDashboard__causes,.volDashboard__projects {
   color: var(--tertiary-white);
 } 
-
-/* .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects > h2 {
-  color: var(--tertiary-white);
-} */
 
 .volDashboard__contact {
   display: block;
@@ -217,29 +208,66 @@ h6 {
 }
 
 /* start org and vol landing grid */
-.vollanding__grid-container, .orglanding__grid-container {
+.orglanding__grid-container, .vollanding__grid-container {
     display: grid;
     grid-gap: 5px;
-    /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    grid-template-rows: repeat(2, 100px); */
     grid-template-columns: 4, 1fr;
     grid-template-rows: 2, 1fr;
 }
 
-.orglanding__signin {
-  grid-column: 1 / span 1;
-  grid-row: 2 / span 1; 
+.orglanding__signin, .vollanding__signin {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2; 
 }
 
-.orglanding__button {
-  grid-column: 2 / span 1;
-  grid-row: 2 / span 1; 
-}
-
-.orglanding__signup {
+.orglanding__signup, .vollanding__signup {
   grid-column: 3 / span 2;
-  grid-row: 2 / span 2; 
+  grid-row: 1 / span 2; 
 }
+
+.hero-image {
+  background-image: url('/hero.d8eebeaf.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 20vh;
+
+}
+
+.hero-header {
+  background-color: white;
+  width: 100%;
+  height: 20vh;
+}
+
+.container {
+  max-width: 70%;
+  margin: auto;
+}
+
+.hero-intro {
+  margin-top: 132vh;
+  
+
+}
+
+.main-title {
+  font-size: 80px;
+}
+
+footer {
+  position: absolute;
+  bottom: 100%;
+}
+
+.hero-description {
+  margin-top: 20vh;
+}
+
+.logo {
+  background-image: url('/lotus.bfd324af.png');
+}
+
 
 
 /*# sourceMappingURL=/css.967bad95.css.map */

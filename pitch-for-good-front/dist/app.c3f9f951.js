@@ -168,7 +168,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = landing;
 
 function landing() {
-  return "\n\t\t<div class=\"landing\">\n\t\t\t<h1 class=\"landing__title\">Pitch For Good</h1>\n\t\t</div>\n\t\t\t<h3>Pitch For Good provides a platform for highly-skilled professionals to pitch specialized, project-based volunteer ideas to nonprofits they are passionate about.</h3>\n\n\t\t<button class=\"js--enter__volunteer button__big\">I AM A VOLUNTEER</button>\n\t\t<button class=\"js--enter__organization button__big\">I AM A NON-PROFIT</button>\n\n\t\t<footer>\n\t\t\t<h5>Pitch For Good &copy;2019</h5>\n\t\t\t<h6>Photo by Dakota Corbin on <a href=\"https://unsplash.com/\">Unsplash</a></h6>\n\t\t</footer>\n\t";
+  return "\n\t\t\n\t\t<header class=\"hero-header\">\n\t\t\t<h1 class=\"main-title\">Pitch For Good</h1>\n\t\t</header>\n\t\t<div class=\"hero-image\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<h3 class=\"hero-intro\">Pitch For Good provides a platform for highly-skilled professionals to pitch specialized, project-based volunteer ideas to nonprofits.</h3>\n\n\t\t\t\t<h4 hero-description>Passionate and skilled volunteers want to contribute to real change. Pitch for Good addresses a need in the community service space for volunteers to drive the creation of meaningful projects for causes they care about. Pitch for Good allows volunteers to pitch specific and time-bound projects directly to their nonprofits of choice. Organizations are notified when a project is pitched, and volunteers are notified when projects are accepted. In addition, nonprofits can search for volunteers with specialized skills. Pitch for Good provides a new paradigm for community service in your community.</h4>\n\t\t\t</div>\n\n\t\t\t\t<button class=\"js--enter__volunteer button__big\">Volunteers</button>\n\t\t\t\t<button class=\"js--enter__organization button__big\">Nonprofits</button>\n\t\t\t</div>\n\t\t</div>\n\t";
 }
 },{}],"js/utils/api/api-actions.js":[function(require,module,exports) {
 "use strict";
@@ -370,7 +370,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolLanding;
 
 function VolLanding() {
-  return "\n        <div class=\"vollanding__grid-container\">\n            <form class=\"vollanding__signin\">\n                <h1>User Sign In</h1>\n                <span><input type=\"text\" id=\"username\" class=\"vol-username\" placeholder=\"User Name:\"></span><br>\n                <span><input type=\"text\" id=\"password\" class=\"vol-password\" placeholder=\"Password:\"></span><br>\n                <button class=\"js-vol-signin\">Submit</button>\n            </form>\n            <div class=\"vollanding__signup\">\n                <h1>New User?</h1> \n                <button class=\"js--sign-up__volunteer\">Create Account</button>\n            </div> \n        </div>\n    ";
+  return "\n        <div class=\"vollanding__grid-container\">\n            <form class=\"vollanding__signin\">\n                <h1>User Sign In</h1>\n                <input type=\"text\" id=\"username\" class=\"vol-username\" placeholder=\"User Name:\"><br>\n                <input type=\"text\" id=\"password\" class=\"vol-password\" placeholder=\"Password:\"><br>\n                <button class=\"js-vol-signin\">Submit</button>\n            </form>\n            <div class=\"vollanding__signup\">\n                <h1>New User?</h1> \n                <button class=\"js--sign-up__volunteer\">Create Account</button>\n            </div> \n        </div>\n    ";
 }
 },{}],"js/components/OrgLanding.js":[function(require,module,exports) {
 "use strict";
@@ -381,7 +381,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgLanding;
 
 function OrgLanding() {
-  return "\n        <div class=\"orglanding__grid-container\">\n            <form>\n                <div class=\"orglanding__signin\">\n                <h1>Returning Organization Sign In</h1>\n                <span>Username: <input type=\"text\" id=\"username\" class=\"org-username\"></span><br>\n                <span>Password: <input type=\"text\" id=\"password\" class=\"org-password\"></span>\n                </div>\n                <div class=\"orglanding__button\">\n                <button class=\"js-org-signin\">Submit</button></div>\n            </form>\n            <div class=\"orglanding__signup\">\n                <h1>New User?</h1>\n                <button class=\"js--sign-up__organization\">Create Account</button>\n            </div>\n        </div>\n    ";
+  return "\n        <div class=\"orglanding__grid-container\">\n            <form class=\"orglanding__signin\">\n                <h1>Organization Sign In</h1>\n                <input type=\"text\" id=\"username\" class=\"org-username\" placeholder=\"Username:\"><br>\n                <input type=\"text\" id=\"password\" class=\"org-password\" placeholder=\"Password:\"><br>\n                <button class=\"js-org-signin\">Submit</button>\n            </form>\n            <div class=\"orglanding__signup\">\n                <h1>New User?</h1>\n                <button class=\"js--sign-up__organization\">Create Account</button>\n            </div>\n        </div>\n    ";
 }
 },{}],"js/components/VolunteerSearch.js":[function(require,module,exports) {
 "use strict";
@@ -426,7 +426,7 @@ function VolunteerList(organization, skill, volunteers) {
   console.log(skill.skillId);
   return "\n    ".concat(volunteers.map(function (volunteer) {
     return "\n        <h2 class=\"volunteer\" id=\"".concat(volunteer.volunteerId, "\">").concat(volunteer.firstName, " ").concat(volunteer.lastName, "</h2>\n        <h3 class =\"volunteer__email\">").concat(volunteer.email, "</h3>\n        ");
-  }).join(''), "\n    <ul class=\"volunteers\">\n    \n    <button class=\"js-back-to-org-dashboard\" id=\"").concat(organization.organizationId, "\">Back to Dashboard</button>\n    ");
+  }).join(''), "\n    <ul class=\"volunteers\">\n    \n    <button class=\"js-search-again\" id=\"").concat(organization.organizationId, "\">Search Again</button>\n    <button class=\"js-back-to-org-dashboard\" id=\"").concat(organization.organizationId, "\">Back to Dashboard</button>\n    ");
 }
 },{"./Volunteers":"js/components/Volunteers.js"}],"js/components/addSkills.js":[function(require,module,exports) {
 "use strict";
@@ -937,7 +937,8 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57453" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62498" + '/');
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};

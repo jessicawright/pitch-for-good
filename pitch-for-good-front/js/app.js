@@ -52,6 +52,7 @@ function main() {
     volSubmitNewSkills()
     volSubmitNewCauses()
     orgAcceptProject()
+    searchAgain()
 
 }
 
@@ -325,6 +326,18 @@ function getVolunteerSearchForm() {
                     getAppContext().innerHTML = VolunterSearch(organization, skills)
                 }) 
             }) 
+        }
+    })
+}
+
+function searchAgain() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js-search-again')) {
+            api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+                api.getRequest('http://localhost:8080/skills/', skills => {      
+                    getAppContext().innerHTML = VolunterSearch(organization, skills)
+                })
+            })
         }
     })
 }

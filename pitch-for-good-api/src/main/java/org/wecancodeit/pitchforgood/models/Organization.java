@@ -126,5 +126,11 @@ public class Organization {
 		
 	}
 
+
+	@Override
+	public String toString() {
+		return "Organization [orgName=" + orgName + "]";
+	}
+
 	
 }
