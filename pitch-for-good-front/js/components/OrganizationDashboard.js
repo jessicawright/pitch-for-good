@@ -3,8 +3,7 @@ import OrgProject from  './OrgProject'
 
 export default function OrganizationDashboard(organization) {
     return `
-    <h1>Welcome, ${organization.orgName}!</h1>
-
+    
     <h2>Here is your user information:</h2>
     <ul>
         <li>Organization: ${organization.orgName}</li>
