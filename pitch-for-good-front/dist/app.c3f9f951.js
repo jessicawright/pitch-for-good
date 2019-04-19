@@ -437,10 +437,21 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = addSkills;
 
 function addSkills(volunteer, skills) {
-  return "\n    <h1>Add additional skills to your profile:</h1>\n\n    <div class=\"skills__container\">\n                    <ul id=\"skills\">\n                        ".concat(skills.map(function (skill) {
-    return "\n                                <li class=\"skill\">     \n                                    <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.skillId, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n                                </li>\n                            ");
-  }).join(''), "\n                    </ul>\n            </div>\n\n    <button id=").concat(volunteer.volunteerId, " class=\"js-addSkills\">Submit</button>\n    <button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button>\n    ");
-}
+  return "\n\n    <h1 class=\"addSkills_profile\">Add additional skills to your profile:</h1>\n    <section class=\"addSkills__background\">\n    <div class=\"skills__container\">\n                    <ul class=\"skills__container__list\"id=\"skills\">\n                        ".concat(skills.map(function (skill) {
+    return "\n                                <li class=\"skill\">\n                                    <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.skillId, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n                                </li>\n                            ");
+  }).join(''), "\n                    </ul>\n\n\n      <div class=\"addSkill__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-addSkills\">Submit</button></div>\n      <div class=\"back__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button></div>\n    </div>\n  </section>\n  ");
+} // <div class="vol-search">
+//     <h3 class="vol-search-info">Welcome to the volunteer search page. Use this tool to find volunteers with skills that you need to make the most of your next big project!</h3>
+//     <h4 class="vol-search-info-detail">(Could this be your next super-volunteer?)</h4>
+//     <select id="skillId" class="skill-select">
+//     ${skills.map(skill => {
+//         return `
+//             <option class="js-dropdown-skill" id="${skill.skillId}" value="${skill.skillId}">${skill.skillName}</option>
+//         `
+//     }).join('')}
+//     </select>
+//     <button class="js-find-volunteers-by-skill button" id="${organization.organizationId}">Search</button>
+// </div>
 },{}],"js/components/addCauses.js":[function(require,module,exports) {
 "use strict";
 
@@ -451,8 +462,8 @@ exports.default = addCauses;
 
 function addCauses(volunteer, causes) {
   return "\n    <h1>Add additional causes to your profile:</h1>\n\n    <div class=\"causes__container\">\n                    <ul id=\"causes\">\n                        ".concat(causes.map(function (cause) {
-    return "\n                                <li class=\"cause\">     \n                                    <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                                </li>\n                            ");
-  }).join(''), "\n                    </ul>\n            </div>\n\n    <button id=").concat(volunteer.volunteerId, " class=\"js-addCauses\">Submit</button>\n    <button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button>\n    ");
+    return "\n                                <li class=\"cause\">\n                                    <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                                </li>\n                            ");
+  }).join(''), "\n                    </ul>\n        \n\n    <button id=").concat(volunteer.volunteerId, " class=\"js-addCauses\">Submit</button>\n    <button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button>\n    </div>\n    ");
 }
 },{}],"js/app.js":[function(require,module,exports) {
 "use strict";
@@ -855,10 +866,12 @@ function getBackToOrgDashboard() {
 function orgAcceptProject() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js-accept-project')) {
-      _apiActions.default.getRequest("http://localhost:8080/projects/".concat(event.target.id, "/accept"), function (organization) {
-        getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
-        getHeaderContext().innerHTML = (0, _OrgHeader.default)(organization);
-      });
+      if (confirm('Are you sure you would like to accept the project? If you do, the volunteer will receive an email that their project has been accepted. They also will be able to contact you to move forward with the project.')) {
+        _apiActions.default.getRequest("http://localhost:8080/projects/".concat(event.target.id, "/accept"), function (organization) {
+          getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
+          getHeaderContext().innerHTML = (0, _OrgHeader.default)(organization);
+        });
+      }
     }
   });
 }
@@ -920,7 +933,7 @@ function getHeaderContext() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -948,7 +961,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59313" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53320" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -1123,5 +1136,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
 //# sourceMappingURL=/app.c3f9f951.js.map
