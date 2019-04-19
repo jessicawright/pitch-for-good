@@ -87,42 +87,6 @@
 }
 
 /* start org and vol Dashboard grid */
-.dashboard__container {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 8, 1fr;
-  grid-template-rows: 7, 1fr;
-  align: center;
-  margin: 1rem;
-}
-.volDashboard__contact {
-  grid-column: 1 / span 4;
-  grid-row: 1 / span 3;
-  text-align: left;
-  display: inline-block;
-}
-.volDashboard__skills {
-  grid-column: 1 / span 8;
-  grid-row: 4 / span 2;
-  text-align: left;
-  align-items: right;
-  justify-content: space-between;
-  display: flex;
-}
-.volDashboard__causes {
-  grid-column: 1 / span 8;
-  grid-row: 6 / span 2;
-  text-align: left;
-  align-items: right;
-  justify-content: space-between; 
-  display: flex;
-}
-.volDashboard__projects {
-  grid-column: 5 / span 4;
-  grid-row: 1 / span 3;
-  text-align: left;
-  display: inline-block;
-}
 
 /* start orgForm grid */
 .orgForm__container {
@@ -401,6 +365,17 @@ i {
 
 .vol-search-buttons {
   margin-top: 40px;
+}
+
+.vol-dashboard-container {
+  max-width: 70%;
+  margin: auto;
+  /* background-image */
+}
+
+.section-container3 {
+  background-image: url(/sectionimage3.03168a2c.png);
+  background-position: center center;
 }
 
 

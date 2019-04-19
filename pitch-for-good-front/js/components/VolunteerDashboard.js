@@ -4,11 +4,13 @@ import Project from './Project'
 
 export default function VolunteerDashboard(volunteer) {
     return `
-
-    <div class="dashboard__container">
     <h6>Welcome, ${volunteer.firstName}!</h6>
-        <div class="volDashboard__contact">
-            <h6>Here is your user information:</h6>
+    <div class="vol-dashboard-container"
+        <h2>Click the button below to see organizations to make a proposal to.</h2>
+        <button class="js--see-organizations button__big" id="${volunteer.volunteerId}">SEE ORGANIZATIONS</button>
+                
+
+        <h6>Here is your user information:</h6>
             <ul>
                 <li>First Name: ${volunteer.firstName}</li>
                 <li>Last Name: ${volunteer.lastName}</li><br>
@@ -17,36 +19,40 @@ export default function VolunteerDashboard(volunteer) {
                 <li>Phone Number: ${volunteer.phoneNum}</li>
                 <li>Email: ${volunteer.email}</li><br>
                 <li>Current Job Title: ${volunteer.jobTitle}</li>
-            </ul>
-        </div>
-        <div class="volDashboard__skills">
-            <h6>These are your skills:</h6>
+            </ul>  
+
+        <div class="section-container1">
+            <span style="color: white;">
+                <i class="fas fa-clipboard-list fa-3x"></i>
+            </span>
+            <h6>Your skills:</h6>
             <ul>
                 <li>${Skills(volunteer.skills)}</li>
             </ul>
-            
             <button class="js--vol-add-skills" id=${volunteer.volunteerId}>Add Additional Skills</button>
-            
         </div>
-        <div class="volDashboard__causes">
-            <h6>These are the causes you support:</h6>
+
+        <div class="section-container2">
+            <span style="color: white;">
+                <i class="fas fa-hand-holding-heart fa-3x"></i>
+            </span>
+            <h6>Causes you support:</h6>
             <ul>
                 <li>${Cause(volunteer.causes)}</li>
             </ul>
-            
-            <button class="js--vol-add-causes" id=${volunteer.volunteerId}>Add Additional Causes</button>
-            
+            <button class="js--vol-add-causes" id=${volunteer.volunteerId}>Add Additional Causes</button>      
         </div>
-        <div class="volDashboard__projects">
-            <h6>These are the projects you've pitched:</h6>
+            
+        <div class="section-container3">
+            <span style="color: white;">
+                <i class="fas fa-user-edit fa-3x"></i>
+            </span>
+            <h6>Projects you've pitched:</h6>
             <ul>
                 <li>${Project(volunteer.projects)}</li>
             </ul>
         </div>
-    </div>
-    <h2>Click the button below to see organizations to make a proposal to.</h2>
-    <button class="js--see-organizations button__big" id="${volunteer.volunteerId}">SEE ORGANIZATIONS</button>
-    
+    </div> 
     `
     // <input type="hidden" value="${volunteer.volunteerId}" class="volunteerId">
 }
