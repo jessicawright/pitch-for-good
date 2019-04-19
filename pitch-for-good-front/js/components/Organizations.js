@@ -12,7 +12,7 @@ export default function Organizations(volunteer, organizations) {
                         <h3> If you would like to propose a project to this organization, click the button below.</h3>
                         
                         <input type="hidden" id="${volunteer.volunteerId}" class="volunteerId">
-                        <button class="js-get-project-form button" id="${organization.organizationId}">Propose project</button>
+                        <button class="js-get-project-form button" id="${organization.organizationId}">Make Your Pitch!</button>
                     </li>
                     `  
                 }).join('')}             

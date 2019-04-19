@@ -85,7 +85,6 @@ body {
   opacity: .85;
   padding: 1rem;
   border-radius: .35rem;
-
 }
 
 .contact-info__container {
@@ -134,39 +133,6 @@ body {
   padding: 7px 24px;
   border-radius: 8px;
   box-shadow: 5px 5px 50px 15px var(--secondary-gray, .4);
-    
-}
-
-
-h1 {
-  font-size: 60px;
-  color: var(--primary-color);
-}
-
-h2 {
-  font-size: 40px;
-  color: var(--secondary-gray);
-}
-
-h3 {
-  font-size: 25px;
-  color: var(--secondary-gray);
-}
-
-h4 {
-  font-size: 20px;
-  color: var(--secondary-gray);
-}
-
-h5 {
-  font-size: 15px;
-  color: var(--primary-color);
-}
-
-h6 {
-  font-size: 30px;
-  color: var(--tertiary-white);
-  opacity: 1;
 }
 
 /* start org and vol Dashboard grid */
@@ -182,7 +148,7 @@ h6 {
   grid-column: 1 / span 4;
   grid-row: 1 / span 3;
   text-align: left;
-  display: flex;
+  display: inline-block;
 }
 .volDashboard__skills {
   grid-column: 1 / span 8;
@@ -204,13 +170,27 @@ h6 {
   grid-column: 5 / span 4;
   grid-row: 1 / span 3;
   text-align: left;
-  display: flex;
+  display: inline-block; 
 }
 
-/* add causes buttons */
-.js--vol-add-causes, .js--see-organizations, .js--vol-add-skills {
-  
+/* start orgForm grid */
+.orgForm__container {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 4, 1fr;
+  grid-template-rows: 2, 1fr;
 }
+
+.contact-info__container {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2; 
+}
+
+.skills__container {
+  grid-column: 3 / span 2;
+  grid-row: 1 / span 2; 
+}
+
 
 .hero-image {
   width: 100%;
@@ -218,8 +198,20 @@ h6 {
   margin-top: 50px;
 }
 
+/* start org and vol landing grid */
+.orglanding__grid-container, .vollanding__grid-container {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 4, 1fr;
+  grid-template-rows: 2, 1fr;
+}
+
+.js--vol-add-causes, .js--vol-add-skills {
+  background-color: var(--secondary-color);
+  color: var(--secondary-gray);
+}
+
 .hero-header {
-  background-color: white;
   width: 100%;
   height: 50px;
 }
@@ -240,7 +232,7 @@ h6 {
   font-style: italic;
   font-weight: bold;
   font-size: 60px;
-  color: #65cce5;
+  color: var(--secondary-color);
 }
 
 footer {

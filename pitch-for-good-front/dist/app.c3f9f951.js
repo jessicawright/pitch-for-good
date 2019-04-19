@@ -126,6 +126,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolForm;
 
 function VolForm(causes, skills) {
+
   return "\n    <h1>Volunteer Sign Up Page</h1>\n        <div class=\"volForm__container\">\n            <div class=\"contact-info__container\">\n                <input type=\"text\" class=\"add__firstName\" placeholder=\"First Name:\">\n                <input type=\"text\" class=\"add__lastName\" placeholder=\"Last Name:\"><br>\n                <input type=\"text\" class=\"add__volUserName\" placeholder=\"Username:\">\n                <input type=\"text\" class=\"add__volPassword\" placeholder=\"Password:\"><br>\n                <input type=\"text\" class=\"add__jobTitle\" placeholder=\"Job Title:\"><br>\n                <input type=\"text\" class=\"add__phoneNum\" placeholder=\"Phone:\">\n                <input type=\"text\" class=\"add__email\" placeholder=\"Email:\">\n            </div>\n            <div class=\"skills__container\">\n                    <ul id=\"skills\">\n                        ".concat(skills.map(function (skill) {
     return "\n                                <li class=\"skill\">     \n                                    <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.id, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n                                </li>\n                            ");
   }).join(''), "\n                    </ul>\n            </div>\n            <div class=\"causes__container\">    \n                <ul id=\"causes\">\n                    ").concat(causes.map(function (cause) {
@@ -142,7 +143,9 @@ exports.default = Organizations;
 
 function Organizations(volunteer, organizations) {
   return "\n        <h1>Organizations:</h1>\n        <ul class=\"organizations\">\n            ".concat(organizations.map(function (organization) {
+
     return "\n                    <li class=\"organization\">     \n                        <h2 class=\"js-organization__orgName\" id=\"".concat(organization.organizationId, "\">").concat(organization.orgName, "</h2>\n                        <h3 class=\"organization__orgMission\">").concat(organization.orgMission, "</h3>\n                        <h3 class=\"organization__websiteUrl\">").concat(organization.websiteUrl, "</h3>\n                        <h3> If you would like to propose a project to this organization, click the button below.</h3>\n                        \n                        <input type=\"hidden\" id=\"").concat(volunteer.volunteerId, "\" class=\"volunteerId\">\n                        <button class=\"js-get-project-form button\" id=\"").concat(organization.organizationId, "\">Propose project</button>\n                    </li>\n                    ");
+
   }).join(''), "             \n                </ul>\n                ");
 }
 },{}],"js/components/ProjectForm.js":[function(require,module,exports) {
@@ -305,9 +308,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgForm;
 
 function OrgForm(causes) {
-  return "\n    <h1>Organization Sign Up Page</h1>\n        <div class=\"orgForm__container\">\n            <div class=\"contact-info__container\">\n                <input type=\"text\" class=\"add__orgName\" placeholder=\"Organization Name:\">\n                <input type=\"text\" class=\"add__mission\" placeholder=\"Your mission:\"><br>\n                <input type=\"text\" class=\"add__contactPerson\" placeholder=\"Organization contact:\">\n                <input type=\"text\" class=\"add__contactEmail\" placeholder=\"Contact Email:\"><br>\n                <input type=\"text\" class=\"add__orgUrl\" placeholder=\"Website:\"><br>\n                <input type=\"text\" class=\"add__orgUserName\" placeholder=\"Username:\"><br>\n                <input type=\"text\" class=\"add__orgPassword\" placeholder=\"Password:\"><br>\n            </div>\n                       \n            \n            <ul id=\"causes\">\n                ".concat(causes.map(function (cause) {
-    return "\n                    <li class=\"cause\">     \n                        <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                    </li>\n                ");
-  }).join(''), "\n            </ul>\n            \n            <button class=\"js-add-organization button\">Sign Up!</button>\n        ");
+  return "\n        <h1>Organization Sign Up Page</h1>\n        <div class=\"orgForm__container\">\n            <div class=\"contact-info__container\">\n                <input type=\"text\" class=\"add__orgName\" placeholder=\"Organization Name:\">\n                <input type=\"text\" class=\"add__mission\" placeholder=\"Your mission:\"><br>\n                <input type=\"text\" class=\"add__contactPerson\" placeholder=\"Organization contact:\">\n                <input type=\"text\" class=\"add__contactEmail\" placeholder=\"Contact Email:\"><br>\n                <input type=\"text\" class=\"add__orgUrl\" placeholder=\"Website:\"><br>\n                <input type=\"text\" class=\"add__orgUserName\" placeholder=\"Username:\"><br>\n                <input type=\"text\" class=\"add__orgPassword\" placeholder=\"Password:\"><br>\n            </div>\n                        \n            <div class=\"skills__container\">\n                <ul id=\"causes\">\n                    ".concat(causes.map(function (cause) {
+    return "\n                            <li class=\"cause\">     \n                                <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                            </li>\n                        ");
+  }).join(''), "  \n                </ul>            \n            </div>   \n            <button class=\"js-add-organization button\">Sign Up!</button>\n        </div>\n    ");
 }
 },{}],"js/components/OrgProject.js":[function(require,module,exports) {
 "use strict";
@@ -359,7 +362,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgHeader;
 
 function OrgHeader(organization) {
+
   return "\n    \n    <div class=\"nav\">\n    <ul class=\"nav-links\">\n        <li><img src=\"/images/lotus.png\" class=\"logo js-landing\"></li>\n        <li class=\"title js-landing\">Pitch For Good</li>\n    <div class=\"nav-name\">\n        <li class=\"welcome\">".concat(organization.orgName, "</li>  \n        <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n    </div>\n    </ul>\n</div>\n    ");
+
 }
 },{}],"js/components/VolLanding.js":[function(require,module,exports) {
 "use strict";
@@ -948,7 +953,9 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "50681" + '/');
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};

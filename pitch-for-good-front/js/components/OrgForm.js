@@ -1,6 +1,6 @@
 export default function OrgForm(causes) {
     return `
-    <h1>Organization Sign Up Page</h1>
+        <h1>Organization Sign Up Page</h1>
         <div class="orgForm__container">
             <div class="contact-info__container">
                 <input type="text" class="add__orgName" placeholder="Organization Name:">
@@ -11,20 +11,19 @@ export default function OrgForm(causes) {
                 <input type="text" class="add__orgUserName" placeholder="Username:"><br>
                 <input type="text" class="add__orgPassword" placeholder="Password:"><br>
             </div>
-                       
-            
-            <ul id="causes">
-                ${causes.map(cause => {
-                    return `
-                    <li class="cause">     
-                        <input type="checkbox" class="cause__causeName" id="${cause.causeId}" name="causeIds" value="${cause.causeId}">${cause.causeName}
-                    </li>
-                `;
-            }).join('')}
-            </ul>
-            
+                        
+            <div class="skills__container">
+                <ul id="causes">
+                    ${causes.map(cause => {
+                        return `
+                            <li class="cause">     
+                                <input type="checkbox" class="cause__causeName" id="${cause.causeId}" name="causeIds" value="${cause.causeId}">${cause.causeName}
+                            </li>
+                        `; 
+                    }).join('')}  
+                </ul>            
+            </div>   
             <button class="js-add-organization button">Sign Up!</button>
-        `;
-
-   
+        </div>
+    `;
 }
