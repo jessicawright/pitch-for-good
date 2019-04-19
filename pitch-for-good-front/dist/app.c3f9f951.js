@@ -392,9 +392,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolunterSearch;
 
 function VolunterSearch(organization, skills) {
-  return "\n        <h3>Search for volunteers by a skill here:</h3>\n        <select id=\"skillId\">\n        ".concat(skills.map(function (skill) {
-    return "\n                <option class=\"js-dropdown-skill\" id=\"".concat(skill.skillId, "\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "</option> \n            ");
-  }).join(''), "\n        </select>      \n                \n        <button class=\"js-find-volunteers-by-skill button\" id=\"").concat(organization.organizationId, "\">Find Volunteers</button>\n    ");
+  return "\n        <div class=\"vol-search\">\n            <h3 class=\"vol-search-info\">Welcome to the volunteer search page. Use this tool to find volunteers with skills that you need to make the most of your next big project!</h3>\n            <h4 class=\"vol-search-info-detail\">(Could this be your next super-volunteer?)</h4>\n            <select id=\"skillId\" class=\"skill-select\">\n            ".concat(skills.map(function (skill) {
+    return "\n                    <option class=\"js-dropdown-skill\" id=\"".concat(skill.skillId, "\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "</option> \n                ");
+  }).join(''), "\n            </select>        \n            <button class=\"js-find-volunteers-by-skill button\" id=\"").concat(organization.organizationId, "\">Search</button>\n        </div>\n    ");
 }
 },{}],"js/components/Volunteers.js":[function(require,module,exports) {
 "use strict";
@@ -948,7 +948,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54229" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58712" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
