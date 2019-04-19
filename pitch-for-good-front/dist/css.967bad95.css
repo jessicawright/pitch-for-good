@@ -318,14 +318,15 @@ footer {
 
 .vol-search-info {
   margin-bottom: 20px;
-  color: var(--secondary-color);
+  margin-top: 40px;
+  color: white;
 }
 
 .vol-search {
   margin-top: 25vh;
   margin: auto;
-  background-image: url(/mural.4ba01f48.png);
-  background-position: center center;
+  background-image: url(/gardenvolunteers.cd19dd02.png);
+  background-position: center -15px;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
@@ -333,10 +334,12 @@ footer {
   align-self: center;
   align-items: center;
   text-align: center;
+  position: absolute;
+  top: 0;
 }
 
 .js-find-volunteers-by-skill {
-  background-color: var(--secondary-gray);
+  background-color: var(--secondary-color);
   color: white;
   font-size: 15px;
   padding: 10px 20px;
@@ -346,7 +349,58 @@ footer {
 
 .vol-search-info-detail {
   font-style: italic;
-  color: var(--secondary-color);
+  color: white;
+}
+
+.vol-search span {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+i {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+/* start vol search results page */
+.js-search-again {
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 15px;
+  padding: 10px 20px;
+  margin: 1rem;
+  border-radius: 8px;
+}
+
+.js-back-to-org-dashboard {
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 15px;
+  padding: 10px 20px;
+  margin: 1rem;
+  border-radius: 8px;
+}
+
+.volunteer {
+  color: white;
+}
+
+.volunteer__email {
+  color: white;
+  margin-left: 20px;
+}
+
+.volunteer-results {
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.vol-search-buttons {
+  margin-top: 40px;
 }
 
 

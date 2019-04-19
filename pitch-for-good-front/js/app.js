@@ -53,6 +53,7 @@ function main() {
     volSubmitNewCauses()
     orgAcceptProject()
     searchAgain()
+    getBackToOrgDashboardFromSearch()
 
 }
 
@@ -323,6 +324,7 @@ function getVolunteerSearchForm() {
         if(event.target.classList.contains('js-get-volunteer-search')) {
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
                 api.getRequest('http://localhost:8080/skills/', skills => {      
+                    getHeaderContext().innerHTML = ""
                     getAppContext().innerHTML = VolunterSearch(organization, skills)
                 }) 
             }) 
@@ -360,6 +362,17 @@ function getVolunteerListFromForm() {
 function getBackToOrgDashboard() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-back-to-org-dashboard')) {
+            api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+                getAppContext().innerHTML = OrganizationDashboard(organization)
+                getHeaderContext().innerHTML = OrgHeader(organization)
+            })
+        }
+    })
+}
+
+function getBackToOrgDashboardFromSearch() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('fa-arrow-left')) {
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
                 getAppContext().innerHTML = OrganizationDashboard(organization)
                 getHeaderContext().innerHTML = OrgHeader(organization)
