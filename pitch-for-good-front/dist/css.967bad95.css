@@ -380,11 +380,19 @@ i {
 
 .volunteer__email {
   color: white;
+  margin-left: 20px;
 }
 
 .volunteer-results {
   display: flex;
   flex-direction: row;
+  margin-top: 40px;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.vol-search-buttons {
+  margin-top: 40px;
 }
 
 
