@@ -189,7 +189,13 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
+<<<<<<< HEAD
 },{"./..\\dist\\images\\signin.png":[["signin.e75b29e4.png","dist/images/signin.png"],"dist/images/signin.png"],"./..\\dist\\images\\mural.png":[["mural.4ba01f48.png","dist/images/mural.png"],"dist/images/mural.png"],"./..\\dist\\images\\carpenter-hands.png":[["carpenter-hands.accdad7b.png","dist/images/carpenter-hands.png"],"dist/images/carpenter-hands.png"],"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+=======
+
+},{"./..\\dist\\images\\signin.png":[["signin.e75b29e4.png","dist/images/signin.png"],"dist/images/signin.png"],"./..\\dist\\images\\gardenvolunteers.png":[["gardenvolunteers.cd19dd02.png","dist/images/gardenvolunteers.png"],"dist/images/gardenvolunteers.png"],"_css_loader":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+>>>>>>> 2d4400fd070d2a9882292a66db3abdb06203fec6
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -217,7 +223,13 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+<<<<<<< HEAD
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "53320" + '/');
+=======
+
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52477" + '/');
+
+>>>>>>> 2d4400fd070d2a9882292a66db3abdb06203fec6
 
   ws.onmessage = function (event) {
     checkedAssets = {};
