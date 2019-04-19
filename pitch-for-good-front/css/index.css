@@ -22,8 +22,8 @@
   height: 1000px;
 }
 
-.contact-info__container, .skills__container, .causes__container, .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
-  background: var(--secondary-gray);
+.contact-info__container, .causes__container, .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
+  background-color: var(--secondary-gray);
   color: var(--tertiary-white);
   opacity: .85;
   padding: 1rem;
@@ -41,18 +41,6 @@
   text-align: left;
 
 }
-
-#skills {
-  display: inline-flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-
-}
-
-/* #cause {
-  padding: 100px;
-} */
 
 #causes {
   column-count: 2;
@@ -412,50 +400,66 @@ i {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
-  height: 75vh;
+  min-height: 100vh;
   align-self: center;
   align-items: center;
   text-align: center;
 }
 .addSkills__background {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .skills__container {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  grid-template-rows: repeat(3,1fr);
+
+  background-color: none;
+
   height: 500px;
-  width:70%;
+  /* width:40%; */
+
   /* align-self: center; */
 
-  text-align: left;
+
   /* margin-left: 250px; */
   margin:auto;
-  vertical-align: middle;
+
 
 
 }
 .skills__container__list {
-  grid-column: 1 / span 2;
-  grid-row: 1 / span 2;
-
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(2,1fr);
+  grid-column-gap: 50px;
 
 }
 .addSkill__button {
   grid-column: 1/ span 1;
   grid-row: 3/ span 1;
-  margin-left: 20%;
+  padding: 20px;
 }
 .back__button {
   grid-column: 2/ span 1;
   grid-row: 3/ span 1;
-  margin-left: 20%;
+  padding: 20px;
 
 }
 .js-addSkills, .js-back-to-dashboard, .js-addCauses{
-  width: 40%;
-  background-color: var(--secondary-color);
+  background-color: var(--tertiary-white);
+  color: var(--secondary-gray);
   justify-content: space-evenly;
+  font-size: 20px;
+  padding: 10px;
+
+}
+.addSkills_profile {
+  margin-top: 75px;
+
+  color: white;
+}
+.skill-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

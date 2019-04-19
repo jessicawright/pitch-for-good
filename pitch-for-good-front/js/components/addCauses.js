@@ -8,11 +8,12 @@ export default function addCauses(volunteer, causes) {
                             return `
                                 <li class="cause">
                                     <input type="checkbox" class="cause__causeName" id="${cause.causeId}" name="causeIds" value="${cause.causeId}">${cause.causeName}
+                                    <p class="cause__description">${cause.causeDescription}</p>
                                 </li>
                             `;
                         }).join('')}
                     </ul>
-        
+
 
     <button id=${volunteer.volunteerId} class="js-addCauses">Submit</button>
     <button id=${volunteer.volunteerId} class="js-back-to-dashboard">Cancel</button>

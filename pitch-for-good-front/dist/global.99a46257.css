@@ -23,7 +23,7 @@
     --primary-color: rgb(127, 200, 59);
     --secondary-color: rgb(102, 203, 229);
     --secondary-gray: rgb(96, 117, 67);
-    --tertiary-white: rgb(246, 248, 213);
+    --tertiary-white: white;
     text-align: center;
   }
 
@@ -45,7 +45,7 @@
   }
 
   /* button styling */
-  .js--see-organizations, .js--vol-add-causes, .js--see-organizations, .js-addSkills, .js-back-to-dashboard, .js--vol-add-skills, .js-get-project-form, .js-add-project, .js-add-organization, .js-addCauses{
+  .js--see-organizations, .js--vol-add-causes, .js--see-organizations, .js--vol-add-skills, .js-get-project-form, .js-add-project, .js-add-organization, .js-addCauses{
     background-color: var(--secondary-gray);
     color: var(--tertiary-white);
     font-size: 30px;
