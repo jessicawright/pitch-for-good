@@ -45,7 +45,7 @@
   }
   
   /* button styling */
-  .js--enter__volunteer, .js--enter__organization, .js--see-organizations, .js--vol-add-causes, .js--see-organizations, .js--vol-add-skills, .js-get-project-form, .js-log-out, .js-add-project, .js-add-organization {
+  .js--enter__volunteer, .js--enter__organization, .js--see-organizations, .js--vol-add-causes, .js--see-organizations, .js--vol-add-skills, .js-get-project-form, .js-add-project, .js-add-organization {
     background-color: var(--secondary-gray);
     color: var(--tertiary-white);
     font-size: 30px;
@@ -53,6 +53,16 @@
     margin: 1rem;
     border-radius: 8px;
     box-shadow: 5px 5px 50px 15px rgb(96, 117, 67, .4);
+  }
+
+  .js-log-out {
+    /* background-color: var(--secondary-gray); */
+    color: var(--secondary-gray);
+    font-size: 15px;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 8px;
+    /* box-shadow: 5px 5px 50px 15px rgb(96, 117, 67, .4); */
   }
   
   h1 {
