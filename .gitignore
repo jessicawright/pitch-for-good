@@ -13,7 +13,6 @@ npm-debug.log.*
 /.awcache/*
 /.cache-loader/*
 /pitch-for-good-front/.cache/
-/pitch-for-good-front/dist/
 ######################
 # SASS
 ######################
