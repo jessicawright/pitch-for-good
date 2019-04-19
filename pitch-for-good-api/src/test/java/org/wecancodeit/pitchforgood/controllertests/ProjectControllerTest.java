@@ -62,7 +62,7 @@ public class ProjectControllerTest {
 	public void givenProjects_whenGetProjects_thenReturnJsonArray()
 	  throws Exception { 
     	Organization org = new Organization("","","","","","", null, null);
-    	Project project = new Project("","","", org);
+    	Project project = new Project("","","", org, null);
     	List<Project> allProjects = Arrays.asList(project);
     	given(projectRepo.findAll()).willReturn(allProjects);
     	mvc.perform(get("/projects/")
