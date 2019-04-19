@@ -424,7 +424,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function VolunteerList(organization, skill, volunteers) {
   console.log(organization.organizationId);
   console.log(skill.skillId);
-  return "\n    <div class=\"vol-search\">\n        <div class=\"vol-search-buttons\">\n            <button class=\"js-search-again\" id=\"".concat(organization.organizationId, "\">Search Again</button>\n            <button class=\"js-back-to-org-dashboard\" id=\"").concat(organization.organizationId, "\">Back to Dashboard</button>\n        </div>\n            ").concat(volunteers.map(function (volunteer) {
+  return "\n    <div class=\"vol-search\">\n        <span style=\"color: white;\">\n            <i class=\"fas fa-arrow-left fa-3x\" id=".concat(organization.organizationId, "></i>\n        </span>\n        <div class=\"vol-search-buttons\">\n            <button class=\"js-search-again\" id=\"").concat(organization.organizationId, "\">Search Again</button>\n        </div>\n            ").concat(volunteers.map(function (volunteer) {
     return "\n                <div class=\"volunteer-results\">\n                    <h2 class=\"volunteer\" id=\"".concat(volunteer.volunteerId, "\">").concat(volunteer.firstName, " ").concat(volunteer.lastName, "</h2>\n                    <h3 class =\"volunteer__email\">").concat(volunteer.email, "</h3>\n                </div>\n                ");
   }).join(''), "\n            <ul class=\"volunteers\">\n    </div>\n        ");
 }
@@ -963,7 +963,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52230" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52477" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

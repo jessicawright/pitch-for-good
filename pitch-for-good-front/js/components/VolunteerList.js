@@ -5,9 +5,11 @@ export default function VolunteerList(organization, skill, volunteers) {
     console.log(skill.skillId)
     return `
     <div class="vol-search">
+        <span style="color: white;">
+            <i class="fas fa-arrow-left fa-3x" id=${organization.organizationId}></i>
+        </span>
         <div class="vol-search-buttons">
             <button class="js-search-again" id="${organization.organizationId}">Search Again</button>
-            <button class="js-back-to-org-dashboard" id="${organization.organizationId}">Back to Dashboard</button>
         </div>
             ${volunteers.map(volunteer => {
                 return `
