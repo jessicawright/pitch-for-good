@@ -38,20 +38,20 @@ public class Initializer implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Cause cause1 = causeRepo.save(new Cause("Animal Welfare and Services", ""));
-		Cause cause2 = causeRepo.save(new Cause("Arts, Culture, Humanities", ""));
-		Cause cause3 = causeRepo.save(new Cause("Community Development", ""));
-		Cause cause4 = causeRepo.save(new Cause("Education", ""));
-		Cause cause5 = causeRepo.save(new Cause("Environment", ""));
-		Cause cause6 = causeRepo.save(new Cause("Health", ""));
-		Cause cause7 = causeRepo.save(new Cause("Human and Civil Rights", ""));
-		Cause cause8 = causeRepo.save(new Cause("Children's and Family Services", ""));
-		Cause cause9 = causeRepo.save(new Cause("Youth Development, Shelter, and Crisis Services", ""));
-		Cause cause10 = causeRepo.save(new Cause("Hunger", ""));
-		Cause cause11 = causeRepo.save(new Cause("Homeless Services", ""));
-		Cause cause12 = causeRepo.save(new Cause("International Services", ""));
-		Cause cause13 = causeRepo.save(new Cause("Public Policy", ""));
-		Cause cause14 = causeRepo.save(new Cause("Religion", ""));
+		Cause cause1 = causeRepo.save(new Cause("Animal Welfare and Services", "Working towards a more humane treatment of all animals"));
+		Cause cause2 = causeRepo.save(new Cause("Arts, Culture, Humanities", "Promoting a society based in education and creativity"));
+		Cause cause3 = causeRepo.save(new Cause("Community Development", "Encouraging community members come together to take collective action and generate solutions to common problems"));
+		Cause cause4 = causeRepo.save(new Cause("Education", "Engaging in the facilitation of learning and the accumulation of knowledge"));
+		Cause cause5 = causeRepo.save(new Cause("Environment", "Protecting our planet and its natural resources"));
+		Cause cause6 = causeRepo.save(new Cause("Health", "Committed to progressing society towards the pursuit of physical and mental well-being"));
+		Cause cause7 = causeRepo.save(new Cause("Human and Civil Rights", "Promoting fair and just treatment for all human beings"));
+		Cause cause8 = causeRepo.save(new Cause("Children's and Family Services", "Overseeing the protection and nurturing of all children"));
+		Cause cause9 = causeRepo.save(new Cause("Youth Development, Shelter, and Crisis Services", "Concerned with the welfare of children and families in crisis"));
+		Cause cause10 = causeRepo.save(new Cause("Hunger", "Guided towards the sufficient feeding of the community"));
+		Cause cause11 = causeRepo.save(new Cause("Homeless Services", "Providing shelter, food, and treatments for the homeless community"));
+		Cause cause12 = causeRepo.save(new Cause("International Services", "Driven by assisting refugees, immigrants and new citizens overcome social, cultural and economic issues"));
+		Cause cause13 = causeRepo.save(new Cause("Public Policy", "Working towards the promotion of a more just society through legislation and governance"));
+		Cause cause14 = causeRepo.save(new Cause("Religion", "Developement of projects and missions to appease the sweet baby jesus please give me money"));
 		
 		Skill skill1 = skillRepo.save(new Skill("Childcare"));
 		Skill skill2 = skillRepo.save(new Skill("Animal Care"));
@@ -82,10 +82,11 @@ public class Initializer implements CommandLineRunner {
 		Skill skill27 = skillRepo.save(new Skill("Fitness"));
 		
 
-		Organization organization1 = organizationRepo.save(new Organization("Ohio Environmental Council","OhioEnvironmentalCouncilLogo.png", "The Ohio Environmental Council is the state�s most comprehensive, effective and respected environmental advocate for a healthier, more sustainable Ohio. "
-				+ "Our experts work daily to restore, protect, and strengthen the quality of life for families and communities�from the air we breathe and the water we drink to the food we eat and natural resources we enjoy.", 
+		Organization organization1 = organizationRepo.save(new Organization("Ohio Environmental Council","OhioEnvironmentalCouncilLogo.png", "The Ohio Environmental Council is the state's most comprehensive, effective and respected environmental advocate for a healthier, more sustainable Ohio. "
+				+ "Our experts work daily to restore, protect, and strengthen the quality of life for families and communities from the air we breathe and the water we drink to the food we eat and natural resources we enjoy.", 
 				"TAMALIYAPO MPHANDE", "jsunh98@gmail.com", " OEC@theOEC.org", "username1", "password"));
-		Organization organization2 = organizationRepo.save(new Organization("Columbus Gives Back", "ColumbusGivesBack_Logo.png","We�re proud to partner with so many local organizations, but the heart of Columbus Gives Back is our leadership team. We strive to create a welcoming, engaging, and fun experience for you at every event � something that sets CGB apart from other volunteer opportunities.",
+		Organization organization2 = organizationRepo.save(new Organization("Columbus Gives Back", "ColumbusGivesBack_Logo.png","We're proud to partner with so many local organizations, but the heart of Columbus Gives Back is our leadership team. We strive to create a welcoming, engaging, "
+				+ "and fun experience for you at every event, something that sets CGB apart from other volunteer opportunities.",
 				 "Taylor Putnam-Majarian", "jsunh98@gmail.com", "www.columbusgivesback.org", "username2", "password"));
 		Organization organization3 = organizationRepo.save(new Organization("See Kids Dream", "SeeKidsDream_Logo.png","To empower youth with the skills, motivation and confidence" + 
 				"to make the world a better place", "Cynthia Armstrong", "jsunh98@gmail.com", "http://seekidsdream.org", "username3", "password"));
@@ -94,7 +95,7 @@ public class Initializer implements CommandLineRunner {
 		Organization organization5 = organizationRepo.save(new Organization("Tech Corps", "TechCorps_Logo.png", "To create a technologically literate society in which all K-12 students have equal access to the technology skills, "
 				+ "programs and resources that will enrich their education today and prepare them for college or career tomorrow.", "Jess", "jsunh98@gmail.com", "http://www.techcorps.org", "username5", "password"));
 		Organization organization6 = organizationRepo.save(new Organization("Mid Ohio Food Bank", "MidOhioFoodbank_Logo.png", 
-				"At Mid-Ohio Foodbank, we find it unacceptable for thousands of our neighbors�most of them children and seniors�to go hungry. "
+				"At Mid-Ohio Foodbank, we find it unacceptable for thousands of our neighbors, most of them children and seniors, to go hungry. "
 				+ "We aim to provide efficient, effective ways for hungry people to meet their basic food and nutrition needs.", "info", "info@midohiofoodbank.org", "www.midohiofoodbank.org", "username6", "password"));
 		
 		Volunteer volunteer1 = volunteerRepo.save(new Volunteer("John", "Smith", "username1", "password", "614-867-5309", "arielwebb12@gmail.com", "Teacher"));

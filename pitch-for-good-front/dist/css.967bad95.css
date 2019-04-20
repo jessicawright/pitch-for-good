@@ -14,16 +14,16 @@
 .volForm__container {
   display: grid;
 	grid-gap: 5px 5px;
-	grid-template-columns: repeat(4, 1fr); 
-	grid-template-rows: repeat(3, 1fr); 
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(3, 1fr);
 	margin: 1rem;
 	padding: 1rem;
-	max-width: 100%;	
-  height: 1000px;	
+	max-width: 100%;
+  height: 1000px;
 }
 
-.contact-info__container, .skills__container, .causes__container, .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
-  background: var(--secondary-gray);
+.contact-info__container, .causes__container, .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
+  background-color: var(--secondary-gray);
   color: var(--tertiary-white);
   opacity: .85;
   padding: 1rem;
@@ -39,20 +39,8 @@
   grid-column: 3 / span 2;
   grid-row: 1 / span 3;
   text-align: left;
-  
-}
 
-#skills {
-  display: inline-flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  
 }
-
-/* #cause {
-  padding: 100px;
-} */
 
 #causes {
   column-count: 2;
@@ -98,12 +86,12 @@
 
 .contact-info__container {
   grid-column: 1 / span 2;
-  grid-row: 1 / span 2; 
+  grid-row: 1 / span 2;
 }
 
 .skills__container {
   grid-column: 3 / span 2;
-  grid-row: 1 / span 2; 
+  grid-row: 1 / span 2;
 }
 
 
@@ -120,6 +108,7 @@
   align-self: center;
   margin-top: 50px;
 }
+
 
 .hero-header {
   width: 100%;
@@ -258,7 +247,7 @@ footer {
 	line-height: 1.3;
 	padding: .6em 1.4em .5em .8em;
 	width: auto;
-	max-width: 100%; 
+	max-width: 100%;
 	box-sizing: border-box;
 	margin: 0;
 	border: 1px solid #aaa;
@@ -581,8 +570,76 @@ i {
 }
 
 
+/* start addSkills.js styling*/
+.addSkills__background {
+  margin-top: 25vh;
+  margin: auto;
+  background-image: url(/carpenter-hands.accdad7b.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  min-height: 100vh;
+  align-self: center;
+  align-items: center;
+  text-align: center;
+}
+.addSkills__background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.skills__container {
+
+  background-color: none;
+
+  height: 500px;
+  /* width:40%; */
+
+  /* align-self: center; */
 
 
+  /* margin-left: 250px; */
+  margin:auto;
+
+}
+.skills__container__list {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(2,1fr);
+  grid-column-gap: 50px;
+
+}
+.addSkill__button {
+  grid-column: 1/ span 1;
+  grid-row: 3/ span 1;
+  padding: 20px;
+}
+.back__button {
+  grid-column: 2/ span 1;
+  grid-row: 3/ span 1;
+  padding: 20px;
+
+}
+.js-addSkills, .js-back-to-dashboard, .js-addCauses{
+  background-color: var(--tertiary-white);
+  color: var(--secondary-gray);
+  justify-content: space-evenly;
+  font-size: 20px;
+  padding: 10px;
+
+}
+.addSkills_profile {
+  margin-top: 75px;
+
+  color: white;
+}
+.skill-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
 
 /*# sourceMappingURL=/css.967bad95.css.map */

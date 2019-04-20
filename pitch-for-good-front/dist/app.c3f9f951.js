@@ -294,7 +294,9 @@ var _Project = _interopRequireDefault(require("./Project"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function VolunteerDashboard(volunteer) {
+
   return "\n    <div class=\"vol-dashboard-background\">\n        <div class=\"vol-dashboard-container\">            \n\n            <div class=\"container1 container-border\">\n                <header class=\"container1-header\">\n                <h6></h6>\n                    <span style=\"color: white;\">\n                        <i class=\"fas fa-user fa-2x\"></i>\n                    </span>\n                    <h6>About You</h6>\n                    <img src=\"/images/horizontalline.png\">\n                </header>\n                <div class=\"container-body-left\">\n                    <ul>\n                        <li>First Name: ".concat(volunteer.firstName, "</li>\n                        <li>Last Name: ").concat(volunteer.lastName, "</li><br>\n                        <li>Username: ").concat(volunteer.volUserName, "</li>\n                        <li>Password: ").concat(volunteer.volPassword, "</li><br>\n                        <li>Phone Number: ").concat(volunteer.phoneNum, "</li>\n                        <li>Email: ").concat(volunteer.email, "</li><br>\n                        <li>Current Job Title: ").concat(volunteer.jobTitle, "</li>\n                    </ul>  \n                </div>\n            </div>\n\n\n            <div class=\"container2 container-border\">\n                <header class=\"container2-header\">\n                    <h6></h6>\n                    <span style=\"color: white;\">\n                        <i class=\"fas fa-clipboard-list fa-2x\"></i>\n                    </span>\n                    <h6>Your Skills</h6>\n                    <img src=\"/images/horizontalline.png\">\n                </header>\n                <ul>\n                    <li>").concat((0, _Skills.default)(volunteer.skills), "</li>\n                </ul>\n                <button class=\"js--vol-add-skills\" id=").concat(volunteer.volunteerId, ">Add Skills</button>\n            </div>\n\n\n            <div class=\"container3 container-border\">\n                <header class=\"container3-header\">\n                    <h6></h6>\n                    <span style=\"color: white;\">\n                        <i class=\"fas fa-hand-holding-heart fa-2x\"></i>\n                    </span>\n                    <h6>Your Causes</h6>\n                    <img src=\"/images/horizontalline.png\">\n                </header>\n                <ul>\n                    <li>").concat((0, _Cause.default)(volunteer.causes), "</li>\n                </ul>\n                <button class=\"js--vol-add-causes\" id=").concat(volunteer.volunteerId, ">Add Causes</button>          \n            </div>\n\n\n            <div class=\"container4 container-border\">\n                <header class=\"container4-header\">\n                    <h6></h6>\n                    <span style=\"color: white;\">\n                        <i class=\"fas fa-bullhorn fa-2x\"></i>\n                    </span>\n                    <h6>Pitch a Project</h6>\n                    <img src=\"/images/horizontalline.png\">\n                </header>\n                <h6 class=\"pitch-instructions\">Have a project in mind? Click below to check out a list of participating organizations.</h6>\n                <button class=\"js--see-organizations button__big\" id=\"").concat(volunteer.volunteerId, "\">SEE ORGANIZATIONS</button>\n            </div>    \n\n\n            <div class=\"container5 container-border\">\n                <header class=\"container5-header\">\n                    <h6></h6>\n                    <span style=\"color: white;\">\n                        <i class=\"fas fa-business-time fa-2x\"></i>\n                    </span>\n                    <h6>Your Projects</h6>\n                    <img src=\"/images/horizontalline.png\">\n                </header>\n                <div class=\"container-body-left\">\n                    <ul>\n                        <li>").concat((0, _Project.default)(volunteer.projects), "</li>\n                    </ul>\n                </div>\n            </div>\n            <h6></h6>\n        </div> \n    </div>\n    "); // <input type="hidden" value="${volunteer.volunteerId}" class="volunteerId">
+
 }
 },{"./Skills":"js/components/Skills.js","./Cause":"js/components/Cause.js","./Project":"js/components/Project.js"}],"js/components/OrgForm.js":[function(require,module,exports) {
 "use strict";
@@ -437,10 +439,21 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = addSkills;
 
 function addSkills(volunteer, skills) {
-  return "\n    <h1>Add additional skills to your profile:</h1>\n\n    <div class=\"skills__container\">\n                    <ul id=\"skills\">\n                        ".concat(skills.map(function (skill) {
-    return "\n                                <li class=\"skill\">     \n                                    <input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.skillId, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n                                </li>\n                            ");
-  }).join(''), "\n                    </ul>\n            </div>\n\n    <button id=").concat(volunteer.volunteerId, " class=\"js-addSkills\">Submit</button>\n    <button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button>\n    ");
-}
+  return "\n\n\n    <section class=\"addSkills__background\">\n    <h1 class=\"addSkills_profile\">Add additional skills to your profile:</h1>\n\n    <div class=\"skills__container\">\n                    <ul class=\"skills__container__list\"id=\"skills\">\n                        ".concat(skills.map(function (skill) {
+    return "\n                                <li class=\"skill\">\n                                    <label><input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.skillId, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "</label>\n                                </li>\n                            ");
+  }).join(''), "\n                    </ul>\n\n          </div>\n        <div class=\"skill-buttons\">\n          <div class=\"addSkill__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-addSkills\">Submit</button></div>\n          <div class=\"back__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button></div>\n        </div>\n  </section>\n  ");
+} // <div class="vol-search">
+//     <h3 class="vol-search-info">Welcome to the volunteer search page. Use this tool to find volunteers with skills that you need to make the most of your next big project!</h3>
+//     <h4 class="vol-search-info-detail">(Could this be your next super-volunteer?)</h4>
+//     <select id="skillId" class="skill-select">
+//     ${skills.map(skill => {
+//         return `
+//             <option class="js-dropdown-skill" id="${skill.skillId}" value="${skill.skillId}">${skill.skillName}</option>
+//         `
+//     }).join('')}
+//     </select>
+//     <button class="js-find-volunteers-by-skill button" id="${organization.organizationId}">Search</button>
+// </div>
 },{}],"js/components/addCauses.js":[function(require,module,exports) {
 "use strict";
 
@@ -451,8 +464,8 @@ exports.default = addCauses;
 
 function addCauses(volunteer, causes) {
   return "\n    <h1>Add additional causes to your profile:</h1>\n\n    <div class=\"causes__container\">\n                    <ul id=\"causes\">\n                        ".concat(causes.map(function (cause) {
-    return "\n                                <li class=\"cause\">     \n                                    <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                                </li>\n                            ");
-  }).join(''), "\n                    </ul>\n            </div>\n\n    <button id=").concat(volunteer.volunteerId, " class=\"js-addCauses\">Submit</button>\n    <button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button>\n    ");
+    return "\n                                <li class=\"cause\">\n                                    <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                                    <p class=\"cause__description\">").concat(cause.causeDescription, "</p>\n                                </li>\n                            ");
+  }).join(''), "\n                    </ul>\n\n\n    <button id=").concat(volunteer.volunteerId, " class=\"js-addCauses\">Submit</button>\n    <button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button>\n    </div>\n    ");
 }
 },{}],"js/app.js":[function(require,module,exports) {
 "use strict";
@@ -555,6 +568,7 @@ function volAddSkills() {
       _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(volId), function (volunteer) {
         _apiActions.default.getRequest("http://localhost:8080/skills/".concat(volId, "/add"), function (skills) {
           getAppContext().innerHTML = (0, _addSkills.default)(volunteer, skills);
+          getHeaderContext().innerHTML = '';
         });
       });
     }
@@ -963,7 +977,9 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "55890" + '/');
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};
