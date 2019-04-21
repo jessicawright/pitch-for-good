@@ -71,6 +71,7 @@ function getOrganizations() {
             api.getRequest(`http://localhost:8080/volunteers/${event.target.id}`, volunteer => {
                 api.getRequest('http://localhost:8080/organizations', organizations => {
                     getAppContext().innerHTML = Organizations(volunteer, organizations)
+                    getHeaderContext().innerHTML = ""
                 })
             })  
         }

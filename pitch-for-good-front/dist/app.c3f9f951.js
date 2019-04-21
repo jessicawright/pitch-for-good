@@ -141,9 +141,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Organizations;
 
 function Organizations(volunteer, organizations) {
-  return "\n        <h1>Organizations:</h1>\n        <ul class=\"organizations\">\n            ".concat(organizations.map(function (organization) {
-    return "\n                    <li class=\"organization\">     \n                        <img src=\"/images/".concat(organization.orgLogo, "\">\n                        <h2 class=\"js-organization__orgName\" id=\"").concat(organization.organizationId, "\">").concat(organization.orgName, "</h2>\n                        <h3 class=\"organization__orgMission\">").concat(organization.orgMission, "</h3>\n                        <h3 class=\"organization__websiteUrl\">").concat(organization.websiteUrl, "</h3>\n                        <h3> If you would like to propose a project to this organization, click the button below.</h3>\n                        \n                        <input type=\"hidden\" id=\"").concat(volunteer.volunteerId, "\" class=\"volunteerId\">\n                        <button class=\"js-get-project-form button\" id=\"").concat(organization.organizationId, "\">Make Your Pitch!</button>\n                    </li>\n                    ");
-  }).join(''), "             \n                </ul>\n                ");
+  return "\n        <div class=\"organizations__container\">\n        <h1 class=\"organization-page__title\">Organizations:</h1>\n        <ul class=\"organizations\">\n        ".concat(organizations.map(function (organization) {
+    return "\n            <li class=\"organization\">\n                <div class=\"org__content\">   \n                    <section class=\"org__logo\">  \n                        <img src=\"/images/".concat(organization.orgLogo, "\">\n                    </section>\n                    <section class=\"org__info\">\n                        <h2 class=\"js-organization__orgName white\" id=\"").concat(organization.organizationId, "\">").concat(organization.orgName, "</h2>\n                        <h3 class=\"organization__orgMission white\">").concat(organization.orgMission, "</h3>\n                        <h3 class=\"organization__websiteUrl white\"><a href=\"").concat(organization.websiteUrl, "\">").concat(organization.websiteUrl, "</a></h3>\n                    </section>\n                </div>\n                <section class=\"org__project-submit-area\">\n                    <h3 class=\"white\"> If you would like to propose a project to this organization, click the button below.</h3>\n                \n                    <input type=\"hidden\" id=\"").concat(volunteer.volunteerId, "\" class=\"volunteerId\">\n                    <button class=\"js-get-project-form pitch-button\" id=\"").concat(organization.organizationId, "\">Make Your Pitch!</button>\n                </section>\n            </li>\n                    ");
+  }).join(''), "             \n        </ul>\n        </div>\n                ");
 }
 },{}],"js/components/ProjectForm.js":[function(require,module,exports) {
 "use strict";
@@ -540,6 +540,7 @@ function getOrganizations() {
       _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(event.target.id), function (volunteer) {
         _apiActions.default.getRequest('http://localhost:8080/organizations', function (organizations) {
           getAppContext().innerHTML = (0, _Organizations.default)(volunteer, organizations);
+          getHeaderContext().innerHTML = "";
         });
       });
     }
@@ -855,10 +856,12 @@ function getBackToOrgDashboard() {
 function orgAcceptProject() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('js-accept-project')) {
-      _apiActions.default.getRequest("http://localhost:8080/projects/".concat(event.target.id, "/accept"), function (organization) {
-        getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
-        getHeaderContext().innerHTML = (0, _OrgHeader.default)(organization);
-      });
+      if (confirm('Are you sure you would like to accept the project? If you do, the volunteer will receive an email that their project has been accepted. They also will be able to contact you to move forward with the project.')) {
+        _apiActions.default.getRequest("http://localhost:8080/projects/".concat(event.target.id, "/accept"), function (organization) {
+          getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
+          getHeaderContext().innerHTML = (0, _OrgHeader.default)(organization);
+        });
+      }
     }
   });
 }
@@ -920,7 +923,7 @@ function getHeaderContext() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -948,7 +951,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59313" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53274" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -1123,5 +1126,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
 //# sourceMappingURL=/app.c3f9f951.js.map
