@@ -49,7 +49,7 @@ export default function OrganizationDashboard(organization) {
                     <img src="/images/horizontalline.png">
                 </header>
                 <h6>Are you looking for a volunteer with specialized skills to help you make the most of your new project? Find your next super-volunteer here!</h6>
-                <button class="js-get-volunteer-search" id="${organization.organizationId}">click here</button>
+                <button class="js-get-volunteer-search" id="${organization.organizationId}">Volunteer Search</button>
             </div>
 
             <div class="org-container4 container-border">
@@ -58,7 +58,7 @@ export default function OrganizationDashboard(organization) {
                     <span style="color: white;">
                         <i class="fas fa-bullhorn fa-2x"></i>
                     </span>
-                    <h6>Projects pitched to ${organization.orgName}</h6>
+                    <h6>Pitched Projects</h6>
                     <img src="/images/horizontalline.png">
                 </header>
                 <h6 class="pitch-instructions">Pitch for Good volunteers have offered to lead the following projects for your organization. To begin a conversation with a volunteer about a specific project, click accept. The volunteer will recieve notification that you are interested and will be in contact with ${organization.contactPerson} at ${organization.orgEmail}.</h6>
