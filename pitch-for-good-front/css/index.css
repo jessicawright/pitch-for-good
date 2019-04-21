@@ -655,7 +655,7 @@ i {
 .org-dashboard-background {
   margin-top: 25vh;
   margin: auto;
-  background-image: url(../dist/images/dashboardbackground.png);
+  /* backgrounpmnd-image: url(../dist/images/dashboardbackground.png); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -665,30 +665,27 @@ i {
 }
 
 .org-container1 {
-  grid-row-start: 1;
   grid-column-start: 1;
-  grid-column-end: span col3-start;
+  grid-column-end: 3;
   background-color: white;
   border-radius: 8px;
 }
 
 .org-container2 {
-  grid-row-start: 1;
-  grid-column-start: 3 /span 1;
+  grid-column-start: 3;
+  grid-column-end: -1;
   background-color: white;
   border-radius: 8px;
 }
 
 .org-container3 {
-  grid-row-start: 2;
   grid-column-start: 1 /span 1;
   background-color: white;
   border-radius: 8px;
 }
 
 .org-container4 {
-  grid-row-start: 2;
-  grid-column-start: col2-start;
+  grid-column-start: 2;
   grid-column-end: -1;
   background-color: white;
   border-radius: 8px;
