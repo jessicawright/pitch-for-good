@@ -642,3 +642,99 @@ i {
   flex-direction: row;
   justify-content: center;
 }
+
+/* start org dashboard */
+.org-dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 30px;
+  margin: 0 40px 0 40px;
+}
+
+.org-dashboard-background {
+  margin-top: 25vh;
+  margin: auto;
+  background-image: url(../dist/images/dashboardbackground.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 100vw;
+  min-height: 100vh;
+  align-self: center;
+}
+
+.org-container1 {
+  grid-column-start: 1 /span 2;
+  grid-row-start: 1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.org-container2 {
+  grid-column-start: 3 /span 1;
+  grid-row-start: 1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.org-container3 {
+  grid-column-start: 1 /span 1;
+  grid-row-start: 2;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.org-container4 {
+  grid-column-start: 2 /span 2;
+  grid-row-start: 2;
+  grid-column-end: -1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.org-container1-header {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--tertiary-white);
+  background-image: url(../dist/images/container1.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 10%;
+  min-height: 175px;
+}
+
+.org-container2-header {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--tertiary-white);
+  background-image: url(../dist/images/container2.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 10%;
+  min-height: 175px;
+}
+
+.org-container3-header {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--tertiary-white);
+  background-image: url(../dist/images/container3.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 10%;
+  min-height: 175px;
+}
+
+.org-container4-header {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--tertiary-white);
+  background-image: url(../dist/images/container4.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 10%;
+  min-height: 175px;
+}
+
+

@@ -3,27 +3,71 @@ import OrgProject from  './OrgProject'
 
 export default function OrganizationDashboard(organization) {
     return `
-    
-    <h2>Here is your user information:</h2>
-    <ul>
-        <li>Organization: ${organization.orgName}</li>
-        <li>Mission: ${organization.orgMission}</li>
-        <li>Contact Person: ${organization.contactPerson}</li>
-        <li>Contact Email: ${organization.orgEmail}</li>
-        <li>Website: ${organization.websiteUrl}</li>
-    </ul>
+    <div class="org-dashboard-background">
+        <div class="org-dashboard-container">
+            <div class="org-container1 container-border">
+                <header class="org-container1-header">
+                    <h6></h6>
+                    <span style="color: white;">
+                        <i class="fas fa-user fa-2x"></i>
+                    </span>
+                    <h6>About ${organization.orgName}</h6>
+                    <img src="/images/horizontalline.png">
+                </header>
+                <div class="container-body-left">
+                    <ul>
+                        <li>Organization: ${organization.orgName}</li>
+                        <li>Mission: ${organization.orgMission}</li>
+                        <li>Contact Person: ${organization.contactPerson}</li>
+                        <li>Contact Email: ${organization.orgEmail}</li>
+                        <li>Website: ${organization.websiteUrl}</li>
+                    </ul>
+                </div>
+            </div>
 
-    <h2>Your organization supports:</h2>
-    <ul>
-        <li>${Cause(organization.causes)}</li>
-    </ul>
+            <div class="org-container2 container-border">
+                <header class="org-container2-header">
+                    <h6></h6>
+                    <span style="color: white;">
+                        <i class="fas fa-hand-holding-heart fa-2x"></i>
+                    </span>
+                    <h6>Your Causes</h6>
+                    <img src="/images/horizontalline.png">
+                </header>
+                <ul>
+                    <li>${Cause(organization.causes)}</li>
+                </ul>
+            </div>
 
-    <h2>Projects that have been pitched to you:</h2>
-    <ul>
-        <li>${OrgProject(organization.projects)}</li>
-    </ul>
+            <div class="org-container3 container-border">
+                <header class="org-container3-header">
+                    <h6></h6>
+                    <span style="color: white;">
+                        <i class="fas fa-search fa-3x"></i>
+                    </span>
+                    <h6>Volunteer Search</h6>
+                    <img src="/images/horizontalline.png">
+                </header>
+                <h6>Are you looking for a volunteer with specialized skills to help you make the most of your new project? Find your next super-volunteer here!</h6>
+                <button class="js-get-volunteer-search" id="${organization.organizationId}">click here</button>
+            </div>
 
-    <h3>Click to search volunteers</h3>
-    <button class="js-get-volunteer-search" id="${organization.organizationId}">click here</button>
-    `;
+            <div class="org-container4 container-border">
+                <header class="org-container4-header">
+                    <h6></h6>
+                    <span style="color: white;">
+                        <i class="fas fa-bullhorn fa-2x"></i>
+                    </span>
+                    <h6>Projects pitched to ${organization.orgName}</h6>
+                    <img src="/images/horizontalline.png">
+                </header>
+                <h6 class="pitch-instructions">Pitch for Good volunteers have offered to lead the following projects for your organization. To begin a conversation with a volunteer about a specific project, click accept. The volunteer will recieve notification that you are interested and will be in contact with ${organization.contactPerson} at ${organization.orgEmail}.</h6>
+                <ul>
+                    <li>${OrgProject(organization.projects)}</li>
+                </ul>
+            </div>      
+
+        </div>
+    </div>
+        `;
 }
