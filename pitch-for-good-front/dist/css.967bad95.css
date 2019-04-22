@@ -76,6 +76,7 @@
 
 /* start org and vol Dashboard grid */
 
+
 /* start orgForm grid */
 .orgForm__container {
   display: grid;
@@ -108,7 +109,6 @@
   align-self: center;
   margin-top: 50px;
 }
-
 
 .hero-header {
   width: 100%;
@@ -351,18 +351,25 @@ i {
   margin-top: 40px;
 }
 
-/* start volunteer dashboard */
 
+/* start volunteer dashboard */
 .vol-dashboard-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
   grid-gap: 30px;
   margin: 0 40px 0 40px;
 }
 
-.vol-dashboard-container h6 {
-  font-size: 20px;
+.vol-dashboard-background {
+  margin: auto;
+  background-image: url(/dashboardbackground.97591da5.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 100vw;
+  height: 100%;
+  align-self: center;
 }
 
 .container1 {
@@ -372,122 +379,6 @@ i {
   border-radius: 8px;
 }
 
-.container-body-left {
-  text-align: left;
-  color: var(--secondary-gray);
-}
-
-.container1-header {
-  background-color: #444;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  color: var(--tertiary-white);
-  background-image: url(/container1.04071b0f.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center 10%;
-  min-height: 175px;
-}
-
-.container1-header h6 {
-  padding-top: 15px;
-  padding-bottom: 5px;
-  color: var(--tertiary-white);
-  font-weight: bold;
-
-}
-
-.container2 ul li {
-  text-align: left;
-}
-
-.container2-header {
-  background-color: #444;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  color: var(--tertiary-white);
-  background-image: url(/container2.ea7475aa.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center 10%;
-  min-height: 175px;
-}
-
-.container2-header h6 {
-  padding-top: 15px;
-  padding-bottom: 5px;
-  color: var(--tertiary-white);
-  font-weight: bold;
-}
-
-.container3-header {
-  background-color: #444;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  color: var(--tertiary-white);
-  background-image: url(/container3.97f6a616.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: -30% center;
-  min-height: 175px;
-}
-
-.container3 ul li {
-  text-align: left;
-}
-
-.container3-header h6 {
-  padding-top: 15px;
-  padding-bottom: 5px;
-  color: var(--tertiary-white);
-  font-weight: bold;
-}
-
-.container4-header {
-  background-color: #444;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  color: var(--tertiary-white);
-  background-image: url(/container4.752f87e9.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  min-height: 175px;
-}
-
-.container4-header h6 {
-  padding-top: 15px;
-  padding-bottom: 5px;
-  color: var(--tertiary-white);
-  font-weight: bold;
-}
-
-.pitch-instructions {
-  color: var(--secondary-gray);
-  padding: 15px;
-  padding-top: 30px;
-}
-
-
-.container5-header {
-  background-color: #444;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  color: var(--tertiary-white);
-  background-image: url(/container5.e7f790d8.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center 20%;
-  min-height: 175px;
-}
-
-.container5-header h6 {
-  padding-top: 15px;
-  padding-bottom: 5px;
-  color: var(--tertiary-white);
-  font-weight: bold;
-}
-
 .container2 {
   grid-column-start: 2/span 1;
   grid-row-start: 1;
@@ -495,11 +386,19 @@ i {
   border-radius: 8px;
 }
 
+.container2 ul li {
+  color: #555555;
+}
+
 .container3 {
   grid-column-start: 3/span 1;
   grid-row-start: 1;
   background-color: white;
   border-radius: 8px;
+}
+
+.container3 ul li {
+  color: #555555;
 }
 
 .container4 {
@@ -517,30 +416,99 @@ i {
   border-radius: 8px;
 }
 
-.vol-dashboard-background {
-  margin-top: 25vh;
-  margin: auto;
-  background-image: url(/dashboardbackground.97591da5.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-width: 100vw;
-  min-height: 100vh;
-  align-self: center;
-  /* position: absolute;
-  top: 0;  */
+.container1-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--primary-color);
+  height: 125px;
+}
+
+header span i {
+  padding-top: 10px;
+}
+
+.container2-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--primary-color);
+  height: 125px;
+}
+
+.container3-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--primary-color);
+  height: 125px;
+}
+
+.container4-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--primary-color);
+  height: 125px;
+}
+
+.container5-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--tertiary-white);
+  height: 125px;
+}
+
+.container1-header h6, .container2-header h6, .container3-header h6, .container4-header h6, .container5-header h6 {
+  /* padding-top: 15px; */
+  padding-bottom: 5px;
+  color: var(--secondary-gray);
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .container-border {
   border-style: solid;
-  border-color: var(--secondary-gray);
+  border-color: var(--secondary-color);
   border-radius: 12px;
-  border-width: 2px;
+  border-width: 3px;
 }
 
+.vol-dashboard-container h6 {
+  font-size: 18px;
+}
+
+.container-body-left {
+  color: #555555;
+  padding: 20px 40px 0 40px;
+}
+
+.container-body-left ul li{
+  text-align: left;
+  color: #555555;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.pitch-instructions {
+  color: #555555;
+  padding: 15px;
+  padding-top: 30px;
+}
+
+#gray-text {
+  color: #555555;
+}
+
+#header-font {
+  font-size: 30px;
+}
+
+/* vol dashboard buttons */
 .js--vol-add-causes, .js--vol-add-skills {
-  background-color: var(--tertiary-white);
-  color: var(--secondary-gray);
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
   font-size: 15px;
   padding: 10px;;
   margin: 10px;
@@ -550,25 +518,14 @@ i {
 }
 
 .js--see-organizations {
-  background-color: var(--tertiary-white);
-  color: var(--secondary-gray);
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
   font-size: 15px;
   padding: 10px;;
   margin: 10px;
   border-radius: 8px;
   font-size: 20px;
 }
-
-.container-body-left ul {
-  padding: 40px;
-}
-
-.container-body-left ul li {
-  color: var(--secondary-gray);
-  font-size: 20px;
-  font-weight: bold;
-}
-
 
 /* start addSkills.js styling*/
 .addSkills__background {
@@ -602,6 +559,9 @@ i {
 
   /* margin-left: 250px; */
   margin:auto;
+
+
+
 
 }
 .skills__container__list {
@@ -640,6 +600,150 @@ i {
   flex-direction: row;
   justify-content: center;
 }
+
+/* start org dashboard */
+.org-dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, auto);
+  grid-gap: 30px;
+  margin: 0 40px 40px 40px;
+}
+
+.org-dashboard-background {
+  /* margin-top: 25vh; */
+  margin: auto;
+  background-image: url(/dashboardbackground.97591da5.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 100vw;
+  height: 100%;
+  align-self: center;
+}
+
+.org-container1 {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.org-container2 {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.org-container3 {
+  grid-column-start: 2;
+  grid-column-end: -1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.org-container4 {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+#green-text {
+  color: var(--secondary-gray);
+}
+
+.org-container1-header {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--secondary-gray);
+  background-color: var(--tertiary-white);
+  /* background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; */
+  height: 125px;
+}
+
+
+.org-container1-header h6 {
+  /* padding-top: 15px; */
+  padding-bottom: 5px;
+  color: var(--secondary-gray);
+  font-weight: bold;
+
+}
+
+.org-dashboard-container h6 {
+  font-size: 20px;
+}
+
+.org-container2-header h6 {
+  /* padding-top: 15px; */
+  padding-bottom: 5px;
+  color: var(--secondary-gray);
+  font-weight: bold;
+}
+
+.org-container3-header h6 {
+  /* padding-top: 15px; */
+  padding-bottom: 5px;
+  color: var(--secondary-gray);
+  font-weight: bold;
+}
+
+.org-container4-header h6 {
+  /* padding-top: 15px; */
+  padding-bottom: 5px;
+  color: var(--secondary-gray);
+  font-weight: bold;
+}
+
+.org-container4 ul li {
+  text-align: left;
+}
+
+.org-container-border {
+  border-style: solid;
+  border-color: var(--secondary-color);
+  border-radius: 12px;
+  border-width: 3px;
+}
+ /* org dashboard buttons */
+.js-get-volunteer-search {
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
+  justify-content: space-evenly;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.js-accept-project {
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
+  font-size: 20px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  max-height: 50px;
+}
+
+/* orgProject flex */
+.orgProject-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+
+.orgProject-info {
+  margin-left: 40px;
+}
+
+
+
 
 
 /*# sourceMappingURL=/css.967bad95.css.map */
