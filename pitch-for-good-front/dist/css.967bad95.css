@@ -11,6 +11,7 @@
   width: 60%;
 }
 
+
 .volForm__container {
   display: grid;
 	grid-gap: 5px 5px;
@@ -23,6 +24,7 @@
 }
 
 .contact-info__container, .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
+
 
   background-color: var(--secondary-gray);
   color: var(--tertiary-white);
@@ -43,7 +45,7 @@
   grid-template-rows: 2, 1fr;
 }
 
-.contact-info__container, .project-info__container {
+.contact-info__container {
   grid-column: 1 / span 2;
   grid-row: 1 / span 2;
 }
@@ -498,6 +500,7 @@ header span i {
 }
 
 /* start addSkills.js and addCauses.js styling*/
+
 .addSkills__background {
   margin-top: 25vh;
   margin: auto;
@@ -521,8 +524,8 @@ header span i {
 /* .skills__container {
 
   background-color: none;
-  height: 500px;
 
+  height: 500px;
   /* width:40%; */
 
   /* align-self: center; */
@@ -535,13 +538,14 @@ header span i {
 
 
 /* }
-
 .skills__container__list {
   display: grid;
   grid-template-columns: repeat(3,1fr);
   grid-template-rows: auto;
   grid-column-gap: 50px;
+
 } */
+
 
 .addSkill__button {
   grid-column: 1/ span 1;
@@ -562,21 +566,22 @@ header span i {
   padding: 10px;
 
 }
-
 .addSkills_profile {
   margin-top: 40px;
-
   color: white;
 }
+
 .addCauses__headline {
   margin-top: 10px;
   color: white;
 }
+
 .skill-buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
+
 
 .cause__buttons {
   display: flex;
@@ -635,6 +640,7 @@ header span i {
   grid-column-gap: 50px;
   text-align: left;
 }
+
 
 /* start org dashboard */
 .org-dashboard-container {
@@ -784,7 +790,7 @@ header span i {
   color: var(--tertiary-white);
 }
 
-.volForm__background, .projectForm__container {
+.volForm__background {
   margin: auto;
   background-color: var(--secondary-gray);
   /* background-image: url(../dist/images/dashboardbackground.png); */
@@ -796,7 +802,7 @@ header span i {
   align-self: center;
 }
 
-.contact-info__container, .project-info__container {
+.contact-info__container {
   background-color: var(--tertiary-white);
   border-color: var(--primary-color);
   border-style: solid;
@@ -807,7 +813,7 @@ header span i {
   padding-bottom: 30px;
 }
 
-.skills__container-form, .skills__container-project {
+.skills__container-form {
   background-color: var(--tertiary-white);
   border-color: var(--primary-color);
   border-style: solid;
@@ -865,7 +871,7 @@ header span i {
   text-align: left;
 }
 
-.js-add-volunteer, .js-add-project {
+.js-add-volunteer {
   background-color: var(--tertiary-white);
   color: var(--secondary-gray);
   justify-content: space-evenly;
@@ -948,6 +954,7 @@ header span i {
 /* organizations page */
 
 .organizations__container {
+
   background-image: url(/dashboardbackground.97591da5.9fd66ffd.png);
 }
 
@@ -957,10 +964,11 @@ header span i {
   float: left;
   margin-left: 15px;
   margin-top: 15px;
+
 }
 
 .organization-page__title {
-  color: rgb(96, 117, 67);
+  color: white;
   padding-top: 2rem;
 }
 
@@ -973,10 +981,8 @@ a {
   flex-direction: column;
   background-color: white;
   margin: 5rem;
-  border-radius: 8px;
-  border-style: solid;
-  border-color: rgb(127, 200, 59);
-  background-color: white;
+  border-radius: 20px;
+  background-image: url(/org_background2.ad82238d.png);
 }
 
 .org__content {
@@ -984,8 +990,8 @@ a {
   flex-direction: row;
 }
 
-.text {
-  color:  rgb(96, 117, 67);
+.white {
+  color: white;
 }
 
 .org__logo {
