@@ -17,6 +17,7 @@ import VolunterSearch from './components/VolunteerSearch'
 import VolunteerList from './components/VolunteerList'
 import addSkills from './components/addSkills'
 import addCauses from './components/addCauses'
+import { get } from 'https';
 
 
 main()
@@ -54,14 +55,14 @@ function main() {
     orgAcceptProject()
     searchAgain()
     getBackToOrgDashboardFromSearch()
+    getBackToVolDashBoardAfterAddSkills()
 
 }
 
 function goHome() {
-    events.on(getHeaderContext(), 'click', () => {
+    events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-log-out')) {
             getAppContext().innerHTML = landing()
-            getHeaderContext().innerHTML = ""
         }
     })
 }
@@ -175,7 +176,7 @@ function createNewVolunteer() {
                 volPassword : volPassword,
                 skills : skills,
                 causes : causes
-            }, (volunteer) => volDashboardAndHeader(volunteer))
+            }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
         }
     })
 }
@@ -193,7 +194,7 @@ function volSubmitNewSkills() {
             api.postRequest(`http://localhost:8080/volunteers/add/skills`, {
                 volId : volId,
                 skills : skills
-        }, (volunteer) => volDashboardAndHeader(volunteer))
+        }, (volunteer) => getAppContext().innerHTML= VolunteerDashboard(volunteer))
 
         }
     })
@@ -212,7 +213,7 @@ function volSubmitNewCauses() {
             api.postRequest(`http://localhost:8080/volunteers/add/causes`, {
                 volId : volId,
                 causes : causes
-        }, (volunteer) => volDashboardAndHeader(volunteer))
+        }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
 
         }
     })
@@ -318,7 +319,7 @@ function addOrganization() {
                 orgUserName : orgUserName,
                 orgPassword : orgPassword,
                 causes : causes
-            }, (organization) => orgHeaderAndDashboard(organization))
+            }, (organization) => getAppContext().innerHTML = OrganizationDashboard(organization))
         }
     })
 }
@@ -368,7 +369,17 @@ function getBackToOrgDashboard() {
         if(event.target.classList.contains('js-back-to-org-dashboard')) {
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
                 getAppContext().innerHTML = OrganizationDashboard(organization)
-                getHeaderContext().innerHTML = OrgHeader(organization)
+                getHeaderContext().innerHTML = ""
+            })
+        }
+    })
+}
+
+function getBackToVolDashBoardAfterAddSkills() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('skills-arrow')) {
+            api.getRequest(`http://localhost:8080/volunteers/${event.target.id}`, volunteer => {
+                getAppContext().innerHTML = VolunteerDashboard(volunteer)
             })
         }
     })
@@ -376,10 +387,10 @@ function getBackToOrgDashboard() {
 
 function getBackToOrgDashboardFromSearch() {
     events.on(getAppContext(), 'click', () => {
-        if(event.target.classList.contains('fa-arrow-left')) {
+        if(event.target.classList.contains('volSearch')) {
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
                 getAppContext().innerHTML = OrganizationDashboard(organization)
-                getHeaderContext().innerHTML = OrgHeader(organization)
+                getHeaderContext().innerHTML = ""
             })
         }
     })
@@ -418,7 +429,7 @@ function volSignIn() {
             api.postRequest('http://localhost:8080/volunteers/signin', {
                 username : username,
                 password : password
-            }, (volunteer) => volDashboardAndHeader(volunteer))
+            }, (volunteer) => getAppContext().innerHTML = VolunteerDashboard(volunteer))
         }
     })
 }
@@ -432,7 +443,7 @@ function orgSignIn() {
             api.postRequest('http://localhost:8080/organizations/signin', {
                 username : username,
                 password : password
-            }, (organization) => orgHeaderAndDashboard(organization))
+            }, (organization) => getAppContext().innerHTML = OrganizationDashboard(organization))
 
         }
     })
