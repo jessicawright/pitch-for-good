@@ -11,18 +11,7 @@
   width: 60%;
 }
 
-.volForm__container {
-  display: grid;
-	grid-gap: 5px 5px;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: repeat(3, 1fr);
-	margin: 1rem;
-	padding: 1rem;
-	max-width: 100%;
-  height: 1000px;
-}
-
-.contact-info__container, .causes__container, .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
+.volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
   background-color: var(--secondary-gray);
   color: var(--tertiary-white);
   opacity: .85;
@@ -33,49 +22,6 @@
 .contact-info__container {
   grid-column: 1 / span 2;
 }
-
-.skills__container {
-  display: inline-flex;
-  grid-column: 3 / span 2;
-  grid-row: 1 / span 3;
-  text-align: left;
-
-}
-
-#causes {
-  column-count: 2;
-  height: 100px;
-  display: inline-flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.skill__skillName, .cause__causeName {
-  margin: .5rem;
-}
-
-.causes__container {
-  grid-column: 1 / span 4;
-  grid-row: 3 / span 1;
-  height: 500px;
-  text-align: left;
-  /* display: flex; */
-}
-
-.js-add-volunteer {
-  grid-column: 2 / span 2;
-  grid-row: 4 / span 2;
-  background-color: var(--secondary-gray);
-  color: var(--tertiary-white);
-  font-size: 30px;
-  padding: 7px 24px;
-  border-radius: 8px;
-  box-shadow: 5px 5px 50px 15px var(--secondary-gray, .4);
-}
-
-/* start org and vol Dashboard grid */
-
 
 /* start orgForm grid */
 .orgForm__container {
@@ -89,12 +35,6 @@
   grid-column: 1 / span 2;
   grid-row: 1 / span 2;
 }
-
-.skills__container {
-  grid-column: 3 / span 2;
-  grid-row: 1 / span 2;
-}
-
 
 /* start org and vol landing grid */
 .orglanding__grid-container, .vollanding__grid-container {
@@ -741,6 +681,123 @@ header span i {
 .orgProject-info {
   margin-left: 40px;
 }
+
+/* start volForm styling */
+#volForm-header {
+  color: var(--tertiary-white);
+}
+
+.volForm__background {
+  margin: auto;
+  background-color: var(--secondary-gray);
+  /* background-image: url(../dist/images/dashboardbackground.png); */
+  /* background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+  min-width: 100vw;
+  height: 100%;
+  align-self: center;
+}
+
+.contact-info__container {
+  background-color: var(--tertiary-white);
+  border-color: var(--primary-color);
+  border-style: solid;
+  border-radius: 8px;
+  margin: 10px auto 30px auto;
+  width: 90%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.skills__container-form {
+  background-color: var(--tertiary-white);
+  border-color: var(--primary-color);
+  border-style: solid;
+  border-radius: 8px;
+  margin: 30px auto;
+  width: 90%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.skills__container-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+#skills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: left;
+}
+
+.skill__skillName {
+  margin: .5rem;
+  color: var(--tertiary-white);
+}
+
+.causes__container-form {
+  background-color: var(--tertiary-white);
+  border-color: var(--primary-color);
+  border-style: solid;
+  border-radius: 8px;
+  margin: 30px auto;
+  max-width: 90%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.causes__container-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.cause__causeName {
+  margin: .5rem;
+}
+
+.cause-bold {
+  font-weight: bold;
+}
+
+#causes {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  text-align: left;
+}
+
+.js-add-volunteer {
+  background-color: var(--tertiary-white);
+  color: var(--secondary-gray);
+  justify-content: space-evenly;
+  font-size: 30px;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.volForm-skill {
+  color: #555555;
+}
+
+.volForm-cause {
+  color: #555555;
+}
+
+#volForm__skillRequest {
+  color: var(--secondary-gray);
+}
+
+#volForm__causeRequest {
+  color: var(--secondary-gray);
+}
+
+#volForm__userRequest {
+  color: var(--secondary-gray);
+}
+
 
 
 
