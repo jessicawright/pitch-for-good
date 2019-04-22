@@ -76,6 +76,7 @@
 
 /* start org and vol Dashboard grid */
 
+
 /* start orgForm grid */
 .orgForm__container {
   display: grid;
@@ -108,7 +109,6 @@
   align-self: center;
   margin-top: 50px;
 }
-
 
 .hero-header {
   width: 100%;
@@ -351,8 +351,8 @@ i {
   margin-top: 40px;
 }
 
-/* start volunteer dashboard */
 
+/* start volunteer dashboard */
 .vol-dashboard-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -569,8 +569,7 @@ i {
   font-weight: bold;
 }
 
-
-/* start addSkills.js styling*/
+/* start addSkills.js and addCauses.js styling*/
 .addSkills__background {
   margin-top: 25vh;
   margin: auto;
@@ -591,18 +590,9 @@ i {
   justify-content: center;
 }
 .skills__container {
-
   background-color: none;
-
   height: 500px;
-  /* width:40%; */
-
-  /* align-self: center; */
-
-
-  /* margin-left: 250px; */
   margin:auto;
-
 }
 .skills__container__list {
   display: grid;
@@ -630,15 +620,48 @@ i {
   padding: 10px;
 
 }
-.addSkills_profile {
+.addSkills_headline, .addCauses__headline {
   margin-top: 75px;
-
   color: white;
 }
-.skill-buttons {
+.skill-buttons, .cause__buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+.addCauses__background {
+  margin-top: 25vh;
+  margin: auto;
+  background-image: url(/carpenter-hands.accdad7b.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  min-height: 100vh;
+  align-self: center;
+  align-items: center;
+  text-align: center;
+}
+.addCauses__background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.causes__container {
+  background-color: none;
+  height: 500px;
+  margin:auto;
+}
+.causeNameList {
+  font-size: 24px;
+}
+.cause__container__list {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(2,1fr);
+  grid-column-gap: 50px;
+
 }
 
 
