@@ -362,14 +362,13 @@ i {
 }
 
 .vol-dashboard-background {
-  margin-top: 25vh;
   margin: auto;
   background-image: url(/dashboardbackground.97591da5.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   min-width: 100vw;
-  min-height: 100vh;
+  height: 100%;
   align-self: center;
 }
 
@@ -417,25 +416,63 @@ i {
   border-radius: 8px;
 }
 
-.container-header {
-  background-color: rgb(96, 117, 67, 0.5);
+.container1-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--primary-color);
+  height: 125px;
+}
+
+header span i {
+  padding-top: 10px;
+}
+
+.container2-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--primary-color);
+  height: 125px;
+}
+
+.container3-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--primary-color);
+  height: 125px;
+}
+
+.container4-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--primary-color);
+  height: 125px;
+}
+
+.container5-header {
+  background-color: var(--tertiary-white);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   color: var(--tertiary-white);
+  height: 125px;
 }
 
-.container-header h6 {
-  padding-top: 15px;
+.container1-header h6, .container2-header h6, .container3-header h6, .container4-header h6, .container5-header h6 {
+  /* padding-top: 15px; */
   padding-bottom: 5px;
-  color: var(--tertiary-white);
+  color: var(--secondary-gray);
+  font-size: 30px;
   font-weight: bold;
 }
 
 .container-border {
   border-style: solid;
-  border-color: var(--secondary-gray);
+  border-color: var(--secondary-color);
   border-radius: 12px;
-  border-width: 2px;
+  border-width: 3px;
 }
 
 .vol-dashboard-container h6 {
@@ -464,10 +501,14 @@ i {
   color: #555555;
 }
 
+#header-font {
+  font-size: 30px;
+}
+
 /* vol dashboard buttons */
 .js--vol-add-causes, .js--vol-add-skills {
-  background-color: var(--secondary-color);
-  color: #555555;
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
   font-size: 15px;
   padding: 10px;;
   margin: 10px;
@@ -477,8 +518,8 @@ i {
 }
 
 .js--see-organizations {
-  background-color: var(--secondary-color);
-  color: #555555;
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
   font-size: 15px;
   padding: 10px;;
   margin: 10px;
@@ -566,18 +607,18 @@ i {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, auto);
   grid-gap: 30px;
-  margin: 0 40px 0 40px;
+  margin: 0 40px 40px 40px;
 }
 
 .org-dashboard-background {
-  margin-top: 25vh;
+  /* margin-top: 25vh; */
   margin: auto;
   background-image: url(/dashboardbackground.97591da5.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   min-width: 100vw;
-  min-height: 100vh;
+  height: 100%;
   align-self: center;
 }
 
@@ -609,20 +650,24 @@ i {
   border-radius: 8px;
 }
 
-.org-container-header {
+#green-text {
+  color: var(--secondary-gray);
+}
+
+.org-container1-header {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   color: var(--secondary-gray);
-  background-color: var(--secondary-gray);
-  background-size: cover;
+  background-color: var(--tertiary-white);
+  /* background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
-  min-height: 175px;
+  background-position: center; */
+  height: 125px;
 }
 
 
 .org-container1-header h6 {
-  padding-top: 15px;
+  /* padding-top: 15px; */
   padding-bottom: 5px;
   color: var(--secondary-gray);
   font-weight: bold;
@@ -634,21 +679,21 @@ i {
 }
 
 .org-container2-header h6 {
-  padding-top: 15px;
+  /* padding-top: 15px; */
   padding-bottom: 5px;
   color: var(--secondary-gray);
   font-weight: bold;
 }
 
 .org-container3-header h6 {
-  padding-top: 15px;
+  /* padding-top: 15px; */
   padding-bottom: 5px;
   color: var(--secondary-gray);
   font-weight: bold;
 }
 
 .org-container4-header h6 {
-  padding-top: 15px;
+  /* padding-top: 15px; */
   padding-bottom: 5px;
   color: var(--secondary-gray);
   font-weight: bold;
@@ -660,26 +705,41 @@ i {
 
 .org-container-border {
   border-style: solid;
-  border-color: var(--secondary-gray);
+  border-color: var(--secondary-color);
   border-radius: 12px;
-  border-width: 2px;
+  border-width: 3px;
 }
-
+ /* org dashboard buttons */
 .js-get-volunteer-search {
   background-color: var(--secondary-gray);
   color: var(--tertiary-white);
   justify-content: space-evenly;
   font-size: 20px;
   padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .js-accept-project {
   background-color: var(--secondary-gray);
   color: var(--tertiary-white);
-  justify-content: space-evenly;
-  font-size: 16px;
-  padding: 5px;
-  margin-bottom: 20px;
+  font-size: 20px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  max-height: 50px;
+}
+
+/* orgProject flex */
+.orgProject-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+
+.orgProject-info {
+  margin-left: 40px;
 }
 
 
