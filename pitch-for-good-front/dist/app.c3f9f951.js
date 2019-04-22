@@ -141,7 +141,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Organizations;
 
 function Organizations(volunteer, organizations) {
-  return "\n        <div class=\"organizations__container\">\n        <h1 class=\"organization-page__title\">Organizations:</h1>\n        <ul class=\"organizations\">\n        ".concat(organizations.map(function (organization) {
+  return "\n        <div class=\"organizations__container\">\n        <div class=\"volunteer__org-search__header\">\n            <span style=\"color: white\">\n                <i class=\"js-back-to-volunteer-dashboard fas fa-arrow-left fa-3x\" id=\"".concat(volunteer.volunteerId, "\"></i>\n            </span>\n        </div>\n        <h1 class=\"organization-page__title\">Organizations:</h1>\n        <ul class=\"organizations\">\n        ").concat(organizations.map(function (organization) {
     return "\n            <li class=\"organization\">\n                <div class=\"org__content\">   \n                    <section class=\"org__logo\">  \n                        <img src=\"/images/".concat(organization.orgLogo, "\">\n                    </section>\n                    <section class=\"org__info\">\n                        <h2 class=\"js-organization__orgName text\" id=\"").concat(organization.organizationId, "\">").concat(organization.orgName, "</h2>\n                        <h3 class=\"organization__orgMission text\">").concat(organization.orgMission, "</h3>\n                        <h3 class=\"organization__websiteUrl text\"><a href=\"").concat(organization.websiteUrl, "\">").concat(organization.websiteUrl, "</a></h3>\n                    </section>\n                </div>\n                <section class=\"org__project-submit-area\">\n                    <h3 class=\"text\"> If you would like to propose a project to this organization, click the button below.</h3>\n                \n                    <input type=\"hidden\" id=\"").concat(volunteer.volunteerId, "\" class=\"volunteerId\">\n                    <button class=\"js-get-project-form pitch-button\" id=\"").concat(organization.organizationId, "\">Make Your Pitch!</button>\n                </section>\n            </li>\n                    ");
   }).join(''), "             \n        </ul>\n        </div>\n                ");
 }
@@ -294,9 +294,7 @@ var _Project = _interopRequireDefault(require("./Project"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function VolunteerDashboard(volunteer) {
-
   return "\n    <div class=\"vol-dashboard-background\">\n        <div class=\"vol-dashboard-container\">            \n\n            <div class=\"container1 container-border\">\n                <header class=\"container1-header\">\n                    <span style=\"color: var(--secondary-gray);\">\n                        <i class=\"fas fa-user fa-2x\"></i>\n                    </span>\n                    <h6 id=\"header-font\">About You</h6>\n                </header>\n                <div class=\"container-body-left\">\n                    <ul>\n                        <li>First Name: ".concat(volunteer.firstName, "</li>\n                        <li>Last Name: ").concat(volunteer.lastName, "</li><br>\n                        <li>Username: ").concat(volunteer.volUserName, "</li>\n                        <li>Password: ").concat(volunteer.volPassword, "</li><br>\n                        <li>Phone Number: ").concat(volunteer.phoneNum, "</li>\n                        <li>Email: ").concat(volunteer.email, "</li><br>\n                        <li>Current Job Title: ").concat(volunteer.jobTitle, "</li>\n                    </ul>  \n                    <button type=\"button\" class=\"js-log-out logout\">Log Out</button>\n                </div>\n            </div>\n\n\n            <div class=\"container2 container-border\">\n                <header class=\"container2-header\">\n                    <span style=\"color: var(--secondary-gray);\">\n                        <i class=\"fas fa-clipboard-list fa-2x\"></i>\n                    </span>\n                    <h6 id=\"header-font\">Your Skills</h6>\n                </header>\n                <ul>\n                    <li id=\"gray-text>").concat((0, _Skills.default)(volunteer.skills), "</li>\n                </ul>\n                <button class=\"js--vol-add-skills\" id=").concat(volunteer.volunteerId, ">ADD SKILLS</button>\n            </div>\n\n\n            <div class=\"container3 container-border\">\n                <header class=\"container3-header\">\n                    <span style=\"color: var(--secondary-gray);\">\n                        <i class=\"fas fa-hand-holding-heart fa-2x\"></i>\n                    </span>\n                    <h6 id=\"header-font\">Your Causes</h6>\n                </header>\n                <ul>\n                    <li id=\"gray-text>").concat((0, _Cause.default)(volunteer.causes), "</li>\n                </ul>\n                <button class=\"js--vol-add-causes\" id=").concat(volunteer.volunteerId, ">ADD CAUSES</button>          \n            </div>\n\n\n            <div class=\"container4 container-border\">\n                <header class=\"container4-header\">\n                    <span style=\"color: var(--secondary-gray);\">\n                        <i class=\"fas fa-bullhorn fa-2x\"></i>\n                    </span>\n                    <h6 id=\"header-font\">Pitch a Project</h6>\n                </header>\n                <h6 class=\"pitch-instructions\">Have a project in mind? Click below to check out a list of participating organizations.</h6>\n                <button class=\"js--see-organizations button__big\" id=\"").concat(volunteer.volunteerId, "\">SEE ORGANIZATIONS</button>\n            </div>    \n\n\n            <div class=\"container5 container-border\">\n                <header class=\"container5-header\">\n                    <span style=\"color: var(--secondary-gray);\">\n                        <i class=\"fas fa-business-time fa-2x\"></i>\n                    </span>\n                    <h6 id=\"header-font\">Your Projects</h6>\n                </header>\n                <div class=\"container-body-left\">\n                    <ul>\n                        <li id=\"gray-text\">").concat((0, _Project.default)(volunteer.projects), "</li>\n                    </ul>\n                </div>\n            </div>\n            <h6></h6>\n        </div> \n    </div>\n    "); // <input type="hidden" value="${volunteer.volunteerId}" class="volunteerId">
-
 }
 },{"./Skills":"js/components/Skills.js","./Cause":"js/components/Cause.js","./Project":"js/components/Project.js"}],"js/components/OrgForm.js":[function(require,module,exports) {
 "use strict";
@@ -350,7 +348,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolHeader;
 
 function VolHeader(volunteer) {
-  return "\n\n<div class=\"nav\">\n    <ul class=\"nav-links\">\n        <li class=\"title js-landing\">Pitch For Good</li>\n    <div class=\"nav-name\">\n        <li class=\"welcome\">".concat(volunteer.firstName, " ").concat(volunteer.lastName, "</li>  \n        <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n    </div>\n    </ul>\n</div>\n");
+  return "\n\n<div class=\"nav\">\n    <ul class=\"nav-links\">\n        <li><img src=\"/images/lotus.png\" class=\"logo js-landing\"></li>\n        <li class=\"title js-landing\">Pitch For Good</li>\n    <div class=\"nav-name\">\n        <li class=\"welcome\">".concat(volunteer.firstName, " ").concat(volunteer.lastName, "</li>  \n        <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n    </div>\n    </ul>\n</div>\n");
 }
 },{}],"js/components/OrgHeader.js":[function(require,module,exports) {
 "use strict";
@@ -439,11 +437,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = addSkills;
 
 function addSkills(volunteer, skills) {
-
-  return "\n\n\n  <section class=\"addSkills__background\">\n    <div class=\"addSkills-arrow\">\n      <span style=\"color: white;\">\n        <i class=\"skills-arrow fas fa-arrow-left fa-3x\" id=".concat(volunteer.volunteerId, "></i>\n      </span>\n    </div>\n    <div class=\"container\">\n      <h2 class=\"addSkills_profile\">Add additional skills to your profile:</h2>\n      <div class=\"skills__container\">\n        <ul class=\"skills__container__list\" id=\"skills\">\n            ").concat(skills.map(function (skill) {
+  return "\n\n\n\n  <section class=\"addSkills__background\">\n    <div class=\"addSkills-arrow\">\n      <span style=\"color: white;\">\n        <i class=\"skills-arrow fas fa-arrow-left fa-3x\" id=".concat(volunteer.volunteerId, "></i>\n      </span>\n    </div>\n    <div class=\"container\">\n      <h2 class=\"addSkills_profile\">Add additional skills to your profile:</h2>\n      <div class=\"skills__container\">\n        <ul class=\"skills__container__list\" id=\"skills\">\n            ").concat(skills.map(function (skill) {
     return "\n                    <li class=\"skill\">\n                        <label><input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.skillId, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "</label>\n                    </li>\n                ");
-  }).join(''), "\n        </ul>\n      </div>\n    </div>\n      <div class=\"skill-buttons\">\n          <div class=\"addSkill__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-addSkills\">Submit</button></div>\n      </div>\n  </section>\n  ");
-
+  }).join(''), "\n        </ul>\n      </div>\n    </div>\n      <div class=\"skill-buttons\">\n\n          <div class=\"addSkill__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-addSkills\">Submit</button></div>\n      </div>\n  </section>\n  ");
 } // <div class="vol-search">
 //     <h3 class="vol-search-info">Welcome to the volunteer search page. Use this tool to find volunteers with skills that you need to make the most of your next big project!</h3>
 //     <h4 class="vol-search-info-detail">(Could this be your next super-volunteer?)</h4>
@@ -465,11 +461,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = addCauses;
 
 function addCauses(volunteer, causes) {
-  return "\n\n    <section class=\"addCauses__background\">\n    <h1 class=\"addCauses__headline\">Add additional causes to your profile:</h1>\n\n    <div class=\"causes__container\">\n                    <ul class=\"cause__container__list\">\n                        ".concat(causes.map(function (cause) {
-    return "\n                                <li class=\"causeNameList\">\n                                    <label><input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\"><span class=\"cause-bold\">").concat(cause.causeName, "</span></label>:   <span class=\"cause__description\">").concat(cause.causeDescription, "</span>\n                                </li>\n\n                            ");
-  }).join(''), "\n                        </ul>\n                          </div>\n      <div class=\"cause__buttons\">\n        <div class=\"addCause__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-addCauses\">Submit</button></div>\n        <div class=\"back__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button></div>\n      </div>\n\n  </section>\n    ");
+  return "\n\n    <section class=\"addCauses__background\">\n        <div class=\"addCauses-arrow\">\n            <span style=\"color: white;\">\n                <i class=\"causes-arrow fas fa-arrow-left fa-3x\" id=".concat(volunteer.volunteerId, "></i>\n            </span>\n        </div>\n    <h1 class=\"addCauses__headline\">Add additional causes to your profile:</h1>\n\n    <div class=\"causes__container\">\n        <ul class=\"cause__container__list\">\n            ").concat(causes.map(function (cause) {
+    return "\n                    <li class=\"causeNameList\">\n                        <label><input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\"><span class=\"cause-bold\">").concat(cause.causeName, "</span></label>:   <span class=\"cause__description\">").concat(cause.causeDescription, "</span>\n                    </li>\n\n                ");
+  }).join(''), "\n        </ul>\n    </div>\n\n    <div class=\"cause__buttons\">\n    <div class=\"addCause__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-addCauses\">Submit</button></div>\n    <div class=\"back__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button></div>\n    </div>\n\n    </section>\n    ");
 }
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/stream-http/lib/capability.js":[function(require,module,exports) {
+},{}],"node_modules/stream-http/lib/capability.js":[function(require,module,exports) {
 var global = arguments[3];
 exports.fetch = isFunction(global.fetch) && isFunction(global.ReadableStream)
 
@@ -545,7 +541,7 @@ function isFunction (value) {
 
 xhr = null // Help gc
 
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/inherits/inherits_browser.js":[function(require,module,exports) {
+},{}],"node_modules/inherits/inherits_browser.js":[function(require,module,exports) {
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -570,7 +566,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
+},{}],"node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -779,7 +775,7 @@ process.chdir = function (dir) {
 process.umask = function () {
   return 0;
 };
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process-nextick-args/index.js":[function(require,module,exports) {
+},{}],"node_modules/process-nextick-args/index.js":[function(require,module,exports) {
 var process = require("process");
 'use strict';
 
@@ -826,14 +822,14 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 
-},{"process":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/isarray/index.js":[function(require,module,exports) {
+},{"process":"node_modules/process/browser.js"}],"node_modules/isarray/index.js":[function(require,module,exports) {
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/events/events.js":[function(require,module,exports) {
+},{}],"node_modules/events/events.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -1251,10 +1247,10 @@ function unwrapListeners(arr) {
 
   return ret;
 }
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/internal/streams/stream-browser.js":[function(require,module,exports) {
+},{}],"node_modules/readable-stream/lib/internal/streams/stream-browser.js":[function(require,module,exports) {
 module.exports = require('events').EventEmitter;
 
-},{"events":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/events/events.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/base64-js/index.js":[function(require,module,exports) {
+},{"events":"node_modules/events/events.js"}],"node_modules/base64-js/index.js":[function(require,module,exports) {
 'use strict'
 
 exports.byteLength = byteLength
@@ -1407,7 +1403,7 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/ieee754/index.js":[function(require,module,exports) {
+},{}],"node_modules/ieee754/index.js":[function(require,module,exports) {
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -1493,7 +1489,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/buffer/index.js":[function(require,module,exports) {
+},{}],"node_modules/buffer/index.js":[function(require,module,exports) {
 
 var global = arguments[3];
 /*!
@@ -3286,7 +3282,7 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/base64-js/index.js","ieee754":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/ieee754/index.js","isarray":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/isarray/index.js","buffer":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/buffer/index.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/safe-buffer/index.js":[function(require,module,exports) {
+},{"base64-js":"node_modules/base64-js/index.js","ieee754":"node_modules/ieee754/index.js","isarray":"node_modules/isarray/index.js","buffer":"node_modules/buffer/index.js"}],"node_modules/safe-buffer/index.js":[function(require,module,exports) {
 
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -3351,7 +3347,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/buffer/index.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/core-util-is/lib/util.js":[function(require,module,exports) {
+},{"buffer":"node_modules/buffer/index.js"}],"node_modules/core-util-is/lib/util.js":[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -3461,9 +3457,9 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-},{"buffer":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/buffer/index.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/_empty.js":[function(require,module,exports) {
+},{"buffer":"node_modules/buffer/index.js"}],"node_modules/parcel-bundler/src/builtins/_empty.js":[function(require,module,exports) {
 
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/internal/streams/BufferList.js":[function(require,module,exports) {
+},{}],"node_modules/readable-stream/lib/internal/streams/BufferList.js":[function(require,module,exports) {
 
 'use strict';
 
@@ -3544,7 +3540,7 @@ if (util && util.inspect && util.inspect.custom) {
     return this.constructor.name + ' ' + obj;
   };
 }
-},{"safe-buffer":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/safe-buffer/index.js","util":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/_empty.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/internal/streams/destroy.js":[function(require,module,exports) {
+},{"safe-buffer":"node_modules/safe-buffer/index.js","util":"node_modules/parcel-bundler/src/builtins/_empty.js"}],"node_modules/readable-stream/lib/internal/streams/destroy.js":[function(require,module,exports) {
 'use strict';
 
 /*<replacement>*/
@@ -3619,7 +3615,7 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process-nextick-args/index.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/util-deprecate/browser.js":[function(require,module,exports) {
+},{"process-nextick-args":"node_modules/process-nextick-args/index.js"}],"node_modules/util-deprecate/browser.js":[function(require,module,exports) {
 var global = arguments[3];
 
 /**
@@ -3689,7 +3685,7 @@ function config (name) {
   return String(val).toLowerCase() === 'true';
 }
 
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_writable.js":[function(require,module,exports) {
+},{}],"node_modules/readable-stream/lib/_stream_writable.js":[function(require,module,exports) {
 var process = require("process");
 
 var global = arguments[3];
@@ -4369,7 +4365,7 @@ Writable.prototype._destroy = function (err, cb) {
   this.end();
   cb(err);
 };
-},{"process-nextick-args":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process-nextick-args/index.js","core-util-is":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/core-util-is/lib/util.js","inherits":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/inherits/inherits_browser.js","util-deprecate":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/util-deprecate/browser.js","./internal/streams/stream":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/internal/streams/stream-browser.js","safe-buffer":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/safe-buffer/index.js","./internal/streams/destroy":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/internal/streams/destroy.js","./_stream_duplex":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_duplex.js","process":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_duplex.js":[function(require,module,exports) {
+},{"process-nextick-args":"node_modules/process-nextick-args/index.js","core-util-is":"node_modules/core-util-is/lib/util.js","inherits":"node_modules/inherits/inherits_browser.js","util-deprecate":"node_modules/util-deprecate/browser.js","./internal/streams/stream":"node_modules/readable-stream/lib/internal/streams/stream-browser.js","safe-buffer":"node_modules/safe-buffer/index.js","./internal/streams/destroy":"node_modules/readable-stream/lib/internal/streams/destroy.js","./_stream_duplex":"node_modules/readable-stream/lib/_stream_duplex.js","process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/_stream_duplex.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4501,7 +4497,7 @@ Duplex.prototype._destroy = function (err, cb) {
 
   pna.nextTick(cb, err);
 };
-},{"process-nextick-args":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process-nextick-args/index.js","core-util-is":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/core-util-is/lib/util.js","inherits":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/inherits/inherits_browser.js","./_stream_readable":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_readable.js","./_stream_writable":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_writable.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/string_decoder/lib/string_decoder.js":[function(require,module,exports) {
+},{"process-nextick-args":"node_modules/process-nextick-args/index.js","core-util-is":"node_modules/core-util-is/lib/util.js","inherits":"node_modules/inherits/inherits_browser.js","./_stream_readable":"node_modules/readable-stream/lib/_stream_readable.js","./_stream_writable":"node_modules/readable-stream/lib/_stream_writable.js"}],"node_modules/string_decoder/lib/string_decoder.js":[function(require,module,exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -4799,7 +4795,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/safe-buffer/index.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_readable.js":[function(require,module,exports) {
+},{"safe-buffer":"node_modules/safe-buffer/index.js"}],"node_modules/readable-stream/lib/_stream_readable.js":[function(require,module,exports) {
 
 var global = arguments[3];
 var process = require("process");
@@ -5822,7 +5818,7 @@ function indexOf(xs, x) {
   }
   return -1;
 }
-},{"process-nextick-args":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process-nextick-args/index.js","isarray":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/isarray/index.js","events":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/events/events.js","./internal/streams/stream":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/internal/streams/stream-browser.js","safe-buffer":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/safe-buffer/index.js","core-util-is":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/core-util-is/lib/util.js","inherits":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/inherits/inherits_browser.js","util":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/_empty.js","./internal/streams/BufferList":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/internal/streams/BufferList.js","./internal/streams/destroy":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/internal/streams/destroy.js","./_stream_duplex":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_duplex.js","string_decoder/":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/string_decoder/lib/string_decoder.js","process":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_transform.js":[function(require,module,exports) {
+},{"process-nextick-args":"node_modules/process-nextick-args/index.js","isarray":"node_modules/isarray/index.js","events":"node_modules/events/events.js","./internal/streams/stream":"node_modules/readable-stream/lib/internal/streams/stream-browser.js","safe-buffer":"node_modules/safe-buffer/index.js","core-util-is":"node_modules/core-util-is/lib/util.js","inherits":"node_modules/inherits/inherits_browser.js","util":"node_modules/parcel-bundler/src/builtins/_empty.js","./internal/streams/BufferList":"node_modules/readable-stream/lib/internal/streams/BufferList.js","./internal/streams/destroy":"node_modules/readable-stream/lib/internal/streams/destroy.js","./_stream_duplex":"node_modules/readable-stream/lib/_stream_duplex.js","string_decoder/":"node_modules/string_decoder/lib/string_decoder.js","process":"node_modules/process/browser.js"}],"node_modules/readable-stream/lib/_stream_transform.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6037,7 +6033,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_duplex.js","core-util-is":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/core-util-is/lib/util.js","inherits":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/inherits/inherits_browser.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_passthrough.js":[function(require,module,exports) {
+},{"./_stream_duplex":"node_modules/readable-stream/lib/_stream_duplex.js","core-util-is":"node_modules/core-util-is/lib/util.js","inherits":"node_modules/inherits/inherits_browser.js"}],"node_modules/readable-stream/lib/_stream_passthrough.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6085,7 +6081,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_transform.js","core-util-is":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/core-util-is/lib/util.js","inherits":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/inherits/inherits_browser.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/readable-browser.js":[function(require,module,exports) {
+},{"./_stream_transform":"node_modules/readable-stream/lib/_stream_transform.js","core-util-is":"node_modules/core-util-is/lib/util.js","inherits":"node_modules/inherits/inherits_browser.js"}],"node_modules/readable-stream/readable-browser.js":[function(require,module,exports) {
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -6094,7 +6090,7 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_readable.js":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_readable.js","./lib/_stream_writable.js":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_writable.js","./lib/_stream_duplex.js":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_duplex.js","./lib/_stream_transform.js":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_transform.js","./lib/_stream_passthrough.js":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/lib/_stream_passthrough.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/stream-http/lib/response.js":[function(require,module,exports) {
+},{"./lib/_stream_readable.js":"node_modules/readable-stream/lib/_stream_readable.js","./lib/_stream_writable.js":"node_modules/readable-stream/lib/_stream_writable.js","./lib/_stream_duplex.js":"node_modules/readable-stream/lib/_stream_duplex.js","./lib/_stream_transform.js":"node_modules/readable-stream/lib/_stream_transform.js","./lib/_stream_passthrough.js":"node_modules/readable-stream/lib/_stream_passthrough.js"}],"node_modules/stream-http/lib/response.js":[function(require,module,exports) {
 var process = require("process");
 var Buffer = require("buffer").Buffer;
 var global = arguments[3];
@@ -6323,7 +6319,7 @@ IncomingMessage.prototype._onXHRProgress = function () {
 	}
 }
 
-},{"./capability":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/stream-http/lib/capability.js","inherits":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/inherits/inherits_browser.js","readable-stream":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/readable-browser.js","process":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js","buffer":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/buffer/index.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/to-arraybuffer/index.js":[function(require,module,exports) {
+},{"./capability":"node_modules/stream-http/lib/capability.js","inherits":"node_modules/inherits/inherits_browser.js","readable-stream":"node_modules/readable-stream/readable-browser.js","process":"node_modules/process/browser.js","buffer":"node_modules/buffer/index.js"}],"node_modules/to-arraybuffer/index.js":[function(require,module,exports) {
 
 var Buffer = require('buffer').Buffer
 
@@ -6353,7 +6349,7 @@ module.exports = function (buf) {
 	}
 }
 
-},{"buffer":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/buffer/index.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/stream-http/lib/request.js":[function(require,module,exports) {
+},{"buffer":"node_modules/buffer/index.js"}],"node_modules/stream-http/lib/request.js":[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 var global = arguments[3];
 var process = require("process");
@@ -6685,7 +6681,7 @@ var unsafeHeaders = [
 	'via'
 ]
 
-},{"./capability":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/stream-http/lib/capability.js","inherits":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/inherits/inherits_browser.js","./response":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/stream-http/lib/response.js","readable-stream":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/readable-stream/readable-browser.js","to-arraybuffer":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/to-arraybuffer/index.js","buffer":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/buffer/index.js","process":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/xtend/immutable.js":[function(require,module,exports) {
+},{"./capability":"node_modules/stream-http/lib/capability.js","inherits":"node_modules/inherits/inherits_browser.js","./response":"node_modules/stream-http/lib/response.js","readable-stream":"node_modules/readable-stream/readable-browser.js","to-arraybuffer":"node_modules/to-arraybuffer/index.js","buffer":"node_modules/buffer/index.js","process":"node_modules/process/browser.js"}],"node_modules/xtend/immutable.js":[function(require,module,exports) {
 module.exports = extend;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
@@ -6704,7 +6700,7 @@ function extend() {
 
   return target;
 }
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/builtin-status-codes/browser.js":[function(require,module,exports) {
+},{}],"node_modules/builtin-status-codes/browser.js":[function(require,module,exports) {
 module.exports = {
   "100": "Continue",
   "101": "Switching Protocols",
@@ -6770,7 +6766,7 @@ module.exports = {
   "511": "Network Authentication Required"
 }
 
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/node-libs-browser/node_modules/punycode/punycode.js":[function(require,module,exports) {
+},{}],"node_modules/node-libs-browser/node_modules/punycode/punycode.js":[function(require,module,exports) {
 var global = arguments[3];
 var define;
 /*! https://mths.be/punycode v1.4.1 by @mathias */
@@ -7307,7 +7303,7 @@ var define;
 
 }(this));
 
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/url/util.js":[function(require,module,exports) {
+},{}],"node_modules/url/util.js":[function(require,module,exports) {
 'use strict';
 
 module.exports = {
@@ -7325,7 +7321,7 @@ module.exports = {
   }
 };
 
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/querystring-es3/decode.js":[function(require,module,exports) {
+},{}],"node_modules/querystring-es3/decode.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7411,7 +7407,7 @@ module.exports = function (qs, sep, eq, options) {
 var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/querystring-es3/encode.js":[function(require,module,exports) {
+},{}],"node_modules/querystring-es3/encode.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7500,12 +7496,12 @@ var objectKeys = Object.keys || function (obj) {
 
   return res;
 };
-},{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/querystring-es3/index.js":[function(require,module,exports) {
+},{}],"node_modules/querystring-es3/index.js":[function(require,module,exports) {
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
-},{"./decode":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/querystring-es3/decode.js","./encode":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/querystring-es3/encode.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/url/url.js":[function(require,module,exports) {
+},{"./decode":"node_modules/querystring-es3/decode.js","./encode":"node_modules/querystring-es3/encode.js"}],"node_modules/url/url.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7717,12 +7713,13 @@ Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
       atSign = rest.lastIndexOf('@', hostEnd);
     }
 
-
-function VolHeader(volunteer) {
-  return "\n\n<div class=\"nav\">\n    <ul class=\"nav-links\">\n        <li><img src=\"/images/lotus.png\" class=\"logo js-landing\"></li>\n        <li class=\"title js-landing\">Pitch For Good</li>\n    <div class=\"nav-name\">\n        <li class=\"welcome\">".concat(volunteer.firstName, " ").concat(volunteer.lastName, "</li>  \n        <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n    </div>\n    </ul>\n</div>\n");
-}
-},{}],"js/components/OrgHeader.js":[function(require,module,exports) {
-"use strict";
+    // Now we have a portion which is definitely the auth.
+    // Pull that off.
+    if (atSign !== -1) {
+      auth = rest.slice(0, atSign);
+      rest = rest.slice(atSign + 1);
+      this.auth = decodeURIComponent(auth);
+    }
 
     // the host is the remaining to the left of the first non-host char
     hostEnd = -1;
@@ -8238,7 +8235,7 @@ Url.prototype.parseHost = function() {
   if (host) this.hostname = host;
 };
 
-},{"punycode":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/node-libs-browser/node_modules/punycode/punycode.js","./util":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/url/util.js","querystring":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/querystring-es3/index.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/stream-http/index.js":[function(require,module,exports) {
+},{"punycode":"node_modules/node-libs-browser/node_modules/punycode/punycode.js","./util":"node_modules/url/util.js","querystring":"node_modules/querystring-es3/index.js"}],"node_modules/stream-http/index.js":[function(require,module,exports) {
 var global = arguments[3];
 var ClientRequest = require('./lib/request')
 var response = require('./lib/response')
@@ -8325,7 +8322,7 @@ http.METHODS = [
 	'UNLOCK',
 	'UNSUBSCRIBE'
 ]
-},{"./lib/request":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/stream-http/lib/request.js","./lib/response":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/stream-http/lib/response.js","xtend":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/xtend/immutable.js","builtin-status-codes":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/builtin-status-codes/browser.js","url":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/url/url.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/https-browserify/index.js":[function(require,module,exports) {
+},{"./lib/request":"node_modules/stream-http/lib/request.js","./lib/response":"node_modules/stream-http/lib/response.js","xtend":"node_modules/xtend/immutable.js","builtin-status-codes":"node_modules/builtin-status-codes/browser.js","url":"node_modules/url/url.js"}],"node_modules/https-browserify/index.js":[function(require,module,exports) {
 var http = require('http')
 var url = require('url')
 
@@ -8358,7 +8355,7 @@ function validateParams (params) {
   return params
 }
 
-},{"http":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/stream-http/index.js","url":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/url/url.js"}],"js/app.js":[function(require,module,exports) {
+},{"http":"node_modules/stream-http/index.js","url":"node_modules/url/url.js"}],"js/app.js":[function(require,module,exports) {
 "use strict";
 
 var _VolForm = _interopRequireDefault(require("./components/VolForm"));
@@ -8431,6 +8428,7 @@ function main() {
   searchAgain();
   getBackToOrgDashboardFromSearch();
   getBackToVolDashBoardAfterAddSkills();
+  getBackToVolDashBoardAfterAddCauses();
 }
 
 function goHome() {
@@ -8775,6 +8773,16 @@ function getBackToVolDashBoardAfterAddSkills() {
   });
 }
 
+function getBackToVolDashBoardAfterAddCauses() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('causes-arrow')) {
+      _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(event.target.id), function (volunteer) {
+        getAppContext().innerHTML = (0, _VolunteerDashboard.default)(volunteer);
+      });
+    }
+  });
+}
+
 function getBackToOrgDashboardFromSearch() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('volSearch')) {
@@ -8805,6 +8813,16 @@ function goToVolunteerDashboard() {
       _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(event.target.id), function (volunteer) {
         getAppContext().innerHTML = (0, _VolunteerDashboard.default)(volunteer);
         getHeaderContext().innerHTML = (0, _VolHeader.default)(volunteer);
+      });
+    }
+  });
+}
+
+function goToVolunteerDashboard() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('js-back-to-volunteer-dashboard')) {
+      _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(event.target.id), function (volunteer) {
+        getAppContext().innerHTML = (0, _VolunteerDashboard.default)(volunteer);
       });
     }
   });
@@ -8856,9 +8874,7 @@ function getHeaderContext() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-
-},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js","https":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/https-browserify/index.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
-
+},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js","https":"node_modules/https-browserify/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -8886,9 +8902,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54885" + '/');
-
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60647" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

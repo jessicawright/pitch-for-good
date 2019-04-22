@@ -11,7 +11,6 @@
   width: 60%;
 }
 
-
 .volForm__container {
   display: grid;
 	grid-gap: 5px 5px;
@@ -35,51 +34,6 @@
 .contact-info__container {
   grid-column: 1 / span 2;
 }
-
-
-.skills__container {
-  display: inline-flex;
-  grid-column: 3 / span 2;
-  grid-row: 1 / span 3;
-  text-align: left;
-
-}
-
-#causes {
-  column-count: 2;
-  height: 100px;
-  display: inline-flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.skill__skillName, .cause__causeName {
-  margin: .5rem;
-}
-
-.causes__container {
-  grid-column: 1 / span 4;
-  grid-row: 3 / span 1;
-  height: 500px;
-  text-align: left;
-  /* display: flex; */
-}
-
-.js-add-volunteer {
-  grid-column: 2 / span 2;
-  grid-row: 4 / span 2;
-  background-color: var(--secondary-gray);
-  color: var(--tertiary-white);
-  font-size: 30px;
-  padding: 7px 24px;
-  border-radius: 8px;
-  box-shadow: 5px 5px 50px 15px var(--secondary-gray, .4);
-}
-
-/* start org and vol Dashboard grid */
-
-
 
 /* start orgForm grid */
 .orgForm__container {
@@ -544,7 +498,6 @@ header span i {
 }
 
 /* start addSkills.js and addCauses.js styling*/
-
 .addSkills__background {
   margin-top: 25vh;
   margin: auto;
@@ -588,11 +541,9 @@ header span i {
   grid-template-columns: repeat(3,1fr);
   grid-template-rows: auto;
   grid-column-gap: 50px;
-
-
 } */
-.addSkill__button {
 
+.addSkill__button {
   grid-column: 1/ span 1;
   grid-row: 3/ span 1;
   padding: 20px;
@@ -621,11 +572,19 @@ header span i {
   margin-top: 10px;
   color: white;
 }
-.skill-buttons, .cause__buttons {
+.skill-buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
+
+.cause__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .addCauses__background {
   margin-top: 25vh;
   margin: auto;
@@ -645,6 +604,15 @@ header span i {
   align-items: center;
   justify-content: center;
 }
+
+.addCauses-arrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
 .causes__container {
   background-color: none;
   height: 775px;
@@ -655,6 +623,7 @@ header span i {
   font-size: 30px;
   margin-bottom: 5px;
 }
+
 .cause__description {
   font-size: 20px;
 }
@@ -664,7 +633,7 @@ header span i {
   grid-template-columns: repeat(1,1fr);
   grid-template-rows: repeat(2,1fr);
   grid-column-gap: 50px;
-
+  text-align: left;
 }
 
 /* start org dashboard */
@@ -980,7 +949,14 @@ header span i {
 
 .organizations__container {
   background-image: url(/dashboardbackground.97591da5.9fd66ffd.png);
-  padding-top: 1rem;
+}
+
+.volunteer__org-search__header {
+  display: flex;
+  justify-content: center;
+  float: left;
+  margin-left: 15px;
+  margin-top: 15px;
 }
 
 .organization-page__title {
@@ -1038,6 +1014,7 @@ a {
   margin: 1rem;
   border-radius: 8px;
 }
+
 
 
 
