@@ -11,7 +11,19 @@
   width: 60%;
 }
 
-.volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
+.volForm__container {
+  display: grid;
+	grid-gap: 5px 5px;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	margin: 1rem;
+	padding: 1rem;
+	max-width: 100%;
+  height: 1000px;
+}
+
+.contact-info__container, .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
+
   background-color: var(--secondary-gray);
   color: var(--tertiary-white);
   opacity: .85;
@@ -467,7 +479,18 @@ header span i {
   font-size: 20px;
 }
 
-/* start addSkills.js styling*/
+
+.container-body-left ul {
+  padding: 40px;
+}
+
+.container-body-left ul li {
+  color: var(--secondary-gray);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* start addSkills.js and addCauses.js styling*/
 .addSkills__background {
   margin-top: 25vh;
   margin: auto;
@@ -488,21 +511,9 @@ header span i {
   justify-content: center;
 }
 .skills__container {
-
   background-color: none;
-
   height: 500px;
-  /* width:40%; */
-
-  /* align-self: center; */
-
-
-  /* margin-left: 250px; */
   margin:auto;
-
-
-
-
 }
 .skills__container__list {
   display: grid;
@@ -511,7 +522,7 @@ header span i {
   grid-column-gap: 50px;
 
 }
-.addSkill__button {
+.addSkill__button, .addCause__button {
   grid-column: 1/ span 1;
   grid-row: 3/ span 1;
   padding: 20px;
@@ -530,16 +541,60 @@ header span i {
   padding: 10px;
 
 }
-.addSkills_profile {
+.addSkills_headline {
   margin-top: 75px;
-
   color: white;
 }
-.skill-buttons {
+.addCauses__headline {
+  margin-top: 10px;
+  color: white;
+}
+.skill-buttons, .cause__buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
+.addCauses__background {
+  margin-top: 25vh;
+  margin: auto;
+  background-image: url(../dist/images//fern.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  min-height: 100vh;
+  align-self: center;
+  align-items: center;
+  text-align: center;
+}
+.addCauses__background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.causes__container {
+  background-color: none;
+  height: 775px;
+
+  margin-top: 0;
+}
+.causeNameList {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+.cause__description {
+  font-size: 20px;
+}
+
+.cause__container__list {
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  grid-template-rows: repeat(2,1fr);
+  grid-column-gap: 50px;
+
+}
+
 
 /* start org dashboard */
 .org-dashboard-container {
@@ -908,5 +963,6 @@ a {
   margin: 1rem;
   border-radius: 8px;
 }
+
 
 

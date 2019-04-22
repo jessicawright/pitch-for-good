@@ -3,7 +3,7 @@ export default function addSkills(volunteer, skills) {
 
 
     <section class="addSkills__background">
-    <h1 class="addSkills_profile">Add additional skills to your profile:</h1>
+    <h1 class="addSkills_headline">Add additional skills to your profile:</h1>
 
     <div class="skills__container">
                     <ul class="skills__container__list"id="skills">

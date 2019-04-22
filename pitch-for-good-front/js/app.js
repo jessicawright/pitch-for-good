@@ -100,6 +100,7 @@ function volAddCauses() {
             api.getRequest(`http://localhost:8080/volunteers/${volId}`, volunteer => {
                 api.getRequest(`http://localhost:8080/causes/${volId}/add`, causes => {
                     getAppContext().innerHTML = addCauses(volunteer, causes)
+                    getHeaderContext().innerHTML = ''
                 })
             })
         }
