@@ -45,7 +45,7 @@
   }
 
   /* button styling */
-  .js-get-project-form, .js-add-project, .js-add-organization {
+  .js--see-organizations, .js--vol-add-causes, .js--see-organizations, .js--vol-add-skills, .js-add-project, .js-add-organization {
     background-color: var(--secondary-gray);
     color: var(--tertiary-white);
     font-size: 30px;
