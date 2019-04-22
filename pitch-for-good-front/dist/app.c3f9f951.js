@@ -461,9 +461,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = addCauses;
 
 function addCauses(volunteer, causes) {
-  return "\n\n    <section class=\"addCauses__background\">\n    <h1 class=\"addCauses__headline\">Add additional causes to your profile:</h1>\n\n    <div class=\"causes__container\">\n                    <ul id=\"cause__container__list\">\n                        ".concat(causes.map(function (cause) {
-    return "\n                                <li class=\"causeNameList\">\n                                    <label><input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "</label>\n                                </li>\n                                <li class=\"causeDescpriptionList\">\n                                    <p class=\"cause__description\">").concat(cause.causeDescription, "</p>\n                                </li>\n                            ");
-  }).join(''), "\n                    </ul>\n\n      <div class=\"cause__buttons\">\n        <button id=").concat(volunteer.volunteerId, " class=\"js-addCauses\">Submit</button>\n        <button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button>\n      </div>\n    </div>\n  </section>\n    ");
+  return "\n\n    <section class=\"addCauses__background\">\n    <h1 class=\"addCauses__headline\">Add additional causes to your profile:</h1>\n\n    <div class=\"causes__container\">\n                    <ul class=\"cause__container__list\">\n                        ".concat(causes.map(function (cause) {
+    return "\n                                <li class=\"causeNameList\">\n                                    <label><input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\"><span class=\"cause-bold\">").concat(cause.causeName, "</span></label>:   <span class=\"cause__description\">").concat(cause.causeDescription, "</span>\n                                </li>\n\n                            ");
+  }).join(''), "\n                        </ul>\n                          </div>\n      <div class=\"cause__buttons\">\n        <div class=\"addCause__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-addCauses\">Submit</button></div>\n        <div class=\"back__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button></div>\n      </div>\n\n  </section>\n    ");
 }
 },{}],"js/app.js":[function(require,module,exports) {
 "use strict";
@@ -976,7 +976,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50774" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55133" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

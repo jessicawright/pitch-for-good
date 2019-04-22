@@ -5,24 +5,22 @@ export default function addCauses(volunteer, causes) {
     <h1 class="addCauses__headline">Add additional causes to your profile:</h1>
 
     <div class="causes__container">
-                    <ul id="cause__container__list">
+                    <ul class="cause__container__list">
                         ${causes.map(cause => {
                             return `
                                 <li class="causeNameList">
-                                    <label><input type="checkbox" class="cause__causeName" id="${cause.causeId}" name="causeIds" value="${cause.causeId}">${cause.causeName}</label>
+                                    <label><input type="checkbox" class="cause__causeName" id="${cause.causeId}" name="causeIds" value="${cause.causeId}"><span class="cause-bold">${cause.causeName}</span></label>:   <span class="cause__description">${cause.causeDescription}</span>
                                 </li>
-                                <li class="causeDescpriptionList">
-                                    <p class="cause__description">${cause.causeDescription}</p>
-                                </li>
+
                             `;
                         }).join('')}
-                    </ul>
-
+                        </ul>
+                          </div>
       <div class="cause__buttons">
-        <button id=${volunteer.volunteerId} class="js-addCauses">Submit</button>
-        <button id=${volunteer.volunteerId} class="js-back-to-dashboard">Cancel</button>
+        <div class="addCause__button"><button id=${volunteer.volunteerId} class="js-addCauses">Submit</button></div>
+        <div class="back__button"><button id=${volunteer.volunteerId} class="js-back-to-dashboard">Cancel</button></div>
       </div>
-    </div>
+
   </section>
     `;
 }

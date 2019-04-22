@@ -22,7 +22,7 @@
   height: 1000px;
 }
 
-.contact-info__container, .causes__container, .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
+.contact-info__container, .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
   background-color: var(--secondary-gray);
   color: var(--tertiary-white);
   opacity: .85;
@@ -601,7 +601,7 @@ i {
   grid-column-gap: 50px;
 
 }
-.addSkill__button {
+.addSkill__button, .addCause__button {
   grid-column: 1/ span 1;
   grid-row: 3/ span 1;
   padding: 20px;
@@ -620,8 +620,12 @@ i {
   padding: 10px;
 
 }
-.addSkills_headline, .addCauses__headline {
+.addSkills_headline {
   margin-top: 75px;
+  color: white;
+}
+.addCauses__headline {
+  margin-top: 10px;
   color: white;
 }
 .skill-buttons, .cause__buttons {
@@ -632,7 +636,7 @@ i {
 .addCauses__background {
   margin-top: 25vh;
   margin: auto;
-  background-image: url(/carpenter-hands.accdad7b.png);
+  background-image: url(/fern.286a53b0.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -650,15 +654,21 @@ i {
 }
 .causes__container {
   background-color: none;
-  height: 500px;
-  margin:auto;
+  height: 775px;
+
+  margin-top: 0;
 }
 .causeNameList {
-  font-size: 24px;
+  font-size: 30px;
+  margin-bottom: 5px;
 }
+.cause__description {
+  font-size: 20px;
+}
+
 .cause__container__list {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(1,1fr);
   grid-template-rows: repeat(2,1fr);
   grid-column-gap: 50px;
 
