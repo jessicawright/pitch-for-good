@@ -59,7 +59,6 @@
 .hero-image {
   width: 100%;
   align-self: center;
-  margin-top: 50px;
 }
 
 .hero-header {
@@ -93,6 +92,7 @@ footer {
 
 .hero-description {
   margin-bottom: 50px;
+  color: var(--secondary-gray);
 }
 
 /* start volunteer and org landing pages */
@@ -135,22 +135,22 @@ footer {
 
 .vollanding__signup {
   margin-left: 40px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .orglanding__signup {
   margin-left: 40px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .vollanding__signin {
   margin-right: 40px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .orglanding__signin {
   margin-right: 40px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .js-vol-signin {
@@ -238,6 +238,11 @@ footer {
   top: 0;
 }
 
+.vol-search span i {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
 .js-find-volunteers-by-skill {
   background-color: var(--secondary-color);
   color: white;
@@ -310,7 +315,9 @@ i {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, auto);
   grid-gap: 30px;
-  margin: 0 40px 0 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding-top: 30px;
 }
 
 .vol-dashboard-background {
@@ -319,7 +326,7 @@ i {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  min-width: 100vw;
+  min-width: 100%;
   height: 100%;
   align-self: center;
 }
@@ -504,25 +511,39 @@ header span i {
   align-items: center;
   text-align: center;
 }
-.addSkills__background {
+
+.addSkills-arrow {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: left;
 }
-.skills__container {
+
+/* .skills__container {
+
   background-color: none;
   height: 500px;
-  margin:auto;
-}
+
+  /* width:40%; */
+
+  /* align-self: center; */
+
+
+  /* margin-left: 250px; */
+  /* margin:auto; */
+
+
+
+
+/* }
+
 .skills__container__list {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
-  grid-template-rows: repeat(2,1fr);
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: auto;
   grid-column-gap: 50px;
+} */
 
-}
-.addSkill__button, .addCause__button {
+.addSkill__button {
   grid-column: 1/ span 1;
   grid-row: 3/ span 1;
   padding: 20px;
@@ -541,8 +562,10 @@ header span i {
   padding: 10px;
 
 }
-.addSkills_headline {
-  margin-top: 75px;
+
+.addSkills_profile {
+  margin-top: 40px;
+
   color: white;
 }
 .addCauses__headline {
@@ -602,17 +625,19 @@ header span i {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, auto);
   grid-gap: 30px;
-  margin: 0 40px 40px 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .org-dashboard-background {
-  /* margin-top: 25vh; */
   margin: auto;
   background-image: url(../dist/images/dashboardbackground.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  min-width: 100vw;
+  min-width: 100%;
   height: 100%;
   align-self: center;
 }
