@@ -11,20 +11,7 @@
   width: 60%;
 }
 
-
-.volForm__container {
-  display: grid;
-	grid-gap: 5px 5px;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: repeat(3, 1fr);
-	margin: 1rem;
-	padding: 1rem;
-	max-width: 100%;
-  height: 1000px;
-}
-
-.contact-info__container, .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
-
+.volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
   background-color: var(--secondary-gray);
   color: var(--tertiary-white);
   opacity: .85;
@@ -36,51 +23,6 @@
   grid-column: 1 / span 2;
 }
 
-
-.skills__container {
-  display: inline-flex;
-  grid-column: 3 / span 2;
-  grid-row: 1 / span 3;
-  text-align: left;
-
-}
-
-#causes {
-  column-count: 2;
-  height: 100px;
-  display: inline-flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.skill__skillName, .cause__causeName {
-  margin: .5rem;
-}
-
-.causes__container {
-  grid-column: 1 / span 4;
-  grid-row: 3 / span 1;
-  height: 500px;
-  text-align: left;
-  /* display: flex; */
-}
-
-.js-add-volunteer {
-  grid-column: 2 / span 2;
-  grid-row: 4 / span 2;
-  background-color: var(--secondary-gray);
-  color: var(--tertiary-white);
-  font-size: 30px;
-  padding: 7px 24px;
-  border-radius: 8px;
-  box-shadow: 5px 5px 50px 15px var(--secondary-gray, .4);
-}
-
-/* start org and vol Dashboard grid */
-
-
-
 /* start orgForm grid */
 .orgForm__container {
   display: grid;
@@ -89,7 +31,7 @@
   grid-template-rows: 2, 1fr;
 }
 
-.contact-info__container, .project-info__container {
+.contact-info__container {
   grid-column: 1 / span 2;
   grid-row: 1 / span 2;
 }
@@ -532,19 +474,7 @@ header span i {
   font-size: 20px;
 }
 
-
-.container-body-left ul {
-  padding: 40px;
-}
-
-.container-body-left ul li {
-  color: var(--secondary-gray);
-  font-size: 20px;
-  font-weight: bold;
-}
-
-/* start addSkills.js and addCauses.js styling*/
-
+/* start addSkills.js styling*/
 .addSkills__background {
   margin-top: 25vh;
   margin: auto;
@@ -568,8 +498,8 @@ header span i {
 /* .skills__container {
 
   background-color: none;
-  height: 500px;
 
+  height: 500px;
   /* width:40%; */
 
   /* align-self: center; */
@@ -582,17 +512,14 @@ header span i {
 
 
 /* }
-
 .skills__container__list {
   display: grid;
   grid-template-columns: repeat(3,1fr);
   grid-template-rows: auto;
   grid-column-gap: 50px;
 
-
 } */
 .addSkill__button {
-
   grid-column: 1/ span 1;
   grid-row: 3/ span 1;
   padding: 20px;
@@ -611,60 +538,14 @@ header span i {
   padding: 10px;
 
 }
-
 .addSkills_profile {
   margin-top: 40px;
-
   color: white;
 }
-.addCauses__headline {
-  margin-top: 10px;
-  color: white;
-}
-.skill-buttons, .cause__buttons {
+.skill-buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-.addCauses__background {
-  margin-top: 25vh;
-  margin: auto;
-  background-image: url(/fern.286a53b0.png);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100vw;
-  min-height: 100vh;
-  align-self: center;
-  align-items: center;
-  text-align: center;
-}
-.addCauses__background {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.causes__container {
-  background-color: none;
-  height: 775px;
-
-  margin-top: 0;
-}
-.causeNameList {
-  font-size: 30px;
-  margin-bottom: 5px;
-}
-.cause__description {
-  font-size: 20px;
-}
-
-.cause__container__list {
-  display: grid;
-  grid-template-columns: repeat(1,1fr);
-  grid-template-rows: repeat(2,1fr);
-  grid-column-gap: 50px;
-
 }
 
 /* start org dashboard */
@@ -815,7 +696,7 @@ header span i {
   color: var(--tertiary-white);
 }
 
-.volForm__background, .projectForm__container {
+.volForm__background {
   margin: auto;
   background-color: var(--secondary-gray);
   /* background-image: url(../dist/images/dashboardbackground.png); */
@@ -827,7 +708,7 @@ header span i {
   align-self: center;
 }
 
-.contact-info__container, .project-info__container {
+.contact-info__container {
   background-color: var(--tertiary-white);
   border-color: var(--primary-color);
   border-style: solid;
@@ -838,7 +719,7 @@ header span i {
   padding-bottom: 30px;
 }
 
-.skills__container-form, .skills__container-project {
+.skills__container-form {
   background-color: var(--tertiary-white);
   border-color: var(--primary-color);
   border-style: solid;
@@ -896,7 +777,7 @@ header span i {
   text-align: left;
 }
 
-.js-add-volunteer, .js-add-project {
+.js-add-volunteer {
   background-color: var(--tertiary-white);
   color: var(--secondary-gray);
   justify-content: space-evenly;
@@ -979,12 +860,12 @@ header span i {
 /* organizations page */
 
 .organizations__container {
-  background-image: url(/dashboardbackground.97591da5.9fd66ffd.png);
+  background-color: rgb(102, 203, 229);
   padding-top: 1rem;
 }
 
 .organization-page__title {
-  color: rgb(96, 117, 67);
+  color: white;
   padding-top: 2rem;
 }
 
@@ -997,10 +878,8 @@ a {
   flex-direction: column;
   background-color: white;
   margin: 5rem;
-  border-radius: 8px;
-  border-style: solid;
-  border-color: rgb(127, 200, 59);
-  background-color: white;
+  border-radius: 20px;
+  background-image: url(/org_background2.ad82238d.png);
 }
 
 .org__content {
@@ -1008,8 +887,8 @@ a {
   flex-direction: row;
 }
 
-.text {
-  color:  rgb(96, 117, 67);
+.white {
+  color: white;
 }
 
 .org__logo {
