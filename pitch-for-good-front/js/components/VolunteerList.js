@@ -6,7 +6,7 @@ export default function VolunteerList(organization, skill, volunteers) {
     return `
     <div class="vol-search">
         <span style="color: white;">
-            <i class="fas fa-arrow-left fa-3x" id=${organization.organizationId}></i>
+            <i class="js-back-to-org-dashboard fas fa-arrow-left fa-3x" id=${organization.organizationId}></i>
         </span>
         <div class="vol-search-buttons">
             <button class="js-search-again" id="${organization.organizationId}">Search Again</button>
