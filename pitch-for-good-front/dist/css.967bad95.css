@@ -31,7 +31,7 @@
   grid-template-rows: 2, 1fr;
 }
 
-.contact-info__container {
+.contact-info__container, .project-info__container {
   grid-column: 1 / span 2;
   grid-row: 1 / span 2;
 }
@@ -687,7 +687,7 @@ header span i {
   color: var(--tertiary-white);
 }
 
-.volForm__background {
+.volForm__background, .projectForm__container {
   margin: auto;
   background-color: var(--secondary-gray);
   /* background-image: url(../dist/images/dashboardbackground.png); */
@@ -699,7 +699,7 @@ header span i {
   align-self: center;
 }
 
-.contact-info__container {
+.contact-info__container, .project-info__container {
   background-color: var(--tertiary-white);
   border-color: var(--primary-color);
   border-style: solid;
@@ -710,7 +710,7 @@ header span i {
   padding-bottom: 30px;
 }
 
-.skills__container-form {
+.skills__container-form, .skills__container-project {
   background-color: var(--tertiary-white);
   border-color: var(--primary-color);
   border-style: solid;
@@ -768,7 +768,7 @@ header span i {
   text-align: left;
 }
 
-.js-add-volunteer {
+.js-add-volunteer, .js-add-project {
   background-color: var(--tertiary-white);
   color: var(--secondary-gray);
   justify-content: space-evenly;

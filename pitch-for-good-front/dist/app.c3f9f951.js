@@ -154,8 +154,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = ProjectForm;
 
 function ProjectForm(organization, skills, volunteer) {
-  return "\n        <h2>Propose a project idea here!</h2>\n            <div class=\"projectForm__container\">\n                <h3 class=\"organization__orgName\" id=\"".concat(organization.organizationId, "\">Project proposal will be for ").concat(organization.orgName, "</h3>\n                <h3>Project name:\n                    <input type=\"text\" class=\"add__projectName\" placeholder=\"Project Name\">\n                </h3>\n                <h3>Estimated duration of project: \n                    <input type=\"text\" class=\"add__estimatedDuration\" placeholder=\"Estimated Duration\">\n                </h3>\n                <h3>Description of project goal and plans:\n                    <input type=\"text\" class=\"add__projectDescription\" placeholder=\"Project Description\">\n                </h3>   \n                <div class=\"skills__container\">\n                    <h3>Skills involved in project: </h3>\n                    <ul class=\"skills\">\n                        ").concat(skills.map(function (skill) {
-    return "\n                                <li class=\"skill\">     \n                                    <input type=\"checkbox\" class=\"js-skill__skillName\" id=\"".concat(skill.skillId, "\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n                                </li>\n                                    ");
+  return "\n        <h2>Propose a project idea here!</h2>\n            <div class=\"projectForm__container\">\n                <div class=\"project-info__container\">\n                    <h3 class=\"organization__orgName\" id=\"".concat(organization.organizationId, " header-font\">Project proposal will be for ").concat(organization.orgName, "</h3>\n                    <h3 id=\"header-font\">\n                        <input type=\"text\" class=\"add__projectName\" placeholder=\"Project Name\">\n                    </h3>\n                    <h3 id=\"header-font\"> \n                        <input type=\"text\" class=\"add__estimatedDuration\" placeholder=\"Estimated Duration\">\n                    </h3>\n                    <h3 id=\"header-font\" class=\"h3__textArea\"></h3>\n                        <textarea id=\"textArea\" class=\"add__projectDescription\" placeholder=\"Project Description\"></textarea>\n                </div>\n                <div class=\"skills__container-project\">\n                <span style=\"color: var(--primary-color);\">\n                <i class=\"fas fa-clipboard-list fa-2x\"></i>\n                </span>\n                    <h3 id=\"header-font\">Skills involved in project: </h3>\n                    <ul id=\"skills\">\n                        ").concat(skills.map(function (skill) {
+    return "\n                                <li class=\"volForm-skill\">     \n                                    <label><input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.skillId, "\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "</label>\n                                </li>\n                                    ");
   }).join(''), "             \n                    </ul>\n                </div>  \n                \n                <div class=\"project__submit-parent-volunteer\" id=\"").concat(volunteer.volunteerId, "\">\n                    <button class=\"js-add-project button\" id=\"").concat(organization.organizationId, "\">Submit proposal</button>\n                </div>\n            </div>\n            "); // date thing?
   // volunteer
 }
@@ -950,7 +950,7 @@ function getHeaderContext() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -978,7 +978,9 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60954" + '/');
+
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54106" + '/');
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -1153,5 +1155,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
 //# sourceMappingURL=/app.c3f9f951.js.map
