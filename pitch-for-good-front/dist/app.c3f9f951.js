@@ -141,9 +141,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Organizations;
 
 function Organizations(volunteer, organizations) {
-  return "\n        <h1>Organizations:</h1>\n        <ul class=\"organizations\">\n            ".concat(organizations.map(function (organization) {
-    return "\n                    <li class=\"organization\">     \n                        <img src=\"/images/".concat(organization.orgLogo, "\">\n                        <h2 class=\"js-organization__orgName\" id=\"").concat(organization.organizationId, "\">").concat(organization.orgName, "</h2>\n                        <h3 class=\"organization__orgMission\">").concat(organization.orgMission, "</h3>\n                        <h3 class=\"organization__websiteUrl\">").concat(organization.websiteUrl, "</h3>\n                        <h3> If you would like to propose a project to this organization, click the button below.</h3>\n                        \n                        <input type=\"hidden\" id=\"").concat(volunteer.volunteerId, "\" class=\"volunteerId\">\n                        <button class=\"js-get-project-form button\" id=\"").concat(organization.organizationId, "\">Make Your Pitch!</button>\n                    </li>\n                    ");
-  }).join(''), "             \n                </ul>\n                ");
+  return "\n        <div class=\"organizations__container\">\n        <h1 class=\"organization-page__title\">Organizations:</h1>\n        <ul class=\"organizations\">\n        ".concat(organizations.map(function (organization) {
+    return "\n            <li class=\"organization\">\n                <div class=\"org__content\">   \n                    <section class=\"org__logo\">  \n                        <img src=\"/images/".concat(organization.orgLogo, "\">\n                    </section>\n                    <section class=\"org__info\">\n                        <h2 class=\"js-organization__orgName white\" id=\"").concat(organization.organizationId, "\">").concat(organization.orgName, "</h2>\n                        <h3 class=\"organization__orgMission white\">").concat(organization.orgMission, "</h3>\n                        <h3 class=\"organization__websiteUrl white\"><a href=\"").concat(organization.websiteUrl, "\">").concat(organization.websiteUrl, "</a></h3>\n                    </section>\n                </div>\n                <section class=\"org__project-submit-area\">\n                    <h3 class=\"white\"> If you would like to propose a project to this organization, click the button below.</h3>\n                \n                    <input type=\"hidden\" id=\"").concat(volunteer.volunteerId, "\" class=\"volunteerId\">\n                    <button class=\"js-get-project-form pitch-button\" id=\"").concat(organization.organizationId, "\">Make Your Pitch!</button>\n                </section>\n            </li>\n                    ");
+  }).join(''), "             \n        </ul>\n        </div>\n                ");
 }
 },{}],"js/components/ProjectForm.js":[function(require,module,exports) {
 "use strict";
@@ -305,7 +305,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgForm;
 
 function OrgForm(causes) {
-  return "\n    <div class=\"orgForm__background\">\n        <h1 id=\"orgForm-header\">Organization Sign Up</h1>\n            <section class=\"orgForm-info__container\">\n                <span style=\"color: var(--primary-color);\">\n                    <i class=\"fas fa-user fa-2x\"></i>\n                </span>\n                <h6 id=\"orgForm__userRequest\">About Your Organization</h6>\n                <input type=\"text\" class=\"add__orgName\" placeholder=\"Organization Name:\">\n                <input type=\"text\" class=\"add__orgUrl\" placeholder=\"Website:\"><br>\n                <input type=\"text\" class=\"add__contactPerson\" placeholder=\"Organization contact:\">\n                <input type=\"text\" class=\"add__contactEmail\" placeholder=\"Contact Email:\"><br>\n                <input type=\"text\" class=\"add__orgUserName\" placeholder=\"Username:\"><br>\n                <input type=\"text\" class=\"add__orgPassword\" placeholder=\"Password:\"><br>\n                <textarea type=\"text\" class=\"add__mission\" placeholder=\"Your mission:\"></textarea><br>\n            </section>\n                        \n            <section class=\"causes__container-form\">\n                <div class=\"causes__container-flex\">\n                    <span style=\"color: var(--primary-color);\">\n                        <i class=\"fas fa-hand-holding-heart fa-2x\"></i>\n                    </span>\n                    <h6 id=\"orgForm__causeRequest\">What are the causes your organization supports?</h6>\n                    <ul id=\"causes\">\n                        ".concat(causes.map(function (cause) {
+  return "\n    <div class=\"orgForm__background\">\n        <h1 id=\"orgForm-header\">Organization Sign Up</h1>\n            <section class=\"orgForm-info__container\">\n                <span style=\"color: var(--primary-color);\">\n                    <i class=\"fas fa-user fa-2x\"></i>\n                </span>\n                <h6 id=\"orgForm__userRequest\">About Your Organization</h6>\n                <input type=\"text\" class=\"add__orgName\" placeholder=\"Organization Name:\">\n                <input type=\"text\" class=\"add__orgUrl\" placeholder=\"Website:\"><br>\n                <input type=\"text\" class=\"add__orgLogo\" placeholder=\"Logo:\"><br>\n                <input type=\"text\" class=\"add__contactPerson\" placeholder=\"Organization contact:\">\n                <input type=\"text\" class=\"add__contactEmail\" placeholder=\"Contact Email:\"><br>\n                <input type=\"text\" class=\"add__orgUserName\" placeholder=\"Username:\"><br>\n                <input type=\"text\" class=\"add__orgPassword\" placeholder=\"Password:\"><br>\n                <textarea type=\"text\" class=\"add__mission\" placeholder=\"Your mission:\"></textarea><br>\n            </section>\n                        \n            <section class=\"causes__container-form\">\n                <div class=\"causes__container-flex\">\n                    <span style=\"color: var(--primary-color);\">\n                        <i class=\"fas fa-hand-holding-heart fa-2x\"></i>\n                    </span>\n                    <h6 id=\"orgForm__causeRequest\">What are the causes your organization supports?</h6>\n                    <ul id=\"causes\">\n                        ".concat(causes.map(function (cause) {
     return "\n                                <li class=\"orgForm-cause\">     \n                                    <label><input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\"><span class=\"cause-bold\">").concat(cause.causeName, "</span>:  ").concat(cause.causeDescription, "</label>\n                                </li>\n                            ");
   }).join(''), "  \n                    </ul>            \n                </div>\n            </section>   \n        <button class=\"js-add-organization button\">Let's Go!</button>\n    </div>\n    ");
 }
@@ -552,6 +552,7 @@ function getOrganizations() {
       _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(event.target.id), function (volunteer) {
         _apiActions.default.getRequest('http://localhost:8080/organizations', function (organizations) {
           getAppContext().innerHTML = (0, _Organizations.default)(volunteer, organizations);
+          getHeaderContext().innerHTML = "";
         });
       });
     }
@@ -790,6 +791,7 @@ function addOrganization() {
       var contactPerson = document.querySelector('.add__contactPerson').value;
       var contactEmail = document.querySelector(".add__contactEmail").value;
       var orgUrl = document.querySelector('.add__orgUrl').value;
+      var orgLogo = document.querySelector('.add__orgLogo').value;
       var orgUserName = document.querySelector('.add__orgUserName').value;
       var orgPassword = document.querySelector('.add__orgPassword').value;
       var causes = Array.from(document.querySelectorAll('.cause__causeName')).filter(function (checkbox) {
@@ -804,6 +806,7 @@ function addOrganization() {
         contactPerson: contactPerson,
         contactEmail: contactEmail,
         orgUrl: orgUrl,
+        orgLogo: orgLogo,
         orgUserName: orgUserName,
         orgPassword: orgPassword,
         causes: causes
@@ -975,7 +978,9 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "54106" + '/');
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};

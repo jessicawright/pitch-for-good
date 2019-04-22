@@ -9,6 +9,7 @@ export default function OrgForm(causes) {
                 <h6 id="orgForm__userRequest">About Your Organization</h6>
                 <input type="text" class="add__orgName" placeholder="Organization Name:">
                 <input type="text" class="add__orgUrl" placeholder="Website:"><br>
+                <input type="text" class="add__orgLogo" placeholder="Logo:"><br>
                 <input type="text" class="add__contactPerson" placeholder="Organization contact:">
                 <input type="text" class="add__contactEmail" placeholder="Contact Email:"><br>
                 <input type="text" class="add__orgUserName" placeholder="Username:"><br>
