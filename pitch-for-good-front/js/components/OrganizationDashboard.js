@@ -20,6 +20,7 @@ export default function OrganizationDashboard(organization) {
                         <li>Contact Email: ${organization.orgEmail}</li>
                         <li>Website: ${organization.websiteUrl}</li>
                     </ul>
+                    <button type="button" class="js-log-out logout">Log Out</button>
                 </div>
             </div>
 

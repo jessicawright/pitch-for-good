@@ -24,6 +24,7 @@ export default function VolunteerDashboard(volunteer) {
                         <li>Email: ${volunteer.email}</li><br>
                         <li>Current Job Title: ${volunteer.jobTitle}</li>
                     </ul>  
+                    <button type="button" class="js-log-out logout">Log Out</button>
                 </div>
             </div>
 

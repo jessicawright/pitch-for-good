@@ -2,25 +2,31 @@ export default function addSkills(volunteer, skills) {
   return `
 
 
-    <section class="addSkills__background">
-    <h1 class="addSkills_profile">Add additional skills to your profile:</h1>
 
-    <div class="skills__container">
-                    <ul class="skills__container__list"id="skills">
-                        ${skills.map(skill => {
-                            return `
-                                <li class="skill">
-                                    <label><input type="checkbox" class="skill__skillName" id="${skill.skillId}" name="skillIds" value="${skill.skillId}">${skill.skillName}</label>
-                                </li>
-                            `;
-                        }).join('')}
-                    </ul>
+  <section class="addSkills__background">
+    <div class="addSkills-arrow">
+      <span style="color: white;">
+        <i class="skills-arrow fas fa-arrow-left fa-3x" id=${volunteer.volunteerId}></i>
+      </span>
+    </div>
+    <div class="container">
+      <h2 class="addSkills_profile">Add additional skills to your profile:</h2>
+      <div class="skills__container">
+        <ul class="skills__container__list" id="skills">
+            ${skills.map(skill => {
+                return `
+                    <li class="skill">
+                        <label><input type="checkbox" class="skill__skillName" id="${skill.skillId}" name="skillIds" value="${skill.skillId}">${skill.skillName}</label>
+                    </li>
+                `;
+            }).join('')}
+        </ul>
+      </div>
+    </div>
+      <div class="skill-buttons">
 
-          </div>
-        <div class="skill-buttons">
           <div class="addSkill__button"><button id=${volunteer.volunteerId} class="js-addSkills">Submit</button></div>
-          <div class="back__button"><button id=${volunteer.volunteerId} class="js-back-to-dashboard">Cancel</button></div>
-        </div>
+      </div>
   </section>
   `;
 }
