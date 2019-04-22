@@ -851,12 +851,12 @@ header span i {
 /* organizations page */
 
 .organizations__container {
-  background-color: rgb(102, 203, 229);
+  background-image: url(../dist/dashboardbackground.97591da5.png);
   padding-top: 1rem;
 }
 
 .organization-page__title {
-  color: white;
+  color: rgb(96, 117, 67);
   padding-top: 2rem;
 }
 
@@ -869,8 +869,10 @@ a {
   flex-direction: column;
   background-color: white;
   margin: 5rem;
-  border-radius: 20px;
-  background-image: url(../dist/images/org_background2.png);
+  border-radius: 8px;
+  border-style: solid;
+  border-color: rgb(127, 200, 59);
+  background-color: white;
 }
 
 .org__content {
@@ -878,8 +880,8 @@ a {
   flex-direction: row;
 }
 
-.white {
-  color: white;
+.text {
+  color:  rgb(96, 117, 67);
 }
 
 .org__logo {

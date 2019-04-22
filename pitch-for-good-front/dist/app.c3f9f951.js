@@ -142,7 +142,7 @@ exports.default = Organizations;
 
 function Organizations(volunteer, organizations) {
   return "\n        <div class=\"organizations__container\">\n        <h1 class=\"organization-page__title\">Organizations:</h1>\n        <ul class=\"organizations\">\n        ".concat(organizations.map(function (organization) {
-    return "\n            <li class=\"organization\">\n                <div class=\"org__content\">   \n                    <section class=\"org__logo\">  \n                        <img src=\"/images/".concat(organization.orgLogo, "\">\n                    </section>\n                    <section class=\"org__info\">\n                        <h2 class=\"js-organization__orgName white\" id=\"").concat(organization.organizationId, "\">").concat(organization.orgName, "</h2>\n                        <h3 class=\"organization__orgMission white\">").concat(organization.orgMission, "</h3>\n                        <h3 class=\"organization__websiteUrl white\"><a href=\"").concat(organization.websiteUrl, "\">").concat(organization.websiteUrl, "</a></h3>\n                    </section>\n                </div>\n                <section class=\"org__project-submit-area\">\n                    <h3 class=\"white\"> If you would like to propose a project to this organization, click the button below.</h3>\n                \n                    <input type=\"hidden\" id=\"").concat(volunteer.volunteerId, "\" class=\"volunteerId\">\n                    <button class=\"js-get-project-form pitch-button\" id=\"").concat(organization.organizationId, "\">Make Your Pitch!</button>\n                </section>\n            </li>\n                    ");
+    return "\n            <li class=\"organization\">\n                <div class=\"org__content\">   \n                    <section class=\"org__logo\">  \n                        <img src=\"/images/".concat(organization.orgLogo, "\">\n                    </section>\n                    <section class=\"org__info\">\n                        <h2 class=\"js-organization__orgName text\" id=\"").concat(organization.organizationId, "\">").concat(organization.orgName, "</h2>\n                        <h3 class=\"organization__orgMission text\">").concat(organization.orgMission, "</h3>\n                        <h3 class=\"organization__websiteUrl text\"><a href=\"").concat(organization.websiteUrl, "\">").concat(organization.websiteUrl, "</a></h3>\n                    </section>\n                </div>\n                <section class=\"org__project-submit-area\">\n                    <h3 class=\"text\"> If you would like to propose a project to this organization, click the button below.</h3>\n                \n                    <input type=\"hidden\" id=\"").concat(volunteer.volunteerId, "\" class=\"volunteerId\">\n                    <button class=\"js-get-project-form pitch-button\" id=\"").concat(organization.organizationId, "\">Make Your Pitch!</button>\n                </section>\n            </li>\n                    ");
   }).join(''), "             \n        </ul>\n        </div>\n                ");
 }
 },{}],"js/components/ProjectForm.js":[function(require,module,exports) {
@@ -348,7 +348,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolHeader;
 
 function VolHeader(volunteer) {
-  return "\n\n<div class=\"nav\">\n    <ul class=\"nav-links\">\n        <li class=\"title js-landing\">Pitch For Good</li>\n    <div class=\"nav-name\">\n        <li class=\"welcome\">".concat(volunteer.firstName, " ").concat(volunteer.lastName, "</li>  \n        <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n    </div>\n    </ul>\n</div>\n");
+  return "\n\n<div class=\"nav\">\n    <ul class=\"nav-links\">\n        <li><img src=\"/images/lotus.png\" class=\"logo js-landing\"></li>\n        <li class=\"title js-landing\">Pitch For Good</li>\n    <div class=\"nav-name\">\n        <li class=\"welcome\">".concat(volunteer.firstName, " ").concat(volunteer.lastName, "</li>  \n        <li><button type=\"button\" class=\"js-log-out logout\">Log Out</button></li>\n    </div>\n    </ul>\n</div>\n");
 }
 },{}],"js/components/OrgHeader.js":[function(require,module,exports) {
 "use strict";
@@ -978,9 +978,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54106" + '/');
-
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54885" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
