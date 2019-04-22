@@ -13,6 +13,7 @@ export default function OrganizationDashboard(organization) {
                     <h6 id="header-font">About ${organization.orgName}</h6>
                 </header>
                 <div class="container-body-left">
+                    <img src="/images/${organization.orgLogo}" alt="organization logo">
                     <ul>
                         <li>Organization: ${organization.orgName}</li>
                         <li>Mission: ${organization.orgMission}</li>
