@@ -1,9 +1,9 @@
 export default function VolForm(causes, skills) {
     return `
     <div class="volForm__background">
-        <h1 id="volForm-header">Volunteer Sign Up Page</h1>
+        <h1 id="volForm-header">Volunteer Sign Up</h1>
             <section class="contact-info__container">
-                <span style="color: var(--secondary-gray);">
+                <span style="color: var(--primary-color);">
                     <i class="fas fa-user fa-2x"></i>
                 </span>
                 <h6 id="volForm__userRequest">About You</h6>
@@ -18,7 +18,7 @@ export default function VolForm(causes, skills) {
                 
             <section class="skills__container-form">
                 <div class="skills__container-flex">
-                    <span style="color: var(--secondary-gray);">
+                    <span style="color: var(--primary-color);">
                         <i class="fas fa-clipboard-list fa-2x"></i>
                     </span>
                     <h6 id="volForm__skillRequest">What skills you are able to contribute to a Pitch for Good project?</h6>
@@ -36,7 +36,7 @@ export default function VolForm(causes, skills) {
                 
             <section class="causes__container-form">   
                 <div class="causes__container-flex">
-                    <span style="color: var(--secondary-gray);">
+                    <span style="color: var(--primary-color);">
                         <i class="fas fa-hand-holding-heart fa-2x"></i>
                     </span>
                     <h6 id="volForm__causeRequest">What are the causes you support?</h6>
@@ -51,7 +51,7 @@ export default function VolForm(causes, skills) {
                     </ul>
                 </div>
             </section>
-        <button class="js-add-volunteer button">Volunteer Sign Up!</button>
+        <button class="js-add-volunteer button">Let's Go!</button>
     </div>
     `;  
 }
