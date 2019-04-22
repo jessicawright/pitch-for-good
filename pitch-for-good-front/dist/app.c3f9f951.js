@@ -305,7 +305,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgForm;
 
 function OrgForm(causes) {
-  return "\n    <div class=\"orgForm__background\">\n        <h1 id=\"orgForm-header\">Organization Sign Up</h1>\n            <section class=\"orgForm-info__container\">\n                <span style=\"color: var(--primary-color);\">\n                    <i class=\"fas fa-user fa-2x\"></i>\n                </span>\n                <h6 id=\"orgForm__userRequest\">About Your Organization</h6>\n                <input type=\"text\" class=\"add__orgName\" placeholder=\"Organization Name:\">\n                <input type=\"text\" class=\"add__orgUrl\" placeholder=\"Website:\"><br>\n                <input type=\"text\" class=\"add__contactPerson\" placeholder=\"Organization contact:\">\n                <input type=\"text\" class=\"add__contactEmail\" placeholder=\"Contact Email:\"><br>\n                <input type=\"text\" class=\"add__orgUserName\" placeholder=\"Username:\"><br>\n                <input type=\"text\" class=\"add__orgPassword\" placeholder=\"Password:\"><br>\n                <textarea type=\"text\" class=\"add__mission\" placeholder=\"Your mission:\"></textarea><br>\n            </section>\n                        \n            <section class=\"causes__container-form\">\n                <div class=\"causes__container-flex\">\n                    <span style=\"color: var(--primary-color);\">\n                        <i class=\"fas fa-hand-holding-heart fa-2x\"></i>\n                    </span>\n                    <h6 id=\"orgForm__causeRequest\">What are the causes your organization supports?</h6>\n                    <ul id=\"causes\">\n                        ".concat(causes.map(function (cause) {
+  return "\n    <div class=\"orgForm__background\">\n        <h1 id=\"orgForm-header\">Organization Sign Up</h1>\n            <section class=\"orgForm-info__container\">\n                <span style=\"color: var(--primary-color);\">\n                    <i class=\"fas fa-user fa-2x\"></i>\n                </span>\n                <h6 id=\"orgForm__userRequest\">About Your Organization</h6>\n                <input type=\"text\" class=\"add__orgName\" placeholder=\"Organization Name:\">\n                <input type=\"text\" class=\"add__orgUrl\" placeholder=\"Website:\"><br>\n                <input type=\"text\" class=\"add__orgLogo\" placeholder=\"Logo:\"><br>\n                <input type=\"text\" class=\"add__contactPerson\" placeholder=\"Organization contact:\">\n                <input type=\"text\" class=\"add__contactEmail\" placeholder=\"Contact Email:\"><br>\n                <input type=\"text\" class=\"add__orgUserName\" placeholder=\"Username:\"><br>\n                <input type=\"text\" class=\"add__orgPassword\" placeholder=\"Password:\"><br>\n                <textarea type=\"text\" class=\"add__mission\" placeholder=\"Your mission:\"></textarea><br>\n            </section>\n                        \n            <section class=\"causes__container-form\">\n                <div class=\"causes__container-flex\">\n                    <span style=\"color: var(--primary-color);\">\n                        <i class=\"fas fa-hand-holding-heart fa-2x\"></i>\n                    </span>\n                    <h6 id=\"orgForm__causeRequest\">What are the causes your organization supports?</h6>\n                    <ul id=\"causes\">\n                        ".concat(causes.map(function (cause) {
     return "\n                                <li class=\"orgForm-cause\">     \n                                    <label><input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\"><span class=\"cause-bold\">").concat(cause.causeName, "</span>:  ").concat(cause.causeDescription, "</label>\n                                </li>\n                            ");
   }).join(''), "  \n                    </ul>            \n                </div>\n            </section>   \n        <button class=\"js-add-organization button\">Let's Go!</button>\n    </div>\n    ");
 }
@@ -567,6 +567,7 @@ function volAddSkills() {
       _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(volId), function (volunteer) {
         _apiActions.default.getRequest("http://localhost:8080/skills/".concat(volId, "/add"), function (skills) {
           getAppContext().innerHTML = (0, _addSkills.default)(volunteer, skills);
+          getHeaderContext().innerHTML = '';
         });
       });
     }
@@ -790,6 +791,7 @@ function addOrganization() {
       var contactPerson = document.querySelector('.add__contactPerson').value;
       var contactEmail = document.querySelector(".add__contactEmail").value;
       var orgUrl = document.querySelector('.add__orgUrl').value;
+      var orgLogo = document.querySelector('.add__orgLogo').value;
       var orgUserName = document.querySelector('.add__orgUserName').value;
       var orgPassword = document.querySelector('.add__orgPassword').value;
       var causes = Array.from(document.querySelectorAll('.cause__causeName')).filter(function (checkbox) {
@@ -804,6 +806,7 @@ function addOrganization() {
         contactPerson: contactPerson,
         contactEmail: contactEmail,
         orgUrl: orgUrl,
+        orgLogo: orgLogo,
         orgUserName: orgUserName,
         orgPassword: orgPassword,
         causes: causes
@@ -868,13 +871,11 @@ function getBackToOrgDashboard() {
 
 function getBackToOrgDashboardFromSearch() {
   _eventActions.default.on(getAppContext(), 'click', function () {
-    if (event.target.classList.contains('js-accept-project')) {
-      if (confirm('Are you sure you would like to accept the project? If you do, the volunteer will receive an email that their project has been accepted. They also will be able to contact you to move forward with the project.')) {
-        _apiActions.default.getRequest("http://localhost:8080/projects/".concat(event.target.id, "/accept"), function (organization) {
-          getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
-          getHeaderContext().innerHTML = (0, _OrgHeader.default)(organization);
-        });
-      }
+    if (event.target.classList.contains('fa-arrow-left')) {
+      _apiActions.default.getRequest("http://localhost:8080/organizations/".concat(event.target.id), function (organization) {
+        getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
+        getHeaderContext().innerHTML = (0, _OrgHeader.default)(organization);
+      });
     }
   });
 }
@@ -949,7 +950,7 @@ function getHeaderContext() {
 function getAppContext() {
   return document.querySelector("#app");
 }
-},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -977,8 +978,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53274" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60954" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -1153,5 +1153,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
 //# sourceMappingURL=/app.c3f9f951.js.map

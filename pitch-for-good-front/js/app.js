@@ -300,6 +300,7 @@ function addOrganization() {
             const contactPerson = document.querySelector('.add__contactPerson').value
             const contactEmail = document.querySelector(".add__contactEmail").value
             const orgUrl = document.querySelector('.add__orgUrl').value
+            const orgLogo = document.querySelector('.add__orgLogo').value
             const orgUserName = document.querySelector('.add__orgUserName').value
             const orgPassword = document.querySelector('.add__orgPassword').value
 
@@ -313,6 +314,7 @@ function addOrganization() {
                 contactPerson : contactPerson,
                 contactEmail : contactEmail,
                 orgUrl : orgUrl,
+                orgLogo : orgLogo,
                 orgUserName : orgUserName,
                 orgPassword : orgPassword,
                 causes : causes
