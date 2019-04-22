@@ -56,7 +56,7 @@ function main() {
     searchAgain()
     getBackToOrgDashboardFromSearch()
     getBackToVolDashBoardAfterAddSkills()
-
+    getBackToVolDashBoardAfterAddCauses()
 }
 
 function goHome() {
@@ -386,6 +386,16 @@ function getBackToVolDashBoardAfterAddSkills() {
     })
 }
 
+function getBackToVolDashBoardAfterAddCauses() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('causes-arrow')) {
+            api.getRequest(`http://localhost:8080/volunteers/${event.target.id}`, volunteer => {
+                getAppContext().innerHTML = VolunteerDashboard(volunteer)
+            })
+        }
+    })
+}
+
 function getBackToOrgDashboardFromSearch() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('volSearch')) {
@@ -416,6 +426,16 @@ function goToVolunteerDashboard() {
             api.getRequest(`http://localhost:8080/volunteers/${event.target.id}`, volunteer => {
                 getAppContext().innerHTML = VolunteerDashboard(volunteer)
                 getHeaderContext().innerHTML = VolHeader(volunteer)
+            })
+        }
+    })
+}
+
+function goToVolunteerDashboard() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('js-back-to-volunteer-dashboard')) {
+            api.getRequest(`http://localhost:8080/volunteers/${event.target.id}`, volunteer => {
+                getAppContext().innerHTML = VolunteerDashboard(volunteer)
             })
         }
     })
