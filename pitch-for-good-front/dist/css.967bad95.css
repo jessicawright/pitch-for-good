@@ -11,19 +11,8 @@
   width: 60%;
 }
 
-.volForm__container {
-  display: grid;
-	grid-gap: 5px 5px;
-	grid-template-columns: repeat(4, 1fr); 
-	grid-template-rows: repeat(3, 1fr); 
-	margin: 1rem;
-	padding: 1rem;
-	max-width: 100%;	
-  height: 1000px;	
-}
-
-.contact-info__container, .skills__container, .causes__container, .volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
-  background: var(--secondary-gray);
+.volDashboard__contact, .volDashboard__skills, .volDashboard__causes, .volDashboard__projects {
+  background-color: var(--secondary-gray);
   color: var(--tertiary-white);
   opacity: .85;
   padding: 1rem;
@@ -32,88 +21,6 @@
 
 .contact-info__container {
   grid-column: 1 / span 2;
-}
-
-.skills__container {
-  display: inline-flex;
-  grid-column: 3 / span 2;
-  grid-row: 1 / span 3;
-  text-align: left;
-  
-}
-
-#skills {
-  display: inline-flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  
-}
-
-#causes {
-  display: inline;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-
-.skill__skillName, .cause__causeName {
-  margin: .5rem;
-}
-
-.causes__container {
-  grid-column: 1 / span 2;
-  grid-row: 2 / span 2;
-  text-align: left;
-  display: flex;
-}
-
-.js-add-volunteer {
-  grid-column: 2 / span 2;
-  grid-row: 4 / span 2;
-  background-color: var(--secondary-gray);
-  color: var(--tertiary-white);
-  font-size: 30px;
-  padding: 7px 24px;
-  border-radius: 8px;
-  box-shadow: 5px 5px 50px 15px var(--secondary-gray, .4);
-}
-
-/* start org and vol Dashboard grid */
-.dashboard__container {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 8, 1fr;
-  grid-template-rows: 7, 1fr;
-  align: center;
-  margin: 1rem;
-}
-.volDashboard__contact {
-  grid-column: 1 / span 4;
-  grid-row: 1 / span 3;
-  text-align: left;
-  display: inline-block;
-}
-.volDashboard__skills {
-  grid-column: 1 / span 8;
-  grid-row: 4 / span 2;
-  text-align: left;
-  align-items: right;
-  justify-content: space-between;
-  display: flex;
-}
-.volDashboard__causes {
-  grid-column: 1 / span 8;
-  grid-row: 6 / span 2;
-  text-align: left;
-  align-items: right;
-  justify-content: space-between; 
-  display: flex;
-}
-.volDashboard__projects {
-  grid-column: 5 / span 4;
-  grid-row: 1 / span 3;
-  text-align: left;
-  display: inline-block;
 }
 
 /* start orgForm grid */
@@ -126,14 +33,8 @@
 
 .contact-info__container {
   grid-column: 1 / span 2;
-  grid-row: 1 / span 2; 
+  grid-row: 1 / span 2;
 }
-
-.skills__container {
-  grid-column: 3 / span 2;
-  grid-row: 1 / span 2; 
-}
-
 
 /* start org and vol landing grid */
 .orglanding__grid-container, .vollanding__grid-container {
@@ -147,11 +48,6 @@
   width: 100%;
   align-self: center;
   margin-top: 50px;
-}
-  
-.js--vol-add-causes, .js--vol-add-skills {
-  background-color: var(--secondary-color);
-  color: var(--secondary-gray);
 }
 
 .hero-header {
@@ -291,7 +187,7 @@ footer {
 	line-height: 1.3;
 	padding: .6em 1.4em .5em .8em;
 	width: auto;
-	max-width: 100%; 
+	max-width: 100%;
 	box-sizing: border-box;
 	margin: 0;
 	border: 1px solid #aaa;
@@ -310,14 +206,15 @@ footer {
 
 .vol-search-info {
   margin-bottom: 20px;
-  color: var(--secondary-color);
+  margin-top: 40px;
+  color: white;
 }
 
 .vol-search {
   margin-top: 25vh;
   margin: auto;
-  background-image: url(/mural.4ba01f48.png);
-  background-position: center center;
+  background-image: url(/gardenvolunteers.cd19dd02.png);
+  background-position: center -15px;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
@@ -325,10 +222,12 @@ footer {
   align-self: center;
   align-items: center;
   text-align: center;
+  position: absolute;
+  top: 0;
 }
 
 .js-find-volunteers-by-skill {
-  background-color: var(--secondary-gray);
+  background-color: var(--secondary-color);
   color: white;
   font-size: 15px;
   padding: 10px 20px;
@@ -338,7 +237,615 @@ footer {
 
 .vol-search-info-detail {
   font-style: italic;
-  color: var(--secondary-color);
+  color: white;
+}
+
+.vol-search span {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+i {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+/* start vol search results page */
+.js-search-again {
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 15px;
+  padding: 10px 20px;
+  margin: 1rem;
+  border-radius: 8px;
+}
+
+.js-back-to-org-dashboard {
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 15px;
+  padding: 10px 20px;
+  margin: 1rem;
+  border-radius: 8px;
+}
+
+.volunteer {
+  color: white;
+}
+
+.volunteer__email {
+  color: white;
+  margin-left: 20px;
+}
+
+.volunteer-results {
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.vol-search-buttons {
+  margin-top: 40px;
+}
+
+
+/* start volunteer dashboard */
+.vol-dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  grid-gap: 30px;
+  margin: 0 40px 0 40px;
+}
+
+.vol-dashboard-background {
+  margin: auto;
+  background-image: url(/dashboardbackground.97591da5.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 100vw;
+  height: 100%;
+  align-self: center;
+}
+
+.container1 {
+  grid-column-start: 1/span 1;
+  grid-row-start: 1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.container2 {
+  grid-column-start: 2/span 1;
+  grid-row-start: 1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.container2 ul li {
+  color: #555555;
+}
+
+.container3 {
+  grid-column-start: 3/span 1;
+  grid-row-start: 1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.container3 ul li {
+  color: #555555;
+}
+
+.container4 {
+  grid-column-start: 1/span 1;
+  grid-row-start: 2;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.container5 {
+  grid-column-start: 2;
+  grid-column-end: -1;
+  grid-row-start: 2;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.container1-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--primary-color);
+  height: 125px;
+}
+
+header span i {
+  padding-top: 10px;
+}
+
+.container2-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--primary-color);
+  height: 125px;
+}
+
+.container3-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--primary-color);
+  height: 125px;
+}
+
+.container4-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--primary-color);
+  height: 125px;
+}
+
+.container5-header {
+  background-color: var(--tertiary-white);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--tertiary-white);
+  height: 125px;
+}
+
+.container1-header h6, .container2-header h6, .container3-header h6, .container4-header h6, .container5-header h6 {
+  /* padding-top: 15px; */
+  padding-bottom: 5px;
+  color: var(--secondary-gray);
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.container-border {
+  border-style: solid;
+  border-color: var(--secondary-color);
+  border-radius: 12px;
+  border-width: 3px;
+}
+
+.vol-dashboard-container h6 {
+  font-size: 18px;
+}
+
+.container-body-left {
+  color: #555555;
+  padding: 20px 40px 0 40px;
+}
+
+.container-body-left ul li{
+  text-align: left;
+  color: #555555;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.pitch-instructions {
+  color: #555555;
+  padding: 15px;
+  padding-top: 30px;
+}
+
+#gray-text {
+  color: #555555;
+}
+
+#header-font {
+  font-size: 30px;
+}
+
+/* vol dashboard buttons */
+.js--vol-add-causes, .js--vol-add-skills {
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
+  font-size: 15px;
+  padding: 10px;;
+  margin: 10px;
+  border-radius: 8px;
+  font-size: 20px;
+  align-self: left;
+}
+
+.js--see-organizations {
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
+  font-size: 15px;
+  padding: 10px;;
+  margin: 10px;
+  border-radius: 8px;
+  font-size: 20px;
+}
+
+/* start addSkills.js styling*/
+.addSkills__background {
+  margin-top: 25vh;
+  margin: auto;
+  background-image: url(/carpenter-hands.accdad7b.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  min-height: 100vh;
+  align-self: center;
+  align-items: center;
+  text-align: center;
+}
+.addSkills__background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.skills__container {
+
+  background-color: none;
+
+  height: 500px;
+  /* width:40%; */
+
+  /* align-self: center; */
+
+
+  /* margin-left: 250px; */
+  margin:auto;
+
+
+
+
+}
+.skills__container__list {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(2,1fr);
+  grid-column-gap: 50px;
+
+}
+.addSkill__button {
+  grid-column: 1/ span 1;
+  grid-row: 3/ span 1;
+  padding: 20px;
+}
+.back__button {
+  grid-column: 2/ span 1;
+  grid-row: 3/ span 1;
+  padding: 20px;
+
+}
+.js-addSkills, .js-back-to-dashboard, .js-addCauses{
+  background-color: var(--tertiary-white);
+  color: var(--secondary-gray);
+  justify-content: space-evenly;
+  font-size: 20px;
+  padding: 10px;
+
+}
+.addSkills_profile {
+  margin-top: 75px;
+
+  color: white;
+}
+.skill-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* start org dashboard */
+.org-dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, auto);
+  grid-gap: 30px;
+  margin: 0 40px 40px 40px;
+}
+
+.org-dashboard-background {
+  /* margin-top: 25vh; */
+  margin: auto;
+  background-image: url(/dashboardbackground.97591da5.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 100vw;
+  height: 100%;
+  align-self: center;
+}
+
+.org-container1 {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.org-container2 {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.org-container3 {
+  grid-column-start: 2;
+  grid-column-end: -1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.org-container4 {
+  grid-column-start: 1;
+  grid-column-end: -1;
+  background-color: white;
+  border-radius: 8px;
+}
+
+#green-text {
+  color: var(--secondary-gray);
+}
+
+.org-container1-header {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: var(--secondary-gray);
+  background-color: var(--tertiary-white);
+  /* background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; */
+  height: 125px;
+}
+
+
+.org-container1-header h6 {
+  /* padding-top: 15px; */
+  padding-bottom: 5px;
+  color: var(--secondary-gray);
+  font-weight: bold;
+
+}
+
+.org-dashboard-container h6 {
+  font-size: 20px;
+}
+
+.org-container2-header h6 {
+  /* padding-top: 15px; */
+  padding-bottom: 5px;
+  color: var(--secondary-gray);
+  font-weight: bold;
+}
+
+.org-container3-header h6 {
+  /* padding-top: 15px; */
+  padding-bottom: 5px;
+  color: var(--secondary-gray);
+  font-weight: bold;
+}
+
+.org-container4-header h6 {
+  /* padding-top: 15px; */
+  padding-bottom: 5px;
+  color: var(--secondary-gray);
+  font-weight: bold;
+}
+
+.org-container4 ul li {
+  text-align: left;
+}
+
+.org-container-border {
+  border-style: solid;
+  border-color: var(--secondary-color);
+  border-radius: 12px;
+  border-width: 3px;
+}
+ /* org dashboard buttons */
+.js-get-volunteer-search {
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
+  justify-content: space-evenly;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.js-accept-project {
+  background-color: var(--secondary-gray);
+  color: var(--tertiary-white);
+  font-size: 20px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  max-height: 50px;
+}
+
+/* orgProject flex */
+.orgProject-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+
+.orgProject-info {
+  margin-left: 40px;
+}
+
+/* start volForm styling */
+#volForm-header {
+  color: var(--tertiary-white);
+}
+
+.volForm__background {
+  margin: auto;
+  background-color: var(--secondary-gray);
+  /* background-image: url(../dist/images/dashboardbackground.png); */
+  /* background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+  min-width: 100vw;
+  height: 100%;
+  align-self: center;
+}
+
+.contact-info__container {
+  background-color: var(--tertiary-white);
+  border-color: var(--primary-color);
+  border-style: solid;
+  border-radius: 8px;
+  margin: 10px auto 30px auto;
+  width: 90%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.skills__container-form {
+  background-color: var(--tertiary-white);
+  border-color: var(--primary-color);
+  border-style: solid;
+  border-radius: 8px;
+  margin: 30px auto;
+  width: 90%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.skills__container-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+#skills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: left;
+}
+
+.skill__skillName {
+  margin: .5rem;
+  color: var(--tertiary-white);
+}
+
+.causes__container-form {
+  background-color: var(--tertiary-white);
+  border-color: var(--primary-color);
+  border-style: solid;
+  border-radius: 8px;
+  margin: 30px auto;
+  max-width: 90%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.causes__container-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.cause__causeName {
+  margin: .5rem;
+}
+
+.cause-bold {
+  font-weight: bold;
+}
+
+#causes {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  text-align: left;
+}
+
+.js-add-volunteer {
+  background-color: var(--tertiary-white);
+  color: var(--secondary-gray);
+  justify-content: space-evenly;
+  font-size: 30px;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.volForm-skill {
+  color: #555555;
+}
+
+.volForm-cause {
+  color: #555555;
+}
+
+#volForm__skillRequest {
+  color: var(--secondary-gray);
+}
+
+#volForm__causeRequest {
+  color: var(--secondary-gray);
+}
+
+#volForm__userRequest {
+  color: var(--secondary-gray);
+}
+
+/* start orgForm styling */
+#orgForm-header {
+  color: var(--tertiary-white);
+}
+
+.orgForm__background {
+  margin: auto;
+  background-color: var(--secondary-gray);
+  min-width: 100vw;
+  height: 100%;
+  align-self: center;
+}
+
+.orgForm-info__container {
+  background-color: var(--tertiary-white);
+  border-color: var(--primary-color);
+  border-style: solid;
+  border-radius: 8px;
+  margin: 10px auto 30px auto;
+  width: 90%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+#orgForm__causeRequest {
+  color: var(--secondary-gray);
+}
+
+#orgForm__userRequest {
+  color: var(--secondary-gray);
+}
+
+.orgForm-cause {
+  color: #555555;
+}
+
+.js-add-organization {
+  background-color: var(--tertiary-white);
+  color: var(--secondary-gray);
+  justify-content: space-evenly;
+  font-size: 30px;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.add__mission::placeholder {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* organizations page */

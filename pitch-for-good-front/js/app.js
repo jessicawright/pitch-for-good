@@ -53,6 +53,7 @@ function main() {
     volSubmitNewCauses()
     orgAcceptProject()
     searchAgain()
+    getBackToOrgDashboardFromSearch()
 
 }
 
@@ -73,7 +74,7 @@ function getOrganizations() {
                     getAppContext().innerHTML = Organizations(volunteer, organizations)
                     getHeaderContext().innerHTML = ""
                 })
-            })  
+            })
         }
     })
 }
@@ -85,6 +86,7 @@ function volAddSkills() {
             api.getRequest(`http://localhost:8080/volunteers/${volId}`, volunteer => {
                 api.getRequest(`http://localhost:8080/skills/${volId}/add`, skills => {
                     getAppContext().innerHTML = addSkills(volunteer, skills)
+                    getHeaderContext().innerHTML = ''
                 })
             })
         }
@@ -103,14 +105,14 @@ function volAddCauses() {
         }
     })
 }
-                    
+
 function volClickToSignUp() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--sign-up__volunteer')) {
             api.getRequest('http://localhost:8080/causes', causes => {
                 api.getRequest('http://localhost:8080/skills', skills => {
                     getAppContext().innerHTML = VolForm(causes, skills)
-                    
+
                 })
             })
         }
@@ -132,13 +134,13 @@ function OrgEnter() {
         }
     })
 }
-                    
+
 function OrgClickToSignUp() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js--sign-up__organization')) {
             api.getRequest('http://localhost:8080/causes', causes => {
                     getAppContext().innerHTML = OrgForm(causes)
-                    
+
                 })
             }
     })
@@ -154,15 +156,15 @@ function createNewVolunteer() {
             const phoneNum = document.querySelector('.add__phoneNum').value
             const email = document.querySelector('.add__email').value
             const jobTitle = document.querySelector('.add__jobTitle').value
-            
+
             const skills = Array.from(document.querySelectorAll('.skill__skillName'))
             .filter((checkbox) => checkbox.checked)
             .map((checkbox) => checkbox.value);
-            
+
             const causes = Array.from(document.querySelectorAll('.cause__causeName'))
             .filter((checkbox) => checkbox.checked)
             .map((checkbox) => checkbox.value);
-            
+
             api.postRequest('http://localhost:8080/volunteers/add', {
                 firstName : firstName,
                 lastName : lastName,
@@ -192,7 +194,7 @@ function volSubmitNewSkills() {
                 volId : volId,
                 skills : skills
         }, (volunteer) => volDashboardAndHeader(volunteer))
-            
+
         }
     })
 }
@@ -211,7 +213,7 @@ function volSubmitNewCauses() {
                 volId : volId,
                 causes : causes
         }, (volunteer) => volDashboardAndHeader(volunteer))
-            
+
         }
     })
 }
@@ -227,18 +229,18 @@ function deleteVolAccount() {
             }
         }
     })
-}            
+}
 
 function deleteOrgAccount() {
     events.on(getHeaderContext(), 'click', () => {
         if(event.target.classList.contains('js-org-delete-account')) {
             api.deleteRequest(`http://localhost:8080/organizations/delete/${event.target.id}`, {
             }, (organizations) => getAppContext().innerHTML = landing(), getHeaderContext().innerHTML = ""
-        )} 
-    })   
+        )}
+    })
 }
 
-        
+
 
 function volDashboardAndHeader(volunteer) {
     getAppContext().innerHTML = VolunteerDashboard(volunteer)
@@ -260,7 +262,7 @@ function getProjectForm() {
                     getAppContext().innerHTML = ProjectForm(organization, skills, volunteer)
                     })
                 })
-            })  
+            })
         }
     })
 }
@@ -273,7 +275,7 @@ function addProject() {
             const estimatedDuration = document.querySelector('.add__estimatedDuration').value
             const volunteerSubmitId = document.querySelector(".project__submit-parent-volunteer").id
             const orgSubmitId = document.querySelector('.js-add-project').id
-            
+
             const skills = Array.from(document.querySelectorAll('.js-skill__skillName'))
             .filter((checkbox) => checkbox.checked)
             .map((checkbox) => checkbox.value);
@@ -300,7 +302,7 @@ function addOrganization() {
             const orgUrl = document.querySelector('.add__orgUrl').value
             const orgUserName = document.querySelector('.add__orgUserName').value
             const orgPassword = document.querySelector('.add__orgPassword').value
-            
+
             const causes = Array.from(document.querySelectorAll('.cause__causeName'))
             .filter((checkbox) => checkbox.checked)
             .map((checkbox) => checkbox.value);
@@ -323,10 +325,11 @@ function getVolunteerSearchForm() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-get-volunteer-search')) {
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
-                api.getRequest('http://localhost:8080/skills/', skills => {      
+                api.getRequest('http://localhost:8080/skills/', skills => {
+                    getHeaderContext().innerHTML = ""
                     getAppContext().innerHTML = VolunterSearch(organization, skills)
-                }) 
-            }) 
+                })
+            })
         }
     })
 }
@@ -335,7 +338,7 @@ function searchAgain() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-search-again')) {
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
-                api.getRequest('http://localhost:8080/skills/', skills => {      
+                api.getRequest('http://localhost:8080/skills/', skills => {
                     getAppContext().innerHTML = VolunterSearch(organization, skills)
                 })
             })
@@ -361,6 +364,17 @@ function getVolunteerListFromForm() {
 function getBackToOrgDashboard() {
     events.on(getAppContext(), 'click', () => {
         if(event.target.classList.contains('js-back-to-org-dashboard')) {
+            api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
+                getAppContext().innerHTML = OrganizationDashboard(organization)
+                getHeaderContext().innerHTML = OrgHeader(organization)
+            })
+        }
+    })
+}
+
+function getBackToOrgDashboardFromSearch() {
+    events.on(getAppContext(), 'click', () => {
+        if(event.target.classList.contains('fa-arrow-left')) {
             api.getRequest(`http://localhost:8080/organizations/${event.target.id}`, organization => {
                 getAppContext().innerHTML = OrganizationDashboard(organization)
                 getHeaderContext().innerHTML = OrgHeader(organization)
@@ -402,7 +416,7 @@ function volSignIn() {
             api.postRequest('http://localhost:8080/volunteers/signin', {
                 username : username,
                 password : password
-            }, (volunteer) => volDashboardAndHeader(volunteer))  
+            }, (volunteer) => volDashboardAndHeader(volunteer))
         }
     })
 }
@@ -416,8 +430,8 @@ function orgSignIn() {
             api.postRequest('http://localhost:8080/organizations/signin', {
                 username : username,
                 password : password
-            }, (organization) => orgHeaderAndDashboard(organization))  
-                  
+            }, (organization) => orgHeaderAndDashboard(organization))
+
         }
     })
 }
@@ -426,7 +440,7 @@ function orgHeaderAndDashboard(organization) {
     getAppContext().innerHTML = OrganizationDashboard(organization)
     getHeaderContext().innerHTML = OrgHeader(organization)
 }
-   
+
 function getHeaderContext() {
     return document.querySelector("#header");
 }
