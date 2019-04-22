@@ -34,6 +34,11 @@
   }
 
   /* text box styling */
+
+  .add__projectDescription {
+    height: 200px;
+  }
+
   .add__jobTitle, .add__firstName, .add__lastName, .add__volUserName, .add__volPassword, .add__phoneNum, .add__email, .vol-password, .vol-username, .org-username, .org-password, .add__projectName, .add__estimatedDuration, .add__projectDescription, .add__orgName, .add__mission, .add__contactPerson, .add__contactEmail, .add__orgUrl, .add__orgUserName, .add__orgPassword {
     width: 40%;
     border: 2px solid rgb(0, 0, 0, 0.7);
@@ -43,6 +48,11 @@
     padding: 10px;
     box-sizing: border-box;
   }
+
+.h3__textArea {
+  position: absolute;
+  margin: 20px;
+}
 
   /* button styling */
   .js-get-project-form, .js-add-project, .js-add-organization {
