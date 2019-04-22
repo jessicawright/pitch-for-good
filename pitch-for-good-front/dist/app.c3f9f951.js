@@ -154,8 +154,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = ProjectForm;
 
 function ProjectForm(organization, skills, volunteer) {
-  return "\n        <h2>Propose a project idea here!</h2>\n            <div class=\"projectForm__container\">\n                <h3 class=\"organization__orgName\" id=\"".concat(organization.organizationId, "\">Project proposal will be for ").concat(organization.orgName, "</h3>\n                <h3>Project name:\n                    <input type=\"text\" class=\"add__projectName\" placeholder=\"Project Name\">\n                </h3>\n                <h3>Estimated duration of project: \n                    <input type=\"text\" class=\"add__estimatedDuration\" placeholder=\"Estimated Duration\">\n                </h3>\n                <h3>Description of project goal and plans:\n                    <input type=\"text\" class=\"add__projectDescription\" placeholder=\"Project Description\">\n                </h3>   \n                <div class=\"skills__container\">\n                    <h3>Skills involved in project: </h3>\n                    <ul class=\"skills\">\n                        ").concat(skills.map(function (skill) {
-    return "\n                                <li class=\"skill\">     \n                                    <input type=\"checkbox\" class=\"js-skill__skillName\" id=\"".concat(skill.skillId, "\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "\n                                </li>\n                                    ");
+  return "\n        <h2>Propose a project idea here!</h2>\n            <div class=\"projectForm__container\">\n                <div class=\"project-info__container\">\n                    <h3 class=\"organization__orgName\" id=\"".concat(organization.organizationId, " header-font\">Project proposal will be for ").concat(organization.orgName, "</h3>\n                    <h3 id=\"header-font\">\n                        <input type=\"text\" class=\"add__projectName\" placeholder=\"Project Name\">\n                    </h3>\n                    <h3 id=\"header-font\"> \n                        <input type=\"text\" class=\"add__estimatedDuration\" placeholder=\"Estimated Duration\">\n                    </h3>\n                    <h3 id=\"header-font\" class=\"h3__textArea\"></h3>\n                        <textarea id=\"textArea\" class=\"add__projectDescription\" placeholder=\"Project Description\"></textarea>\n                </div>\n                <div class=\"skills__container-project\">\n                <span style=\"color: var(--primary-color);\">\n                <i class=\"fas fa-clipboard-list fa-2x\"></i>\n                </span>\n                    <h3 id=\"header-font\">Skills involved in project: </h3>\n                    <ul id=\"skills\">\n                        ").concat(skills.map(function (skill) {
+    return "\n                                <li class=\"volForm-skill\">     \n                                    <label><input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.skillId, "\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "</label>\n                                </li>\n                                    ");
   }).join(''), "             \n                    </ul>\n                </div>  \n                \n                <div class=\"project__submit-parent-volunteer\" id=\"").concat(volunteer.volunteerId, "\">\n                    <button class=\"js-add-project button\" id=\"").concat(organization.organizationId, "\">Submit proposal</button>\n                </div>\n            </div>\n            "); // date thing?
   // volunteer
 }
@@ -294,7 +294,9 @@ var _Project = _interopRequireDefault(require("./Project"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function VolunteerDashboard(volunteer) {
+
   return "\n    <div class=\"vol-dashboard-background\">\n        <div class=\"vol-dashboard-container\">            \n\n            <div class=\"container1 container-border\">\n                <header class=\"container1-header\">\n                    <span style=\"color: var(--secondary-gray);\">\n                        <i class=\"fas fa-user fa-2x\"></i>\n                    </span>\n                    <h6 id=\"header-font\">About You</h6>\n                </header>\n                <div class=\"container-body-left\">\n                    <ul>\n                        <li>First Name: ".concat(volunteer.firstName, "</li>\n                        <li>Last Name: ").concat(volunteer.lastName, "</li><br>\n                        <li>Username: ").concat(volunteer.volUserName, "</li>\n                        <li>Password: ").concat(volunteer.volPassword, "</li><br>\n                        <li>Phone Number: ").concat(volunteer.phoneNum, "</li>\n                        <li>Email: ").concat(volunteer.email, "</li><br>\n                        <li>Current Job Title: ").concat(volunteer.jobTitle, "</li>\n                    </ul>  \n                    <button type=\"button\" class=\"js-log-out logout\">Log Out</button>\n                </div>\n            </div>\n\n\n            <div class=\"container2 container-border\">\n                <header class=\"container2-header\">\n                    <span style=\"color: var(--secondary-gray);\">\n                        <i class=\"fas fa-clipboard-list fa-2x\"></i>\n                    </span>\n                    <h6 id=\"header-font\">Your Skills</h6>\n                </header>\n                <ul>\n                    <li id=\"gray-text>").concat((0, _Skills.default)(volunteer.skills), "</li>\n                </ul>\n                <button class=\"js--vol-add-skills\" id=").concat(volunteer.volunteerId, ">ADD SKILLS</button>\n            </div>\n\n\n            <div class=\"container3 container-border\">\n                <header class=\"container3-header\">\n                    <span style=\"color: var(--secondary-gray);\">\n                        <i class=\"fas fa-hand-holding-heart fa-2x\"></i>\n                    </span>\n                    <h6 id=\"header-font\">Your Causes</h6>\n                </header>\n                <ul>\n                    <li id=\"gray-text>").concat((0, _Cause.default)(volunteer.causes), "</li>\n                </ul>\n                <button class=\"js--vol-add-causes\" id=").concat(volunteer.volunteerId, ">ADD CAUSES</button>          \n            </div>\n\n\n            <div class=\"container4 container-border\">\n                <header class=\"container4-header\">\n                    <span style=\"color: var(--secondary-gray);\">\n                        <i class=\"fas fa-bullhorn fa-2x\"></i>\n                    </span>\n                    <h6 id=\"header-font\">Pitch a Project</h6>\n                </header>\n                <h6 class=\"pitch-instructions\">Have a project in mind? Click below to check out a list of participating organizations.</h6>\n                <button class=\"js--see-organizations button__big\" id=\"").concat(volunteer.volunteerId, "\">SEE ORGANIZATIONS</button>\n            </div>    \n\n\n            <div class=\"container5 container-border\">\n                <header class=\"container5-header\">\n                    <span style=\"color: var(--secondary-gray);\">\n                        <i class=\"fas fa-business-time fa-2x\"></i>\n                    </span>\n                    <h6 id=\"header-font\">Your Projects</h6>\n                </header>\n                <div class=\"container-body-left\">\n                    <ul>\n                        <li id=\"gray-text\">").concat((0, _Project.default)(volunteer.projects), "</li>\n                    </ul>\n                </div>\n            </div>\n            <h6></h6>\n        </div> \n    </div>\n    "); // <input type="hidden" value="${volunteer.volunteerId}" class="volunteerId">
+
 }
 },{"./Skills":"js/components/Skills.js","./Cause":"js/components/Cause.js","./Project":"js/components/Project.js"}],"js/components/OrgForm.js":[function(require,module,exports) {
 "use strict";
@@ -437,9 +439,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = addSkills;
 
 function addSkills(volunteer, skills) {
+
   return "\n\n\n  <section class=\"addSkills__background\">\n    <div class=\"addSkills-arrow\">\n      <span style=\"color: white;\">\n        <i class=\"skills-arrow fas fa-arrow-left fa-3x\" id=".concat(volunteer.volunteerId, "></i>\n      </span>\n    </div>\n    <div class=\"container\">\n      <h2 class=\"addSkills_profile\">Add additional skills to your profile:</h2>\n      <div class=\"skills__container\">\n        <ul class=\"skills__container__list\" id=\"skills\">\n            ").concat(skills.map(function (skill) {
     return "\n                    <li class=\"skill\">\n                        <label><input type=\"checkbox\" class=\"skill__skillName\" id=\"".concat(skill.skillId, "\" name=\"skillIds\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "</label>\n                    </li>\n                ");
   }).join(''), "\n        </ul>\n      </div>\n    </div>\n      <div class=\"skill-buttons\">\n          <div class=\"addSkill__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-addSkills\">Submit</button></div>\n      </div>\n  </section>\n  ");
+
 } // <div class="vol-search">
 //     <h3 class="vol-search-info">Welcome to the volunteer search page. Use this tool to find volunteers with skills that you need to make the most of your next big project!</h3>
 //     <h4 class="vol-search-info-detail">(Could this be your next super-volunteer?)</h4>
@@ -461,9 +465,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = addCauses;
 
 function addCauses(volunteer, causes) {
-  return "\n    <h1>Add additional causes to your profile:</h1>\n\n    <div class=\"causes__container\">\n                    <ul id=\"causes\">\n                        ".concat(causes.map(function (cause) {
-    return "\n                                <li class=\"cause\">\n                                    <input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\">").concat(cause.causeName, "\n                                    <p class=\"cause__description\">").concat(cause.causeDescription, "</p>\n                                </li>\n                            ");
-  }).join(''), "\n                    </ul>\n\n\n    <button id=").concat(volunteer.volunteerId, " class=\"js-addCauses\">Submit</button>\n    <button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button>\n    </div>\n    ");
+  return "\n\n    <section class=\"addCauses__background\">\n    <h1 class=\"addCauses__headline\">Add additional causes to your profile:</h1>\n\n    <div class=\"causes__container\">\n                    <ul class=\"cause__container__list\">\n                        ".concat(causes.map(function (cause) {
+    return "\n                                <li class=\"causeNameList\">\n                                    <label><input type=\"checkbox\" class=\"cause__causeName\" id=\"".concat(cause.causeId, "\" name=\"causeIds\" value=\"").concat(cause.causeId, "\"><span class=\"cause-bold\">").concat(cause.causeName, "</span></label>:   <span class=\"cause__description\">").concat(cause.causeDescription, "</span>\n                                </li>\n\n                            ");
+  }).join(''), "\n                        </ul>\n                          </div>\n      <div class=\"cause__buttons\">\n        <div class=\"addCause__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-addCauses\">Submit</button></div>\n        <div class=\"back__button\"><button id=").concat(volunteer.volunteerId, " class=\"js-back-to-dashboard\">Cancel</button></div>\n      </div>\n\n  </section>\n    ");
 }
 },{}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/stream-http/lib/capability.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -8474,6 +8478,7 @@ function volAddCauses() {
       _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(volId), function (volunteer) {
         _apiActions.default.getRequest("http://localhost:8080/causes/".concat(volId, "/add"), function (causes) {
           getAppContext().innerHTML = (0, _addCauses.default)(volunteer, causes);
+          getHeaderContext().innerHTML = '';
         });
       });
     }
@@ -8852,7 +8857,9 @@ function getHeaderContext() {
 function getAppContext() {
   return document.querySelector("#app");
 }
+
 },{"./components/VolForm":"js/components/VolForm.js","./components/Organizations":"js/components/Organizations.js","./components/ProjectForm":"js/components/ProjectForm.js","./components/landing":"js/components/landing.js","./utils/api/api-actions":"js/utils/api/api-actions.js","./utils/events/event-actions":"js/utils/events/event-actions.js","./components/VolunteerDashboard":"js/components/VolunteerDashboard.js","./components/OrgForm":"js/components/OrgForm.js","./components/OrganizationDashboard":"js/components/OrganizationDashboard.js","./components/VolHeader":"js/components/VolHeader.js","./components/OrgHeader":"js/components/OrgHeader.js","./components/VolLanding":"js/components/VolLanding.js","./components/OrgLanding":"js/components/OrgLanding.js","./components/VolunteerSearch":"js/components/VolunteerSearch.js","./components/VolunteerList":"js/components/VolunteerList.js","./components/addSkills":"js/components/addSkills.js","./components/addCauses":"js/components/addCauses.js","https":"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/https-browserify/index.js"}],"../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -8880,6 +8887,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "54619" + '/');
 
   ws.onmessage = function (event) {
@@ -9055,5 +9063,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
 //# sourceMappingURL=/app.c3f9f951.js.map

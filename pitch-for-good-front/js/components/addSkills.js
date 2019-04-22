@@ -2,6 +2,7 @@ export default function addSkills(volunteer, skills) {
   return `
 
 
+
   <section class="addSkills__background">
     <div class="addSkills-arrow">
       <span style="color: white;">
@@ -23,6 +24,7 @@ export default function addSkills(volunteer, skills) {
       </div>
     </div>
       <div class="skill-buttons">
+
           <div class="addSkill__button"><button id=${volunteer.volunteerId} class="js-addSkills">Submit</button></div>
       </div>
   </section>
