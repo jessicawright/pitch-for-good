@@ -141,7 +141,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Organizations;
 
 function Organizations(volunteer, organizations) {
-  return "\n        <div class=\"organizations__container\">\n        <div class=\"volunteer__org-search__header\">\n            <span style=\"color: white\">\n                <i class=\"js-back-to-volunteer-dashboard fas fa-arrow-left fa-3x\" id=\"".concat(volunteer.volunteerId, "\"></i>\n            </span>\n        </div>\n        <h1 class=\"organization-page__title\">Organizations:</h1>\n        <ul class=\"organizations\">\n        ").concat(organizations.map(function (organization) {
+  return "\n        <div class=\"organizations__container\">\n        <div class=\"volunteer__org-search__header\">\n            <span style=\"color: white\">\n                <i class=\"js-back-to-volunteer-dashboard fas fa-arrow-left fa-3x\" id=\"".concat(volunteer.volunteerId, "\"></i>\n            </span>\n        </div>\n        <h1 class=\"organization-page__title\">Organizations</h1>\n        <ul class=\"organizations\">\n        ").concat(organizations.map(function (organization) {
     return "\n            <li class=\"organization\">\n                <div class=\"org__content\">   \n                    <section class=\"org__logo\">  \n                        <img src=\"/images/".concat(organization.orgLogo, "\">\n                    </section>\n                    <section class=\"org__info\">\n                        <h2 class=\"js-organization__orgName text\" id=\"").concat(organization.organizationId, "\">").concat(organization.orgName, "</h2>\n                        <h3 class=\"organization__orgMission text\">").concat(organization.orgMission, "</h3>\n                        <h3 class=\"organization__websiteUrl text\"><a href=\"").concat(organization.websiteUrl, "\">").concat(organization.websiteUrl, "</a></h3>\n                    </section>\n                </div>\n                <section class=\"org__project-submit-area\">\n                    <h3 class=\"text\"> If you would like to propose a project to this organization, click the button below.</h3>\n                \n                    <input type=\"hidden\" id=\"").concat(volunteer.volunteerId, "\" class=\"volunteerId\">\n                    <button class=\"js-get-project-form pitch-button\" id=\"").concat(organization.organizationId, "\">Make Your Pitch!</button>\n                </section>\n            </li>\n                    ");
   }).join(''), "             \n        </ul>\n        </div>\n                ");
 }
@@ -8902,7 +8902,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52598" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53782" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
