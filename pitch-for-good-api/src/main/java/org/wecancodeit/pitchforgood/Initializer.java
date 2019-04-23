@@ -83,26 +83,25 @@ public class Initializer implements CommandLineRunner {
 		
 
 		Organization organization1 = organizationRepo.save(new Organization("Ohio Environmental Council","OhioEnvironmentalCouncilLogo.png", "The Ohio Environmental Council is the state's most comprehensive, effective and respected environmental advocate for a healthier, more sustainable Ohio. "
-
 				+ "Our experts work daily to restore, protect, and strengthen the quality of life for families and communities, from the air we breathe and the water we drink to the food we eat and natural resources we enjoy.", 
-				"TAMALIYAPO MPHANDE", "jsunh98@gmail.com", "https://theoec.org/", "username1", "password"));
+				"Tamaliyapo Mphande", "pitchforgood@gmail.com", "https://theoec.org/", "username1", "password"));
 		Organization organization2 = organizationRepo.save(new Organization("Columbus Gives Back", "ColumbusGivesBack_Logo.png", "We're proud to partner with so many local organizations, but the heart of Columbus Gives Back is our leadership team." +
-				 " We strive to create a welcoming, engaging, and fun experience for you at every event, something that sets CGB apart from other volunteer opportunities.","Taylor Putnam-Majarian", "jsunh98@gmail.com", "https://columbusgivesback.org/", "username2", "password"));
+				 " We strive to create a welcoming, engaging, and fun experience for you at every event, something that sets CGB apart from other volunteer opportunities.","Taylor Putnam-Majarian", "pitchforgood@gmail.com", "https://columbusgivesback.org/", "username2", "password"));
 		Organization organization3 = organizationRepo.save(new Organization("See Kids Dream", "SeeKidsDream_Logo.png","See Kids Dream is focused on ensuring every person has the opportunity to achieve his or her fullest potential to contribute to a thriving community." + 
-				" See Kids Dream�s mission is to empower youth with the skills, motivation and confidence to make our world a better place.", "Cynthia Armstrong", "jsunh98@gmail.com", "http://seekidsdream.org/", "username3", "password"));
+				" See Kids Dream's mission is to empower youth with the skills, motivation and confidence to make our world a better place.", "Cynthia Armstrong", "pitchforgood@gmail.com", "http://seekidsdream.org/", "username3", "password"));
 		Organization organization4 = organizationRepo.save(new Organization("Children's Hunger Alliance", "ChildrensHungerAlliance_Logo.png","We partner with organizations throughout Ohio to provide nutritious meals to at-risk children who need them most." + 
-				" We help day care providers, day care centers, local school districts and afterschool and summer programs provide balanced, healthy meals to children in their care. Our team of educators also deliver nutrition education and lead children in physical activities to provide a balanced approach to childhood health.", "Adrienne Galloway", "jsunh98@gmail.com", "https://childrenshungeralliance.org/", "username4", "password"));
+				" We help day care providers, day care centers, local school districts and afterschool and summer programs provide balanced, healthy meals to children in their care. Our team of educators also deliver nutrition education and lead children in physical activities to provide a balanced approach to childhood health.", "Adrienne Galloway", "pitchforgood@gmail.com", "https://childrenshungeralliance.org/", "username4", "password"));
 		Organization organization5 = organizationRepo.save(new Organization("Tech Corps", "TechCorps_Logo.png", "To create a technologically literate society in which all K-12 students have equal access to the technology skills, "
-				+ "programs and resources that will enrich their education today and prepare them for college or career tomorrow.", "Jess", "jsunh98@gmail.com", "http://www.techcorps.org/", "username5", "password"));
+				+ "programs and resources that will enrich their education today and prepare them for college or career tomorrow.", "Jess", "pitchforgood@gmail.com", "http://www.techcorps.org/", "username5", "password"));
 		Organization organization6 = organizationRepo.save(new Organization("Mid-Ohio Food Bank", "MidOhioFoodbank_Logo.png", 
 				"At Mid-Ohio Foodbank, we find it unacceptable for thousands of our neighbors, most of them children and seniors, to go hungry. "
-				+ "We aim to provide efficient, effective ways for hungry people to meet their basic food and nutrition needs.", "Marilyn Tomasi", "jsunh98@gmail.com", "https://www.midohiofoodbank.org", "username6", "password"));
+				+ "We aim to provide efficient, effective ways for hungry people to meet their basic food and nutrition needs.", "Marilyn Tomasi", "pitchforgood@gmail.com", "https://www.midohiofoodbank.org", "username6", "password"));
 		
-		Volunteer volunteer1 = volunteerRepo.save(new Volunteer("John", "Smith", "username1", "password", "8675309", "arielwebb12@gmail.com", "Teacher"));
-		Volunteer volunteer2 = volunteerRepo.save(new Volunteer("Stuart", "Clark", "username2", "password", "8671111", "arielwebb12@gmail.com", "Chef"));
-		Volunteer volunteer3 = volunteerRepo.save(new Volunteer("Ivan", "Ford", "username3", "password","8672222", "arielwebb12@gmail.com", "Veterinarian"));
-		Volunteer volunteer4 = volunteerRepo.save(new Volunteer("Lila", "Jones", "username4", "password","8673333", "arielwebb12@gmail.com", "Software Developer"));
-		Volunteer volunteer5 = volunteerRepo.save(new Volunteer("Peggy", "Peggerson", "username5", "password","8674444", "arielwebb12g@gmail.com", "Accountant"));
+		Volunteer volunteer1 = volunteerRepo.save(new Volunteer("John", "Smith", "username1", "password", "8675309", "pitchforgood@gmail.com", "Teacher"));
+		Volunteer volunteer2 = volunteerRepo.save(new Volunteer("Stuart", "Clark", "username2", "password", "8671111", "pitchforgood@gmail.com", "Chef"));
+		Volunteer volunteer3 = volunteerRepo.save(new Volunteer("Ivan", "Ford", "username3", "password","8672222", "pitchforgood@gmail.com", "Veterinarian"));
+		Volunteer volunteer4 = volunteerRepo.save(new Volunteer("Lila", "Jones", "username4", "password","8673333", "pitchforgood@gmail.com", "Software Developer"));
+		Volunteer volunteer5 = volunteerRepo.save(new Volunteer("Peggy", "Peggerson", "username5", "password","8674444", "pitchforgood@gmail.com", "Accountant"));
 		
 		
 		Project project1 = projectRepo.save(new Project("Dog Park", "We're building a dog park at the community center!", "3 months", organization3, volunteer1));
@@ -111,14 +110,25 @@ public class Initializer implements CommandLineRunner {
 		
 		project1.addSkillToProject(skill2);
 		projectRepo.save(project1);
-		organization1.addCauseToOrganization(cause1);
 		organization5.addProjectToOrganization(project2);
 		organization3.addProjectToOrganization(project1);
-		organization3.addCauseToOrganization(cause1);
+		organization1.addCauseToOrganization(cause5);
+		organization2.addCauseToOrganization(cause3);
+		organization3.addCauseToOrganization(cause9);
+		organization3.addCauseToOrganization(cause4);
+		organization4.addCauseToOrganization(cause10);
+		organization4.addCauseToOrganization(cause8);
+		organization5.addCauseToOrganization(cause2);
+		organization5.addCauseToOrganization(cause4);
+		organization6.addCauseToOrganization(cause8);
+		organization6.addCauseToOrganization(cause10);
+		organization6.addCauseToOrganization(cause11);
 		organizationRepo.save(organization1);
+		organizationRepo.save(organization2);
 		organizationRepo.save(organization3);
-		organizationRepo.save(organization5
-				);
+		organizationRepo.save(organization4);
+		organizationRepo.save(organization5);
+		
 		volunteer1.addProjectToVolunteer(project1);
 		volunteer1.addCauseToVolunteer(cause1);
 		volunteer1.addSkillToVolunteer(skill1);
