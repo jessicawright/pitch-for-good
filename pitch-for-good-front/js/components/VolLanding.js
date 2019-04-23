@@ -5,7 +5,7 @@ export default function VolLanding() {
                 <form class="vollanding__signin">
                     <h2>Been here before?</h2>
                     <input type="text" id="username" class="vol-username" placeholder="User Name:"><br>
-                    <input type="text" id="password" class="vol-password" placeholder="Password:"><br>
+                    <input type="password" id="password" class="vol-password" placeholder="Password:"><br>
                     <button class="js-vol-signin">Submit</button>
                 </form>
                 

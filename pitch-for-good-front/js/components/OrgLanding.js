@@ -5,7 +5,7 @@ export default function OrgLanding() {
             <form class="orglanding__signin">
                 <h2>Been here before?</h2>
                 <input type="text" id="username" class="org-username" placeholder="Username:"><br>
-                <input type="text" id="password" class="org-password" placeholder="Password:"><br>
+                <input type="password" id="password" class="org-password" placeholder="Password:"><br>
                 <button class="js-org-signin">Submit</button>
             </form>
 
