@@ -56,7 +56,7 @@ public class OrganizationControllerTest {
     }
     @Test
     public void givenOrganizations_whenGetOrganizations_thenReturnJsonArray() throws Exception {
-    	Organization org = new Organization("","","","","", null, null);
+    	Organization org = new Organization("","","","","","", null, null);
     	List<Organization> allOrgs = Arrays.asList(org);
     	given(orgRepo.findAll()).willReturn(allOrgs);
     	mvc.perform(get("/organizations/")

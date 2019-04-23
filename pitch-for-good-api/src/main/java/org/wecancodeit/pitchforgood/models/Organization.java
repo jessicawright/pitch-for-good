@@ -15,10 +15,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Organization {
 	
+
 	@Id
 	@GeneratedValue
 	private Long organizationId;
 	private String orgName;
+	private String orgLogo;
 	@Lob
 	private String orgMission;
 	private String contactPerson;
@@ -29,14 +31,15 @@ public class Organization {
 	@ManyToMany
 	private Collection<Cause> causes;
 	@OneToMany //(mappedBy="organization")
-	@JsonIgnore
+	
 	private Collection<Project> projects;
 	
 	public Organization() {}
 
 	
-	public Organization(String orgName, String orgMission, String contactPerson, String orgEmail, String websiteUrl, String orgUserName, String orgPassword) {
+	public Organization(String orgName, String orgLogo, String orgMission, String contactPerson, String orgEmail, String websiteUrl, String orgUserName, String orgPassword) {
 		this.orgName = orgName;
+		this.orgLogo = orgLogo;
 		this.orgMission = orgMission;
 		this.contactPerson = contactPerson;
 		this.orgEmail = orgEmail;
@@ -53,6 +56,10 @@ public class Organization {
 	
 	public String getOrgName() {
 		return orgName;
+	}
+	
+	public String getOrgLogo() {
+		return orgLogo;
 	}
 	
 	public String getOrgMission() {
@@ -117,6 +124,12 @@ public class Organization {
 	public void removeProjectsInCollection() {
 		projects.removeAll(projects);
 		
+	}
+
+
+	@Override
+	public String toString() {
+		return "Organization [orgName=" + orgName + "]";
 	}
 
 	

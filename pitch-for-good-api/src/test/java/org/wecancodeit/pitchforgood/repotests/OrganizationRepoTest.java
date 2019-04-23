@@ -26,7 +26,7 @@ public class OrganizationRepoTest {
 	
 	@Test 
 	public void shouldFindOrganizationByName() {
-		Organization organization = orgRepo.save(new Organization("Habitat for Humanity", "","","","", null, null));
+		Organization organization = orgRepo.save(new Organization("Habitat for Humanity","", "","","","", null, null));
 		Long organizationId = organization.getOrganizationId();
 		
 		entityManager.persist(organization);

@@ -4,7 +4,7 @@ export default function Cause(causes) {
             ${causes.map(cause => {
         return `
             <li class="cause">
-                <h3 class="causeName">${cause.causeName}</h3>
+                <h4 class="causeName">${cause.causeName}</h4>
             </li>
         `;
     }).join('')}

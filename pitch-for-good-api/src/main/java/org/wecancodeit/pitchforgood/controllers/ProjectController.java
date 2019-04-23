@@ -54,10 +54,32 @@ public class ProjectController {
 	public Collection<Project> getProjects() {
 		return (Collection<Project>) projectRepo.findAll();
 	}
+	
 	@GetMapping("/{id}")
 	public Project getSingleProject(@PathVariable Long id) {
 		return projectRepo.findById(id).get();
 	}
+	
+	@GetMapping("/{projectId}/accept")
+    public Organization acceptProject(@PathVariable Long projectId) {
+        Project project = projectRepo.findById(projectId).get();
+        System.out.println(project);
+        Organization org = project.getOrganization();
+        System.out.println(org);
+        project.toggleStatus();
+        projectRepo.save(project);
+        Volunteer volunteer = project.getVolunteer();
+        System.out.println(volunteer);
+        //System.out.println("|"+volunteer.getEmail()+"|" );
+        try {
+            notificationService.sendNotificationToVolunteer(volunteer);
+            // need to change so there are two different emails, add dif method.......................
+        }catch(MailException e) {
+            // catch error
+            logger.info("error sending:" + e.getMessage());
+        }
+        return org;
+    }
 	
 	@PostMapping("/add")
 	public Volunteer addProject(@RequestBody String body) throws JSONException {
@@ -77,7 +99,7 @@ public class ProjectController {
 		Long pitchedOrg = Long.parseLong(organization);
 		Organization finalOrganization = organizationRepo.findById(pitchedOrg).get();
 		
-		Project project = new Project(projectName, projectDescription, estimatedDuration, finalOrganization);
+		Project project = new Project(projectName, projectDescription, estimatedDuration, finalOrganization, finalVolunteer);
 		projectRepo.save(project);
 		
 		ArrayList<String> skills = new ArrayList<String>(); 
@@ -100,6 +122,7 @@ public class ProjectController {
 		
 		finalVolunteer.addProjectToVolunteer(project);
 		volunteerRepo.save(finalVolunteer);
+		finalOrganization.addProjectToOrganization(project);
 		organizationRepo.save(finalOrganization);
 		
 		System.out.println("|"+finalOrganization.getOrgEmail()+"|" );

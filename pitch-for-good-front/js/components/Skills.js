@@ -4,7 +4,7 @@ export default function Skills(skills) {
             ${skills.map(skill => {
         return `
             <li class="skill">
-                <h3 class="skillName">${skill.skillName}</h3>
+                <h4 class="skillName">${skill.skillName}</h4>
             </li>
         `;
     }).join('')}
