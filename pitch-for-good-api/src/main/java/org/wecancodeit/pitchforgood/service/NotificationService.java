@@ -24,8 +24,8 @@ public class NotificationService {
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setTo(orgToSendTo.getOrgEmail());
 		mail.setFrom("pitchforgood@gmail.com");
-		mail.setSubject("You've received a project pitch!");
-		mail.setText("body of email");
+		mail.setSubject("You've received a project pitch from a volunteer!");
+		mail.setText("A volunteer on Pitch for Good has submitted a project proposal for your organization! Log in on the website to see details of the project pitch, and to accept the project idea if you are interested.");
 		
 		javaMailSender.send(mail);
 		
@@ -35,8 +35,8 @@ public class NotificationService {
         SimpleMailMessage mail = new SimpleMailMessage();
         mail.setTo(volToSendTo.getEmail());
         mail.setFrom("pitchforgood@gmail.com");
-        mail.setSubject("Your pitch has been accepted!");
-        mail.setText("The organization decicded to accept your project, yay!!!!!!!!!");
+        mail.setSubject("Your pitch has been accepted by the non-profit!");
+        mail.setText("The non-profit organization that you pitched a project to on Pitch for Good has accepted your proposal! Log in on the website to get their contact information and email them to start planning the project.");
         
         javaMailSender.send(mail);
     }

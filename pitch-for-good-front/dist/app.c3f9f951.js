@@ -141,7 +141,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Organizations;
 
 function Organizations(volunteer, organizations) {
-  return "\n        <div class=\"organizations__container\">\n        <div class=\"volunteer__org-search__header\">\n            <span style=\"color: white\">\n                <i class=\"js-back-to-volunteer-dashboard fas fa-arrow-left fa-3x\" id=\"".concat(volunteer.volunteerId, "\"></i>\n            </span>\n        </div>\n        <h1 class=\"organization-page__title\">Organizations:</h1>\n        <ul class=\"organizations\">\n        ").concat(organizations.map(function (organization) {
+  return "\n        <div class=\"organizations__container\">\n        <div class=\"volunteer__org-search__header\">\n            <span style=\"color: white\">\n                <i class=\"js-back-to-volunteer-dashboard fas fa-arrow-left fa-3x\" id=\"".concat(volunteer.volunteerId, "\"></i>\n            </span>\n        </div>\n        <h1 class=\"organization-page__title\">Organizations</h1>\n        <ul class=\"organizations\">\n        ").concat(organizations.map(function (organization) {
     return "\n            <li class=\"organization\">\n                <div class=\"org__content\">   \n                    <section class=\"org__logo\">  \n                        <img src=\"/images/".concat(organization.orgLogo, "\">\n                    </section>\n                    <section class=\"org__info\">\n                        <h2 class=\"js-organization__orgName text\" id=\"").concat(organization.organizationId, "\">").concat(organization.orgName, "</h2>\n                        <h3 class=\"organization__orgMission text\">").concat(organization.orgMission, "</h3>\n                        <h3 class=\"organization__websiteUrl text\"><a href=\"").concat(organization.websiteUrl, "\">").concat(organization.websiteUrl, "</a></h3>\n                    </section>\n                </div>\n                <section class=\"org__project-submit-area\">\n                    <h3 class=\"text\"> If you would like to propose a project to this organization, click the button below.</h3>\n                \n                    <input type=\"hidden\" id=\"").concat(volunteer.volunteerId, "\" class=\"volunteerId\">\n                    <button class=\"js-get-project-form pitch-button\" id=\"").concat(organization.organizationId, "\">Make Your Pitch!</button>\n                </section>\n            </li>\n                    ");
   }).join(''), "             \n        </ul>\n        </div>\n                ");
 }
@@ -370,7 +370,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolLanding;
 
 function VolLanding() {
-  return "\n        <section class=\"landing-background\">\n            <div class=\"vollanding__grid-container\">\n                <form class=\"vollanding__signin\">\n                    <h2>Been here before?</h2>\n                    <input type=\"text\" id=\"username\" class=\"vol-username\" placeholder=\"User Name:\"><br>\n                    <input type=\"text\" id=\"password\" class=\"vol-password\" placeholder=\"Password:\"><br>\n                    <button class=\"js-vol-signin\">Submit</button>\n                </form>\n                \n                <div class=\"vollanding__signup\">\n                    <h2>Sign up!</h2> \n                    <button class=\"js--sign-up__volunteer\">Create Account</button>\n                </div> \n            </div>\n        </section>\n    ";
+  return "\n        <section class=\"landing-background\">\n            <div class=\"vollanding__grid-container\">\n                <form class=\"vollanding__signin\">\n                    <h2>Been here before?</h2>\n                    <input type=\"text\" id=\"username\" class=\"vol-username\" placeholder=\"User Name:\"><br>\n                    <input type=\"password\" id=\"password\" class=\"vol-password\" placeholder=\"Password:\"><br>\n                    <button class=\"js-vol-signin\">Submit</button>\n                </form>\n                \n                <div class=\"vollanding__signup\">\n                    <h2>Sign up!</h2> \n                    <button class=\"js--sign-up__volunteer\">Create Account</button>\n                </div> \n            </div>\n        </section>\n    ";
 }
 },{}],"js/components/OrgLanding.js":[function(require,module,exports) {
 "use strict";
@@ -381,7 +381,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = OrgLanding;
 
 function OrgLanding() {
-  return "\n    <section class=\"landing-background\">\n        <div class=\"orglanding__grid-container\">\n            <form class=\"orglanding__signin\">\n                <h2>Been here before?</h2>\n                <input type=\"text\" id=\"username\" class=\"org-username\" placeholder=\"Username:\"><br>\n                <input type=\"text\" id=\"password\" class=\"org-password\" placeholder=\"Password:\"><br>\n                <button class=\"js-org-signin\">Submit</button>\n            </form>\n\n            <div class=\"orglanding__signup\">\n                <h2>Sign up!</h2>\n                <button class=\"js--sign-up__organization\">Create Account</button>\n            </div>\n        </div>\n    </section>\n    ";
+  return "\n    <section class=\"landing-background\">\n        <div class=\"orglanding__grid-container\">\n            <form class=\"orglanding__signin\">\n                <h2>Been here before?</h2>\n                <input type=\"text\" id=\"username\" class=\"org-username\" placeholder=\"Username:\"><br>\n                <input type=\"password\" id=\"password\" class=\"org-password\" placeholder=\"Password:\"><br>\n                <button class=\"js-org-signin\">Submit</button>\n            </form>\n\n            <div class=\"orglanding__signup\">\n                <h2>Sign up!</h2>\n                <button class=\"js--sign-up__organization\">Create Account</button>\n            </div>\n        </div>\n    </section>\n    ";
 }
 },{}],"js/components/VolunteerSearch.js":[function(require,module,exports) {
 "use strict";
@@ -8903,7 +8903,8 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
 
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59788" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53782" + '/');
+
 
   ws.onmessage = function (event) {
     checkedAssets = {};

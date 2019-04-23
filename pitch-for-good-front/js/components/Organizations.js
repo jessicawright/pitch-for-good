@@ -6,7 +6,7 @@ export default function Organizations(volunteer, organizations) {
                 <i class="js-back-to-volunteer-dashboard fas fa-arrow-left fa-3x" id="${volunteer.volunteerId}"></i>
             </span>
         </div>
-        <h1 class="organization-page__title">Organizations:</h1>
+        <h1 class="organization-page__title">Organizations</h1>
         <ul class="organizations">
         ${organizations.map(organization => {
             return `
