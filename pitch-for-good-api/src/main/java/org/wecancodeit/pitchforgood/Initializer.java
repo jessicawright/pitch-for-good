@@ -38,20 +38,20 @@ public class Initializer implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Cause cause1 = causeRepo.save(new Cause("Animal Welfare and Services", "Working towards a more humane treatment of all animals"));
-		Cause cause2 = causeRepo.save(new Cause("Arts, Culture, Humanities", "Promoting a society based in education and creativity"));
-		Cause cause3 = causeRepo.save(new Cause("Community Development", "Encouraging community members come together to take collective action and generate solutions to common problems"));
-		Cause cause4 = causeRepo.save(new Cause("Education", "Engaging in the facilitation of learning and the accumulation of knowledge"));
-		Cause cause5 = causeRepo.save(new Cause("Environment", "Protecting our planet and its natural resources"));
-		Cause cause6 = causeRepo.save(new Cause("Health", "Committed to progressing society towards the pursuit of physical and mental well-being"));
-		Cause cause7 = causeRepo.save(new Cause("Human and Civil Rights", "Promoting fair and just treatment for all human beings"));
-		Cause cause8 = causeRepo.save(new Cause("Children's and Family Services", "Overseeing the protection and nurturing of all children"));
-		Cause cause9 = causeRepo.save(new Cause("Youth Development, Shelter, and Crisis Services", "Concerned with the welfare of children and families in crisis"));
-		Cause cause10 = causeRepo.save(new Cause("Hunger", "Guided towards the sufficient feeding of the community"));
-		Cause cause11 = causeRepo.save(new Cause("Homeless Services", "Providing shelter, food, and treatments for the homeless community"));
-		Cause cause12 = causeRepo.save(new Cause("International Services", "Driven by assisting refugees, immigrants and new citizens overcome social, cultural and economic issues"));
-		Cause cause13 = causeRepo.save(new Cause("Public Policy", "Working towards the promotion of a more just society through legislation and governance"));
-		Cause cause14 = causeRepo.save(new Cause("Religion", "Developement of projects and missions to appease the sweet baby jesus please give me money"));
+		Cause cause1 = causeRepo.save(new Cause("Animal Welfare and Services", "Working towards a more humane treatment for all animals."));
+		Cause cause2 = causeRepo.save(new Cause("Arts, Culture, Humanities", "Promoting a society based in education and creativity."));
+		Cause cause3 = causeRepo.save(new Cause("Community Development", "Community members coming together to take collective action to solve community problems."));
+		Cause cause4 = causeRepo.save(new Cause("Education", "Engaging in the facilitation of learning and the accumulation of knowledge."));
+		Cause cause5 = causeRepo.save(new Cause("Environment", "Protecting our planet and its natural resources."));
+		Cause cause6 = causeRepo.save(new Cause("Health", "Committed to progressing society towards the pursuit of physical and mental well-being."));
+		Cause cause7 = causeRepo.save(new Cause("Human and Civil Rights", "Promoting fair and just treatment for all human beings."));
+		Cause cause8 = causeRepo.save(new Cause("Children's and Family Services", "Overseeing the protection and nurturing of all children."));
+		Cause cause9 = causeRepo.save(new Cause("Youth Development and Crisis Services", "Concerned with the welfare of children and families in crisis."));
+		Cause cause10 = causeRepo.save(new Cause("Hunger", "Guided towards the sufficient feeding of the community."));
+		Cause cause11 = causeRepo.save(new Cause("Homeless Services", "Providing shelter, food, and treatments for the homeless community."));
+		Cause cause12 = causeRepo.save(new Cause("International Services", "Assisting refugees, immigrants and new citizens to overcome social, cultural and economic issues."));
+		Cause cause13 = causeRepo.save(new Cause("Public Policy", "Working towards the promotion of a more just society through legislation and governance."));
+		Cause cause14 = causeRepo.save(new Cause("Religion", "Promote and support particular religions, religious activity and worship."));
 		
 		Skill skill1 = skillRepo.save(new Skill("Childcare"));
 		Skill skill2 = skillRepo.save(new Skill("Animal Care"));
