@@ -8800,7 +8800,7 @@ function orgAcceptProject() {
       if (confirm('Are you sure you would like to accept the project? If you do, the volunteer will receive an email that their project has been accepted. They also will be able to contact you to move forward with the project.')) {
         _apiActions.default.getRequest("http://localhost:8080/projects/".concat(event.target.id, "/accept"), function (organization) {
           getAppContext().innerHTML = (0, _OrganizationDashboard.default)(organization);
-          getHeaderContext().innerHTML = (0, _OrgHeader.default)(organization);
+          getHeaderContext().innerHTML = "";
         });
       }
     }
@@ -8902,7 +8902,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62231" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63659" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
