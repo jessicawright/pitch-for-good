@@ -3,7 +3,7 @@ export default function VolunterSearch(organization, skills) {
     return `
         <div class="vol-search">
             <span style="color: white;">
-                <i class="volSearch fas fa-arrow-left fa-3x" id=${organization.organizationId}></i>
+                <i class="js-back-to-org-dashboard fas fa-arrow-left fa-3x" id=${organization.organizationId}></i>
             </span>
             <div class="container">
                 <h2 class="vol-search-info">Welcome to the volunteer<br>search page.</h2>

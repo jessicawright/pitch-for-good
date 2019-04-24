@@ -392,7 +392,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = VolunterSearch;
 
 function VolunterSearch(organization, skills) {
-  return "\n        <div class=\"vol-search\">\n            <span style=\"color: white;\">\n                <i class=\"volSearch fas fa-arrow-left fa-3x\" id=".concat(organization.organizationId, "></i>\n            </span>\n            <div class=\"container\">\n                <h2 class=\"vol-search-info\">Welcome to the volunteer<br>search page.</h2>\n                <h4 class=\"vol-search-info-detail\">Use this tool to find volunteers with skills that you need to make the most of your next big project!</h4>\n                <select id=\"skillId\" class=\"skill-select\">\n                ").concat(skills.map(function (skill) {
+  return "\n        <div class=\"vol-search\">\n            <span style=\"color: white;\">\n                <i class=\"js-back-to-org-dashboard fas fa-arrow-left fa-3x\" id=".concat(organization.organizationId, "></i>\n            </span>\n            <div class=\"container\">\n                <h2 class=\"vol-search-info\">Welcome to the volunteer<br>search page.</h2>\n                <h4 class=\"vol-search-info-detail\">Use this tool to find volunteers with skills that you need to make the most of your next big project!</h4>\n                <select id=\"skillId\" class=\"skill-select\">\n                ").concat(skills.map(function (skill) {
     return "\n                        <option class=\"js-dropdown-skill\" id=\"".concat(skill.skillId, "\" value=\"").concat(skill.skillId, "\">").concat(skill.skillName, "</option> \n                    ");
   }).join(''), "\n                </select>        \n                <button class=\"js-find-volunteers-by-skill button\" id=\"").concat(organization.organizationId, "\">Search</button>\n            </div>\n        </div>\n    ");
 }
@@ -424,7 +424,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function VolunteerList(organization, skill, volunteers) {
   console.log(organization.organizationId);
   console.log(skill.skillId);
-  return "\n    <div class=\"vol-search\">\n        <span style=\"color: white;\">\n            <i class=\"fas fa-arrow-left fa-3x\" id=".concat(organization.organizationId, "></i>\n        </span>\n        <div class=\"vol-search-buttons\">\n            <button class=\"js-search-again\" id=\"").concat(organization.organizationId, "\">Search Again</button>\n        </div>\n            ").concat(volunteers.map(function (volunteer) {
+  return "\n    <div class=\"vol-search\">\n        <span style=\"color: white;\">\n            <i class=\"volSearch fas fa-arrow-left fa-3x\" id=".concat(organization.organizationId, "></i>\n        </span>\n        <div class=\"vol-search-buttons\">\n            <button class=\"js-search-again\" id=\"").concat(organization.organizationId, "\">Search Again</button>\n        </div>\n            ").concat(volunteers.map(function (volunteer) {
     return "\n                <div class=\"volunteer-results\">\n                    <h2 class=\"volunteer\" id=\"".concat(volunteer.volunteerId, "\">").concat(volunteer.firstName, " ").concat(volunteer.lastName, "</h2>\n                    <h3 class =\"volunteer__email\">").concat(volunteer.email, "</h3>\n                </div>\n                ");
   }).join(''), "\n            <ul class=\"volunteers\">\n    </div>\n        ");
 }
@@ -8428,6 +8428,7 @@ function main() {
   searchAgain();
   getBackToOrgDashboardFromSearch();
   getBackToVolDashBoardAfterAddSkills();
+  getBackToVolDashBoardAfterAddCauses();
 }
 
 function goHome() {
@@ -8474,6 +8475,7 @@ function volAddCauses() {
       _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(volId), function (volunteer) {
         _apiActions.default.getRequest("http://localhost:8080/causes/".concat(volId, "/add"), function (causes) {
           getAppContext().innerHTML = (0, _addCauses.default)(volunteer, causes);
+          getHeaderContext().innerHTML = '';
         });
       });
     }
@@ -8771,6 +8773,16 @@ function getBackToVolDashBoardAfterAddSkills() {
   });
 }
 
+function getBackToVolDashBoardAfterAddCauses() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('causes-arrow')) {
+      _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(event.target.id), function (volunteer) {
+        getAppContext().innerHTML = (0, _VolunteerDashboard.default)(volunteer);
+      });
+    }
+  });
+}
+
 function getBackToOrgDashboardFromSearch() {
   _eventActions.default.on(getAppContext(), 'click', function () {
     if (event.target.classList.contains('volSearch')) {
@@ -8801,6 +8813,16 @@ function goToVolunteerDashboard() {
       _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(event.target.id), function (volunteer) {
         getAppContext().innerHTML = (0, _VolunteerDashboard.default)(volunteer);
         getHeaderContext().innerHTML = (0, _VolHeader.default)(volunteer);
+      });
+    }
+  });
+}
+
+function goToVolunteerDashboard() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('js-back-to-volunteer-dashboard')) {
+      _apiActions.default.getRequest("http://localhost:8080/volunteers/".concat(event.target.id), function (volunteer) {
+        getAppContext().innerHTML = (0, _VolunteerDashboard.default)(volunteer);
       });
     }
   });
@@ -8880,7 +8902,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65235" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58179" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
