@@ -2,7 +2,7 @@ export default function Organizations(volunteer, organizations) {
     return `
         <div class="organizations__container">
         <div class="volunteer__org-search__header">
-            <span style="color: white">
+            <span style="color: var(--secondary-gray);">
                 <i class="js-back-to-volunteer-dashboard fas fa-arrow-left fa-3x" id="${volunteer.volunteerId}"></i>
             </span>
         </div>

@@ -42,10 +42,17 @@
   grid-template-rows: 2, 1fr;
 }
 
-.contact-info__container, .project-info__container {
+.contact-info__container {
   grid-column: 1 / span 2;
   grid-row: 1 / span 2;
 }
+
+.project-info__container {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2;
+  margin-top: 30px;
+}
+
 
 /* start org and vol landing grid */
 .orglanding__grid-container, .vollanding__grid-container {
@@ -553,18 +560,25 @@ header span i {
   padding: 20px;
 
 }
-.js-addSkills, .js-back-to-dashboard, .js-addCauses{
+.js-addSkills, .js-back-to-dashboard {
   background-color: var(--tertiary-white);
   color: var(--secondary-gray);
   justify-content: space-evenly;
   font-size: 20px;
   padding: 10px;
+}
 
+.js-addCauses {
+  background-color: var(--tertiary-white);
+  color: var(--secondary-gray);
+  justify-content: space-evenly;
+  font-size: 20px;
+  padding: 10px;
+  margin-top: 30px;
 }
 
 .addSkills_profile {
   margin-top: 40px;
-
   color: white;
 }
 .addCauses__headline {
@@ -575,13 +589,6 @@ header span i {
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-
-.cause__buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
 .addCauses__background {
@@ -604,27 +611,29 @@ header span i {
   justify-content: center;
 }
 
-.addCauses-arrow {
+#addCauses-arrow {
   display: flex;
   flex-direction: row;
   justify-content: left;
-  margin-left: 15px;
-  margin-top: 15px;
+}
+
+.causes-arrow {
+  align-self: flex-start;
 }
 
 .causes__container {
   background-color: none;
-  height: 775px;
+  /* height: 775px; */
 
   margin-top: 0;
 }
 .causeNameList {
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 5px;
 }
 
 .cause__description {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .cause__container__list {
@@ -795,7 +804,7 @@ header span i {
   align-self: center;
 }
 
-.contact-info__container, .project-info__container {
+.contact-info__container {
   background-color: var(--tertiary-white);
   border-color: var(--primary-color);
   border-style: solid;
@@ -805,6 +814,18 @@ header span i {
   padding-top: 30px;
   padding-bottom: 30px;
 }
+
+.project-info__container {
+  background-color: var(--tertiary-white);
+  border-color: var(--primary-color);
+  border-style: solid;
+  border-radius: 8px;
+  margin: 30px auto 30px auto;
+  width: 80%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 
 .skills__container-form, .skills__container-project {
   background-color: var(--tertiary-white);
@@ -855,6 +876,7 @@ header span i {
 
 .cause-bold {
   font-weight: bold;
+  font-size: 28px;
 }
 
 #causes {
@@ -944,6 +966,14 @@ header span i {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.add__projectDescription::placeholder {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+textarea {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 /* organizations page */
 
 .organizations__container {
@@ -959,7 +989,7 @@ header span i {
 }
 
 .organization-page__title {
-  color: rgb(96, 117, 67);
+  color: var(--secondary-gray);
   padding-top: 2rem;
 }
 
